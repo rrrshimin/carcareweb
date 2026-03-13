@@ -2,7 +2,7 @@ import { supabase } from "./supabase";
 import type { Tables } from "../../database.types";
 
 const VEHICLE_FIELDS =
-  "id, name, year, fuel_type, transmission, current_odometer, image_url" as const;
+  "id, name, year, fuel_type, transmission, current_odometer, image_url, user_id_link" as const;
 
 const LOG_FIELDS =
   "id, car_id, log_type, change_date, odo_log, specs, notes" as const;
@@ -13,7 +13,7 @@ const CATEGORY_FIELDS = "id, category_name" as const;
 
 export type RawVehicle = Pick<
   Tables<"vehicles">,
-  "id" | "name" | "year" | "fuel_type" | "transmission" | "current_odometer" | "image_url"
+  "id" | "name" | "year" | "fuel_type" | "transmission" | "current_odometer" | "image_url" | "user_id_link"
 >;
 
 export type RawLog = Pick<
@@ -36,6 +36,7 @@ export type PageData = {
   logs: RawLog[];
   logTypes: RawLogType[];
   categories: RawCategory[];
+  unit: string | null;
 };
 
 export type FetchResult =
@@ -52,6 +53,16 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
 
   if (vehicleErr || !vehicle) {
     return { status: "unavailable" };
+  }
+
+  let unit: string | null = null;
+  if (vehicle.user_id_link) {
+    const { data: device } = await supabase
+      .from("user_devices")
+      .select("unit")
+      .eq("device_id", vehicle.user_id_link)
+      .maybeSingle();
+    unit = device?.unit ?? null;
   }
 
   const { data: logs, error: logsErr } = await supabase
@@ -89,6 +100,6 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
 
   return {
     status: "found",
-    data: { vehicle, logs: safeLogs, logTypes, categories },
+    data: { vehicle, logs: safeLogs, logTypes, categories, unit },
   };
 }

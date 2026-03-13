@@ -2,7 +2,13 @@ import { CalendarDays, Gauge } from "lucide-react";
 import { formatDate, formatOdometer } from "../lib/format";
 import type { PublicHistoryEntry } from "../lib/types";
 
-export function HistoryEntryRow({ entry }: { entry: PublicHistoryEntry }) {
+export function HistoryEntryRow({
+  entry,
+  odometerUnit,
+}: {
+  entry: PublicHistoryEntry;
+  odometerUnit: string | null;
+}) {
   const hasDate = !!entry.serviceDate;
   const hasOdo = entry.odometer != null;
   const hasSpecs = !!entry.specs;
@@ -22,7 +28,7 @@ export function HistoryEntryRow({ entry }: { entry: PublicHistoryEntry }) {
         {hasOdo && (
           <span className="flex items-center gap-1.5 text-gray-700">
             <Gauge className="h-3.5 w-3.5 text-gray-400" />
-            {formatOdometer(entry.odometer!)}
+            {formatOdometer(entry.odometer!, odometerUnit)}
           </span>
         )}
         {hasSpecs && <span className="text-gray-500">{entry.specs}</span>}

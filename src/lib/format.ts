@@ -12,8 +12,15 @@ export function formatDate(iso: string): string {
   return `${parseInt(match[3], 10)} ${MONTHS[monthIndex]} ${match[1]}`;
 }
 
-export function formatOdometer(value: number): string {
-  return value.toLocaleString();
+export function formatOdometer(value: number, unit?: string | null): string {
+  const formatted = value.toLocaleString();
+  if (unit) return `${formatted} ${unit}`;
+  return formatted;
+}
+
+export function capitalizeFirst(value: string): string {
+  if (!value) return value;
+  return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 export function buildDisplayName(
@@ -21,7 +28,7 @@ export function buildDisplayName(
   year: number | null,
 ): string {
   const base = name?.trim() || null;
-  if (base && year) return `${year} ${base}`;
+  if (base && year) return `${base}, ${year}`;
   if (base) return base;
   if (year) return `${year} Vehicle`;
   return "Unnamed Vehicle";

@@ -5,6 +5,7 @@ import { fetchPageData } from "../lib/fetchPageData";
 import { buildViewModel } from "../lib/buildViewModel";
 import { buildPageTitle } from "../lib/format";
 import type { PublicVehiclePageModel, PublicCategory } from "../lib/types";
+import { Header } from "../components/Header";
 import { VehicleSummaryCard } from "../components/VehicleSummaryCard";
 import { CategoryTabs } from "../components/CategoryTabs";
 import { MaintenanceItemSection } from "../components/MaintenanceItemSection";
@@ -118,10 +119,11 @@ function PublicVehiclePage({ model }: { model: PublicVehiclePageModel }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto max-w-5xl px-4 py-5 sm:py-8">
+      <Header />
+      <div className="mx-auto max-w-5xl px-4 pt-19 pb-5 sm:pt-22 sm:pb-8">
         <div className="gap-6 lg:flex lg:gap-8">
           <div className="mb-5 w-full shrink-0 lg:mb-0 lg:w-80">
-            <div className="lg:sticky lg:top-6">
+            <div className="lg:sticky lg:top-20">
               <VehicleSummaryCard vehicle={vehicle} />
             </div>
           </div>
@@ -140,7 +142,11 @@ function PublicVehiclePage({ model }: { model: PublicVehiclePageModel }) {
                 <div className="mt-4 space-y-4 sm:mt-5 sm:space-y-5">
                   {visibleItems.length > 0 ? (
                     visibleItems.map((item) => (
-                      <MaintenanceItemSection key={item.id} item={item} />
+                      <MaintenanceItemSection
+                        key={item.id}
+                        item={item}
+                        odometerUnit={vehicle.odometerUnit}
+                      />
                     ))
                   ) : (
                     <EmptyCategoryContent />

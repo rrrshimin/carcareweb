@@ -14,6 +14,7 @@ export type PublicVehicle = {
   transmission: string | null;
   imageUrl: string | null;
   currentOdometer: number | null;
+  odometerUnit: string | null;
 };
 
 export type PublicCategory = {

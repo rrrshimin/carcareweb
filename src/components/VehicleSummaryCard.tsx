@@ -70,7 +70,7 @@ function buildDetails(v: PublicVehicle) {
   if (v.currentOdometer != null)
     out.push({
       label: "Odometer",
-      value: formatOdometer(v.currentOdometer),
+      value: formatOdometer(v.currentOdometer, v.odometerUnit),
       icon: <Gauge className="h-4 w-4 shrink-0 text-blue-500" />,
     });
 

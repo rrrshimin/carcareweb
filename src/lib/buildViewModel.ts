@@ -1,5 +1,5 @@
 import type { PageData, RawLog } from "./fetchPageData";
-import { buildDisplayName } from "./format";
+import { buildDisplayName, capitalizeFirst } from "./format";
 import type {
   PublicVehiclePageModel,
   PublicCategory,
@@ -70,10 +70,11 @@ export function buildViewModel(data: PageData, slug: string): PublicVehiclePageM
       slug,
       displayName: buildDisplayName(vehicle.name, vehicle.year),
       year: vehicle.year,
-      fuelType: vehicle.fuel_type,
-      transmission: vehicle.transmission,
+      fuelType: vehicle.fuel_type ? capitalizeFirst(vehicle.fuel_type) : null,
+      transmission: vehicle.transmission ? capitalizeFirst(vehicle.transmission) : null,
       imageUrl: vehicle.image_url,
       currentOdometer: vehicle.current_odometer,
+      odometerUnit: data.unit,
     },
     categories: publicCategories,
   };

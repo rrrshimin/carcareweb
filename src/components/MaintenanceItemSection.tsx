@@ -3,8 +3,10 @@ import { HistoryEntryRow } from "./HistoryEntryRow";
 
 export function MaintenanceItemSection({
   item,
+  odometerUnit,
 }: {
   item: PublicMaintenanceItem;
+  odometerUnit: string | null;
 }) {
   if (item.historyEntries.length === 0) return null;
 
@@ -22,7 +24,7 @@ export function MaintenanceItemSection({
 
       <div className="space-y-2">
         {item.historyEntries.map((entry) => (
-          <HistoryEntryRow key={entry.id} entry={entry} />
+          <HistoryEntryRow key={entry.id} entry={entry} odometerUnit={odometerUnit} />
         ))}
       </div>
     </section>

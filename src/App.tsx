@@ -3,12 +3,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 
 const VehiclePage = lazy(() => import("./pages/VehiclePage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/privacy"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <PrivacyPolicyPage />
+            </Suspense>
+          }
+        />
         <Route
           path="/:slug"
           element={

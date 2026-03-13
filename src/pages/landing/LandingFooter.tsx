@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 
 export function LandingFooter() {
@@ -10,12 +11,12 @@ export function LandingFooter() {
         <Logo />
 
         <div className="flex items-center gap-6 text-[14px]" style={{ color: "#A3ACBF" }}>
-          <a
-            href="#"
+          <Link
+            to="/privacy"
             className="transition-colors hover:text-white"
           >
             Privacy Policy
-          </a>
+          </Link>
         </div>
 
         <p className="text-[14px]" style={{ color: "#A3ACBF" }}>

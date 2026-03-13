@@ -5,7 +5,7 @@ const trustBullets = [
   { icon: ClipboardCheck, text: "Log maintenance in seconds" },
   { icon: CalendarClock, text: "See what's due next" },
   { icon: History, text: "Keep a clear service history" },
-  { icon: Share2, text: "Share records when selling your car" },
+  { icon: Share2, text: "Share records when selling car" },
 ];
 
 export function Hero() {
@@ -37,14 +37,14 @@ export function Hero() {
                 >
                   <item.icon className="w-4 h-4" style={{ color: "#367DFF" }} />
                 </div>
-                <span className="text-[14px]" style={{ color: "#A3ACBF" }}>
+                <span className="text-[14px] text-left" style={{ color: "#A3ACBF" }}>
                   {item.text}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-3 sm:justify-center lg:justify-start">
             <AppStoreButton />
             <GooglePlayButton />
           </div>

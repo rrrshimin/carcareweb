@@ -19,7 +19,7 @@ const steps = [
   {
     icon: Share2,
     title: "Share your service history",
-    description: "Generate a public link to share your vehicle's complete maintenance record.",
+    description: "Generate a public link to share your vehicle's maintenance record.",
   },
 ];
 

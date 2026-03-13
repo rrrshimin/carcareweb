@@ -58,12 +58,10 @@ export function Features() {
                 key={feature.title}
                 className={`flex flex-col ${
                   isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                } items-center gap-8 md:gap-8`}
+                } items-center gap-8 md:gap-12 max-w-[800px] mx-auto`}
               >
-                <div className="flex-1 w-full flex justify-center">
-                  <div
-                    className="rounded-[14px] overflow-hidden max-w-[320px] w-full"
-                  >
+                <div className="shrink-0">
+                  <div className="rounded-[14px] overflow-hidden w-[280px] md:w-[320px]">
                     <img
                       src={feature.image}
                       alt={feature.title}
@@ -72,7 +70,7 @@ export function Features() {
                   </div>
                 </div>
 
-                <div className="flex-1 w-full">
+                <div className="flex-1">
                   <h3
                     className="text-[20px] md:text-[24px] mb-4"
                     style={{ fontWeight: 700 }}

@@ -1,31 +1,32 @@
+import feature1 from "../../assets/feature-1.png";
+import feature2 from "../../assets/feature-2.png";
+import feature3 from "../../assets/feature-3.png";
+import feature4 from "../../assets/feature-4.png";
+
 const features = [
   {
     title: "Vehicle Profile",
     description:
       "Add your vehicle details once, including photo, make and model, year, fuel type, transmission, odometer, and unit preference.",
-    image:
-      "https://images.unsplash.com/photo-1748801584058-29faa47242ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydHBob25lJTIwYXBwJTIwc2NyZWVuJTIwcG9ydHJhaXQlMjBtb2NrdXB8ZW58MXx8fHwxNzczMzI1NTE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: feature1,
   },
   {
     title: "Maintenance Tracking",
     description:
       "Log maintenance events like oil changes, filters, spark plugs, brakes, fluids, and more \u2014 with date, mileage, specifications, and notes.",
-    image:
-      "https://images.unsplash.com/photo-1663153203126-08bbadc178ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBwaG9uZSUyMHNjcmVlbiUyMHZlcnRpY2FsJTIwZGFya3xlbnwxfHx8fDE3NzMzMjU1MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: feature2,
   },
   {
     title: "Due Status & Reminders",
     description:
       "See what service is coming up next based on previous logs, mileage, and maintenance intervals \u2014 and get reminders when attention is needed.",
-    image:
-      "https://images.unsplash.com/photo-1759931300350-39eb98d8ed74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaG9uZSUyMGFwcCUyMGludGVyZmFjZSUyMHBvcnRyYWl0fGVufDF8fHx8MTc3MzMyNTUxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: feature3,
   },
   {
     title: "Shareable Maintenance History",
     description:
       "Generate a public link to show your vehicle\u2019s maintenance history \u2014 useful when selling your car and proving it has been properly looked after.",
-    image:
-      "https://images.unsplash.com/photo-1645529471544-12721793a797?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbWFydHBob25lJTIwdmVydGljYWwlMjBzY3JlZW4lMjBkaXNwbGF5fGVufDF8fHx8MTc3MzMyNTUxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: feature4,
   },
 ];
 
@@ -57,17 +58,16 @@ export function Features() {
                 key={feature.title}
                 className={`flex flex-col ${
                   isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                } items-center gap-10 md:gap-16`}
+                } items-center gap-8 md:gap-8`}
               >
                 <div className="flex-1 w-full flex justify-center">
                   <div
-                    className="rounded-[14px] overflow-hidden border max-w-[280px] w-full"
-                    style={{ borderColor: "#1F2740" }}
+                    className="rounded-[14px] overflow-hidden max-w-[320px] w-full"
                   >
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="w-full h-[480px] md:h-[540px] object-cover"
+                      className="w-full h-auto"
                     />
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import { ClipboardCheck, CalendarClock, History, Share2 } from "lucide-react";
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
+import heroScreenshot from "../../assets/screenshot-hero.png";
 
 const trustBullets = [
   { icon: ClipboardCheck, text: "Log maintenance in seconds" },
@@ -11,7 +12,7 @@ const trustBullets = [
 export function Hero() {
   return (
     <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-8">
         <div className="flex-1 text-center lg:text-left">
           <h1
             className="text-[34px] md:text-[48px] lg:text-[56px] leading-[1.1] mb-6"
@@ -57,12 +58,14 @@ export function Hero() {
               style={{ background: "radial-gradient(circle, #0051E8 0%, transparent 70%)" }}
             />
             <div
-              className="relative rounded-[28px] overflow-hidden border"
-              style={{ borderColor: "#1F2740", maxWidth: 380 }}
+              className="relative rounded-[28px] overflow-hidden"
+              style={{ maxWidth: 420 }}
             >
-              <div className="w-[380px] h-[680px] flex items-center justify-center" style={{ backgroundColor: "#141A2B" }}>
-                <p className="text-[16px]" style={{ color: "#A3ACBF" }}>App Screenshot</p>
-              </div>
+              <img
+                src={heroScreenshot}
+                alt="CarCare Diary app"
+                className="w-[420px] h-auto"
+              />
             </div>
           </div>
         </div>

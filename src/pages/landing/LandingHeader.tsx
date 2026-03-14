@@ -23,8 +23,8 @@ export function LandingHeader() {
       <div className="max-w-[1280px] mx-auto py-3 flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-2 md:gap-3">
-          <AppStoreButton className="px-3 py-2 gap-2 md:px-5 md:py-3 md:gap-3" />
-          <GooglePlayButton className="px-3 py-2 gap-2 md:px-5 md:py-3 md:gap-3" />
+          <AppStoreButton className="px-3 py-2 gap-2 md:px-5 md:py-3 md:gap-3" iconOnlyMobile />
+          <GooglePlayButton className="px-3 py-2 gap-2 md:px-5 md:py-3 md:gap-3" iconOnlyMobile />
         </div>
       </div>
     </header>

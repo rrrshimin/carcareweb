@@ -1,14 +1,19 @@
 import { Apple } from "lucide-react";
 
-export function AppStoreButton({ className = "" }: { className?: string }) {
+interface StoreButtonProps {
+  className?: string;
+  iconOnlyMobile?: boolean;
+}
+
+export function AppStoreButton({ className = "", iconOnlyMobile }: StoreButtonProps) {
   return (
     <a
       href="#"
-      className={`inline-flex items-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
       style={{ backgroundColor: "#141A2B" }}
     >
       <Apple className="w-5 h-5 md:w-6 md:h-6 text-white fill-white shrink-0" />
-      <div className="flex flex-col text-left">
+      <div className={`${iconOnlyMobile ? "hidden md:flex" : "flex"} flex-col text-left`}>
         <span className="text-[10px] md:text-[11px] leading-tight" style={{ color: "#A3ACBF" }}>
           Download on the
         </span>
@@ -20,11 +25,11 @@ export function AppStoreButton({ className = "" }: { className?: string }) {
   );
 }
 
-export function GooglePlayButton({ className = "" }: { className?: string }) {
+export function GooglePlayButton({ className = "", iconOnlyMobile }: StoreButtonProps) {
   return (
     <a
       href="#"
-      className={`inline-flex items-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
       style={{ backgroundColor: "#141A2B" }}
     >
       <svg className="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none">
@@ -33,7 +38,7 @@ export function GooglePlayButton({ className = "" }: { className?: string }) {
         <path d="M3.609 22.186c.261 1.408.973 1.391 1.578 1.04l12.358-7.474-3.753-3.752L3.61 22.186z" fill="#34A853" />
         <path d="M21.005 10.268l-3.46-2.02L13.792 12l3.753 3.752 3.46-2.02c.88-.536.88-2.928 0-3.464z" fill="#FBBC04" />
       </svg>
-      <div className="flex flex-col text-left">
+      <div className={`${iconOnlyMobile ? "hidden md:flex" : "flex"} flex-col text-left`}>
         <span className="text-[10px] md:text-[11px] leading-tight" style={{ color: "#A3ACBF" }}>
           GET IT ON
         </span>

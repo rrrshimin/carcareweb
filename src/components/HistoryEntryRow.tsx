@@ -1,4 +1,4 @@
-import { CalendarDays, Gauge } from "lucide-react";
+import { CalendarDays, Clock, Gauge } from "lucide-react";
 import { formatDate, formatOdometer } from "../lib/format";
 import type { PublicHistoryEntry } from "../lib/types";
 
@@ -10,11 +10,12 @@ export function HistoryEntryRow({
   odometerUnit: string | null;
 }) {
   const hasDate = !!entry.serviceDate;
+  const hasLoggedAt = !!entry.loggedAt;
   const hasOdo = entry.odometer != null;
   const hasSpecs = !!entry.specs;
   const hasNotes = !!entry.notes;
 
-  if (!hasDate && !hasOdo && !hasSpecs && !hasNotes) return null;
+  if (!hasDate && !hasLoggedAt && !hasOdo && !hasSpecs && !hasNotes) return null;
 
   return (
     <div className="rounded-lg border border-gray-100 bg-gray-50/50 px-3 py-2.5 sm:px-4 sm:py-3">
@@ -37,6 +38,13 @@ export function HistoryEntryRow({
       {hasNotes && (
         <p className="mt-1.5 break-words text-[13px] leading-relaxed text-gray-500 sm:text-sm">
           {entry.notes}
+        </p>
+      )}
+
+      {hasLoggedAt && (
+        <p className="mt-1.5 flex items-center gap-1 text-[11px] text-gray-400">
+          <Clock className="h-3 w-3" />
+          Logged {formatDate(entry.loggedAt!)}
         </p>
       )}
     </div>

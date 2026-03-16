@@ -7,12 +7,12 @@ const CATEGORY_FIELDS = "id, category_name" as const;
 
 export type RawVehicle = Pick<
   Tables<"vehicles">,
-  "id" | "name" | "year" | "fuel_type" | "transmission" | "current_odometer" | "image_url" | "user_id_link"
+  "id" | "name" | "year" | "fuel_type" | "transmission" | "current_odometer" | "image_url" | "user_id_link" | "auth_user_id"
 >;
 
 export type RawLog = Pick<
   Tables<"user_logs">,
-  "id" | "car_id" | "log_type" | "change_date" | "odo_log" | "specs" | "notes"
+  "id" | "car_id" | "log_type" | "change_date" | "created_at" | "odo_log" | "specs" | "notes"
 >;
 
 export type RawLogType = Pick<
@@ -31,6 +31,7 @@ export type PageData = {
   logTypes: RawLogType[];
   categories: RawCategory[];
   unit: string | null;
+  ownerName: string | null;
 };
 
 export type FetchResult =
@@ -56,6 +57,16 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
       .eq("device_id", vehicle.user_id_link)
       .maybeSingle();
     unit = device?.unit ?? null;
+  }
+
+  let ownerName: string | null = null;
+  if (vehicle.auth_user_id) {
+    const { data: profile } = await supabase
+      .from("user_profiles")
+      .select("username")
+      .eq("auth_user_id", vehicle.auth_user_id)
+      .maybeSingle();
+    ownerName = profile?.username ?? null;
   }
 
   const { data: logRows, error: logsErr } = await supabase
@@ -91,6 +102,6 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
 
   return {
     status: "found",
-    data: { vehicle, logs: safeLogs, logTypes, categories, unit },
+    data: { vehicle, logs: safeLogs, logTypes, categories, unit, ownerName },
   };
 }

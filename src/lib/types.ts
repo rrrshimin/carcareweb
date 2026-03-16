@@ -15,6 +15,7 @@ export type PublicVehicle = {
   imageUrl: string | null;
   currentOdometer: number | null;
   odometerUnit: string | null;
+  ownerName: string | null;
 };
 
 export type PublicCategory = {
@@ -32,6 +33,7 @@ export type PublicMaintenanceItem = {
 export type PublicHistoryEntry = {
   id: number;
   serviceDate: string | null;
+  loggedAt: string | null;
   odometer: number | null;
   specs: string | null;
   notes: string | null;

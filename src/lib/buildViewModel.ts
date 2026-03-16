@@ -75,6 +75,7 @@ export function buildViewModel(data: PageData, slug: string): PublicVehiclePageM
       imageUrl: vehicle.image_url,
       currentOdometer: vehicle.current_odometer,
       odometerUnit: data.unit,
+      ownerName: data.ownerName,
     },
     categories: publicCategories,
   };
@@ -84,6 +85,7 @@ function toHistoryEntry(log: RawLog): PublicHistoryEntry {
   return {
     id: log.id,
     serviceDate: log.change_date,
+    loggedAt: log.created_at,
     odometer: log.odo_log,
     specs: log.specs,
     notes: log.notes,

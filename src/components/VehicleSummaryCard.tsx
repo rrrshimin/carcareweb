@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Car, Fuel, Gauge, Settings2 } from "lucide-react";
+import { Car, Fuel, Gauge, Settings2, User } from "lucide-react";
 import { formatOdometer } from "../lib/format";
 import type { PublicVehicle } from "../lib/types";
 
@@ -27,6 +27,13 @@ export function VehicleSummaryCard({ vehicle }: { vehicle: PublicVehicle }) {
         <h1 className="text-lg font-bold text-gray-900 sm:text-xl">
           {vehicle.displayName}
         </h1>
+
+        {vehicle.ownerName && (
+          <p className="mt-1.5 flex items-center gap-1.5 text-[13px] text-gray-500">
+            <User className="h-3.5 w-3.5 text-gray-400" />
+            Maintained by {vehicle.ownerName}
+          </p>
+        )}
 
         {details.length > 0 && (
           <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3">

@@ -200,7 +200,35 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_shared_vehicle: {
+        Args: { p_slug: string }
+        Returns: {
+          auth_user_id: string | null
+          created_at: string
+          current_odometer: number | null
+          fuel_type: string | null
+          id: number
+          image_url: string | null
+          name: string | null
+          shared_link: string | null
+          transmission: string | null
+          user_id_link: string | null
+          year: number | null
+        }[]
+      }
+      get_shared_vehicle_logs: {
+        Args: { p_slug: string }
+        Returns: {
+          car_id: number | null
+          change_date: string | null
+          created_at: string
+          id: number
+          log_type: number | null
+          notes: string | null
+          odo_log: number | null
+          specs: string | null
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

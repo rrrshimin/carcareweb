@@ -1,12 +1,6 @@
 import { supabase } from "./supabase";
 import type { Tables } from "../../database.types";
 
-const VEHICLE_FIELDS =
-  "id, name, year, fuel_type, transmission, current_odometer, image_url, user_id_link" as const;
-
-const LOG_FIELDS =
-  "id, car_id, log_type, change_date, odo_log, specs, notes" as const;
-
 const LOG_TYPE_FIELDS = "id, log_type_name, category_link" as const;
 
 const CATEGORY_FIELDS = "id, category_name" as const;
@@ -45,15 +39,14 @@ export type FetchResult =
   | { status: "found"; data: PageData };
 
 export async function fetchPageData(slug: string): Promise<FetchResult> {
-  const { data: vehicle, error: vehicleErr } = await supabase
-    .from("vehicles")
-    .select(VEHICLE_FIELDS)
-    .eq("shared_link", slug)
-    .maybeSingle();
+  const { data: vehicleRows, error: vehicleErr } = await supabase
+    .rpc("get_shared_vehicle", { p_slug: slug });
 
-  if (vehicleErr || !vehicle) {
+  if (vehicleErr || !vehicleRows?.length) {
     return { status: "unavailable" };
   }
+
+  const vehicle = vehicleRows[0] as RawVehicle;
 
   let unit: string | null = null;
   if (vehicle.user_id_link) {
@@ -65,14 +58,12 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
     unit = device?.unit ?? null;
   }
 
-  const { data: logs, error: logsErr } = await supabase
-    .from("user_logs")
-    .select(LOG_FIELDS)
-    .eq("car_id", vehicle.id);
+  const { data: logRows, error: logsErr } = await supabase
+    .rpc("get_shared_vehicle_logs", { p_slug: slug });
 
   if (logsErr) return { status: "error" };
 
-  const safeLogs = logs ?? [];
+  const safeLogs = (logRows ?? []) as RawLog[];
 
   const logTypeIds = [...new Set(safeLogs.map((l) => l.log_type).filter((id): id is number => id != null))];
 

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Car, Wrench } from "lucide-react";
+import { Wrench } from "lucide-react";
+import NotFoundPage from "./NotFoundPage";
 import { fetchPageData } from "../lib/fetchPageData";
 import { buildViewModel } from "../lib/buildViewModel";
 import { buildPageTitle } from "../lib/format";
@@ -54,7 +55,7 @@ function VehiclePage() {
   }, [state]);
 
   if (state.status === "loading") return <LoadingState />;
-  if (state.status === "unavailable") return <UnavailableState />;
+  if (state.status === "unavailable") return <NotFoundPage />;
   if (state.status === "error") return <ErrorState />;
 
   return <PublicVehiclePage model={state.model} />;
@@ -71,21 +72,6 @@ function LoadingState() {
   );
 }
 
-function UnavailableState() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="mx-auto max-w-xs text-center">
-        <Car className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-        <h1 className="mb-2 text-xl font-semibold text-gray-800">
-          Page Unavailable
-        </h1>
-        <p className="text-sm leading-relaxed text-gray-500">
-          The shared vehicle link may be invalid or no longer active.
-        </p>
-      </div>
-    </div>
-  );
-}
 
 function ErrorState() {
   return (

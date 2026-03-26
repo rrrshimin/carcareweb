@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Wrench } from "lucide-react";
+import { Car, Wrench } from "lucide-react";
 import NotFoundPage from "./NotFoundPage";
 import { fetchPageData } from "../lib/fetchPageData";
 import { buildViewModel } from "../lib/buildViewModel";

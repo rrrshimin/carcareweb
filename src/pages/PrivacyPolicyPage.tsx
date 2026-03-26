@@ -449,7 +449,7 @@ export default function PrivacyPolicyPage() {
                   <p>
                     Email:{" "}
                     <a
-                      href="mailto:hello@thesorami.com"
+                      href="mailto:hello@carcarediary.com"
                       className="underline"
                       style={{ color: "#367DFF" }}
                     >

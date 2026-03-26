@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 
+const BusinessPage = lazy(() => import("./pages/BusinessPage"));
+const SupportPage = lazy(() => import("./pages/SupportPage"));
 const VehiclePage = lazy(() => import("./pages/VehiclePage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
@@ -25,6 +27,22 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <TermsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/business"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <BusinessPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/support"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <SupportPage />
             </Suspense>
           }
         />

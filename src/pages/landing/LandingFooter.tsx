@@ -11,11 +11,11 @@ export function LandingFooter() {
         <Logo />
 
         <div className="flex items-center gap-6 text-[14px]" style={{ color: "#A3ACBF" }}>
-          <Link
-            to="/privacy"
-            className="transition-colors hover:text-white"
-          >
+          <Link to="/privacy" className="transition-colors hover:text-white">
             Privacy Policy
+          </Link>
+          <Link to="/terms" className="transition-colors hover:text-white">
+            Terms &amp; Conditions
           </Link>
         </div>
 

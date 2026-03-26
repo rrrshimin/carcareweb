@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 const VehiclePage = lazy(() => import("./pages/VehiclePage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
 
 function App() {
   return (
@@ -16,6 +17,14 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <PrivacyPolicyPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <TermsPage />
             </Suspense>
           }
         />

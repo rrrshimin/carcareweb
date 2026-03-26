@@ -478,6 +478,14 @@ export default function PrivacyPolicyPage() {
         >
           <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
+            <div className="flex items-center gap-6 text-[14px]" style={{ color: "#A3ACBF" }}>
+              <Link to="/privacy" className="transition-colors hover:text-white">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="transition-colors hover:text-white">
+                Terms &amp; Conditions
+              </Link>
+            </div>
             <p className="text-[14px]" style={{ color: "#A3ACBF" }}>
               &copy; {new Date().getFullYear()} CarCare Diary. All rights reserved.
             </p>

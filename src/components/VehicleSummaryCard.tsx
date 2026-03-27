@@ -9,7 +9,7 @@ export function VehicleSummaryCard({ vehicle }: { vehicle: PublicVehicle }) {
   const details = buildDetails(vehicle);
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-md bg-white shadow-sm">
       {showImage ? (
         <img
           src={vehicle.imageUrl!}

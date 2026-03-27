@@ -40,13 +40,13 @@ function NotFoundPage() {
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <button
               onClick={() => navigate(-1)}
-              className="w-full rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 shadow-sm transition hover:bg-gray-50 sm:w-auto"
+              className="w-full rounded-md border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 shadow-sm transition hover:bg-gray-50 sm:w-auto"
             >
               Go back
             </button>
             <a
               href="/"
-              className="w-full rounded-xl bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 sm:w-auto"
+              className="w-full rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 sm:w-auto"
             >
               Back home
             </a>

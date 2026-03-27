@@ -5,7 +5,7 @@ export function DownloadCTA() {
     <section className="py-16 md:py-24 px-6 sm:px-10 lg:px-16 xl:px-20">
       <div className="max-w-[1280px] mx-auto">
         <div
-          className="relative rounded-[14px] border overflow-hidden px-8 py-14 md:px-16 md:py-20 text-center"
+          className="relative rounded-md border overflow-hidden px-8 py-14 md:px-16 md:py-20 text-center"
           style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
         >
           <div

@@ -11,7 +11,7 @@ export function MaintenanceItemSection({
   if (item.historyEntries.length === 0) return null;
 
   return (
-    <section className="rounded-xl bg-white p-4 shadow-sm sm:p-5">
+    <section className="rounded-md bg-white p-4 shadow-sm sm:p-5">
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h3 className="min-w-0 break-words text-sm font-semibold text-gray-800 sm:text-base">
           {item.label}

@@ -98,7 +98,7 @@ function SupportPage() {
 
             {status === "success" ? (
               <div
-                className="rounded-[14px] border p-8 text-center"
+                className="rounded-md border p-8 text-center"
                 style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
               >
                 <CheckCircle
@@ -130,7 +130,7 @@ function SupportPage() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="rounded-[14px] border p-6 md:p-8 flex flex-col gap-5"
+                className="rounded-md border p-6 md:p-8 flex flex-col gap-5"
                 style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
               >
                 {/* Honeypot — hidden from humans, visible to bots */}
@@ -163,7 +163,7 @@ function SupportPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     disabled={status === "sending"}
-                    className="w-full rounded-[10px] border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] placeholder:text-[#4A5568]"
+                    className="w-full rounded-md border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] placeholder:text-[#4A5568]"
                     style={{ backgroundColor: "#0C111F", borderColor: "#1F2740" }}
                     placeholder="Your name"
                   />
@@ -185,7 +185,7 @@ function SupportPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === "sending"}
-                    className="w-full rounded-[10px] border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] placeholder:text-[#4A5568]"
+                    className="w-full rounded-md border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] placeholder:text-[#4A5568]"
                     style={{ backgroundColor: "#0C111F", borderColor: "#1F2740" }}
                     placeholder="you@example.com"
                   />
@@ -207,7 +207,7 @@ function SupportPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={status === "sending"}
-                    className="w-full rounded-[10px] border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] resize-y min-h-[120px] placeholder:text-[#4A5568]"
+                    className="w-full rounded-md border px-4 py-3 text-[15px] text-white outline-none transition-colors focus:border-[#367DFF] resize-y min-h-[120px] placeholder:text-[#4A5568]"
                     style={{ backgroundColor: "#0C111F", borderColor: "#1F2740" }}
                     placeholder="How can we help?"
                   />
@@ -215,7 +215,7 @@ function SupportPage() {
 
                 {status === "error" && (
                   <div
-                    className="flex items-start gap-3 rounded-[10px] border px-4 py-3"
+                    className="flex items-start gap-3 rounded-md border px-4 py-3"
                     style={{
                       backgroundColor: "rgba(239, 68, 68, 0.08)",
                       borderColor: "rgba(239, 68, 68, 0.25)",
@@ -234,7 +234,7 @@ function SupportPage() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-[10px] text-[15px] text-white transition-opacity hover:opacity-90 disabled:opacity-60 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-md text-[15px] text-white transition-opacity hover:opacity-90 disabled:opacity-60 cursor-pointer"
                   style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
                 >
                   {status === "sending" ? (

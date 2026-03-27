@@ -149,7 +149,7 @@ function PublicVehiclePage({ model }: { model: PublicVehiclePageModel }) {
 
 function EmptyMaintenance() {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl bg-white px-6 py-14 text-center shadow-sm sm:py-16">
+    <div className="flex flex-col items-center justify-center rounded-md bg-white px-6 py-14 text-center shadow-sm sm:py-16">
       <Wrench className="mb-3 h-10 w-10 text-gray-300" />
       <p className="text-sm font-medium text-gray-600">
         No maintenance history yet
@@ -163,7 +163,7 @@ function EmptyMaintenance() {
 
 function EmptyCategoryContent() {
   return (
-    <div className="rounded-xl bg-white px-6 py-10 text-center shadow-sm">
+    <div className="rounded-md bg-white px-6 py-10 text-center shadow-sm">
       <p className="text-sm text-gray-400">No items in this category.</p>
     </div>
   );

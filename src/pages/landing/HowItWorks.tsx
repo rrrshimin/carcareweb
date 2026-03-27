@@ -43,11 +43,11 @@ export function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.title}
-              className="relative rounded-[14px] border p-6 text-center transition-colors hover:border-[#367DFF]/40"
+              className="relative rounded-md border p-6 text-center transition-colors hover:border-[#367DFF]/40"
               style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
             >
               <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5 mt-2"
+                className="w-14 h-14 rounded-md flex items-center justify-center mx-auto mb-5 mt-2"
                 style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
               >
                 <step.icon className="w-6 h-6" style={{ color: "#367DFF" }} />

@@ -33,7 +33,7 @@ export function Hero() {
             {trustBullets.map((item) => (
               <div key={item.text} className="flex items-center gap-3">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                  className="w-8 h-8 rounded flex items-center justify-center shrink-0"
                   style={{ backgroundColor: "rgba(0, 81, 232, 0.15)" }}
                 >
                   <item.icon className="w-4 h-4" style={{ color: "#367DFF" }} />
@@ -58,7 +58,7 @@ export function Hero() {
               style={{ background: "radial-gradient(circle, #0051E8 0%, transparent 70%)" }}
             />
             <div
-              className="relative rounded-[28px] overflow-hidden"
+              className="relative rounded-md overflow-hidden"
               style={{ maxWidth: 420 }}
             >
               <img

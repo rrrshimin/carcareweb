@@ -56,7 +56,7 @@ const features = [
 function PlaceholderImage({ label, Icon }: { label: string; Icon: LucideIcon }) {
   return (
     <div
-      className="rounded-[14px] border overflow-hidden w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 p-6"
+      className="rounded-md border overflow-hidden w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 p-6"
       style={{ backgroundColor: "#0C111F", borderColor: "#1F2740" }}
     >
       <Icon className="w-10 h-10" style={{ color: "#367DFF", opacity: 0.4 }} />
@@ -107,7 +107,7 @@ export function BusinessFeatures() {
 
                 <div className="flex-1">
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
+                    className="w-10 h-10 rounded flex items-center justify-center mb-4"
                     style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
                   >
                     <feature.icon

@@ -61,7 +61,7 @@ export function BusinessFAQ() {
             return (
               <div
                 key={faq.question}
-                className="rounded-[14px] border overflow-hidden transition-colors"
+                className="rounded-md border overflow-hidden transition-colors"
                 style={{
                   backgroundColor: "#141A2B",
                   borderColor: isOpen

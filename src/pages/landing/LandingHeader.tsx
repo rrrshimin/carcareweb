@@ -69,7 +69,7 @@ export function LandingHeader() {
 
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors cursor-pointer"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded transition-colors cursor-pointer"
             style={{ color: "#FFFFFF" }}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
@@ -93,7 +93,7 @@ export function LandingHeader() {
                   key={link.to}
                   to={link.to}
                   onClick={() => setMenuOpen(false)}
-                  className="text-[20px] py-3 px-4 rounded-xl transition-colors"
+                  className="text-[20px] py-3 px-4 rounded-md transition-colors"
                   style={{
                     fontWeight: pathname === link.to ? 700 : 500,
                     color: pathname === link.to ? "#FFFFFF" : "#A3ACBF",

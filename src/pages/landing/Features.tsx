@@ -61,7 +61,7 @@ export function Features() {
                 } items-center gap-8 md:gap-12 max-w-[800px] mx-auto`}
               >
                 <div className="shrink-0">
-                  <div className="rounded-[14px] overflow-hidden w-[280px] md:w-[320px]">
+                  <div className="rounded-md overflow-hidden w-[280px] md:w-[320px]">
                     <img
                       src={feature.image}
                       alt={feature.title}

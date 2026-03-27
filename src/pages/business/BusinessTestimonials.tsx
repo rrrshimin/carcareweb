@@ -49,7 +49,7 @@ export function BusinessTestimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="rounded-[14px] border p-6 flex flex-col"
+              className="rounded-md border p-6 flex flex-col"
               style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
             >
               <Quote

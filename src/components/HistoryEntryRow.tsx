@@ -18,7 +18,7 @@ export function HistoryEntryRow({
   if (!hasDate && !hasLoggedAt && !hasOdo && !hasSpecs && !hasNotes) return null;
 
   return (
-    <div className="rounded-lg border border-gray-100 bg-gray-50/50 px-3 py-2.5 sm:px-4 sm:py-3">
+    <div className="rounded border border-gray-100 bg-gray-50/50 px-3 py-2.5 sm:px-4 sm:py-3">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[13px] sm:text-sm">
         {hasDate && (
           <span className="flex items-center gap-1.5 text-gray-700">

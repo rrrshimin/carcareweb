@@ -71,11 +71,11 @@ export function BusinessValueProps() {
           {valueProps.map((prop) => (
             <div
               key={prop.title}
-              className="rounded-[14px] border p-6 transition-colors hover:border-[#367DFF]/40"
+              className="rounded-md border p-6 transition-colors hover:border-[#367DFF]/40"
               style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                className="w-12 h-12 rounded-md flex items-center justify-center mb-5"
                 style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
               >
                 <prop.icon className="w-6 h-6" style={{ color: "#367DFF" }} />

@@ -58,11 +58,11 @@ export function BusinessUseCases() {
           {useCases.map((useCase) => (
             <div
               key={useCase.title}
-              className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-[14px] border p-6 text-center transition-colors hover:border-[#367DFF]/40"
+              className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-md border p-6 text-center transition-colors hover:border-[#367DFF]/40"
               style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
             >
               <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5"
+                className="w-14 h-14 rounded-md flex items-center justify-center mx-auto mb-5"
                 style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
               >
                 <useCase.icon

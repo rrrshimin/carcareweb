@@ -9,7 +9,7 @@ export function AppStoreButton({ className = "", iconOnlyMobile }: StoreButtonPr
   return (
     <a
       href="#"
-      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
       style={{ backgroundColor: "#141A2B" }}
     >
       <Apple className="w-5 h-5 md:w-6 md:h-6 text-white fill-white shrink-0" />
@@ -29,7 +29,7 @@ export function GooglePlayButton({ className = "", iconOnlyMobile }: StoreButton
   return (
     <a
       href="#"
-      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-[10px] border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
       style={{ backgroundColor: "#141A2B" }}
     >
       <svg className="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none">

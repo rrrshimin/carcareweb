@@ -22,7 +22,7 @@ export function CategoryTabs({
             role="tab"
             aria-selected={isActive}
             onClick={() => onSelect(cat.id)}
-            className={`shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+            className={`shrink-0 rounded-md border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
               isActive
                 ? "border-blue-600 bg-blue-600 text-white shadow-sm"
                 : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"

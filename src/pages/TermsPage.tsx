@@ -458,7 +458,7 @@ export default function TermsPage() {
               <Section number="21" title="Contact Information">
                 <p>If you have questions about these Terms, you may contact us at:</p>
                 <div
-                  className="rounded-[12px] border p-6 mt-4"
+                  className="rounded-md border p-6 mt-4"
                   style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
                 >
                   <p className="font-semibold text-white mb-2">Sorami, LLC</p>

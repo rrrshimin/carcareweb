@@ -3,7 +3,7 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "We used to track fleet maintenance in spreadsheets. Stuff got missed constantly. CarCare Diary replaced all of that — now every vehicle has a clean record and we actually see our costs.",
+      "We used to track fleet maintenance in spreadsheets. Stuff got missed constantly. CarCare Diary replaced all of that - now every vehicle has a clean record and we actually see our costs.",
     name: "David R.",
     role: "Operations Manager",
     company: "QuickDeliver Logistics",

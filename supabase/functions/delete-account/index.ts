@@ -3,9 +3,11 @@ import nodemailer from "npm:nodemailer@6";
 const TO_EMAIL = "hello@carcarediary.com";
 const MAX_NAME = 200;
 const MAX_EMAIL = 200;
-const MAX_MESSAGE = 5000;
+const MAX_VEHICLE = 300;
+const MAX_MESSAGE = 3000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const ALLOWED_SIGN_IN_METHODS = ["email_otp", "google", "apple"];
 
 function isValidEmail(v: string): boolean {
   return v.length <= MAX_EMAIL && EMAIL_RE.test(v);
@@ -64,7 +66,7 @@ Deno.serve(async (req: Request) => {
   const hasAllowList =
     (Deno.env.get("ALLOWED_ORIGINS") || "").trim().length > 0;
   if (hasAllowList && !originAllowed) {
-    console.warn("[contact] Blocked: disallowed origin:", origin);
+    console.warn("[delete-account] Blocked: disallowed origin:", origin);
     return json({ error: "Forbidden" }, 403, cors);
   }
 
@@ -78,7 +80,7 @@ Deno.serve(async (req: Request) => {
 
   // ── Honeypot ────────────────────────────────────────────────────
   if (body.company) {
-    console.info("[contact] Honeypot triggered - silent accept");
+    console.info("[delete-account] Honeypot triggered - silent accept");
     return json({ success: true }, 200, cors);
   }
 
@@ -87,14 +89,37 @@ Deno.serve(async (req: Request) => {
     typeof body.name === "string" ? body.name.trim() : "";
   const email =
     typeof body.email === "string" ? body.email.trim() : "";
+  const signInMethod =
+    typeof body.signInMethod === "string" ? body.signInMethod.trim() : "";
+  const confirmed = body.confirmed === true;
+  const vehicleInfo =
+    typeof body.vehicleInfo === "string" ? body.vehicleInfo.trim() : "";
   const message =
     typeof body.message === "string" ? body.message.trim() : "";
 
   // ── Required fields ─────────────────────────────────────────────
-  if (!name || !email || !message) {
-    console.info("[contact] Rejected: missing required field(s)");
+  if (!name || !email || !signInMethod) {
+    console.info("[delete-account] Rejected: missing required field(s)");
     return json(
-      { error: "Name, email, and message are required" },
+      { error: "Name, email, and sign-in method are required" },
+      400,
+      cors,
+    );
+  }
+
+  if (!confirmed) {
+    console.info("[delete-account] Rejected: deletion not confirmed");
+    return json(
+      { error: "You must confirm that you are requesting account deletion" },
+      400,
+      cors,
+    );
+  }
+
+  // ── Sign-in method validation ─────────────────────────────────
+  if (!ALLOWED_SIGN_IN_METHODS.includes(signInMethod)) {
+    return json(
+      { error: "Invalid sign-in method" },
       400,
       cors,
     );
@@ -115,6 +140,13 @@ Deno.serve(async (req: Request) => {
       cors,
     );
   }
+  if (vehicleInfo.length > MAX_VEHICLE) {
+    return json(
+      { error: `Vehicle info must be ${MAX_VEHICLE} characters or less` },
+      400,
+      cors,
+    );
+  }
   if (message.length > MAX_MESSAGE) {
     return json(
       { error: `Message must be ${MAX_MESSAGE} characters or less` },
@@ -125,7 +157,7 @@ Deno.serve(async (req: Request) => {
 
   // ── Email format ────────────────────────────────────────────────
   if (!isValidEmail(email)) {
-    console.info("[contact] Rejected: invalid email format");
+    console.info("[delete-account] Rejected: invalid email format");
     return json(
       { error: "Please provide a valid email address" },
       400,
@@ -141,12 +173,38 @@ Deno.serve(async (req: Request) => {
   const fromEmail = Deno.env.get("SMTP_FROM") || `noreply@carcarediary.com`;
 
   if (!smtpHost || !smtpUser || !smtpPass) {
-    console.error("[contact] SMTP secrets missing - cannot send");
+    console.error("[delete-account] SMTP secrets missing - cannot send");
     return json(
       { error: "Email service is not configured" },
       500,
       cors,
     );
+  }
+
+  // ── Build email body ────────────────────────────────────────────
+  const signInLabel: Record<string, string> = {
+    email_otp: "Email (OTP)",
+    google: "Google",
+    apple: "Apple",
+  };
+
+  const lines = [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Sign-in method: ${signInLabel[signInMethod] || signInMethod}`,
+  ];
+
+  if (vehicleInfo) {
+    lines.push(`Vehicle: ${vehicleInfo}`);
+  }
+
+  lines.push("");
+  lines.push("Confirmed: User has requested permanent deletion of their CarCare Diary account and associated data.");
+
+  if (message) {
+    lines.push("");
+    lines.push("Additional notes:");
+    lines.push(message);
   }
 
   // ── Send via SMTP ──────────────────────────────────────────────
@@ -163,23 +221,17 @@ Deno.serve(async (req: Request) => {
       from: fromEmail,
       to: TO_EMAIL,
       replyTo: email,
-      subject: `Support request from ${name}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        "",
-        "Message:",
-        message,
-      ].join("\n"),
+      subject: `Account deletion request from ${name}`,
+      text: lines.join("\n"),
     });
 
-    console.info("[contact] Email sent successfully");
+    console.info("[delete-account] Email sent successfully");
     return json({ success: true }, 200, cors);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("[contact] SMTP send failed:", msg);
+    console.error("[delete-account] SMTP send failed:", msg);
     return json(
-      { error: "Failed to send message. Please try again later." },
+      { error: "Failed to send request. Please try again later." },
       502,
       cors,
     );

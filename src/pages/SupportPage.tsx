@@ -14,7 +14,7 @@ function SupportPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    document.title = "CarCare Diary — Support";
+    document.title = "CarCare Diary - Support";
     return () => {
       document.title = "CarCare Diary";
     };
@@ -69,11 +69,11 @@ function SupportPage() {
     >
       <div className="fixed inset-0 pointer-events-none z-0">
         <div
-          className="absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full opacity-[0.07] blur-[120px]"
+          className="absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full opacity-[0.03] blur-[120px]"
           style={{ backgroundColor: "#0051E8" }}
         />
         <div
-          className="absolute bottom-[-100px] right-[-150px] w-[500px] h-[500px] rounded-full opacity-[0.05] blur-[100px]"
+          className="absolute bottom-[-100px] right-[-150px] w-[500px] h-[500px] rounded-full opacity-[0.02] blur-[100px]"
           style={{ backgroundColor: "#367DFF" }}
         />
       </div>
@@ -133,7 +133,7 @@ function SupportPage() {
                 className="rounded-md border p-6 md:p-8 flex flex-col gap-5"
                 style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
               >
-                {/* Honeypot — hidden from humans, visible to bots */}
+                {/* Honeypot - hidden from humans, visible to bots */}
                 <div className="absolute opacity-0 pointer-events-none" style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
                   <label htmlFor="company">Company</label>
                   <input

@@ -41,7 +41,7 @@ export function BusinessHero() {
 
         <div className="relative w-full max-w-[900px]">
           <div
-            className="absolute -inset-8 rounded-[40px] opacity-20 blur-[60px]"
+            className="absolute -inset-8 rounded-[40px] opacity-10 blur-[60px]"
             style={{ background: "radial-gradient(circle, #0051E8 0%, transparent 70%)" }}
           />
           <div

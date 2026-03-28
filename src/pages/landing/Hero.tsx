@@ -54,7 +54,7 @@ export function Hero() {
         <div className="flex-1 flex justify-center lg:justify-end">
           <div className="relative">
             <div
-              className="absolute -inset-8 rounded-[40px] opacity-30 blur-[60px]"
+              className="absolute -inset-8 rounded-[40px] opacity-10 blur-[60px]"
               style={{ background: "radial-gradient(circle, #0051E8 0%, transparent 70%)" }}
             />
             <div

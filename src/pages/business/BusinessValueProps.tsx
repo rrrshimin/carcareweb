@@ -24,7 +24,7 @@ const valueProps = [
     icon: ClipboardList,
     title: "Centralized maintenance logs",
     description:
-      "Every oil change, tire rotation, and repair — logged in one place for your entire fleet.",
+      "Every oil change, tire rotation, and repair - logged in one place for your entire fleet.",
   },
   {
     icon: Bell,

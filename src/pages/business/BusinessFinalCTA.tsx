@@ -9,7 +9,7 @@ export function BusinessFinalCTA() {
           style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
         >
           <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
+            className="absolute inset-0 opacity-10 pointer-events-none"
             style={{
               background:
                 "radial-gradient(ellipse at center, #0051E8 0%, transparent 60%)",
@@ -38,7 +38,7 @@ export function BusinessFinalCTA() {
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-md text-[16px] text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
               >
-                Get Started — It's Free
+                Get Started - It's Free
               </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">

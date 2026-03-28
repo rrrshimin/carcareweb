@@ -13,7 +13,7 @@ const features = [
     icon: TrendingUp,
     title: "Fleet Spending Analytics",
     description:
-      "Review monthly and yearly maintenance spending across your entire fleet. Spot trends, compare periods, and make informed budgeting decisions based on real cost data — not guesses.",
+      "Review monthly and yearly maintenance spending across your entire fleet. Spot trends, compare periods, and make informed budgeting decisions based on real cost data - not guesses.",
     placeholder: "Spending overview screenshot",
   },
   {
@@ -27,7 +27,7 @@ const features = [
     icon: ClipboardList,
     title: "Maintenance Logs & Service History",
     description:
-      "Every service event — oil changes, brake replacements, tire rotations, inspections — logged with date, mileage, cost, and notes. A complete and organized record for every vehicle in your fleet.",
+      "Every service event - oil changes, brake replacements, tire rotations, inspections - logged with date, mileage, cost, and notes. A complete and organized record for every vehicle in your fleet.",
     placeholder: "Service history log view",
   },
   {

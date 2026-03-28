@@ -47,17 +47,9 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
     return { status: "unavailable" };
   }
 
-  const vehicle = vehicleRows[0] as RawVehicle;
-
-  let unit: string | null = null;
-  if (vehicle.user_id_link) {
-    const { data: device } = await supabase
-      .from("user_devices")
-      .select("unit")
-      .eq("device_id", vehicle.user_id_link)
-      .maybeSingle();
-    unit = device?.unit ?? null;
-  }
+  const row = vehicleRows[0];
+  const vehicle = row as RawVehicle;
+  const unit: string | null = row.unit ?? null;
 
   let ownerName: string | null = null;
   if (vehicle.auth_user_id) {

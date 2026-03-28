@@ -17,7 +17,7 @@ const useCases = [
     icon: HardHat,
     title: "Trades & Construction",
     description:
-      "Plumbers, electricians, HVAC, landscaping — track fleet costs alongside your jobs and keep vehicles properly maintained.",
+      "Plumbers, electricians, HVAC, landscaping - track fleet costs alongside your jobs and keep vehicles properly maintained.",
   },
   {
     icon: Building2,

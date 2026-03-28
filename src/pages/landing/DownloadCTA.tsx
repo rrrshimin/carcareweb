@@ -9,7 +9,7 @@ export function DownloadCTA() {
           style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
         >
           <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
+            className="absolute inset-0 opacity-10 pointer-events-none"
             style={{
               background:
                 "radial-gradient(ellipse at center, #0051E8 0%, transparent 60%)",

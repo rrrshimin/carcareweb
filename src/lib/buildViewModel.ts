@@ -47,7 +47,7 @@ export function buildViewModel(data: PageData, slug: string): PublicVehiclePageM
     }
   }
 
-  // Build category list — only categories that have items
+  // Build category list - only categories that have items
   const publicCategories: PublicCategory[] = [];
   for (const [catId, items] of itemsByCategory) {
     const cat = categoryMap.get(catId);

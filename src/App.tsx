@@ -8,6 +8,7 @@ const VehiclePage = lazy(() => import("./pages/VehiclePage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
+const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <SupportPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/delete-account"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <DeleteAccountPage />
             </Suspense>
           }
         />

@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "Can I track costs by vehicle?",
     answer:
-      "Absolutely. Every maintenance log includes cost data, and you can view spending breakdowns per vehicle and per month — making it easy to identify high-cost vehicles and budget accurately.",
+      "Absolutely. Every maintenance log includes cost data, and you can view spending breakdowns per vehicle and per month - making it easy to identify high-cost vehicles and budget accurately.",
   },
   {
     question: "Does it work on mobile and web?",
@@ -30,7 +30,7 @@ const faqs = [
   {
     question: "How is this different from a spreadsheet?",
     answer:
-      "Unlike spreadsheets, CarCare Diary gives you structured maintenance tracking with automatic reminders, cost analytics, mobile access for drivers, and a web dashboard for managers — without manual data entry and formatting.",
+      "Unlike spreadsheets, CarCare Diary gives you structured maintenance tracking with automatic reminders, cost analytics, mobile access for drivers, and a web dashboard for managers - without manual data entry and formatting.",
   },
 ];
 

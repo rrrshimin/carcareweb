@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Logo } from "./landing/Logo";
 import { Link } from "react-router-dom";
+import { LandingFooter } from "./landing/LandingFooter";
 
 export default function PrivacyPolicyPage() {
   useEffect(() => {
@@ -18,15 +19,15 @@ export default function PrivacyPolicyPage() {
     >
       <div className="fixed inset-0 pointer-events-none z-0">
         <div
-          className="absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full opacity-[0.07] blur-[120px]"
+          className="absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full opacity-[0.03] blur-[120px]"
           style={{ backgroundColor: "#0051E8" }}
         />
         <div
-          className="absolute top-[40%] right-[-150px] w-[500px] h-[500px] rounded-full opacity-[0.05] blur-[100px]"
+          className="absolute top-[40%] right-[-150px] w-[500px] h-[500px] rounded-full opacity-[0.02] blur-[100px]"
           style={{ backgroundColor: "#367DFF" }}
         />
         <div
-          className="absolute bottom-[-100px] left-[30%] w-[700px] h-[400px] rounded-full opacity-[0.06] blur-[140px]"
+          className="absolute bottom-[-100px] left-[30%] w-[700px] h-[400px] rounded-full opacity-[0.025] blur-[140px]"
           style={{ backgroundColor: "#0051E8" }}
         />
       </div>
@@ -472,25 +473,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </main>
 
-        <footer
-          className="border-t px-6 sm:px-10 lg:px-16 xl:px-20 py-10"
-          style={{ borderColor: "#1F2740" }}
-        >
-          <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <Logo />
-            <div className="flex items-center gap-6 text-[14px]" style={{ color: "#A3ACBF" }}>
-              <Link to="/privacy" className="transition-colors hover:text-white">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="transition-colors hover:text-white">
-                Terms &amp; Conditions
-              </Link>
-            </div>
-            <p className="text-[14px]" style={{ color: "#A3ACBF" }}>
-              &copy; {new Date().getFullYear()} CarCare Diary. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <LandingFooter />
       </div>
     </div>
   );

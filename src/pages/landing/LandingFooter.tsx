@@ -25,7 +25,7 @@ export function LandingFooter() {
           </Link>
         </div>
 
-        <p className="text-[14px]" style={{ color: "#A3ACBF" }}>
+        <p className="text-[12px]" style={{ color: "#A3ACBF" }}>
           &copy; {new Date().getFullYear()} CarCare Diary. All rights reserved.
         </p>
       </div>

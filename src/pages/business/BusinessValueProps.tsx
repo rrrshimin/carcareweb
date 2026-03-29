@@ -12,37 +12,37 @@ const valueProps = [
     icon: DollarSign,
     title: "Fleet-wide spending visibility",
     description:
-      "See total fleet maintenance costs by month. Know exactly what you're spending across all vehicles.",
+      "See total fleet maintenance costs by month. Know exactly what you're spending across all company vehicles.",
   },
   {
     icon: Car,
-    title: "Per-vehicle cost tracking",
+    title: "Per-vehicle cost breakdown",
     description:
-      "Break down costs by vehicle. Identify which units need the most attention and budget accordingly.",
+      "Track maintenance costs per vehicle. Identify high-cost units, plan replacements, and budget with real data.",
   },
   {
     icon: ClipboardList,
-    title: "Centralized maintenance logs",
+    title: "Centralized maintenance records",
     description:
-      "Every oil change, tire rotation, and repair - logged in one place for your entire fleet.",
+      "Every oil change, tire rotation, and repair — logged in one place. A single source of truth for your fleet's service history.",
   },
   {
     icon: Bell,
-    title: "Due reminders & service planning",
+    title: "Fleet service reminders",
     description:
-      "Stay ahead of maintenance schedules. Get notified before services are due across your fleet.",
+      "Stay ahead of maintenance schedules. Get notified before services are due across your fleet so nothing gets missed.",
   },
   {
     icon: MonitorSmartphone,
-    title: "Mobile + web access",
+    title: "Mobile app + web dashboard",
     description:
-      "Drivers log from the mobile app. Managers review on the web. Everyone stays in sync.",
+      "Drivers log maintenance from the mobile app. Fleet managers review data and track costs from the web dashboard.",
   },
   {
     icon: FileSpreadsheet,
-    title: "Export-ready records",
+    title: "Export-ready fleet records",
     description:
-      "Export maintenance and cost data for accounting, compliance, or fleet reporting workflows.",
+      "Export your fleet's maintenance history and cost data for accounting, compliance, or management reporting.",
   },
 ];
 
@@ -55,15 +55,16 @@ export function BusinessValueProps() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            Why businesses choose{" "}
+
+            Why fleet operators choose{" "}
             <span style={{ color: "#367DFF" }}>CarCare Diary</span>
           </h2>
           <p
             className="text-[16px] max-w-[560px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
-            Everything fleet operators need to keep vehicles maintained, costs
-            visible, and records organized.
+            Multi-vehicle maintenance tracking with cost visibility, service
+            reminders, and organized records for every company vehicle.
           </p>
         </div>
 

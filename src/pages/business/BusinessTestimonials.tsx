@@ -33,6 +33,7 @@ export function BusinessTestimonials() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
+
             Trusted by{" "}
             <span style={{ color: "#367DFF" }}>fleet operators</span>
           </h2>
@@ -40,8 +41,8 @@ export function BusinessTestimonials() {
             className="text-[16px] max-w-[480px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
-            Businesses of all sizes use CarCare Diary to manage fleet
-            maintenance.
+            Businesses of all sizes use CarCare Diary for fleet maintenance
+            tracking and cost visibility.
           </p>
         </div>
 

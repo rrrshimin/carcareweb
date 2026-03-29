@@ -13,42 +13,42 @@ const features = [
     icon: TrendingUp,
     title: "Fleet Spending Analytics",
     description:
-      "Review monthly and yearly maintenance spending across your entire fleet. Spot trends, compare periods, and make informed budgeting decisions based on real cost data - not guesses.",
+      "Review monthly and yearly maintenance spending across your entire fleet. Spot cost trends, compare periods, and make budgeting decisions based on real data — not guesses.",
     placeholder: "Spending overview screenshot",
   },
   {
     icon: Car,
-    title: "Vehicle-by-Vehicle Cost Tracking",
+    title: "Per-Vehicle Cost Tracking",
     description:
-      "See exactly how much each vehicle costs to maintain. Compare vehicles side by side to identify high-cost units, plan replacements, and allocate budgets where they matter most.",
+      "See exactly how much each company vehicle costs to maintain. Compare vehicles side by side to identify high-cost units and allocate maintenance budgets where they matter most.",
     placeholder: "Per-vehicle cost breakdown",
   },
   {
     icon: ClipboardList,
-    title: "Maintenance Logs & Service History",
+    title: "Maintenance Logs & Service Records",
     description:
-      "Every service event - oil changes, brake replacements, tire rotations, inspections - logged with date, mileage, cost, and notes. A complete and organized record for every vehicle in your fleet.",
+      "Every service event — oil changes, brake replacements, tire rotations, inspections — logged with date, mileage, cost, and notes. A complete maintenance record for every fleet vehicle.",
     placeholder: "Service history log view",
   },
   {
     icon: Bell,
-    title: "Due Reminders & Service Planning",
+    title: "Service Reminders & Due Planning",
     description:
-      "Automatically track when services are coming due based on mileage and time intervals. Plan ahead instead of reacting to breakdowns. Keep your fleet running and reduce costly downtime.",
+      "Automatically track when services are coming due based on mileage and time intervals. Plan ahead instead of reacting to breakdowns. Keep your fleet running with fewer surprises.",
     placeholder: "Due reminders dashboard",
   },
   {
     icon: FileDown,
-    title: "Export & Reporting",
+    title: "Export & Compliance Reporting",
     description:
-      "Export your fleet's maintenance records and cost data as CSV. Feed it into your accounting software, share with management, or keep it for compliance and audit readiness.",
+      "Export your fleet's maintenance records and cost data as CSV. Use it for accounting, share with management, or keep it on file for compliance and audit readiness.",
     placeholder: "Export and reports view",
   },
   {
     icon: MonitorSmartphone,
     title: "Mobile App + Web Dashboard",
     description:
-      "Drivers and field staff log maintenance on the go with the mobile app. Fleet managers review data, track costs, and manage vehicles from the web dashboard. Everything syncs automatically.",
+      "Drivers and field staff log maintenance on the go with the mobile app. Fleet managers review data, track costs, and manage vehicle records from the web dashboard.",
     placeholder: "Mobile and web views",
   },
 ];
@@ -79,15 +79,16 @@ export function BusinessFeatures() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            Built for{" "}
-            <span style={{ color: "#367DFF" }}>fleet operations</span>
+
+            Fleet maintenance features{" "}
+            <span style={{ color: "#367DFF" }}>built for operations</span>
           </h2>
           <p
             className="text-[16px] max-w-[560px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
-            Detailed features that help you manage maintenance, control costs,
-            and keep every vehicle documented.
+            Everything you need to manage multi-vehicle maintenance, control
+            fleet costs, and keep organized records for every company vehicle.
           </p>
         </div>
 

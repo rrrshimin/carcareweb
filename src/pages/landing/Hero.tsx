@@ -3,10 +3,10 @@ import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
 import heroScreenshot from "../../assets/screenshot-hero.png";
 
 const trustBullets = [
-  { icon: ClipboardCheck, text: "Log maintenance in seconds" },
-  { icon: CalendarClock, text: "See what's due next" },
-  { icon: History, text: "Keep a clear service history" },
-  { icon: Share2, text: "Share records when selling car" },
+  { icon: ClipboardCheck, text: "Log every service in seconds" },
+  { icon: CalendarClock, text: "Get reminders before service is due" },
+  { icon: History, text: "Build a complete maintenance history" },
+  { icon: Share2, text: "Share your vehicle's record at resale" },
 ];
 
 export function Hero() {
@@ -18,15 +18,16 @@ export function Hero() {
             className="text-[34px] md:text-[48px] lg:text-[56px] leading-[1.1] mb-6"
             style={{ fontWeight: 800, color: "#FFFFFF" }}
           >
-            Track your car maintenance{" "}
-            <span style={{ color: "#367DFF" }}>without the guesswork</span>
+            The car maintenance tracker{" "}
+            <span style={{ color: "#367DFF" }}>that keeps you on schedule</span>
           </h1>
           <p
             className="text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[540px] mx-auto lg:mx-0"
             style={{ color: "#A3ACBF" }}
           >
-            CarCare Diary helps drivers log maintenance, monitor upcoming service needs,
-            update mileage, and keep a structured history they can share when selling a vehicle.
+            CarCare Diary is a vehicle maintenance log that helps you track service
+            history, monitor mileage, get reminders when maintenance is due, and share
+            records when it's time to sell.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 max-w-[480px] mx-auto lg:mx-0">
@@ -63,7 +64,7 @@ export function Hero() {
             >
               <img
                 src={heroScreenshot}
-                alt="CarCare Diary app"
+                alt="CarCare Diary app screenshot showing vehicle maintenance tracking"
                 className="w-[420px] h-auto"
               />
             </div>

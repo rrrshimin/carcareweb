@@ -1,40 +1,40 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-export const businessFaqs = [
+export const landingFaqs = [
   {
-    question: "How many vehicles can I track?",
+    question: "What is CarCare Diary?",
     answer:
-      "CarCare Diary is free for one vehicle. With a Pro subscription, you can add as many company vehicles as your fleet needs and track each one individually with its own maintenance log, cost history, and service reminders.",
+      "CarCare Diary is a car maintenance tracker app for iOS and Android. It lets you log service work, track mileage, get reminders when maintenance is due, and keep a complete vehicle maintenance history you can share.",
   },
   {
-    question: "Can I see maintenance costs per vehicle?",
+    question: "Is CarCare Diary free?",
     answer:
-      "Yes. Every maintenance log entry includes cost data, and you can view spending breakdowns per vehicle and per month — making it easy to identify high-cost vehicles, compare fleet units, and budget accurately.",
+      "Yes. CarCare Diary is free to use for one vehicle with full access to maintenance logging, mileage tracking, service reminders, and shareable history. A Pro plan is available if you need to track multiple vehicles.",
   },
   {
-    question: "Does it work on mobile and web?",
+    question: "What kind of maintenance can I track?",
     answer:
-      "Yes. Drivers and field staff log maintenance on the go using the iOS or Android app. Fleet managers and office staff review data, export records, and manage vehicle records from the web dashboard. Everything syncs automatically.",
+      "You can log any type of vehicle maintenance — oil changes, brake pads, filters, spark plugs, tire rotations, fluid top-ups, inspections, and more. Each entry includes date, mileage, specifications, and notes.",
   },
   {
-    question: "Can I export fleet records?",
+    question: "How do service reminders work?",
     answer:
-      "Yes. You can export your fleet's maintenance history and cost data as CSV files for accounting, compliance reporting, or import into other business tools.",
+      "CarCare Diary calculates when services are coming due based on your maintenance log, current mileage, and recommended service intervals. You'll see a clear due status for each maintenance type and get notified when it's time to act.",
   },
   {
-    question: "How do fleet service reminders work?",
+    question: "Can I share my car's maintenance history?",
     answer:
-      "CarCare Diary tracks when services are due for each vehicle based on mileage and time intervals. Fleet managers can see a clear due status for every vehicle and get notified before maintenance is overdue.",
+      "Yes. You can generate a public link to your vehicle's full service record. This is especially useful when selling your car — buyers can see every logged service, giving them confidence the vehicle has been properly maintained.",
   },
   {
-    question: "How is this different from a spreadsheet?",
+    question: "Does CarCare Diary work for multiple cars?",
     answer:
-      "Unlike spreadsheets, CarCare Diary gives you structured multi-vehicle maintenance tracking with automatic service reminders, per-vehicle cost analytics, mobile logging for drivers, and a web dashboard for fleet managers — without manual data entry.",
+      "The free plan covers one vehicle. If you own more than one car, the Pro plan lets you add and track multiple vehicles under a single account, each with its own maintenance log and reminders.",
   },
 ];
 
-export function BusinessFAQ() {
+export function LandingFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -45,19 +45,18 @@ export function BusinessFAQ() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            Fleet maintenance FAQ
+            Frequently asked questions
           </h2>
           <p
             className="text-[16px] max-w-[480px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
-            Common questions about using CarCare Diary for business and fleet
-            vehicle maintenance.
+            Common questions about the CarCare Diary maintenance tracker.
           </p>
         </div>
 
         <div className="max-w-[720px] mx-auto flex flex-col gap-3">
-          {businessFaqs.map((faq, index) => {
+          {landingFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div

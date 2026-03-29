@@ -17,16 +17,16 @@ export function BusinessHero() {
           className="text-[34px] md:text-[48px] lg:text-[56px] leading-[1.1] mb-6 max-w-[800px]"
           style={{ fontWeight: 800, color: "#FFFFFF" }}
         >
-          Fleet maintenance,{" "}
-          <span style={{ color: "#367DFF" }}>finally under control</span>
+          Fleet maintenance software{" "}
+          <span style={{ color: "#367DFF" }}>that keeps every vehicle on track</span>
         </h1>
 
         <p
           className="text-[16px] md:text-[18px] leading-relaxed mb-10 max-w-[620px]"
           style={{ color: "#A3ACBF" }}
         >
-          Track maintenance across your entire fleet. See spending by vehicle
-          and by month. Never miss a service interval again.
+          Track maintenance across all your company vehicles. Monitor spending by
+          vehicle and by month. Get service reminders so nothing falls through the cracks.
         </p>
 
         <div className="mb-12">

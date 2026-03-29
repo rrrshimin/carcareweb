@@ -7,26 +7,30 @@ const features = [
   {
     title: "Vehicle Profile",
     description:
-      "Add your vehicle details once, including photo, make and model, year, fuel type, transmission, odometer, and unit preference.",
+      "Set up your vehicle once with photo, make and model, year, fuel type, transmission, and current odometer reading. Your car's identity in one place.",
     image: feature1,
+    alt: "CarCare Diary vehicle profile screen with car details and photo",
   },
   {
-    title: "Maintenance Tracking",
+    title: "Maintenance Log",
     description:
-      "Log maintenance events like oil changes, filters, spark plugs, brakes, fluids, and more \u2014 with date, mileage, specifications, and notes.",
+      "Record every service \u2014 oil changes, filters, spark plugs, brakes, fluids, and more \u2014 with date, mileage, specs, and notes. Build a detailed vehicle maintenance log over time.",
     image: feature2,
+    alt: "CarCare Diary maintenance log showing service entries with dates and mileage",
   },
   {
-    title: "Due Status & Reminders",
+    title: "Service Reminders & Due Status",
     description:
-      "See what service is coming up next based on previous logs, mileage, and maintenance intervals \u2014 and get reminders when attention is needed.",
+      "See what's coming up next based on your maintenance log, current mileage, and service intervals. Get reminders so you never miss an oil change or scheduled service.",
     image: feature3,
+    alt: "CarCare Diary due status dashboard showing upcoming service reminders",
   },
   {
-    title: "Shareable Maintenance History",
+    title: "Shareable Service History",
     description:
-      "Generate a public link to show your vehicle\u2019s maintenance history \u2014 useful when selling your car and proving it has been properly looked after.",
+      "Generate a public link to your car's full maintenance history. Useful when selling your vehicle \u2014 buyers can see exactly how it's been maintained.",
     image: feature4,
+    alt: "CarCare Diary shareable maintenance history page for vehicle resale",
   },
 ];
 
@@ -39,14 +43,14 @@ export function Features() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            Everything you need to stay on top of{" "}
-            <span style={{ color: "#367DFF" }}>vehicle maintenance</span>
+            A complete car maintenance tracker{" "}
+            <span style={{ color: "#367DFF" }}>in your pocket</span>
           </h2>
           <p
             className="text-[16px] max-w-[560px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
-            From adding your vehicle to sharing its service history, CarCare Diary keeps everything organized in one place.
+            From your vehicle profile to a shareable service history, CarCare Diary keeps your maintenance log organized and up to date.
           </p>
         </div>
 
@@ -64,7 +68,7 @@ export function Features() {
                   <div className="rounded-md overflow-hidden w-[280px] md:w-[320px]">
                     <img
                       src={feature.image}
-                      alt={feature.title}
+                      alt={feature.alt}
                       className="w-full h-auto"
                     />
                   </div>

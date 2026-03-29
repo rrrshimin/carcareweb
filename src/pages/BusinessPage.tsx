@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { LandingHeader } from "./landing/LandingHeader";
 import { LandingFooter } from "./landing/LandingFooter";
 import { BusinessHero } from "./business/BusinessHero";
@@ -5,17 +6,50 @@ import { BusinessValueProps } from "./business/BusinessValueProps";
 import { BusinessFeatures } from "./business/BusinessFeatures";
 import { BusinessUseCases } from "./business/BusinessUseCases";
 import { BusinessTestimonials } from "./business/BusinessTestimonials";
-import { BusinessFAQ } from "./business/BusinessFAQ";
+import { BusinessFAQ, businessFaqs } from "./business/BusinessFAQ";
 import { BusinessFinalCTA } from "./business/BusinessFinalCTA";
-import { useEffect } from "react";
+import { usePageSeo } from "../lib/usePageSeo";
+
+const BUSINESS_JSON_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "CarCare Diary for Business",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "iOS, Android, Web",
+    description:
+      "Fleet maintenance software. Track multi-vehicle maintenance, monitor spending by vehicle and month, and keep organized service records for your entire fleet.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      description: "Free for one vehicle. Pro plan for unlimited fleet management.",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: businessFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+];
 
 function BusinessPage() {
-  useEffect(() => {
-    document.title = "CarCare Diary for Business - Fleet Maintenance Management";
-    return () => {
-      document.title = "CarCare Diary";
-    };
-  }, []);
+  const jsonLd = useMemo(() => BUSINESS_JSON_LD, []);
+
+  usePageSeo({
+    title: "CarCare Diary for Business – Fleet Maintenance Software",
+    description:
+      "Fleet maintenance software for multi-vehicle tracking. Monitor costs per vehicle, get service reminders, and keep organized maintenance records for every company vehicle.",
+    path: "/business",
+    jsonLd,
+  });
 
   return (
     <div

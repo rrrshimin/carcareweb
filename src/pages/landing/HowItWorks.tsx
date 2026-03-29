@@ -4,22 +4,22 @@ const steps = [
   {
     icon: CarFront,
     title: "Add your vehicle",
-    description: "Enter your car's details, upload a photo, and set your preferences.",
+    description: "Enter your car's details, upload a photo, and set your mileage unit preference.",
   },
   {
     icon: Wrench,
-    title: "Log maintenance work",
-    description: "Record oil changes, filters, brakes, fluids, and any other service work.",
+    title: "Log every service",
+    description: "Record oil changes, filters, brakes, fluids, and any other maintenance work with date and mileage.",
   },
   {
     icon: Gauge,
-    title: "Update mileage over time",
-    description: "Keep your odometer reading current so reminders stay accurate.",
+    title: "Track mileage over time",
+    description: "Keep your odometer current so service reminders and due dates stay accurate.",
   },
   {
     icon: Share2,
-    title: "Share your service history",
-    description: "Generate a public link to share your vehicle's maintenance record.",
+    title: "Share your maintenance history",
+    description: "Generate a public link so buyers or mechanics can see your vehicle's full service record.",
   },
 ];
 
@@ -32,10 +32,10 @@ export function HowItWorks() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            How it works
+            How maintenance tracking works
           </h2>
           <p className="text-[16px] max-w-[480px] mx-auto" style={{ color: "#A3ACBF" }}>
-            Four simple steps to organized vehicle maintenance.
+            Four simple steps to an organized vehicle maintenance log.
           </p>
         </div>
 

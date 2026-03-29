@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
 
 export function DownloadCTA() {
@@ -21,20 +22,30 @@ export function DownloadCTA() {
               className="text-[24px] md:text-[36px] leading-tight mb-4"
               style={{ fontWeight: 800 }}
             >
-              Keep your maintenance history{" "}
-              <span style={{ color: "#367DFF" }}>in one place</span>
+              Start your vehicle maintenance log{" "}
+              <span style={{ color: "#367DFF" }}>today</span>
             </h2>
             <p
               className="text-[16px] max-w-[520px] mx-auto mb-10"
               style={{ color: "#A3ACBF" }}
             >
-              Download CarCare Diary today and take control of your vehicle's service
-              records. It's free, simple, and built for everyday car owners.
+              Download CarCare Diary for free and take control of your car's service
+              records, mileage tracking, and maintenance reminders.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <AppStoreButton />
               <GooglePlayButton />
             </div>
+            <p className="text-[14px] mt-8" style={{ color: "#A3ACBF" }}>
+              Managing multiple vehicles?{" "}
+              <Link
+                to="/business"
+                className="transition-colors hover:text-white"
+                style={{ color: "#367DFF", fontWeight: 600 }}
+              >
+                See CarCare Diary for Business
+              </Link>
+            </p>
           </div>
         </div>
       </div>

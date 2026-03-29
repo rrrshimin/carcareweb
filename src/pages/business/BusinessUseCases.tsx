@@ -5,31 +5,31 @@ const useCases = [
     icon: Truck,
     title: "Delivery Fleets",
     description:
-      "Track maintenance for delivery vans, couriers, and last-mile vehicles. Keep every vehicle road-ready and costs documented.",
+      "Track maintenance for delivery vans, couriers, and last-mile vehicles. Keep every vehicle road-ready with organized service records.",
   },
   {
     icon: Wrench,
     title: "Service & Repair Vans",
     description:
-      "Field service teams need reliable vehicles. Log maintenance per van and never let a missed service delay a job.",
+      "Field service teams need reliable vehicles. Log maintenance per van and never let a missed service interval delay a job.",
   },
   {
     icon: HardHat,
     title: "Trades & Construction",
     description:
-      "Plumbers, electricians, HVAC, landscaping - track fleet costs alongside your jobs and keep vehicles properly maintained.",
+      "Plumbers, electricians, HVAC, landscaping — track fleet maintenance costs alongside your jobs and keep company vehicles in top condition.",
   },
   {
     icon: Building2,
     title: "Small Business Fleets",
     description:
-      "Whether you manage 3 vehicles or 30, get clear cost visibility and maintenance tracking without expensive fleet software.",
+      "Whether you manage 3 vehicles or 30, get cost visibility and maintenance tracking without the price tag of enterprise fleet software.",
   },
   {
     icon: Car,
-    title: "Any Multi-Vehicle Business",
+    title: "Any Multi-Vehicle Operation",
     description:
-      "If your business depends on vehicles, CarCare Diary gives you the records, cost tracking, and reminders you need.",
+      "If your business depends on vehicles, CarCare Diary gives you the maintenance records, cost tracking, and service reminders you need.",
   },
 ];
 
@@ -42,15 +42,16 @@ export function BusinessUseCases() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-            Built for businesses that{" "}
-            <span style={{ color: "#367DFF" }}>rely on vehicles</span>
+
+            Vehicle maintenance tracking for{" "}
+            <span style={{ color: "#367DFF" }}>every type of business</span>
           </h2>
           <p
             className="text-[16px] max-w-[520px] mx-auto"
             style={{ color: "#A3ACBF" }}
           >
             From delivery vans to service trucks, CarCare Diary works for any
-            business managing a fleet.
+            business that depends on its vehicles.
           </p>
         </div>
 

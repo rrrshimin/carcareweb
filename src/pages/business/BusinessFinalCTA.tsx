@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
 
 export function BusinessFinalCTA() {
@@ -21,16 +22,16 @@ export function BusinessFinalCTA() {
               className="text-[24px] md:text-[36px] leading-tight mb-4"
               style={{ fontWeight: 800 }}
             >
-              Ready to take control of your{" "}
+              Ready to organize your{" "}
               <span style={{ color: "#367DFF" }}>fleet maintenance?</span>
             </h2>
             <p
               className="text-[16px] max-w-[560px] mx-auto mb-10"
               style={{ color: "#A3ACBF" }}
             >
-              Start with one vehicle for free. Upgrade to Pro when you're ready
-              to manage your full fleet with cost tracking, reminders, and
-              exportable records.
+              Start tracking one vehicle for free. Upgrade to Pro when you need
+              multi-vehicle maintenance tracking with cost analytics, service
+              reminders, and exportable fleet records.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
@@ -45,6 +46,16 @@ export function BusinessFinalCTA() {
               <AppStoreButton />
               <GooglePlayButton />
             </div>
+            <p className="text-[14px] mt-8" style={{ color: "#A3ACBF" }}>
+              Looking for personal use?{" "}
+              <Link
+                to="/"
+                className="transition-colors hover:text-white"
+                style={{ color: "#367DFF", fontWeight: 600 }}
+              >
+                See CarCare Diary for individual car owners
+              </Link>
+            </p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Trash2,
   CheckCircle,
@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { LandingHeader } from "./landing/LandingHeader";
 import { LandingFooter } from "./landing/LandingFooter";
+import { usePageSeo } from "../lib/usePageSeo";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -29,12 +30,12 @@ function DeleteAccountPage() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(() => {
-    document.title = "CarCare Diary - Delete Account";
-    return () => {
-      document.title = "CarCare Diary";
-    };
-  }, []);
+  usePageSeo({
+    title: "Delete Account – CarCare Diary",
+    description: "Request deletion of your CarCare Diary account and associated data.",
+    path: "/delete-account",
+    noindex: true,
+  });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

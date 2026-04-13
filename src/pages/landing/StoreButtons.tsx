@@ -7,10 +7,11 @@ interface StoreButtonProps {
 
 export function AppStoreButton({ className = "", iconOnlyMobile }: StoreButtonProps) {
   return (
-    <a
-      href="#"
-      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
-      style={{ backgroundColor: "#141A2B" }}
+    <div
+      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] select-none ${className}`}
+      style={{ backgroundColor: "#141A2B", opacity: 0.6, cursor: "default" }}
+      aria-label="App Store – coming soon"
+      role="img"
     >
       <Apple className="w-5 h-5 md:w-6 md:h-6 text-white fill-white shrink-0" />
       <div className={`${iconOnlyMobile ? "hidden md:flex" : "flex"} flex-col text-left`}>
@@ -21,18 +22,25 @@ export function AppStoreButton({ className = "", iconOnlyMobile }: StoreButtonPr
           App Store
         </span>
       </div>
-    </a>
+      <span
+        className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[10px] leading-tight text-white"
+        style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
+      >
+        Soon
+      </span>
+    </div>
   );
 }
 
 export function GooglePlayButton({ className = "", iconOnlyMobile }: StoreButtonProps) {
   return (
-    <a
-      href="#"
-      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] transition-colors hover:border-[#367DFF] ${className}`}
-      style={{ backgroundColor: "#141A2B" }}
+    <div
+      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-md border border-[#1F2740] select-none ${className}`}
+      style={{ backgroundColor: "#141A2B", opacity: 0.6, cursor: "default" }}
+      aria-label="Google Play – coming soon"
+      role="img"
     >
-      <svg className="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none">
+      <svg className="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.382.226-.72.609-.92z" fill="#4285F4" />
         <path d="M17.545 8.248L5.187.774C4.582.423 3.87.406 3.609 1.814L13.792 12l3.753-3.752z" fill="#EA4335" />
         <path d="M3.609 22.186c.261 1.408.973 1.391 1.578 1.04l12.358-7.474-3.753-3.752L3.61 22.186z" fill="#34A853" />
@@ -46,6 +54,12 @@ export function GooglePlayButton({ className = "", iconOnlyMobile }: StoreButton
           Google Play
         </span>
       </div>
-    </a>
+      <span
+        className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[10px] leading-tight text-white"
+        style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
+      >
+        Soon
+      </span>
+    </div>
   );
 }

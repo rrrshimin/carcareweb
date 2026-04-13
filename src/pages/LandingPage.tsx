@@ -13,6 +13,8 @@ const LANDING_JSON_LD = [
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "CarCare Diary",
+    url: "https://carcarediary.com",
+    image: "https://carcarediary.com/og-image.png",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "iOS, Android",
     description:
@@ -22,6 +24,12 @@ const LANDING_JSON_LD = [
       price: "0",
       priceCurrency: "USD",
     },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "CarCare Diary",
+    url: "https://carcarediary.com",
   },
   {
     "@context": "https://schema.org",

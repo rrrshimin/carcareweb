@@ -53,12 +53,12 @@ export function HowItWorks() {
                 <step.icon className="w-6 h-6" style={{ color: "#367DFF" }} />
               </div>
 
-              <h4
+              <h3
                 className="text-[16px] mb-2"
                 style={{ fontWeight: 700, color: "#FFFFFF" }}
               >
                 {step.title}
-              </h4>
+              </h3>
               <p className="text-[14px] leading-relaxed" style={{ color: "#A3ACBF" }}>
                 {step.description}
               </p>

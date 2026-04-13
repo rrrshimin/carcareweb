@@ -5,6 +5,7 @@ import NotFoundPage from "./NotFoundPage";
 import { fetchPageData } from "../lib/fetchPageData";
 import { buildViewModel } from "../lib/buildViewModel";
 import { buildPageTitle } from "../lib/format";
+import { usePageSeo } from "../lib/usePageSeo";
 import type { PublicVehiclePageModel, PublicCategory } from "../lib/types";
 import { Header } from "../components/Header";
 import { VehicleSummaryCard } from "../components/VehicleSummaryCard";
@@ -46,13 +47,23 @@ function VehiclePage() {
     };
   }, [slug]);
 
-  useEffect(() => {
-    if (state.status === "ready") {
-      document.title = buildPageTitle(state.model.vehicle.displayName);
-    } else {
-      document.title = "CarCare Diary – Vehicle Maintenance";
-    }
-  }, [state]);
+  const seoTitle =
+    state.status === "ready"
+      ? buildPageTitle(state.model.vehicle.displayName)
+      : "CarCare Diary – Vehicle Maintenance";
+
+  const seoDescription =
+    state.status === "ready"
+      ? `View the full service history for ${state.model.vehicle.displayName} — maintained with CarCare Diary.`
+      : "View this vehicle's maintenance history, shared via CarCare Diary.";
+
+  usePageSeo({
+    title: seoTitle,
+    description: seoDescription,
+    path: `/${slug ?? ""}`,
+    ogType: "article",
+    noindex: true,
+  });
 
   if (state.status === "loading") return <LoadingState />;
   if (state.status === "unavailable") return <NotFoundPage />;

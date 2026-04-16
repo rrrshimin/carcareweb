@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://carcarediary.com/sitemap.xml
+Sitemap: https://www.carcarediary.com/sitemap.xml

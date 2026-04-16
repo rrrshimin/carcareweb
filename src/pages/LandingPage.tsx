@@ -13,8 +13,8 @@ const LANDING_JSON_LD = [
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "CarCare Diary",
-    url: "https://carcarediary.com",
-    image: "https://carcarediary.com/og-image.png",
+    url: "https://www.carcarediary.com",
+    image: "https://www.carcarediary.com/og-image.png",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "iOS, Android",
     description:
@@ -29,13 +29,13 @@ const LANDING_JSON_LD = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "CarCare Diary",
-    url: "https://carcarediary.com",
+    url: "https://www.carcarediary.com",
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "CarCare Diary",
-    url: "https://carcarediary.com",
+    url: "https://www.carcarediary.com",
     email: "hello@carcarediary.com",
   },
   {

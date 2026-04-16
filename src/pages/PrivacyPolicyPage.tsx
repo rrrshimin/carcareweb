@@ -460,7 +460,7 @@ export default function PrivacyPolicyPage() {
                   <p>
                     Website:{" "}
                     <a
-                      href="https://carcarediary.com"
+                      href="https://www.carcarediary.com"
                       className="underline"
                       style={{ color: "#367DFF" }}
                     >

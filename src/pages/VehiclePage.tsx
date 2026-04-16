@@ -50,11 +50,11 @@ function VehiclePage() {
   const seoTitle =
     state.status === "ready"
       ? buildPageTitle(state.model.vehicle.displayName)
-      : "CarCare Diary – Vehicle Maintenance";
+      : "CarCare Diary - Vehicle Maintenance";
 
   const seoDescription =
     state.status === "ready"
-      ? `View the full service history for ${state.model.vehicle.displayName} — maintained with CarCare Diary.`
+      ? `View the full service history for ${state.model.vehicle.displayName} - maintained with CarCare Diary.`
       : "View this vehicle's maintenance history, shared via CarCare Diary.";
 
   usePageSeo({

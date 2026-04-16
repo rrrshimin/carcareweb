@@ -10,7 +10,7 @@ export const businessFaqs = [
   {
     question: "Can I see maintenance costs per vehicle?",
     answer:
-      "Yes. Every maintenance log entry includes cost data, and you can view spending breakdowns per vehicle and per month — making it easy to identify high-cost vehicles, compare fleet units, and budget accurately.",
+      "Yes. Every maintenance log entry includes cost data, and you can view spending breakdowns per vehicle and per month - making it easy to identify high-cost vehicles, compare fleet units, and budget accurately.",
   },
   {
     question: "Does it work on mobile and web?",
@@ -30,7 +30,7 @@ export const businessFaqs = [
   {
     question: "How is this different from a spreadsheet?",
     answer:
-      "Unlike spreadsheets, CarCare Diary gives you structured multi-vehicle maintenance tracking with automatic service reminders, per-vehicle cost analytics, mobile logging for drivers, and a web dashboard for fleet managers — without manual data entry.",
+      "Unlike spreadsheets, CarCare Diary gives you structured multi-vehicle maintenance tracking with automatic service reminders, per-vehicle cost analytics, mobile logging for drivers, and a web dashboard for fleet managers - without manual data entry.",
   },
 ];
 

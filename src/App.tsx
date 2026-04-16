@@ -1,18 +1,42 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 
 const BusinessPage = lazy(() => import("./pages/BusinessPage"));
+const CarMaintenanceTrackerPage = lazy(() => import("./pages/CarMaintenanceTrackerPage"));
+const CarServiceHistoryPage = lazy(() => import("./pages/CarServiceHistoryPage"));
+const VehicleMaintenanceLogPage = lazy(() => import("./pages/VehicleMaintenanceLogPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const CarMaintenanceChecklistArticle = lazy(() => import("./pages/blog/CarMaintenanceChecklistArticle"));
+const HowToTrackCarMaintenanceArticle = lazy(() => import("./pages/blog/HowToTrackCarMaintenanceArticle"));
+const WhatToIncludeInCarServiceHistoryArticle = lazy(() => import("./pages/blog/WhatToIncludeInCarServiceHistoryArticle"));
+const HowToKeepCarServiceRecordsOrganizedArticle = lazy(() => import("./pages/blog/HowToKeepCarServiceRecordsOrganizedArticle"));
 const SupportPage = lazy(() => import("./pages/SupportPage"));
 const VehiclePage = lazy(() => import("./pages/VehiclePage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
+const HowCarCareDiaryWorksPage = lazy(() => import("./pages/HowCarCareDiaryWorksPage"));
+const HelpPage = lazy(() => import("./pages/HelpPage"));
+const GettingStartedArticle = lazy(() => import("./pages/help/GettingStartedArticle"));
+const ShareVehicleHistoryArticle = lazy(() => import("./pages/help/ShareVehicleHistoryArticle"));
+const LogFirstServiceArticle = lazy(() => import("./pages/help/LogFirstServiceArticle"));
+const PlansArticle = lazy(() => import("./pages/help/PlansArticle"));
+const MileageAccuracyArticle = lazy(() => import("./pages/help/MileageAccuracyArticle"));
 const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
@@ -44,6 +68,126 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <SupportPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/car-maintenance-tracker"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarMaintenanceTrackerPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/car-service-history"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarServiceHistoryPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/vehicle-maintenance-log"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <VehicleMaintenanceLogPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <BlogPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/car-maintenance-checklist"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarMaintenanceChecklistArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/how-to-track-car-maintenance"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <HowToTrackCarMaintenanceArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/what-to-include-in-a-car-service-history"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhatToIncludeInCarServiceHistoryArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/how-to-keep-car-service-records-organized"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <HowToKeepCarServiceRecordsOrganizedArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <HelpPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/getting-started-with-carcare-diary"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <GettingStartedArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/updating-mileage-and-keeping-records-accurate"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <MileageAccuracyArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/free-vs-multi-vehicle-plans"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <PlansArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/how-to-log-your-first-service"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <LogFirstServiceArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/help/how-to-share-your-vehicle-history"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <ShareVehicleHistoryArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/how-carcare-diary-works"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <HowCarCareDiaryWorksPage />
             </Suspense>
           }
         />

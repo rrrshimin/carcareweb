@@ -44,7 +44,7 @@ function BusinessPage() {
   const jsonLd = useMemo(() => BUSINESS_JSON_LD, []);
 
   usePageSeo({
-    title: "CarCare Diary for Business – Fleet Maintenance Software",
+    title: "CarCare Diary for Business - Fleet Maintenance Software",
     description:
       "Fleet maintenance software for multi-vehicle tracking. Monitor costs per vehicle, get service reminders, and keep organized maintenance records for every company vehicle.",
     path: "/business",

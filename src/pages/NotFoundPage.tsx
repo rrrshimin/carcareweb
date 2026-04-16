@@ -1,57 +1,55 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { MapPin } from "lucide-react";
-import { Header } from "../components/Header";
+import { Link } from "react-router-dom";
+import { LandingHeader } from "./landing/LandingHeader";
+import { LandingFooter } from "./landing/LandingFooter";
+import { usePageSeo } from "../lib/usePageSeo";
 
 function NotFoundPage() {
-  useEffect(() => {
-    document.title = "CarCare Diary – Page Not Found";
-    return () => {
-      document.title = "CarCare Diary";
-    };
-  }, []);
-
-  const navigate = useNavigate();
+  usePageSeo({
+    title: "Page Not Found - CarCare Diary",
+    description: "The page you're looking for doesn't exist or the link may have changed.",
+    path: "/404",
+    noindex: true,
+  });
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <div className="flex min-h-screen items-center justify-center px-4 pt-14">
-        <div className="mx-auto w-full max-w-sm text-center">
-          <div className="mb-6 flex justify-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
-              <MapPin className="h-9 w-9 text-blue-400" />
+    <div className="min-h-screen relative overflow-hidden bg-base text-white font-sans">
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background: "linear-gradient(180deg, #0C111F 0%, #0E1325 40%, #0C111F 100%)",
+        }}
+      />
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <LandingHeader />
+        <main className="flex-1 flex items-center justify-center px-6 py-24">
+          <div className="text-center max-w-sm mx-auto">
+            <p className="text-7xl font-extrabold text-white/10 mb-4 tracking-tight">
+              404
+            </p>
+            <h1 className="text-2xl font-semibold text-white mb-3">
+              Page not found
+            </h1>
+            <p className="text-sm leading-relaxed text-muted mb-8">
+              The page you're looking for doesn't exist or the link may have
+              changed.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-brand hover:bg-brand/90 text-sm font-medium text-white transition-colors text-center"
+              >
+                Back to home
+              </Link>
+              <Link
+                to="/help"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-panel hover:border-accent/40 text-sm font-medium text-muted hover:text-white transition-colors text-center"
+              >
+                Help Center
+              </Link>
             </div>
           </div>
-
-          <p className="mb-1 text-5xl font-extrabold tracking-tight text-gray-200 sm:text-6xl">
-            404
-          </p>
-
-          <h1 className="mt-3 text-xl font-semibold text-gray-800 sm:text-2xl">
-            Page not found
-          </h1>
-
-          <p className="mt-2 text-sm leading-relaxed text-gray-500">
-            The page you're looking for doesn't exist or the link may have
-            changed.
-          </p>
-
-          <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-full rounded-md border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 shadow-sm transition hover:bg-gray-50 sm:w-auto"
-            >
-              Go back
-            </button>
-            <a
-              href="/"
-              className="w-full rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 sm:w-auto"
-            >
-              Back home
-            </a>
-          </div>
-        </div>
+        </main>
+        <LandingFooter />
       </div>
     </div>
   );

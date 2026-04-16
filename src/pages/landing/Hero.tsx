@@ -1,71 +1,45 @@
-import { ClipboardCheck, CalendarClock, History, Share2 } from "lucide-react";
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
 import heroScreenshot from "../../assets/screenshot-hero.png";
 
-const trustBullets = [
-  { icon: ClipboardCheck, text: "Log every service in seconds" },
-  { icon: CalendarClock, text: "Get reminders before service is due" },
-  { icon: History, text: "Build a complete maintenance history" },
-  { icon: Share2, text: "Share your vehicle's record at resale" },
-];
-
 export function Hero() {
   return (
-    <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-8">
+    <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <div className="flex-1 text-center lg:text-left">
-          <h1
-            className="text-[34px] md:text-[48px] lg:text-[56px] leading-[1.1] mb-6"
-            style={{ fontWeight: 800, color: "#FFFFFF" }}
-          >
-            The car maintenance tracker{" "}
-            <span style={{ color: "#367DFF" }}>that keeps you on schedule</span>
+          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
+            Car Maintenance Tracker App
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold mb-6">
+            Track Car Maintenance, Mileage, And Service History{" "}
+            <span className="text-accent">In One App</span>
           </h1>
-          <p
-            className="text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[540px] mx-auto lg:mx-0"
-            style={{ color: "#A3ACBF" }}
-          >
-            CarCare Diary is a vehicle maintenance log that helps you track service
-            history, monitor mileage, get reminders when maintenance is due, and share
-            records when it's time to sell.
+          <p className="text-base md:text-lg leading-relaxed text-muted mb-10 max-w-[540px] mx-auto lg:mx-0">
+            CarCare Diary is a free car maintenance tracker for iPhone and
+            Android. Log every service, monitor your mileage, get reminders
+            when maintenance is due, and share your vehicle's complete service
+            history.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 max-w-[480px] mx-auto lg:mx-0">
-            {trustBullets.map((item) => (
-              <div key={item.text} className="flex items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: "rgba(0, 81, 232, 0.15)" }}
-                >
-                  <item.icon className="w-4 h-4" style={{ color: "#367DFF" }} />
-                </div>
-                <span className="text-[14px] text-left" style={{ color: "#A3ACBF" }}>
-                  {item.text}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-3 sm:justify-center lg:justify-start mb-6">
             <AppStoreButton />
             <GooglePlayButton />
           </div>
+
+          <p className="text-sm text-muted">
+            Free for iPhone & Android
+          </p>
         </div>
 
         <div className="flex-1 flex justify-center lg:justify-end">
           <div className="relative">
             <div
-              className="absolute -inset-8 rounded-[40px] opacity-10 blur-[60px]"
-              style={{ background: "radial-gradient(circle, #0051E8 0%, transparent 70%)" }}
-            />
-            <div
-              className="relative rounded-md overflow-hidden"
-              style={{ maxWidth: 420 }}
+              className="relative rounded-2xl overflow-hidden"
+              style={{ maxWidth: 400 }}
             >
               <img
                 src={heroScreenshot}
-                alt="CarCare Diary app screenshot showing vehicle maintenance tracking"
-                className="w-[420px] h-auto"
+                alt="CarCare Diary car maintenance tracker app showing vehicle service log and mileage tracking"
+                className="w-full h-auto"
               />
             </div>
           </div>

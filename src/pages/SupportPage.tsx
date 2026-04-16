@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LandingHeader } from "./landing/LandingHeader";
 import { LandingFooter } from "./landing/LandingFooter";
+import { usePageSeo } from "../lib/usePageSeo";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -13,12 +15,12 @@ function SupportPage() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(() => {
-    document.title = "CarCare Diary - Support";
-    return () => {
-      document.title = "CarCare Diary";
-    };
-  }, []);
+  usePageSeo({
+    title: "Contact Support - CarCare Diary",
+    description:
+      "Contact the CarCare Diary support team. Send a message for help with the app, your account, or vehicle maintenance records.",
+    path: "/support",
+  });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -89,11 +91,22 @@ function SupportPage() {
               Support
             </h1>
             <p
-              className="text-[16px] leading-relaxed text-center mb-10"
+              className="text-[16px] leading-relaxed text-center mb-5"
               style={{ color: "#A3ACBF" }}
             >
               Need help with CarCare Diary? Send us a message and we'll get back
               to you by email.
+            </p>
+            <p className="text-[14px] text-center mb-10" style={{ color: "#A3ACBF" }}>
+              Looking for a quick answer first?{" "}
+              <Link
+                to="/help"
+                className="transition-colors hover:text-white"
+                style={{ color: "#367DFF", fontWeight: 600 }}
+              >
+                Check the Help Center
+              </Link>
+              .
             </p>
 
             {status === "success" ? (

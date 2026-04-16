@@ -31,7 +31,7 @@ function DeleteAccountPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   usePageSeo({
-    title: "Delete Account – CarCare Diary",
+    title: "Delete Account - CarCare Diary",
     description: "Request deletion of your CarCare Diary account and associated data.",
     path: "/delete-account",
     noindex: true,

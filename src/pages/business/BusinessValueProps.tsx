@@ -24,7 +24,7 @@ const valueProps = [
     icon: ClipboardList,
     title: "Centralized maintenance records",
     description:
-      "Every oil change, tire rotation, and repair — logged in one place. A single source of truth for your fleet's service history.",
+      "Every oil change, tire rotation, and repair - logged in one place. A single source of truth for your fleet's service history.",
   },
   {
     icon: Bell,

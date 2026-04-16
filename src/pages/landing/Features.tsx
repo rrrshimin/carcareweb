@@ -1,94 +1,101 @@
-import feature1 from "../../assets/feature-1.png";
-import feature2 from "../../assets/feature-2.png";
-import feature3 from "../../assets/feature-3.png";
-import feature4 from "../../assets/feature-4.png";
+import { Wrench, Bell, Gauge, Car, History, Share2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const features = [
   {
+    icon: Wrench,
+    title: "Service Log",
+    description:
+      "Log oil changes, brake work, filter replacements, and every other service your car needs. Each entry captures date, mileage, and notes.",
+  },
+  {
+    icon: Bell,
+    title: "Service Reminders",
+    description:
+      "Get notified when maintenance is coming due. Reminders are calculated from your service log, current mileage, and recommended intervals.",
+  },
+  {
+    icon: Gauge,
+    title: "Mileage Tracker",
+    description:
+      "Keep your odometer up to date so service schedules and reminders stay accurate as you drive.",
+  },
+  {
+    icon: Car,
     title: "Vehicle Profile",
     description:
-      "Set up your vehicle once with photo, make and model, year, fuel type, transmission, and current odometer reading. Your car's identity in one place.",
-    image: feature1,
-    alt: "CarCare Diary vehicle profile screen with car details and photo",
+      "Store your car's make, model, year, fuel type, and photo in one place. Your vehicle's identity at a glance.",
   },
   {
-    title: "Maintenance Log",
+    icon: History,
+    title: "Maintenance History",
     description:
-      "Record every service \u2014 oil changes, filters, spark plugs, brakes, fluids, and more \u2014 with date, mileage, specs, and notes. Build a detailed vehicle maintenance log over time.",
-    image: feature2,
-    alt: "CarCare Diary maintenance log showing service entries with dates and mileage",
+      "Build a complete, organized record of every service your car has received. Filter by category and review anytime.",
   },
   {
-    title: "Service Reminders & Due Status",
+    icon: Share2,
+    title: "Shareable Records",
     description:
-      "See what's coming up next based on your maintenance log, current mileage, and service intervals. Get reminders so you never miss an oil change or scheduled service.",
-    image: feature3,
-    alt: "CarCare Diary due status dashboard showing upcoming service reminders",
-  },
-  {
-    title: "Shareable Service History",
-    description:
-      "Generate a public link to your car's full maintenance history. Useful when selling your vehicle \u2014 buyers can see exactly how it's been maintained.",
-    image: feature4,
-    alt: "CarCare Diary shareable maintenance history page for vehicle resale",
+      "Generate a public link to your vehicle's full service history. Useful when selling your car or visiting a mechanic.",
   },
 ];
 
 export function Features() {
   return (
-    <section className="py-16 md:py-24 px-6 sm:px-10 lg:px-16 xl:px-20">
+    <section
+      id="features"
+      className="py-24 md:py-32 px-6 sm:px-10 lg:px-16 xl:px-20"
+    >
       <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-16 md:mb-20">
-          <h2
-            className="text-[24px] md:text-[32px] leading-tight mb-4"
-            style={{ fontWeight: 800 }}
-          >
-            A complete car maintenance tracker{" "}
-            <span style={{ color: "#367DFF" }}>in your pocket</span>
+          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-3">
+            Features
+          </p>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+            Everything You Need To{" "}
+            <span className="text-accent">Track Car Maintenance</span>
           </h2>
-          <p
-            className="text-[16px] max-w-[560px] mx-auto"
-            style={{ color: "#A3ACBF" }}
-          >
-            From your vehicle profile to a shareable service history, CarCare Diary keeps your maintenance log organized and up to date.
+          <p className="text-base text-muted max-w-[560px] mx-auto">
+            A complete vehicle maintenance log with service reminders, mileage
+            tracking, and a shareable history - built for everyday car owners.
           </p>
         </div>
 
-        <div className="flex flex-col gap-20 md:gap-28">
-          {features.map((feature, index) => {
-            const isReversed = index % 2 !== 0;
-            return (
-              <div
-                key={feature.title}
-                className={`flex flex-col ${
-                  isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                } items-center gap-8 md:gap-12 max-w-[800px] mx-auto`}
-              >
-                <div className="shrink-0">
-                  <div className="rounded-md overflow-hidden w-[280px] md:w-[320px]">
-                    <img
-                      src={feature.image}
-                      alt={feature.alt}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex-1">
-                  <h3
-                    className="text-[20px] md:text-[24px] mb-4"
-                    style={{ fontWeight: 700 }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p className="text-[16px] leading-relaxed" style={{ color: "#A3ACBF" }}>
-                    {feature.description}
-                  </p>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="rounded-xl border border-panel bg-surface p-8 transition-colors duration-300 hover:border-accent/30"
+            >
+              <div className="w-12 h-12 rounded-lg bg-brand/12 flex items-center justify-center mb-5">
+                <feature.icon className="w-6 h-6 text-accent" />
               </div>
-            );
-          })}
+              <h3 className="text-lg font-semibold text-white mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted">
+                {feature.description}
+              </p>
+            </div>
+          ))}
         </div>
+
+        <p className="text-center text-sm text-muted mt-12">
+          Want to learn more?{" "}
+          <Link
+            to="/car-maintenance-tracker"
+            className="text-accent font-semibold hover:text-white transition-colors"
+          >
+            See how CarCare Diary works as a car maintenance tracker
+          </Link>
+          {" · "}
+          <Link
+            to="/blog"
+            className="text-accent font-semibold hover:text-white transition-colors"
+          >
+            Browse the maintenance guides
+          </Link>
+        </p>
       </div>
     </section>
   );

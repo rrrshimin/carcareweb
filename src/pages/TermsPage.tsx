@@ -2,8 +2,16 @@ import { useEffect } from "react";
 import { Logo } from "./landing/Logo";
 import { Link } from "react-router-dom";
 import { LandingFooter } from "./landing/LandingFooter";
+import { usePageSeo } from "../lib/usePageSeo";
 
 export default function TermsPage() {
+  usePageSeo({
+    title: "Terms & Conditions - CarCare Diary",
+    description:
+      "Read the CarCare Diary terms and conditions governing use of the app and website.",
+    path: "/terms",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

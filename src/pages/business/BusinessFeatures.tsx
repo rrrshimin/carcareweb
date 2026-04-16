@@ -6,69 +6,45 @@ import {
   FileDown,
   MonitorSmartphone,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 const features = [
   {
     icon: TrendingUp,
     title: "Fleet Spending Analytics",
     description:
-      "Review monthly and yearly maintenance spending across your entire fleet. Spot cost trends, compare periods, and make budgeting decisions based on real data — not guesses.",
-    placeholder: "Spending overview screenshot",
+      "Review monthly and yearly maintenance spending across your entire fleet. Spot cost trends, compare periods, and make budgeting decisions based on real data - not guesses.",
   },
   {
     icon: Car,
     title: "Per-Vehicle Cost Tracking",
     description:
       "See exactly how much each company vehicle costs to maintain. Compare vehicles side by side to identify high-cost units and allocate maintenance budgets where they matter most.",
-    placeholder: "Per-vehicle cost breakdown",
   },
   {
     icon: ClipboardList,
     title: "Maintenance Logs & Service Records",
     description:
-      "Every service event — oil changes, brake replacements, tire rotations, inspections — logged with date, mileage, cost, and notes. A complete maintenance record for every fleet vehicle.",
-    placeholder: "Service history log view",
+      "Every service event - oil changes, brake replacements, tire rotations, inspections - logged with date, mileage, cost, and notes. A complete maintenance record for every fleet vehicle.",
   },
   {
     icon: Bell,
     title: "Service Reminders & Due Planning",
     description:
       "Automatically track when services are coming due based on mileage and time intervals. Plan ahead instead of reacting to breakdowns. Keep your fleet running with fewer surprises.",
-    placeholder: "Due reminders dashboard",
   },
   {
     icon: FileDown,
     title: "Export & Compliance Reporting",
     description:
       "Export your fleet's maintenance records and cost data as CSV. Use it for accounting, share with management, or keep it on file for compliance and audit readiness.",
-    placeholder: "Export and reports view",
   },
   {
     icon: MonitorSmartphone,
     title: "Mobile App + Web Dashboard",
     description:
       "Drivers and field staff log maintenance on the go with the mobile app. Fleet managers review data, track costs, and manage vehicle records from the web dashboard.",
-    placeholder: "Mobile and web views",
   },
 ];
-
-function PlaceholderImage({ label, Icon }: { label: string; Icon: LucideIcon }) {
-  return (
-    <div
-      className="rounded-md border overflow-hidden w-full aspect-[4/3] flex flex-col items-center justify-center gap-3 p-6"
-      style={{ backgroundColor: "#0C111F", borderColor: "#1F2740" }}
-    >
-      <Icon className="w-10 h-10" style={{ color: "#367DFF", opacity: 0.4 }} />
-      <span
-        className="text-[13px] text-center"
-        style={{ color: "#A3ACBF", opacity: 0.6 }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
 
 export function BusinessFeatures() {
   return (
@@ -79,7 +55,6 @@ export function BusinessFeatures() {
             className="text-[24px] md:text-[32px] leading-tight mb-4"
             style={{ fontWeight: 800 }}
           >
-
             Fleet maintenance features{" "}
             <span style={{ color: "#367DFF" }}>built for operations</span>
           </h2>
@@ -92,46 +67,35 @@ export function BusinessFeatures() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-20 md:gap-28">
-          {features.map((feature, index) => {
-            const isReversed = index % 2 !== 0;
-            return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1060px] mx-auto">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="rounded-md border p-6 flex flex-col gap-4 transition-colors hover:border-[#367DFF]/40"
+              style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
+            >
               <div
-                key={feature.title}
-                className={`flex flex-col ${
-                  isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                } items-center gap-8 md:gap-12 max-w-[900px] mx-auto`}
+                className="w-11 h-11 rounded-md flex items-center justify-center shrink-0"
+                style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
               >
-                <div className="shrink-0 w-[280px] md:w-[380px]">
-                  <PlaceholderImage label={feature.placeholder} Icon={feature.icon} />
-                </div>
-
-                <div className="flex-1">
-                  <div
-                    className="w-10 h-10 rounded flex items-center justify-center mb-4"
-                    style={{ backgroundColor: "rgba(0, 81, 232, 0.12)" }}
-                  >
-                    <feature.icon
-                      className="w-5 h-5"
-                      style={{ color: "#367DFF" }}
-                    />
-                  </div>
-                  <h3
-                    className="text-[20px] md:text-[24px] mb-4"
-                    style={{ fontWeight: 700 }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p
-                    className="text-[16px] leading-relaxed"
-                    style={{ color: "#A3ACBF" }}
-                  >
-                    {feature.description}
-                  </p>
-                </div>
+                <feature.icon className="w-5 h-5" style={{ color: "#367DFF" }} />
               </div>
-            );
-          })}
+              <div>
+                <h3
+                  className="text-[16px] mb-2"
+                  style={{ fontWeight: 700, color: "#FFFFFF" }}
+                >
+                  {feature.title}
+                </h3>
+                <p
+                  className="text-[14px] leading-relaxed"
+                  style={{ color: "#A3ACBF" }}
+                >
+                  {feature.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 const SITE_URL = "https://www.carcarediary.com";
-const DEFAULT_TITLE = "CarCare Diary – Car Maintenance Tracker App for iOS & Android";
+const DEFAULT_TITLE = "CarCare Diary - Car Maintenance Tracker & Service Log App";
 const DEFAULT_DESCRIPTION =
-  "Track car maintenance, log service history, monitor mileage, get reminders when service is due, and share records when selling. Free app for iOS and Android.";
+  "Log car maintenance, track mileage, get service reminders, and share your vehicle's complete history. Free car maintenance tracker app for iPhone & Android.";
 const DEFAULT_OG_IMAGE = "https://www.carcarediary.com/og-image.png";
 
 interface PageSeoOptions {

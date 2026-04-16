@@ -31,11 +31,11 @@ export function BusinessHero() {
 
         <div className="mb-12">
           <a
-            href="/signup"
+            href="/support"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-md text-[16px] text-white transition-opacity hover:opacity-90"
             style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
           >
-            Get Started
+            Get in Touch
           </a>
         </div>
 

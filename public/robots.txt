@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /delete-account
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
 
 Sitemap: https://www.carcarediary.com/sitemap.xml

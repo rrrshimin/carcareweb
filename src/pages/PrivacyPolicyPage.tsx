@@ -2,8 +2,16 @@ import { useEffect } from "react";
 import { Logo } from "./landing/Logo";
 import { Link } from "react-router-dom";
 import { LandingFooter } from "./landing/LandingFooter";
+import { usePageSeo } from "../lib/usePageSeo";
 
 export default function PrivacyPolicyPage() {
+  usePageSeo({
+    title: "Privacy Policy - CarCare Diary",
+    description:
+      "Read the CarCare Diary privacy policy to understand how we collect, use, and protect your data.",
+    path: "/privacy",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

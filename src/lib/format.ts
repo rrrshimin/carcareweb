@@ -35,5 +35,5 @@ export function buildDisplayName(
 }
 
 export function buildPageTitle(displayName: string): string {
-  return `CarCare Diary – ${displayName}`;
+  return `CarCare Diary - ${displayName}`;
 }

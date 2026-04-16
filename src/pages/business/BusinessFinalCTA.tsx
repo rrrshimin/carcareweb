@@ -35,11 +35,11 @@ export function BusinessFinalCTA() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="/signup"
+                href="/support"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-md text-[16px] text-white transition-opacity hover:opacity-90"
                 style={{ backgroundColor: "#0051E8", fontWeight: 600 }}
               >
-                Get Started - It's Free
+                Get in Touch
               </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">

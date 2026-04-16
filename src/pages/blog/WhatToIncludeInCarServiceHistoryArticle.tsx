@@ -91,7 +91,6 @@ export default function WhatToIncludeInCarServiceHistoryArticle() {
 
   return (
     <ArticleLayout
-      category={ARTICLE_CATEGORY}
       title="What To Include In A Car Service History"
     >
       <ArticleHero />

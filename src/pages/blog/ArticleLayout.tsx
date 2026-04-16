@@ -8,11 +8,10 @@ const SITE_URL = "https://www.carcarediary.com";
 
 interface ArticleLayoutProps {
   children: React.ReactNode;
-  category: string;
   title: string;
 }
 
-export function ArticleLayout({ children, category, title }: ArticleLayoutProps) {
+export function ArticleLayout({ children, title }: ArticleLayoutProps) {
   useEffect(() => {
     const url = `${SITE_URL}${window.location.pathname}`;
     const breadcrumb = {

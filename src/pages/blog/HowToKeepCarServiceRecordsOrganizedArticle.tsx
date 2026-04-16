@@ -91,7 +91,6 @@ export default function HowToKeepCarServiceRecordsOrganizedArticle() {
 
   return (
     <ArticleLayout
-      category={ARTICLE_CATEGORY}
       title="How To Keep Car Service Records Organized"
     >
       <ArticleHero />

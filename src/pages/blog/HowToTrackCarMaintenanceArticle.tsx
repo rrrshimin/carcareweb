@@ -90,7 +90,7 @@ export default function HowToTrackCarMaintenanceArticle() {
   });
 
   return (
-    <ArticleLayout category={ARTICLE_CATEGORY} title="How To Track Car Maintenance">
+    <ArticleLayout title="How To Track Car Maintenance">
       <ArticleHero />
       <WhyTrackingMatters />
       <WhatToTrack />

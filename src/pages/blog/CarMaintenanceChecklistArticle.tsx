@@ -90,7 +90,7 @@ export default function CarMaintenanceChecklistArticle() {
   });
 
   return (
-    <ArticleLayout category={ARTICLE_CATEGORY} title="Car Maintenance Checklist">
+    <ArticleLayout title="Car Maintenance Checklist">
       <ArticleHero />
       <TheChecklist />
       <HowOftenToReview />

@@ -23,6 +23,7 @@ const LANDING_JSON_LD = [
     operatingSystem: "iOS, Android",
     description:
       "Car maintenance tracker app. Log services, track mileage, get reminders, and share your vehicle's maintenance history.",
+    installUrl: "https://play.google.com/store/apps/details?id=com.carcarediary.app",
     offers: {
       "@type": "Offer",
       price: "0",

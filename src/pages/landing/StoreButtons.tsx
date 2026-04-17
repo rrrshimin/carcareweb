@@ -29,10 +29,12 @@ export function AppStoreButton({ className = "" }: StoreButtonProps) {
 
 export function GooglePlayButton({ className = "" }: StoreButtonProps) {
   return (
-    <div
-      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg border border-panel bg-surface select-none opacity-60 cursor-default ${className}`}
-      aria-label="Google Play - coming soon"
-      role="img"
+    <a
+      href="https://play.google.com/store/apps/details?id=com.carcarediary.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Get CarCare Diary on Google Play"
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg border border-panel bg-surface hover:border-accent/40 hover:bg-surface/80 transition-colors ${className}`}
     >
       <svg
         className="w-5 h-5 md:w-6 md:h-6 shrink-0"
@@ -65,9 +67,6 @@ export function GooglePlayButton({ className = "" }: StoreButtonProps) {
           Google Play
         </span>
       </div>
-      <span className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[10px] leading-tight text-white font-semibold bg-brand">
-        Soon
-      </span>
-    </div>
+    </a>
   );
 }

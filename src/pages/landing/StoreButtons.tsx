@@ -7,16 +7,16 @@ interface StoreButtonProps {
 export function AppStoreButton({ className = "" }: StoreButtonProps) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg border border-panel bg-surface select-none opacity-60 cursor-default ${className}`}
+      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg bg-white select-none opacity-60 cursor-default ${className}`}
       aria-label="App Store - coming soon"
       role="img"
     >
-      <Apple className="w-5 h-5 md:w-6 md:h-6 text-white fill-white shrink-0" />
+      <Apple className="w-5 h-5 md:w-6 md:h-6 text-gray-900 fill-gray-900 shrink-0" />
       <div className="flex flex-col text-left">
-        <span className="text-[10px] md:text-[11px] leading-tight text-muted">
+        <span className="text-[10px] md:text-[11px] leading-tight text-gray-500">
           Download on the
         </span>
-        <span className="text-[13px] md:text-[15px] leading-tight text-white font-semibold">
+        <span className="text-[13px] md:text-[15px] leading-tight text-gray-900 font-semibold">
           App Store
         </span>
       </div>
@@ -34,7 +34,7 @@ export function GooglePlayButton({ className = "" }: StoreButtonProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Get CarCare Diary on Google Play"
-      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg border border-panel bg-surface hover:border-accent/40 hover:bg-surface/80 transition-colors ${className}`}
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-colors ${className}`}
     >
       <svg
         className="w-5 h-5 md:w-6 md:h-6 shrink-0"
@@ -60,10 +60,10 @@ export function GooglePlayButton({ className = "" }: StoreButtonProps) {
         />
       </svg>
       <div className="flex flex-col text-left">
-        <span className="text-[10px] md:text-[11px] leading-tight text-muted">
+        <span className="text-[10px] md:text-[11px] leading-tight text-gray-500">
           GET IT ON
         </span>
-        <span className="text-[13px] md:text-[15px] leading-tight text-white font-semibold">
+        <span className="text-[13px] md:text-[15px] leading-tight text-gray-900 font-semibold">
           Google Play
         </span>
       </div>

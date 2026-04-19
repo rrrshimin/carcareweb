@@ -18,7 +18,7 @@ export function Header() {
               className="h-8 sm:h-9"
             />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://play.google.com/store/apps/details?id=com.carcarediary.app" target="_blank" rel="noopener noreferrer">
             <img
               src={googlePlaySvg}
               alt="Get it on Google Play"

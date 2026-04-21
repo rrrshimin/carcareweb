@@ -1,4 +1,4 @@
-import { Apple } from "lucide-react";
+import appleLogoSrc from "../../assets/AppleLogo.svg";
 
 interface StoreButtonProps {
   className?: string;
@@ -13,7 +13,12 @@ export function AppStoreButton({ className = "" }: StoreButtonProps) {
       aria-label="Download CarCare Diary on the App Store"
       className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-colors ${className}`}
     >
-      <Apple className="w-5 h-5 md:w-6 md:h-6 text-gray-900 fill-gray-900 shrink-0" />
+      <img
+        src={appleLogoSrc}
+        alt=""
+        aria-hidden="true"
+        className="w-5 h-5 md:w-6 md:h-6 shrink-0"
+      />
       <div className="flex flex-col text-left">
         <span className="text-[10px] md:text-[11px] leading-tight text-gray-500">
           Download on the

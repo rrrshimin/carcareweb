@@ -11,7 +11,7 @@ export function Header() {
         </a>
 
         <div className="flex items-center gap-2">
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://apps.apple.com/us/app/carcare-diary-log/id6762228595" target="_blank" rel="noopener noreferrer">
             <img
               src={appStoreSvg}
               alt="Download on App Store"

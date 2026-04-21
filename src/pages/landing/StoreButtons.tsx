@@ -6,10 +6,12 @@ interface StoreButtonProps {
 
 export function AppStoreButton({ className = "" }: StoreButtonProps) {
   return (
-    <div
-      className={`relative inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg bg-white select-none opacity-60 cursor-default ${className}`}
-      aria-label="App Store - coming soon"
-      role="img"
+    <a
+      href="https://apps.apple.com/us/app/carcare-diary-log/id6762228595"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Download CarCare Diary on the App Store"
+      className={`inline-flex items-center justify-center gap-3 px-5 py-3 rounded-lg bg-white hover:bg-gray-100 transition-colors ${className}`}
     >
       <Apple className="w-5 h-5 md:w-6 md:h-6 text-gray-900 fill-gray-900 shrink-0" />
       <div className="flex flex-col text-left">
@@ -20,10 +22,7 @@ export function AppStoreButton({ className = "" }: StoreButtonProps) {
           App Store
         </span>
       </div>
-      <span className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[10px] leading-tight text-white font-semibold bg-brand">
-        Soon
-      </span>
-    </div>
+    </a>
   );
 }
 

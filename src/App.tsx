@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import { MobileAppBanner } from "./components/MobileAppBanner";
 
 const BusinessPage = lazy(() => import("./pages/BusinessPage"));
 const CarMaintenanceTrackerPage = lazy(() => import("./pages/CarMaintenanceTrackerPage"));
@@ -37,6 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <MobileAppBanner />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route

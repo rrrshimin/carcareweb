@@ -1,5 +1,5 @@
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
-import heroScreenshot from "../../assets/screenshot-hero.png";
+import heroScreenshot from "../../assets/hero-screenshots-mockups.png";
 
 export function Hero() {
   return (
@@ -34,7 +34,7 @@ export function Hero() {
           <div className="relative">
             <div
               className="relative rounded-2xl overflow-hidden"
-              style={{ maxWidth: 400 }}
+              style={{ maxWidth: 594 }}
             >
               <img
                 src={heroScreenshot}

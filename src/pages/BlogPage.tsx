@@ -92,8 +92,7 @@ function GuidesList() {
   return (
     <section className="pb-24 md:pb-32 px-6 sm:px-10 lg:px-16 xl:px-20">
       <div className="max-w-[1280px] mx-auto">
-        <div className="max-w-[900px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {guides.map((guide) => (
               <Link
                 key={guide.path}
@@ -133,7 +132,6 @@ function GuidesList() {
               </p>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

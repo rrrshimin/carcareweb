@@ -10,7 +10,7 @@ export function Hero() {
             Car Maintenance Tracker App
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold mb-6">
-            Track Car Maintenance, Mileage, And Service History{" "}
+            Track Car Maintenance And Service History{" "}
             <span className="text-accent">In One App</span>
           </h1>
           <p className="text-base md:text-lg leading-relaxed text-muted mb-10 max-w-[540px] mx-auto lg:mx-0">

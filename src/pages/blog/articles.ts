@@ -135,4 +135,36 @@ export const guides: GuideArticle[] = [
     category: "Reference",
     readTime: "6 min read",
   },
+  {
+    path: "/blog/when-to-replace-car-battery",
+    title: "When To Replace a Car Battery",
+    description:
+      "How long car batteries typically last, warning signs of a failing battery, and how to track battery replacement history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-windshield-wipers",
+    title: "When To Replace Windshield Wipers",
+    description:
+      "Signs wiper blades need replacing, how often to change them, and why good wipers matter for driving safety.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/when-to-check-tire-pressure",
+    title: "When To Check Tire Pressure",
+    description:
+      "How often to check tire pressure, cold tire pressure explained, temperature effects on PSI, and what happens when pressure is off.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/when-to-change-power-steering-fluid",
+    title: "When To Change Power Steering Fluid",
+    description:
+      "Power steering fluid service intervals, signs it may be due, and whether your vehicle has hydraulic or electric steering.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
 ];

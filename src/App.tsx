@@ -41,6 +41,10 @@ const WhenToReplaceSparkPlugsArticle = lazy(() => import("./pages/blog/WhenToRep
 const WhenToChangeTransmissionFluidArticle = lazy(() => import("./pages/blog/WhenToChangeTransmissionFluidArticle"));
 const WhenToReplaceTimingBeltArticle = lazy(() => import("./pages/blog/WhenToReplaceTimingBeltArticle"));
 const CarMaintenanceScheduleByMileageArticle = lazy(() => import("./pages/blog/CarMaintenanceScheduleByMileageArticle"));
+const WhenToReplaceCarBatteryArticle = lazy(() => import("./pages/blog/WhenToReplaceCarBatteryArticle"));
+const WhenToReplaceWindshieldWipersArticle = lazy(() => import("./pages/blog/WhenToReplaceWindshieldWipersArticle"));
+const WhenToCheckTirePressureArticle = lazy(() => import("./pages/blog/WhenToCheckTirePressureArticle"));
+const WhenToChangePowerSteeringFluidArticle = lazy(() => import("./pages/blog/WhenToChangePowerSteeringFluidArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -262,6 +266,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <CarMaintenanceScheduleByMileageArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-car-battery"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceCarBatteryArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-windshield-wipers"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceWindshieldWipersArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-check-tire-pressure"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToCheckTirePressureArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-power-steering-fluid"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangePowerSteeringFluidArticle />
             </Suspense>
           }
         />

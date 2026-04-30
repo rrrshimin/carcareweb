@@ -103,4 +103,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "4 min read",
   },
+  {
+    path: "/blog/when-to-replace-spark-plugs",
+    title: "When To Replace Spark Plugs",
+    description:
+      "Spark plug replacement intervals by plug type, signs of worn spark plugs, and how to track spark plug service by mileage.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-change-transmission-fluid",
+    title: "When To Change Transmission Fluid",
+    description:
+      "Transmission fluid intervals for automatic, manual, CVT, and dual-clutch transmissions, signs it may be due, and how to track service history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-timing-belt",
+    title: "When To Replace a Timing Belt",
+    description:
+      "Timing belt replacement intervals by mileage and age, why timing belt service is critical, and how to track replacement dates.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/car-maintenance-schedule-by-mileage",
+    title: "Car Maintenance Schedule by Mileage",
+    description:
+      "A general reference car maintenance schedule by mileage — oil, tires, filters, fluids, brakes, spark plugs, and timing belt.",
+    category: "Reference",
+    readTime: "6 min read",
+  },
 ];

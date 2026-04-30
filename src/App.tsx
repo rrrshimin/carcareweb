@@ -37,6 +37,10 @@ const WhenToChangeBrakeFluidArticle = lazy(() => import("./pages/blog/WhenToChan
 const WhenToChangeCoolantArticle = lazy(() => import("./pages/blog/WhenToChangeCoolantArticle"));
 const WhenToReplaceEngineAirFilterArticle = lazy(() => import("./pages/blog/WhenToReplaceEngineAirFilterArticle"));
 const WhenToReplaceCabinAirFilterArticle = lazy(() => import("./pages/blog/WhenToReplaceCabinAirFilterArticle"));
+const WhenToReplaceSparkPlugsArticle = lazy(() => import("./pages/blog/WhenToReplaceSparkPlugsArticle"));
+const WhenToChangeTransmissionFluidArticle = lazy(() => import("./pages/blog/WhenToChangeTransmissionFluidArticle"));
+const WhenToReplaceTimingBeltArticle = lazy(() => import("./pages/blog/WhenToReplaceTimingBeltArticle"));
+const CarMaintenanceScheduleByMileageArticle = lazy(() => import("./pages/blog/CarMaintenanceScheduleByMileageArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -226,6 +230,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhenToReplaceCabinAirFilterArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-spark-plugs"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceSparkPlugsArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-transmission-fluid"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangeTransmissionFluidArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-timing-belt"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceTimingBeltArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/car-maintenance-schedule-by-mileage"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarMaintenanceScheduleByMileageArticle />
             </Suspense>
           }
         />

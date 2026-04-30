@@ -47,4 +47,28 @@ export const guides: GuideArticle[] = [
     category: "Comparison",
     readTime: "8 min read",
   },
+  {
+    path: "/blog/when-to-change-engine-oil",
+    title: "When To Change Engine Oil",
+    description:
+      "Learn when to change engine oil, how mileage and oil type affect intervals, warning signs to watch for, and how to track oil changes.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-brake-pads",
+    title: "When To Replace Brake Pads",
+    description:
+      "Brake pad lifespan, warning signs like squealing or grinding, front vs rear wear, and how to track brake service history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-rotate-tires",
+    title: "When To Rotate Tires",
+    description:
+      "Tire rotation intervals, FWD/RWD/AWD wear patterns, signs of uneven wear, and how to track tire rotations with mileage reminders.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
 ];

@@ -30,6 +30,9 @@ const BestCarMaintenanceAppsArticle = lazy(() => import("./pages/blog/BestCarMai
 const CarServiceHistoryAppPage = lazy(() => import("./pages/CarServiceHistoryAppPage"));
 const VehicleServiceReminderAppPage = lazy(() => import("./pages/VehicleServiceReminderAppPage"));
 const ShareCarMaintenanceHistoryPage = lazy(() => import("./pages/ShareCarMaintenanceHistoryPage"));
+const WhenToChangeEngineOilArticle = lazy(() => import("./pages/blog/WhenToChangeEngineOilArticle"));
+const WhenToReplaceBrakePadsArticle = lazy(() => import("./pages/blog/WhenToReplaceBrakePadsArticle"));
+const WhenToRotateTiresArticle = lazy(() => import("./pages/blog/WhenToRotateTiresArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -163,6 +166,30 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <BestCarMaintenanceAppsArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-engine-oil"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangeEngineOilArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-brake-pads"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceBrakePadsArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-rotate-tires"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToRotateTiresArticle />
             </Suspense>
           }
         />

@@ -53,6 +53,10 @@ const WhenToReplaceBrakeRotorsArticle = lazy(() => import("./pages/blog/WhenToRe
 const WhenToReplaceTiresArticle = lazy(() => import("./pages/blog/WhenToReplaceTiresArticle"));
 const WhenToServiceCarAcArticle = lazy(() => import("./pages/blog/WhenToServiceCarAcArticle"));
 const WhenToChangeOilFilterArticle = lazy(() => import("./pages/blog/WhenToChangeOilFilterArticle"));
+const WhyIsMyCarOverheatingArticle = lazy(() => import("./pages/blog/WhyIsMyCarOverheatingArticle"));
+const WhyAreMyBrakesSqueakingArticle = lazy(() => import("./pages/blog/WhyAreMyBrakesSqueakingArticle"));
+const WhyIsMyCarShakingArticle = lazy(() => import("./pages/blog/WhyIsMyCarShakingArticle"));
+const WhatDoesCheckEngineLightMeanArticle = lazy(() => import("./pages/blog/WhatDoesCheckEngineLightMeanArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -370,6 +374,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhenToChangeOilFilterArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-is-my-car-overheating"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyIsMyCarOverheatingArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-are-my-brakes-squeaking"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyAreMyBrakesSqueakingArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-is-my-car-shaking"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyIsMyCarShakingArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/what-does-check-engine-light-mean"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhatDoesCheckEngineLightMeanArticle />
             </Suspense>
           }
         />

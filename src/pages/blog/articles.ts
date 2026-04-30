@@ -231,4 +231,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "4 min read",
   },
+  {
+    path: "/blog/why-is-my-car-overheating",
+    title: "Why Is My Car Overheating?",
+    description:
+      "Common causes of engine overheating, what to do safely when it happens, and how to track cooling system maintenance.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-are-my-brakes-squeaking",
+    title: "Why Are My Brakes Squeaking?",
+    description:
+      "Common causes of brake squeaking, when it is serious vs normal, and how to track brake service history.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-is-my-car-shaking",
+    title: "Why Is My Car Shaking?",
+    description:
+      "Common causes of car vibration organized by situation — high speed, braking, idle, and acceleration.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/what-does-check-engine-light-mean",
+    title: "What Does the Check Engine Light Mean?",
+    description:
+      "What the check engine light means, solid vs flashing explained, common causes, and how to track repairs.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
 ];

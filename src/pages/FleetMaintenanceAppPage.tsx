@@ -20,7 +20,6 @@ import { usePageSeo } from "../lib/usePageSeo";
 import fleetAnalyticsImg from "../assets/fleet_spending_analytics_UI_illustration_large.png";
 import logCategoriesImg from "../assets/log_categories_illustration_mid_size.png";
 
-const PAGE_URL = "https://www.carcarediary.com/fleet-maintenance-app";
 
 const pageFaqs = [
   {

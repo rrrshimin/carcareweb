@@ -13,15 +13,13 @@ import {
   Package,
   ChevronDown,
   Layers,
+  Briefcase,
 } from "lucide-react";
 import { LandingHeader } from "./landing/LandingHeader";
 import { LandingFooter } from "./landing/LandingFooter";
 import { AppStoreButton, GooglePlayButton } from "./landing/StoreButtons";
 import { usePageSeo } from "../lib/usePageSeo";
 import carsListImg from "../assets/cars_list_UI_illistration_large.png";
-import fleetAnalyticsImg from "../assets/fleet_spending_analytics_UI_illustration_large.png";
-
-const PAGE_URL = "https://www.carcarediary.com/fleet-management-app";
 
 const pageFaqs = [
   {

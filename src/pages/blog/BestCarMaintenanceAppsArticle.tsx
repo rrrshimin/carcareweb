@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, CheckCircle2, Minus } from "lucide-react";
+import { ChevronDown, CheckCircle2 } from "lucide-react";
 import {
   ArticleLayout,
   ArticleHero,

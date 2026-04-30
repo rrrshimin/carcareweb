@@ -19,7 +19,7 @@ import { LandingHeader } from "./landing/LandingHeader";
 import { LandingFooter } from "./landing/LandingFooter";
 import { AppStoreButton, GooglePlayButton } from "./landing/StoreButtons";
 import { usePageSeo } from "../lib/usePageSeo";
-import carsListImg from "../assets/cars_list_UI_illistration_large.png";
+import heroScreenshot from "../assets/hero-screenshots-mockups.png";
 
 const pageFaqs = [
   {
@@ -128,30 +128,41 @@ export default function FleetManagementAppPage() {
 
 function FleetHero() {
   return (
-    <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 sm:px-10 lg:px-16 xl:px-20 text-center">
-      <div className="max-w-[820px] mx-auto">
-        <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-          CarCare Diary
-        </p>
-        <h1 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold mb-6">
-          Fleet management app for{" "}
-          <span className="text-accent">
-            simple vehicle maintenance tracking
-          </span>
-        </h1>
-        <p className="text-base md:text-lg leading-relaxed text-muted mb-10 max-w-[620px] mx-auto">
-          CarCare Diary is a free mobile fleet management app for iPhone and
-          Android. Track service logs, mileage, and maintenance reminders for
-          every vehicle in your fleet - no complex setup, no web dashboard
-          required.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-          <AppStoreButton />
-          <GooglePlayButton />
+    <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex-1 text-center lg:text-left">
+          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
+            CarCare Diary
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold mb-6">
+            Fleet management app for{" "}
+            <span className="text-accent">
+              simple vehicle maintenance tracking
+            </span>
+          </h1>
+          <p className="text-base md:text-lg leading-relaxed text-muted mb-10 max-w-[540px] mx-auto lg:mx-0">
+            CarCare Diary is a free mobile fleet management app for iPhone and
+            Android. Track service logs, mileage, and maintenance reminders for
+            every vehicle in your fleet - no complex setup, no web dashboard
+            required.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:justify-center lg:justify-start mb-6">
+            <AppStoreButton />
+            <GooglePlayButton />
+          </div>
+          <p className="text-sm text-muted">
+            Free to start · Multi-vehicle plans available
+          </p>
         </div>
-        <p className="text-sm text-muted">
-          Free to start · Multi-vehicle plans available
-        </p>
+        <div className="flex-1 flex justify-center lg:justify-end">
+          <div className="relative rounded-2xl overflow-hidden" style={{ maxWidth: 594 }}>
+            <img
+              src={heroScreenshot}
+              alt="CarCare Diary fleet management app showing vehicle service logs and maintenance tracking"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -232,13 +243,15 @@ function WhatItDoes() {
             </div>
           </div>
 
-          <div className="flex-1 flex items-center justify-center">
-            <img
-              src={carsListImg}
-              alt="CarCare Diary fleet vehicle list showing multiple vehicles with mileage and maintenance status"
-              className="w-full max-w-[420px] h-auto"
-              loading="lazy"
-            />
+          <div className="flex-1 flex justify-center lg:justify-end">
+            <div className="relative rounded-2xl overflow-hidden" style={{ maxWidth: 520 }}>
+              <img
+                src={heroScreenshot}
+                alt="CarCare Diary fleet vehicle list showing multiple vehicles with mileage and maintenance status"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>

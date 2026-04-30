@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/business", "destination": "/fleet-management-app", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],

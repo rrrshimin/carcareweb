@@ -71,4 +71,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/when-to-change-brake-fluid",
+    title: "When To Change Brake Fluid",
+    description:
+      "Why brake fluid absorbs moisture over time, typical 2-year change intervals, warning signs, and how to track brake fluid service.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-change-coolant",
+    title: "When To Change Coolant",
+    description:
+      "Coolant change intervals by fluid type, warning signs of degraded coolant, and how to track coolant service by date and mileage.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-engine-air-filter",
+    title: "When To Replace Engine Air Filter",
+    description:
+      "Engine air filter replacement intervals, visual inspection guide, symptoms of a clogged filter, and how to track replacements.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/when-to-replace-cabin-air-filter",
+    title: "When To Replace Cabin Air Filter",
+    description:
+      "Cabin air filter replacement intervals, signs of a clogged filter, and how to track cabin filter changes by date and mileage.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
 ];

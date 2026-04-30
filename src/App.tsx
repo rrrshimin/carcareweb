@@ -33,6 +33,10 @@ const ShareCarMaintenanceHistoryPage = lazy(() => import("./pages/ShareCarMainte
 const WhenToChangeEngineOilArticle = lazy(() => import("./pages/blog/WhenToChangeEngineOilArticle"));
 const WhenToReplaceBrakePadsArticle = lazy(() => import("./pages/blog/WhenToReplaceBrakePadsArticle"));
 const WhenToRotateTiresArticle = lazy(() => import("./pages/blog/WhenToRotateTiresArticle"));
+const WhenToChangeBrakeFluidArticle = lazy(() => import("./pages/blog/WhenToChangeBrakeFluidArticle"));
+const WhenToChangeCoolantArticle = lazy(() => import("./pages/blog/WhenToChangeCoolantArticle"));
+const WhenToReplaceEngineAirFilterArticle = lazy(() => import("./pages/blog/WhenToReplaceEngineAirFilterArticle"));
+const WhenToReplaceCabinAirFilterArticle = lazy(() => import("./pages/blog/WhenToReplaceCabinAirFilterArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -190,6 +194,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhenToRotateTiresArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-brake-fluid"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangeBrakeFluidArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-coolant"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangeCoolantArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-engine-air-filter"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceEngineAirFilterArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-cabin-air-filter"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceCabinAirFilterArticle />
             </Suspense>
           }
         />

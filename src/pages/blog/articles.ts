@@ -295,4 +295,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/why-are-my-tires-wearing-unevenly",
+    title: "Why Are My Tires Wearing Unevenly?",
+    description:
+      "Common causes of uneven tire wear, what wear patterns suggest, what to check first, and how to track tire maintenance.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-is-there-white-smoke-from-exhaust",
+    title: "Why Is There White Smoke From My Exhaust?",
+    description:
+      "When white exhaust smoke is normal and when it signals a serious coolant or engine issue — plus how to track cooling system history.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-does-my-car-smell-like-burning",
+    title: "Why Does My Car Smell Like Burning?",
+    description:
+      "Common causes of burning smells organized by smell type — oil, rubber, plastic, or brakes — and when to stop driving.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-is-my-fuel-economy-getting-worse",
+    title: "Why Is My Fuel Economy Getting Worse?",
+    description:
+      "Maintenance factors that affect fuel economy — tyre pressure, air filter, spark plugs, alignment — plus other common causes.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
 ];

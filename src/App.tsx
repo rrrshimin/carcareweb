@@ -61,6 +61,10 @@ const WhyIsMyCarLeakingOilArticle = lazy(() => import("./pages/blog/WhyIsMyCarLe
 const WhyDoesMyCarSmellLikeGasArticle = lazy(() => import("./pages/blog/WhyDoesMyCarSmellLikeGasArticle"));
 const WhyWontMyCarStartArticle = lazy(() => import("./pages/blog/WhyWontMyCarStartArticle"));
 const WhatCarFluidsShouldICheckArticle = lazy(() => import("./pages/blog/WhatCarFluidsShouldICheckArticle"));
+const WhyAreMyTiresWearingUnevenlyArticle = lazy(() => import("./pages/blog/WhyAreMyTiresWearingUnevenlyArticle"));
+const WhyIsThereWhiteSmokeFromExhaustArticle = lazy(() => import("./pages/blog/WhyIsThereWhiteSmokeFromExhaustArticle"));
+const WhyDoesMyCarSmellLikeBurningArticle = lazy(() => import("./pages/blog/WhyDoesMyCarSmellLikeBurningArticle"));
+const WhyIsMyFuelEconomyGettingWorseArticle = lazy(() => import("./pages/blog/WhyIsMyFuelEconomyGettingWorseArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -442,6 +446,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhatCarFluidsShouldICheckArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-are-my-tires-wearing-unevenly"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyAreMyTiresWearingUnevenlyArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-is-there-white-smoke-from-exhaust"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyIsThereWhiteSmokeFromExhaustArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-does-my-car-smell-like-burning"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyDoesMyCarSmellLikeBurningArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-is-my-fuel-economy-getting-worse"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyIsMyFuelEconomyGettingWorseArticle />
             </Suspense>
           }
         />

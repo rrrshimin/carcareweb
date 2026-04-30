@@ -57,6 +57,10 @@ const WhyIsMyCarOverheatingArticle = lazy(() => import("./pages/blog/WhyIsMyCarO
 const WhyAreMyBrakesSqueakingArticle = lazy(() => import("./pages/blog/WhyAreMyBrakesSqueakingArticle"));
 const WhyIsMyCarShakingArticle = lazy(() => import("./pages/blog/WhyIsMyCarShakingArticle"));
 const WhatDoesCheckEngineLightMeanArticle = lazy(() => import("./pages/blog/WhatDoesCheckEngineLightMeanArticle"));
+const WhyIsMyCarLeakingOilArticle = lazy(() => import("./pages/blog/WhyIsMyCarLeakingOilArticle"));
+const WhyDoesMyCarSmellLikeGasArticle = lazy(() => import("./pages/blog/WhyDoesMyCarSmellLikeGasArticle"));
+const WhyWontMyCarStartArticle = lazy(() => import("./pages/blog/WhyWontMyCarStartArticle"));
+const WhatCarFluidsShouldICheckArticle = lazy(() => import("./pages/blog/WhatCarFluidsShouldICheckArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -406,6 +410,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhatDoesCheckEngineLightMeanArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-is-my-car-leaking-oil"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyIsMyCarLeakingOilArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-does-my-car-smell-like-gas"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyDoesMyCarSmellLikeGasArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/why-wont-my-car-start"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhyWontMyCarStartArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/what-car-fluids-should-i-check"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhatCarFluidsShouldICheckArticle />
             </Suspense>
           }
         />

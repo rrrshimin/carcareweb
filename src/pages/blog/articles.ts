@@ -263,4 +263,36 @@ export const guides: GuideArticle[] = [
     category: "Troubleshooting",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/why-is-my-car-leaking-oil",
+    title: "Why Is My Car Leaking Oil?",
+    description:
+      "Common reasons a car leaks oil, when it may be urgent, what to check safely, and how to track oil service and repairs.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-does-my-car-smell-like-gas",
+    title: "Why Does My Car Smell Like Gas?",
+    description:
+      "Common reasons your car may smell like gas, when to stop driving, and how to track fuel-system repairs.",
+    category: "Troubleshooting",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/why-wont-my-car-start",
+    title: "Why Won't My Car Start?",
+    description:
+      "Common reasons a car won't start, organized by symptom — from battery and starter issues to fuel and ignition problems.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/what-car-fluids-should-i-check",
+    title: "What Car Fluids Should You Check?",
+    description:
+      "Essential car fluids checklist — what each fluid does, how to check it, and how to track fluid service history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
 ];

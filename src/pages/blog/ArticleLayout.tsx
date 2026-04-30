@@ -115,10 +115,16 @@ export function ArticleHero({
   );
 }
 
-export function ProseSection({ children }: { children: React.ReactNode }) {
+export function ProseSection({
+  children,
+  wide,
+}: {
+  children: React.ReactNode;
+  wide?: boolean;
+}) {
   return (
     <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[900px] mx-auto">{children}</div>
+      <div className={`${wide ? "max-w-[1200px]" : "max-w-[900px]"} mx-auto`}>{children}</div>
     </section>
   );
 }

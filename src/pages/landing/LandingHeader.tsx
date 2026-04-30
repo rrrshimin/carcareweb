@@ -7,7 +7,7 @@ const navLinks = [
   { to: "#features", label: "Features", hash: true },
   { to: "#how-it-works", label: "How It Works", hash: true },
   { to: "#faq", label: "FAQ", hash: true },
-  { to: "/business", label: "For Business", hash: false },
+  { to: "/fleet-management-app", label: "For Business", hash: false },
 ];
 
 export function LandingHeader() {

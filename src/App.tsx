@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import { MobileAppBanner } from "./components/MobileAppBanner";
 
-const BusinessPage = lazy(() => import("./pages/BusinessPage"));
 const CarMaintenanceTrackerPage = lazy(() => import("./pages/CarMaintenanceTrackerPage"));
 const CarServiceHistoryPage = lazy(() => import("./pages/CarServiceHistoryPage"));
 const VehicleMaintenanceLogPage = lazy(() => import("./pages/VehicleMaintenanceLogPage"));
@@ -57,14 +56,6 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <TermsPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/business"
-          element={
-            <Suspense fallback={<ChunkLoading />}>
-              <BusinessPage />
             </Suspense>
           }
         />

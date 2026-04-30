@@ -327,4 +327,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/why-is-my-steering-wheel-shaking",
+    title: "Why Is My Steering Wheel Shaking?",
+    description:
+      "Common causes of steering wheel vibration organized by situation — highway speed, braking, and after impacts.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-is-my-car-pulling-to-one-side",
+    title: "Why Is My Car Pulling to One Side?",
+    description:
+      "Common causes of a car pulling left or right — tyre pressure, alignment, brake drag — and when pulling during braking is more serious.",
+    category: "Troubleshooting",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/why-does-my-car-battery-keep-dying",
+    title: "Why Does My Car Battery Keep Dying?",
+    description:
+      "Common reasons a car battery keeps dying — old battery, failing alternator, parasitic drain, short trips — and what to check first.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/why-is-my-car-leaking-coolant",
+    title: "Why Is My Car Leaking Coolant?",
+    description:
+      "Common coolant leak sources — radiator, hoses, water pump, heater core, head gasket — and how to track cooling system history.",
+    category: "Troubleshooting",
+    readTime: "5 min read",
+  },
 ];

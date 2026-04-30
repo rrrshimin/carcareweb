@@ -5,7 +5,6 @@ import {
   CalendarDays,
   Gauge,
   StickyNote,
-  Share2,
   CheckCircle,
   X,
   ChevronDown,

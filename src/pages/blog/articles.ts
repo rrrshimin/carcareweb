@@ -167,4 +167,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "4 min read",
   },
+  {
+    path: "/blog/when-to-replace-serpentine-belt",
+    title: "When To Replace a Serpentine Belt",
+    description:
+      "Serpentine belt inspection, wear signs to look for, what the belt drives, and how to track belt replacement history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-headlights",
+    title: "When To Replace Headlights",
+    description:
+      "When to replace headlight bulbs, signs of dim or failing headlights, bulb types explained, and safety tips.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/when-to-change-fuel-filter",
+    title: "When To Change a Fuel Filter",
+    description:
+      "Fuel filter replacement intervals, symptoms of a clogged filter, serviceable vs in-tank filters, and diesel notes.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
+  {
+    path: "/blog/when-to-get-wheel-alignment",
+    title: "When To Get a Wheel Alignment",
+    description:
+      "Signs wheel alignment is off, when to schedule an alignment check, and how misalignment affects tire wear.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
 ];

@@ -45,6 +45,10 @@ const WhenToReplaceCarBatteryArticle = lazy(() => import("./pages/blog/WhenToRep
 const WhenToReplaceWindshieldWipersArticle = lazy(() => import("./pages/blog/WhenToReplaceWindshieldWipersArticle"));
 const WhenToCheckTirePressureArticle = lazy(() => import("./pages/blog/WhenToCheckTirePressureArticle"));
 const WhenToChangePowerSteeringFluidArticle = lazy(() => import("./pages/blog/WhenToChangePowerSteeringFluidArticle"));
+const WhenToReplaceSerpentineBeltArticle = lazy(() => import("./pages/blog/WhenToReplaceSerpentineBeltArticle"));
+const WhenToReplaceHeadlightsArticle = lazy(() => import("./pages/blog/WhenToReplaceHeadlightsArticle"));
+const WhenToChangeFuelFilterArticle = lazy(() => import("./pages/blog/WhenToChangeFuelFilterArticle"));
+const WhenToGetWheelAlignmentArticle = lazy(() => import("./pages/blog/WhenToGetWheelAlignmentArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -298,6 +302,38 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhenToChangePowerSteeringFluidArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-serpentine-belt"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceSerpentineBeltArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-headlights"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceHeadlightsArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-change-fuel-filter"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToChangeFuelFilterArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-get-wheel-alignment"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToGetWheelAlignmentArticle />
             </Suspense>
           }
         />

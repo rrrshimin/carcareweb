@@ -199,4 +199,36 @@ export const guides: GuideArticle[] = [
     category: "Maintenance",
     readTime: "4 min read",
   },
+  {
+    path: "/blog/when-to-replace-brake-rotors",
+    title: "When To Replace Brake Rotors",
+    description:
+      "Signs of worn or warped brake rotors, when to replace vs resurface, and how to track brake service history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-replace-tires",
+    title: "When To Replace Tires",
+    description:
+      "Tread depth, tire age, warning signs, and how to track tire replacements and tire maintenance history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-service-car-ac",
+    title: "When To Service Car AC",
+    description:
+      "Signs your car AC needs service, what to check first, refrigerant notes, and how to track AC maintenance.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/when-to-change-oil-filter",
+    title: "When To Change Your Oil Filter",
+    description:
+      "Oil filter change intervals, why the filter matters, signs of an issue, and how to track oil and filter service.",
+    category: "Maintenance",
+    readTime: "4 min read",
+  },
 ];

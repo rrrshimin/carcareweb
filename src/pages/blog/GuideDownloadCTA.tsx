@@ -25,7 +25,7 @@ export function GuideDownloadCTA({
           : "pt-2 pb-10 md:pt-4 md:pb-14 px-6 sm:px-10 lg:px-16 xl:px-20"
       }
     >
-      <div className="max-w-[760px] mx-auto">
+        <div className="max-w-[900px] mx-auto">
         <div
           className={`rounded-2xl border border-panel bg-surface ${
             isFooter ? "px-6 py-7 md:px-8 md:py-9" : "px-5 py-6 md:px-7 md:py-7"

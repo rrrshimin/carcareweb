@@ -99,7 +99,7 @@ export function ArticleHero({
 }) {
   return (
     <section className="pt-8 pb-6 md:pt-10 md:pb-8 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
+      <div className="max-w-[900px] mx-auto">
         <ArticleMeta category={category} readTime={readTime} />
         <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5 text-left">
           {title}
@@ -118,7 +118,7 @@ export function ArticleHero({
 export function ProseSection({ children }: { children: React.ReactNode }) {
   return (
     <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">{children}</div>
+      <div className="max-w-[900px] mx-auto">{children}</div>
     </section>
   );
 }

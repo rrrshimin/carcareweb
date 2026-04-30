@@ -556,7 +556,7 @@ function ComparisonTable() {
 
   return (
     <section className="pt-2 pb-12 md:pb-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[1200px] mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
           Comparison table
         </h2>
@@ -675,7 +675,7 @@ function HowWeCompared() {
 function AppCardsSection() {
   return (
     <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
+      <div className="max-w-[900px] mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
           App breakdown
         </h2>

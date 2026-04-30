@@ -263,7 +263,7 @@ const checklistCategories: ChecklistCategory[] = [
 function TheChecklist() {
   return (
     <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
+      <div className="max-w-[900px] mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
           Car Maintenance Checklist By Category
         </h2>

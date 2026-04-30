@@ -16,6 +16,12 @@ This is the standard for every article under `/blog/*`. Future guides must follo
 
 Everything in the hero, prose, and CTAs is **left-aligned**. No `text-center` on headings, ledes, or meta pills. The only allowed center alignment is the "Back to Guides" link under the footer CTA.
 
+## Content width
+
+All blog content sections (hero, prose, CTA) use **`max-w-[900px]`** on the inner container. This applies to `ArticleHero`, `ProseSection`, and `GuideDownloadCTA`. Do not regress to `max-w-[760px]`.
+
+Comparison / wide-table sections (e.g. `ComparisonTable` in roundup articles) use **`max-w-[1200px]`** so the full table is visible on desktop without horizontal overflow in the main content.
+
 ## Reusable components
 
 - `src/pages/blog/ArticleLayout.tsx`

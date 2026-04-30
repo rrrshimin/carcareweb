@@ -27,6 +27,9 @@ const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
 const FleetManagementAppPage = lazy(() => import("./pages/FleetManagementAppPage"));
 const FleetMaintenanceAppPage = lazy(() => import("./pages/FleetMaintenanceAppPage"));
 const BestCarMaintenanceAppsArticle = lazy(() => import("./pages/blog/BestCarMaintenanceAppsArticle"));
+const CarServiceHistoryAppPage = lazy(() => import("./pages/CarServiceHistoryAppPage"));
+const VehicleServiceReminderAppPage = lazy(() => import("./pages/VehicleServiceReminderAppPage"));
+const ShareCarMaintenanceHistoryPage = lazy(() => import("./pages/ShareCarMaintenanceHistoryPage"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -88,6 +91,30 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <VehicleMaintenanceLogPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/car-service-history-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarServiceHistoryAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/vehicle-service-reminder-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <VehicleServiceReminderAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/share-car-maintenance-history"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <ShareCarMaintenanceHistoryPage />
             </Suspense>
           }
         />

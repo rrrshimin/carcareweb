@@ -77,12 +77,41 @@ export function ArticleMeta({
   readTime: string;
 }) {
   return (
-    <div className="flex items-center gap-3 justify-center mb-5">
+    <div className="flex items-center gap-3 justify-start mb-4">
       <span className="text-xs font-semibold text-accent bg-brand/10 border border-accent/20 px-3 py-1 rounded-full">
         {category}
       </span>
       <span className="text-xs text-muted">{readTime}</span>
     </div>
+  );
+}
+
+export function ArticleHero({
+  category,
+  readTime,
+  title,
+  lede,
+}: {
+  category: string;
+  readTime: string;
+  title: string;
+  lede: string;
+}) {
+  return (
+    <section className="pt-8 pb-6 md:pt-10 md:pb-8 px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="max-w-[760px] mx-auto">
+        <ArticleMeta category={category} readTime={readTime} />
+        <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5 text-left">
+          {title}
+        </h1>
+        <p
+          data-speakable="true"
+          className="text-lg leading-relaxed text-muted text-left"
+        >
+          {lede}
+        </p>
+      </div>
+    </section>
   );
 }
 

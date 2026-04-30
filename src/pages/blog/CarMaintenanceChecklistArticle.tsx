@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronDown } from "lucide-react";
 import {
   ArticleLayout,
-  ArticleMeta,
+  ArticleHero,
   ProseSection,
   ArticleH2,
   ArticleP,
 } from "./ArticleLayout";
-import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
+import { GuideDownloadCTA } from "./GuideDownloadCTA";
 import { usePageSeo } from "../../lib/usePageSeo";
 
+const ARTICLE_TITLE = "Car Maintenance Checklist";
 const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "6 min read";
+const ARTICLE_URL =
+  "https://www.carcarediary.com/blog/car-maintenance-checklist";
+const ARTICLE_LEDE =
+  "A car maintenance checklist covers engine oil, tires, brakes, fluids, battery, filters, lights, and wipers - each on its own interval. The full checklist is below, grouped by category with how often to check each item and what to log after every service.";
+const CTA_TITLE = "Stay on top of car maintenance with CarCare Diary";
 
 const checklistFaqs = [
   {
@@ -54,14 +60,67 @@ const JSON_LD = [
     headline: "Car Maintenance Checklist for Keeping Your Vehicle in Good Shape",
     description:
       "A practical checklist covering oil, brakes, tires, filters, fluids, and inspections - with guidance on how often each item needs attention.",
-    url: "https://www.carcarediary.com/blog/car-maintenance-checklist",
+    url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-30",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
       url: "https://www.carcarediary.com",
     },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable]"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Run a full car maintenance checklist",
+    description:
+      "Work through every area of your car on a regular schedule so nothing gets missed - from oil and tires to fluids, battery, filters, and wipers.",
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Check engine oil and filter",
+        text: "Check oil level and condition monthly and change engine oil and filter every 8,000-16,000 km or 3-6 months, whichever comes first. Watch for oil leaks under the car.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Inspect tires",
+        text: "Check tire pressure and tread depth monthly, rotate tires every 8,000-12,000 km, and inspect for sidewall damage, bulges, and uneven wear.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Review brakes",
+        text: "Do a visual brake check every 6 months and a full inspection annually. Replace pads when below 3mm, check rotors for scoring, and flush brake fluid every 2 years.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Top up and change fluids",
+        text: "Check coolant, transmission, power steering, and washer fluid levels monthly. Flush coolant every 2-4 years and change transmission fluid per your owner's manual.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Test battery and electrical",
+        text: "Clean battery terminals, test battery health annually, and confirm all headlights, taillights, and indicators work.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Replace filters",
+        text: "Replace the engine air filter every 24,000-48,000 km and the cabin air filter every 19,000-24,000 km, or when they are visibly dirty.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Check wipers and visibility",
+        text: "Inspect wiper blades every 6 months and replace them when they streak. Check the windscreen for chips or cracks.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Log every service",
+        text: "After each service, record the service type, date, mileage, parts used, and notes. A complete log makes the next service faster and more accurate.",
+      },
+    ],
   },
   {
     "@context": "https://schema.org",
@@ -90,41 +149,23 @@ export default function CarMaintenanceChecklistArticle() {
   });
 
   return (
-    <ArticleLayout title="Car Maintenance Checklist">
-      <ArticleHero />
+    <ArticleLayout title={ARTICLE_TITLE}>
+      <ArticleHero
+        category={ARTICLE_CATEGORY}
+        readTime={ARTICLE_READ_TIME}
+        title={ARTICLE_TITLE}
+        lede={ARTICLE_LEDE}
+      />
+      <GuideDownloadCTA title={CTA_TITLE} />
       <TheChecklist />
       <HowOftenToReview />
       <WhatToLog />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <ArticleCTA />
+      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
     </ArticleLayout>
   );
 }
-
-function ArticleHero() {
-  return (
-    <section className="pt-10 pb-12 md:pb-16 px-6 sm:px-10 lg:px-16 xl:px-20 text-center">
-      <div className="max-w-[760px] mx-auto">
-        <ArticleMeta category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} />
-        <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5">
-          Car Maintenance Checklist
-        </h1>
-        <p className="text-lg leading-relaxed text-muted mb-8 max-w-[580px] mx-auto">
-          A car maintenance checklist covers engine oil and filter, tires,
-          brakes, coolant, battery, air and cabin filters, lights, and wipers -
-          each with its own service interval. Below is a category-by-category
-          breakdown of what to check and how often.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <AppStoreButton />
-          <GooglePlayButton />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 
 type ChecklistCategory = {
   title: string;
@@ -227,9 +268,9 @@ function TheChecklist() {
           Car Maintenance Checklist By Category
         </h2>
         <p className="text-base leading-relaxed text-muted mb-10">
-          Every car is different, and your owner's manual is the authoritative
-          reference for your specific vehicle. That said, most maintenance
-          follows similar patterns. Here's what to track across the key areas.
+          Here is the full checklist, organised by system. Every car is
+          different, so treat these intervals as a starting point and your
+          owner's manual as the final word for your specific vehicle.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -315,10 +356,11 @@ function HowOftenToReview() {
     <ProseSection>
       <ArticleH2>How Often To Review Your Checklist</ArticleH2>
       <ArticleP>
-        Not everything on a maintenance checklist needs attention at the same
-        frequency. Grouping items by interval makes the habit manageable. A
-        simple approach: link regular checks to things you already do, like
-        monthly reviews when you fill up with fuel.
+        Group items by interval so the habit stays manageable: monthly visual
+        checks, a 3-6 month service cycle, annual deeper inspections, and a
+        2-4 year list for the big-ticket items. Tying monthly checks to a
+        routine you already have - like filling up with fuel - makes them
+        easier to remember.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6 mb-4">
@@ -346,10 +388,10 @@ function HowOftenToReview() {
       </div>
 
       <ArticleP>
-        The timing of some checks - particularly annual or pre-trip reviews - is
-        also worth building around natural calendar points: before winter, before
-        a long drive, or before your annual inspection. It's easier to remember a
-        seasonal check than an arbitrary mileage interval.
+        Anchor annual and pre-trip reviews to natural calendar points: before
+        winter, before a long drive, or before your annual inspection. A
+        seasonal trigger is easier to remember than an arbitrary mileage
+        number.
       </ArticleP>
     </ProseSection>
   );
@@ -360,12 +402,9 @@ function WhatToLog() {
     <ProseSection>
       <ArticleH2>What To Log After Each Service</ArticleH2>
       <ArticleP>
-        Running through a checklist is only half the equation. Writing down what
-        you found and what was done completes the picture. A log entry takes
-        under a minute and compounds in value over years.
-      </ArticleP>
-      <ArticleP>
-        For each service, try to capture at minimum:
+        Log five fields for every service: service type, date, mileage, the
+        specs and parts used, and any notes. That's it - entries take under a
+        minute and compound into a complete history over the life of the car.
       </ArticleP>
 
       <ul className="flex flex-col gap-3 mb-5">
@@ -386,13 +425,12 @@ function WhatToLog() {
       </ul>
 
       <ArticleP>
-        The more consistently you log, the more useful the record becomes. After
-        a few years of entries you have an accurate, dated timeline of everything
-        that's been done to your car - which is exactly what a buyer, mechanic,
-        or insurer might want to see.
+        A few years of consistent entries give you an accurate, dated timeline
+        of everything done to the car - exactly what a buyer, mechanic, or
+        insurer wants to see.
       </ArticleP>
       <ArticleP>
-        For more on structuring a good maintenance record, see the{" "}
+        For more on structuring a good record, see the{" "}
         <Link
           to="/vehicle-maintenance-log"
           className="text-accent font-semibold hover:text-white transition-colors"
@@ -420,21 +458,11 @@ function HowCarCareHelps() {
       </p>
       <ArticleH2>How CarCare Diary Helps You Stay On Top Of It</ArticleH2>
       <ArticleP>
-        Knowing what to check is the first step. Having a reliable system to log
-        what was done, track your mileage, and remind you when something's due is
-        what makes a checklist a habit rather than an intention.
+        CarCare Diary turns this checklist into a habit. Each log entry
+        captures date, mileage, service type, specs, and notes, and your car's
+        full history builds automatically - organised by category, searchable,
+        and shareable when you need it.
       </ArticleP>
-      <ArticleP>
-        CarCare Diary is a free maintenance log app for iPhone and Android. Each
-        log entry captures date, mileage, service type, specs, and notes. Your
-        car's complete maintenance history builds automatically as you log -
-        organized by category, searchable, and shareable when you need it.
-      </ArticleP>
-
-      <div className="flex flex-col sm:flex-row gap-3 mb-5">
-        <AppStoreButton />
-        <GooglePlayButton />
-      </div>
       <p className="text-sm text-muted">
         See also:{" "}
         <Link
@@ -503,36 +531,5 @@ function ArticleFAQ() {
         })}
       </div>
     </ProseSection>
-  );
-}
-
-function ArticleCTA() {
-  return (
-    <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
-        <div className="rounded-2xl border border-panel bg-surface px-8 py-12 md:px-12 md:py-14 text-center">
-          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-            Get The App
-          </p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-            Log Your Next Service In CarCare Diary
-          </h2>
-          <p className="text-base text-muted max-w-[420px] mx-auto mb-8">
-            Free for iPhone and Android. Log every service, track mileage, and
-            build a maintenance history you can rely on and share.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <AppStoreButton />
-            <GooglePlayButton />
-          </div>
-          <Link
-            to="/blog"
-            className="text-sm text-accent font-semibold hover:text-white transition-colors"
-          >
-            Back to Guides
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }

@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { ChevronDown, AlertCircle } from "lucide-react";
 import {
   ArticleLayout,
-  ArticleMeta,
+  ArticleHero,
   ProseSection,
   ArticleH2,
   ArticleP,
 } from "./ArticleLayout";
-import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
+import { GuideDownloadCTA } from "./GuideDownloadCTA";
 import { usePageSeo } from "../../lib/usePageSeo";
 
+const ARTICLE_TITLE = "How To Keep Car Service Records Organized";
 const ARTICLE_CATEGORY = "Guides";
 const ARTICLE_READ_TIME = "5 min read";
+const ARTICLE_URL =
+  "https://www.carcarediary.com/blog/how-to-keep-car-service-records-organized";
+const ARTICLE_LEDE =
+  "Keep car service records organized by using one place for all entries, logging mileage with every service, recording details while they're fresh, separating follow-up notes from completed work, and reviewing the log before each appointment. Here is each habit explained, plus the mistakes that quietly break a record system over time.";
+const CTA_TITLE = "Organize your car service records with CarCare Diary";
 
 const recordsFaqs = [
   {
@@ -47,6 +53,34 @@ const recordsFaqs = [
   },
 ];
 
+const steps = [
+  {
+    number: "01",
+    title: "Pick One Place And Use It Consistently",
+    body: "The single most important decision is consolidation. Pick one place - a dedicated app, a notebook, a folder on your phone - and commit to it. Records spread across receipts, photos, apps, and memory are not organized, no matter how tidy each piece is on its own.",
+  },
+  {
+    number: "02",
+    title: "Log Mileage With Every Entry",
+    body: "Every service entry needs the odometer reading. Without mileage, you have a history but not a schedule - with it, you can calculate intervals, spot gaps, and see at a glance what's been driven since each service.",
+  },
+  {
+    number: "03",
+    title: "Record Details While They're Fresh",
+    body: "Log a service within a day of the work, while oil grades, part references, and mechanic comments are still in your head. A brief note at the time takes under two minutes and preserves information that would otherwise be gone within a week.",
+  },
+  {
+    number: "04",
+    title: "Keep Follow-Up Notes Separate From Completed Work",
+    body: "When a mechanic flags something for next time - a belt to watch, a pad at 30% - note it as a future task, not buried inside the current entry. Keeping upcoming work distinct from completed work makes the record easier to act on.",
+  },
+  {
+    number: "05",
+    title: "Review Your Records Before Each Service",
+    body: "Before taking the car in, spend a minute reviewing the last few entries. Check when oil was last changed, whether any advisories are open, and what the mileage was at the previous service. Going in informed avoids missed work and helps you ask the right questions.",
+  },
+];
+
 const JSON_LD = [
   {
     "@context": "https://schema.org",
@@ -54,14 +88,31 @@ const JSON_LD = [
     headline: "How To Keep Car Service Records Organized",
     description:
       "Learn how to keep car service records organized with mileage, service dates, notes, parts, and maintenance history in one place with CarCare Diary.",
-    url: "https://www.carcarediary.com/blog/how-to-keep-car-service-records-organized",
+    url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-30",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
       url: "https://www.carcarediary.com",
     },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable]"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to keep car service records organized",
+    description:
+      "Five habits that keep car service records tidy and useful: one place for all entries, mileage on every entry, record while fresh, separate follow-up notes, and review before each service.",
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.body,
+    })),
   },
   {
     "@context": "https://schema.org",
@@ -90,41 +141,22 @@ export default function HowToKeepCarServiceRecordsOrganizedArticle() {
   });
 
   return (
-    <ArticleLayout
-      title="How To Keep Car Service Records Organized"
-    >
-      <ArticleHero />
+    <ArticleLayout title={ARTICLE_TITLE}>
+      <ArticleHero
+        category={ARTICLE_CATEGORY}
+        readTime={ARTICLE_READ_TIME}
+        title={ARTICLE_TITLE}
+        lede={ARTICLE_LEDE}
+      />
+      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyOrganizedRecordsMatter />
       <WhatRecordsToKeep />
       <ASimpleSystem />
       <CommonMistakes />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <ArticleCTA />
+      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
     </ArticleLayout>
-  );
-}
-
-function ArticleHero() {
-  return (
-    <section className="pt-10 pb-12 md:pb-16 px-6 sm:px-10 lg:px-16 xl:px-20 text-center">
-      <div className="max-w-[760px] mx-auto">
-        <ArticleMeta category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} />
-        <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5">
-          How To Keep Car Service Records Organized
-        </h1>
-        <p className="text-lg leading-relaxed text-muted mb-8 max-w-[560px] mx-auto">
-          The most effective way to keep car service records organized is to use
-          one place for all records, log mileage with every entry, and record
-          details at the time of service. This guide explains each practice and
-          how to maintain it.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <AppStoreButton />
-          <GooglePlayButton />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -133,24 +165,17 @@ function WhyOrganizedRecordsMatter() {
     <ProseSection>
       <ArticleH2>Why Organized Service Records Matter</ArticleH2>
       <ArticleP>
-        Service records tend to start organized and become less so over time.
-        The first receipt goes in the glovebox. The next one goes in a drawer.
-        A third gets photographed and left in a camera roll. After a few years,
-        the full picture of what's been done to the car exists across several
-        places - none of them complete.
+        Disorganized records cause problems at specific moments: when a
+        mechanic asks about the last coolant change and you don't know, when
+        a service reminder appears and you can't tell whether the work was
+        already done, or when a buyer asks to see the maintenance history.
+        Incomplete records mean uncertainty - for you and for the person
+        asking.
       </ArticleP>
       <ArticleP>
-        Disorganized records cause real problems at specific moments: when a
-        mechanic asks about the last coolant change and you genuinely don't know,
-        when a service reminder appears and you can't tell whether the work was
-        already done, or when selling the car and a buyer asks to see the
-        maintenance history. In each case, incomplete records mean uncertainty -
-        for you and for the person asking.
-      </ArticleP>
-      <ArticleP>
-        Organizing service records isn't about perfectionism. It's about having
-        one reliable place where the history lives, so you can actually use it
-        when it matters.
+        Organizing service records isn't about perfectionism. It's about
+        having one reliable place where the full history lives, so you can
+        actually use it when it matters.
       </ArticleP>
     </ProseSection>
   );
@@ -194,8 +219,9 @@ function WhatRecordsToKeep() {
     <ProseSection>
       <ArticleH2>What Records Are Worth Keeping</ArticleH2>
       <ArticleP>
-        A complete set of service records is more than just invoices. These are
-        the categories worth maintaining.
+        A complete record system covers six categories: service entries,
+        parts and fluid specifications, notes and observations, receipts as
+        supporting evidence, inspection findings, and upcoming reminders.
       </ArticleP>
 
       <div className="flex flex-col gap-3 mt-6">
@@ -214,8 +240,8 @@ function WhatRecordsToKeep() {
 
       <ArticleP>
         <span className="block mt-6">
-          For a deeper look at what to include in each log entry, see the guide
-          on{" "}
+          For a deeper look at what to include in each log entry, see the
+          guide on{" "}
           <Link
             to="/blog/what-to-include-in-a-car-service-history"
             className="text-accent font-semibold hover:text-white transition-colors"
@@ -229,42 +255,14 @@ function WhatRecordsToKeep() {
   );
 }
 
-const steps = [
-  {
-    number: "01",
-    title: "Pick One Place And Use It Consistently",
-    body: "The single most important organizational decision is consolidation. Whether it's a dedicated app, a notebook in the glovebox, or a folder on your phone - pick one place and commit to it. Records spread across receipts, photos, apps, and memory are not organized, even if each individual piece is tidy.",
-  },
-  {
-    number: "02",
-    title: "Log Mileage With Every Entry",
-    body: "Each service entry should include the odometer reading at the time. Without mileage, you have a history but not a schedule. With mileage, you can calculate intervals, spot gaps, and understand at a glance what has been driven since each service.",
-  },
-  {
-    number: "03",
-    title: "Record Details While They're Fresh",
-    body: "The best time to log a service is at the time of service - or within a day. Details like oil grade, part references, or what the mechanic mentioned fade quickly. A brief note immediately after the service takes less than two minutes and preserves information that would otherwise be gone.",
-  },
-  {
-    number: "04",
-    title: "Keep Follow-Up Notes Separate From Completed Work",
-    body: "When a mechanic recommends something for next time - a belt that needs watching, a brake pad at 30% - note it clearly as a future task rather than mixing it into the current entry. Keeping upcoming work distinct from completed work makes the record easier to act on.",
-  },
-  {
-    number: "05",
-    title: "Review Your Records Before Each Service",
-    body: "Before taking the car in, spend a moment reviewing the last few entries. Check when the oil was last changed, whether there were any open advisories, and what the mileage was at the last service. Going into a service informed avoids missed work and helps you ask the right questions.",
-  },
-];
-
 function ASimpleSystem() {
   return (
     <ProseSection>
       <ArticleH2>A Simple System That Actually Stays Organized</ArticleH2>
       <ArticleP>
-        Most organizational problems with service records come down to a few
-        habits - or the absence of them. These five practices keep a record tidy
-        without requiring much effort.
+        Five habits keep a record tidy without much effort. Used together,
+        they're the difference between a log that stays useful for years and
+        one that drifts into incomplete history.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -317,8 +315,8 @@ function CommonMistakes() {
     <ProseSection>
       <ArticleH2>Habits That Quietly Undermine A Record System</ArticleH2>
       <ArticleP>
-        Most disorganized service records didn't start that way. These are the
-        patterns that let good intentions drift into incomplete histories.
+        Five patterns let good intentions drift into incomplete histories.
+        Watch for these.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -350,22 +348,15 @@ function HowCarCareHelps() {
       <ArticleP>
         CarCare Diary is a free maintenance log app for iPhone and Android.
         Every entry supports service type, date, mileage, parts, fluids, and
-        notes in one place - on your phone, always with you. Entries are
+        notes - all in one place, on your phone, always with you. Entries are
         organized by category and build into a complete, scrollable service
         history for your vehicle.
       </ArticleP>
       <ArticleP>
-        There's no paperwork to manage and nothing to misplace. When you want to
-        review your history before a service, check what was done last year, or
-        share the full record with a buyer, it's all in one place and accessible
-        in seconds.
+        No paperwork to manage and nothing to misplace. Reviewing history
+        before a service, checking what was done last year, or sharing the
+        full record with a buyer all happen in seconds.
       </ArticleP>
-
-      <div className="flex flex-col sm:flex-row gap-3 mt-6 mb-5">
-        <AppStoreButton />
-        <GooglePlayButton />
-      </div>
-
       <p className="text-sm text-muted">
         Related guides:{" "}
         <Link
@@ -441,37 +432,5 @@ function ArticleFAQ() {
         })}
       </div>
     </ProseSection>
-  );
-}
-
-function ArticleCTA() {
-  return (
-    <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
-        <div className="rounded-2xl border border-panel bg-surface px-8 py-12 md:px-12 md:py-14 text-center">
-          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-            Get The App
-          </p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-            Keep All Your Service Records In One Place
-          </h2>
-          <p className="text-base text-muted max-w-[420px] mx-auto mb-8">
-            Free for iPhone and Android. Log every service, track mileage, and
-            build a complete, organized service history you can rely on and
-            share.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <AppStoreButton />
-            <GooglePlayButton />
-          </div>
-          <Link
-            to="/blog"
-            className="text-sm text-accent font-semibold hover:text-white transition-colors"
-          >
-            Back to Guides
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }

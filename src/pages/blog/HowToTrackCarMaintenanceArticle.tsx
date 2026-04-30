@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { AlertCircle, ChevronDown } from "lucide-react";
 import {
   ArticleLayout,
-  ArticleMeta,
+  ArticleHero,
   ProseSection,
   ArticleH2,
   ArticleP,
 } from "./ArticleLayout";
-import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
+import { GuideDownloadCTA } from "./GuideDownloadCTA";
 import { usePageSeo } from "../../lib/usePageSeo";
 
+const ARTICLE_TITLE = "How To Track Car Maintenance";
 const ARTICLE_CATEGORY = "Guides";
 const ARTICLE_READ_TIME = "5 min read";
+const ARTICLE_URL =
+  "https://www.carcarediary.com/blog/how-to-track-car-maintenance";
+const ARTICLE_LEDE =
+  "To track car maintenance: log every service with type, date, and mileage the moment it's done, keep all entries in one place, and review what's coming due before each appointment. Done consistently, those three habits produce a reliable maintenance record over the life of the car.";
+const CTA_TITLE = "Track car maintenance with the CarCare Diary app";
 
 const trackingFaqs = [
   {
@@ -47,6 +53,34 @@ const trackingFaqs = [
   },
 ];
 
+const steps = [
+  {
+    number: "01",
+    title: "Keep Your Mileage Current",
+    body: "Update your vehicle's odometer reading in your log regularly - not just at service time. A current mileage reading lets you see at a glance how close you are to the next service interval and makes each log entry more accurate.",
+  },
+  {
+    number: "02",
+    title: "Log At The Time Of Service",
+    body: "Record a service the moment it's done, while the receipt is in hand and the details are fresh. Logging retroactively from memory leads to gaps and inaccuracies - even a quick entry with the basics beats waiting until you have time to write it up properly.",
+  },
+  {
+    number: "03",
+    title: "Keep Everything In One Place",
+    body: "Choose one place where all service entries live - and use it for every service. Scattered records across paper, email, and apps work the same as no records.",
+  },
+  {
+    number: "04",
+    title: "Review Upcoming Service Regularly",
+    body: "Every few months, look at your last few entries and check what's likely coming up. Oil interval nearly due? Tyre rotation overdue? A short review every quarter keeps you ahead of the schedule rather than reacting to it.",
+  },
+  {
+    number: "05",
+    title: "Keep The Record With The Car",
+    body: "Your maintenance history should be accessible at a mechanic, when filling out a service form, or when showing a buyer around the car. A phone-based log is always with you; a physical folder in the glovebox works too, as long as it travels with the vehicle.",
+  },
+];
+
 const JSON_LD = [
   {
     "@context": "https://schema.org",
@@ -54,14 +88,31 @@ const JSON_LD = [
     headline: "How To Track Car Maintenance and Keep Better Service Records",
     description:
       "Learn how to track car maintenance with service logs, mileage, notes, and reminders. Keep your vehicle records organized with CarCare Diary.",
-    url: "https://www.carcarediary.com/blog/how-to-track-car-maintenance",
+    url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-30",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
       url: "https://www.carcarediary.com",
     },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable]"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to track car maintenance",
+    description:
+      "A five-step system for tracking car maintenance: keep mileage current, log at the time of service, centralise records, review upcoming work, and keep the log with the car.",
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.body,
+    })),
   },
   {
     "@context": "https://schema.org",
@@ -90,39 +141,22 @@ export default function HowToTrackCarMaintenanceArticle() {
   });
 
   return (
-    <ArticleLayout title="How To Track Car Maintenance">
-      <ArticleHero />
+    <ArticleLayout title={ARTICLE_TITLE}>
+      <ArticleHero
+        category={ARTICLE_CATEGORY}
+        readTime={ARTICLE_READ_TIME}
+        title={ARTICLE_TITLE}
+        lede={ARTICLE_LEDE}
+      />
+      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyTrackingMatters />
       <WhatToTrack />
       <ASimpleSystem />
       <CommonMistakes />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <ArticleCTA />
+      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
     </ArticleLayout>
-  );
-}
-
-function ArticleHero() {
-  return (
-    <section className="pt-10 pb-12 md:pb-16 px-6 sm:px-10 lg:px-16 xl:px-20 text-center">
-      <div className="max-w-[760px] mx-auto">
-        <ArticleMeta category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} />
-        <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5">
-          How To Track Car Maintenance
-        </h1>
-        <p className="text-lg leading-relaxed text-muted mb-8 max-w-[560px] mx-auto">
-          To track car maintenance effectively: log every service with type,
-          date, and mileage immediately after it's done, keep all records in one
-          place, and review upcoming services before each appointment. This
-          guide walks through how to build that habit consistently.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <AppStoreButton />
-          <GooglePlayButton />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -131,25 +165,17 @@ function WhyTrackingMatters() {
     <ProseSection>
       <ArticleH2>Why Tracking Car Maintenance Matters</ArticleH2>
       <ArticleP>
-        Most car owners have a rough sense of when things were last done.
-        They remember the oil was changed sometime last year, or that the brakes
-        were inspected before a trip. But "a rough sense" is not a maintenance
-        record - and the gap between the two tends to widen over time.
-      </ArticleP>
-      <ArticleP>
         A proper maintenance record tells you exactly what was done, when, and
-        at what mileage. That precision matters in a few situations more than
-        others: when a mechanic asks about the last time a fluid was changed,
-        when you're trying to work out whether a service is overdue, or when
-        you're selling the car and a buyer wants to understand how it's been
-        maintained.
+        at what mileage. That precision matters when a mechanic asks about the
+        last fluid change, when you're working out whether a service is
+        overdue, or when a buyer wants to understand how the car has been
+        looked after.
       </ArticleP>
       <ArticleP>
-        Tracking maintenance also makes patterns visible. Over a few years of
-        consistent logging, you can see which parts of your car need regular
-        attention, how your driving habits affect service frequency, and roughly
-        what ownership is costing you per year. None of that is accessible from
-        memory alone.
+        Tracking also makes patterns visible: which parts of your car need
+        regular attention, how your driving habits affect service frequency,
+        and roughly what ownership is costing per year. None of that is
+        accessible from memory alone.
       </ArticleP>
     </ProseSection>
   );
@@ -193,9 +219,9 @@ function WhatToTrack() {
     <ProseSection>
       <ArticleH2>What To Include In Every Service Record</ArticleH2>
       <ArticleP>
-        A maintenance log is only as useful as the information in it. These are
-        the fields worth capturing for every service entry - and why each one
-        matters.
+        Capture six fields for every service entry: service type, date,
+        mileage, parts and fluids used, notes, and (optionally) cost. Each one
+        earns its place in the log - here's why.
       </ArticleP>
 
       <div className="flex flex-col gap-5 mt-6">
@@ -214,51 +240,22 @@ function WhatToTrack() {
 
       <ArticleP>
         <span className="block mt-6">
-          You don't need to capture all of these perfectly on the first entry.
-          Start with service type, date, and mileage - then add more detail as
-          the habit becomes natural. A partial record is still significantly more
-          useful than no record.
+          Start with service type, date, and mileage, then add detail as the
+          habit becomes natural. A partial record is already more useful than
+          no record.
         </span>
       </ArticleP>
     </ProseSection>
   );
 }
 
-const steps = [
-  {
-    number: "01",
-    title: "Keep Your Mileage Current",
-    body: "Update your vehicle's odometer reading in your log regularly - not just at service time. A current mileage reading lets you see at a glance how close you are to the next service interval, and makes each log entry more accurate.",
-  },
-  {
-    number: "02",
-    title: "Log At The Time Of Service",
-    body: "The best time to record a service is immediately after it happens - while the receipt is in hand and the details are fresh. Logging retroactively from memory leads to gaps and inaccuracies. Even a quick entry with the basics is better than waiting until you have time to write it up properly.",
-  },
-  {
-    number: "03",
-    title: "Keep Everything In One Place",
-    body: "Scattered records - some on paper, some in an app, some in email - are functionally the same as no records. Choose one place where all service entries live and use it consistently. The system only works if it's complete.",
-  },
-  {
-    number: "04",
-    title: "Review Upcoming Service Regularly",
-    body: "Every few months, look at your last few service entries and check what's likely coming up. Oil interval nearly due? Tyre rotation overdue? A brief review every few months keeps you ahead of the schedule rather than reacting to it.",
-  },
-  {
-    number: "05",
-    title: "Keep The Record With The Car",
-    body: "Your maintenance history should be accessible when you need it - at a mechanic, when filling out a service form, or when showing a buyer around the car. A phone-based log is always with you. A physical folder in the glovebox works too, as long as it actually travels with the vehicle.",
-  },
-];
-
 function ASimpleSystem() {
   return (
     <ProseSection>
       <ArticleH2>A Simple System For Tracking Car Maintenance</ArticleH2>
       <ArticleP>
-        Good maintenance tracking does not require a complex system. Five habits,
-        done consistently, produce a reliable record over time.
+        Five habits, done consistently, produce a reliable record. No complex
+        system required.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -298,11 +295,11 @@ const mistakes = [
   },
   {
     title: "Letting The Record Fall Behind",
-    body: "A maintenance log that's six months out of date is significantly less useful than one kept current. The longer the gap, the harder it is to reconstruct accurately. Logging at the time of service, or within a day or two, avoids the backfill problem entirely.",
+    body: "A log that's six months out of date is far less useful than one kept current. The longer the gap, the harder it is to reconstruct accurately. Logging at the time of service, or within a day or two, avoids the backfill problem entirely.",
   },
   {
     title: "Starting Over With Each New Car",
-    body: "Maintenance history is part of the vehicle's value. When you sell a car, a well-kept record is a tangible asset. When you buy a new one, starting the log from day one means you'll have a complete history ready when it matters.",
+    body: "Maintenance history is part of the vehicle's value. When you sell, a well-kept record is a tangible asset. When you buy, starting the log from day one means you'll have a complete history ready when it matters.",
   },
 ];
 
@@ -311,9 +308,8 @@ function CommonMistakes() {
     <ProseSection>
       <ArticleH2>Common Mistakes That Undermine A Maintenance Record</ArticleH2>
       <ArticleP>
-        Most maintenance tracking problems are not about effort - they're about
-        small habits that quietly degrade the record over time. These are the
-        most common ones.
+        Most tracking problems aren't about effort - they're small habits that
+        quietly degrade the record over time. These are the ones to avoid.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -344,9 +340,8 @@ function HowCarCareHelps() {
       <ArticleH2>How CarCare Diary Supports The Process</ArticleH2>
       <ArticleP>
         CarCare Diary is a free maintenance log app for iPhone and Android,
-        built around the habits described in this guide. It handles the
-        organisational side - so the focus stays on the car, not the
-        record-keeping system.
+        built around the habits above. It handles the organisational side so
+        the focus stays on the car, not the record-keeping system.
       </ArticleP>
 
       <div className="flex flex-col gap-4 my-6">
@@ -378,11 +373,6 @@ function HowCarCareHelps() {
             <p className="text-sm leading-relaxed text-muted">{item.body}</p>
           </div>
         ))}
-      </div>
-
-      <div className="flex flex-col sm:flex-row gap-3 mb-5">
-        <AppStoreButton />
-        <GooglePlayButton />
       </div>
 
       <p className="text-sm text-muted">
@@ -460,36 +450,5 @@ function ArticleFAQ() {
         })}
       </div>
     </ProseSection>
-  );
-}
-
-function ArticleCTA() {
-  return (
-    <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
-        <div className="rounded-2xl border border-panel bg-surface px-8 py-12 md:px-12 md:py-14 text-center">
-          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-            Get The App
-          </p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-            Start Tracking Your Car Maintenance Today
-          </h2>
-          <p className="text-base text-muted max-w-[420px] mx-auto mb-8">
-            Free for iPhone and Android. Log every service, keep your mileage
-            current, and build a complete maintenance record you can rely on.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <AppStoreButton />
-            <GooglePlayButton />
-          </div>
-          <Link
-            to="/blog"
-            className="text-sm text-accent font-semibold hover:text-white transition-colors"
-          >
-            Back to Guides
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }

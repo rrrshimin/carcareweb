@@ -25,6 +25,9 @@ const LogFirstServiceArticle = lazy(() => import("./pages/help/LogFirstServiceAr
 const PlansArticle = lazy(() => import("./pages/help/PlansArticle"));
 const MileageAccuracyArticle = lazy(() => import("./pages/help/MileageAccuracyArticle"));
 const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
+const FleetManagementAppPage = lazy(() => import("./pages/FleetManagementAppPage"));
+const FleetMaintenanceAppPage = lazy(() => import("./pages/FleetMaintenanceAppPage"));
+const BestCarMaintenanceAppsArticle = lazy(() => import("./pages/blog/BestCarMaintenanceAppsArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -138,6 +141,14 @@ function App() {
           }
         />
         <Route
+          path="/blog/best-car-maintenance-apps"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <BestCarMaintenanceAppsArticle />
+            </Suspense>
+          }
+        />
+        <Route
           path="/help"
           element={
             <Suspense fallback={<ChunkLoading />}>
@@ -190,6 +201,22 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <HowCarCareDiaryWorksPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fleet-management-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <FleetManagementAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fleet-maintenance-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <FleetMaintenanceAppPage />
             </Suspense>
           }
         />

@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { ChevronDown, AlertCircle, CheckCircle2 } from "lucide-react";
 import {
   ArticleLayout,
-  ArticleMeta,
+  ArticleHero,
   ProseSection,
   ArticleH2,
   ArticleP,
 } from "./ArticleLayout";
-import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
+import { GuideDownloadCTA } from "./GuideDownloadCTA";
 import { usePageSeo } from "../../lib/usePageSeo";
 
+const ARTICLE_TITLE = "What To Include In A Car Service History";
 const ARTICLE_CATEGORY = "Guides";
 const ARTICLE_READ_TIME = "5 min read";
+const ARTICLE_URL =
+  "https://www.carcarediary.com/blog/what-to-include-in-a-car-service-history";
+const ARTICLE_LEDE =
+  "Every car service record should include service type, date, mileage, parts replaced, fluids used, notes from the mechanic, who carried out the work, and any follow-up flagged. Below is each field in detail, with examples, plus the ones that most often get left out.";
+const CTA_TITLE = "Keep a complete car service history with CarCare Diary";
 
 const serviceHistoryFaqs = [
   {
@@ -54,13 +60,17 @@ const JSON_LD = [
     headline: "What To Include In a Car Service History",
     description:
       "Learn what to include in a car service history, from mileage and service dates to parts, fluids, and notes. Keep your vehicle records organized with CarCare Diary.",
-    url: "https://www.carcarediary.com/blog/what-to-include-in-a-car-service-history",
+    url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-16",
+    dateModified: "2026-04-30",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
       url: "https://www.carcarediary.com",
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-speakable]"],
     },
   },
   {
@@ -90,40 +100,22 @@ export default function WhatToIncludeInCarServiceHistoryArticle() {
   });
 
   return (
-    <ArticleLayout
-      title="What To Include In A Car Service History"
-    >
-      <ArticleHero />
+    <ArticleLayout title={ARTICLE_TITLE}>
+      <ArticleHero
+        category={ARTICLE_CATEGORY}
+        readTime={ARTICLE_READ_TIME}
+        title={ARTICLE_TITLE}
+        lede={ARTICLE_LEDE}
+      />
+      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyItMatters />
       <EssentialFields />
       <ExampleEntries />
       <WhatPeopleForget />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <ArticleCTA />
+      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
     </ArticleLayout>
-  );
-}
-
-function ArticleHero() {
-  return (
-    <section className="pt-10 pb-12 md:pb-16 px-6 sm:px-10 lg:px-16 xl:px-20 text-center">
-      <div className="max-w-[760px] mx-auto">
-        <ArticleMeta category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} />
-        <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.1] font-semibold mb-5">
-          What To Include In A Car Service History
-        </h1>
-        <p className="text-lg leading-relaxed text-muted mb-8 max-w-[560px] mx-auto">
-          Every car service record should include the service type, date,
-          mileage, parts and fluids used, and notes. This guide covers each
-          field in detail - and what tends to get left out.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <AppStoreButton />
-          <GooglePlayButton />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -132,23 +124,17 @@ function WhyItMatters() {
     <ProseSection>
       <ArticleH2>Why A Complete Service History Matters</ArticleH2>
       <ArticleP>
-        A car service history is more than a list of dates and invoice numbers.
-        Done well, it's a precise record of everything that has been done to a
-        vehicle - what was replaced, what fluids were used, what the mileage was
-        at each service, and what the mechanic noted along the way.
+        A complete service history is a precise record of what was done to the
+        car, when, and at what mileage - the exact information a mechanic, a
+        buyer, or your future self will ask for. The difference between a
+        sparse and complete history shows up the moment it's needed: a service
+        that might be overdue, an oil grade spec a mechanic is asking about,
+        or a buyer who wants to see how the car has been looked after.
       </ArticleP>
       <ArticleP>
-        The difference between a sparse history and a complete one becomes clear
-        in a few situations. When a service is due and you're not sure whether it
-        was done recently. When a mechanic asks what oil grade the engine takes.
-        When you're selling the car and a buyer wants to understand the
-        maintenance record. In each case, the detail in the record is what
-        determines how useful it actually is.
-      </ArticleP>
-      <ArticleP>
-        Most people log something. Fewer log enough. This guide covers what a
-        thorough entry looks like, why each field matters, and what tends to get
-        left out.
+        Most people log something. Fewer log enough. The rest of this guide
+        covers exactly what belongs in every entry and what tends to get left
+        out.
       </ArticleP>
     </ProseSection>
   );
@@ -202,9 +188,9 @@ function EssentialFields() {
     <ProseSection>
       <ArticleH2>What To Include In Every Service Record</ArticleH2>
       <ArticleP>
-        These are the fields that make a service record genuinely useful - not
-        just as a historical document, but as a practical reference you can
-        actually use.
+        Capture these eight fields for a complete entry. Not every one applies
+        to every service - a tyre pressure check doesn't warrant a parts list -
+        but for any significant service they're the baseline.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -225,15 +211,6 @@ function EssentialFields() {
           </div>
         ))}
       </div>
-
-      <ArticleP>
-        <span className="block mt-6">
-          Not every entry needs every field - a tyre pressure check doesn't
-          warrant a parts list. The goal is to capture what's relevant for the
-          type of work done. For any significant service, date, mileage, what
-          was done, and what was used are the baseline.
-        </span>
-      </ArticleP>
     </ProseSection>
   );
 }
@@ -308,8 +285,8 @@ function ExampleEntries() {
     <ProseSection>
       <ArticleH2>What Good Service Entries Look Like</ArticleH2>
       <ArticleP>
-        Knowing what to include is easier with concrete examples. These show
-        what a well-recorded entry looks like for common service types.
+        These six examples show what a well-recorded entry looks like for the
+        most common service types - realistic, not exhaustive.
       </ArticleP>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -331,14 +308,6 @@ function ExampleEntries() {
           </div>
         ))}
       </div>
-
-      <ArticleP>
-        <span className="block mt-6">
-          These entries are realistic - not exhaustive, not minimal. They
-          capture what matters without requiring more effort than the service
-          itself.
-        </span>
-      </ArticleP>
     </ProseSection>
   );
 }
@@ -371,9 +340,8 @@ function WhatPeopleForget() {
     <ProseSection>
       <ArticleH2>Details That Often Get Left Out</ArticleH2>
       <ArticleP>
-        Most service records are incomplete not because of laziness, but because
-        certain details feel minor at the time. These are the ones that tend to
-        go missing - and that are worth the small effort to capture.
+        Five things disappear from most service records because they feel minor
+        at the time. They're the ones worth the extra ten seconds to capture.
       </ArticleP>
 
       <div className="flex flex-col gap-4 mt-6">
@@ -403,23 +371,16 @@ function HowCarCareHelps() {
       </p>
       <ArticleH2>How CarCare Diary Keeps Service History Organized</ArticleH2>
       <ArticleP>
-        CarCare Diary is a free maintenance log app for iPhone and Android. Each
-        entry supports all the fields covered in this guide - service type, date,
-        mileage, parts, fluids, notes, and more. Entries are grouped by category
-        and build into a complete, scrollable service history for your vehicle.
+        CarCare Diary supports all the fields covered above - service type,
+        date, mileage, parts, fluids, notes - in one log per vehicle. Entries
+        are grouped by category and build into a complete, scrollable service
+        history.
       </ArticleP>
       <ArticleP>
-        When you want to share the history - with a mechanic before a service, or
-        with a buyer when selling - you can generate a public link to the full
-        record. Anyone with the link can view it from any device without an
-        account.
+        When it's time to share the history with a mechanic or a buyer, you
+        can generate a public link to the full record. Anyone with the link
+        can view it from any device without an account.
       </ArticleP>
-
-      <div className="flex flex-col sm:flex-row gap-3 mt-6 mb-5">
-        <AppStoreButton />
-        <GooglePlayButton />
-      </div>
-
       <p className="text-sm text-muted">
         Related guides:{" "}
         <Link
@@ -495,37 +456,5 @@ function ArticleFAQ() {
         })}
       </div>
     </ProseSection>
-  );
-}
-
-function ArticleCTA() {
-  return (
-    <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
-      <div className="max-w-[760px] mx-auto">
-        <div className="rounded-2xl border border-panel bg-surface px-8 py-12 md:px-12 md:py-14 text-center">
-          <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-            Get The App
-          </p>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-            Start Building A Complete Service History
-          </h2>
-          <p className="text-base text-muted max-w-[420px] mx-auto mb-8">
-            Free for iPhone and Android. Log every service with the detail that
-            makes a history actually useful - mileage, parts, fluids, notes, and
-            more.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <AppStoreButton />
-            <GooglePlayButton />
-          </div>
-          <Link
-            to="/blog"
-            className="text-sm text-accent font-semibold hover:text-white transition-colors"
-          >
-            Back to Guides
-          </Link>
-        </div>
-      </div>
-    </section>
   );
 }

@@ -39,4 +39,12 @@ export const guides: GuideArticle[] = [
     category: "Guides",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/best-car-maintenance-apps",
+    title: "Best Car Maintenance Apps in 2026",
+    description:
+      "A feature comparison of ten car maintenance apps - covering service history, mileage tracking, reminders, multi-vehicle support, and shareable records.",
+    category: "Comparison",
+    readTime: "8 min read",
+  },
 ];

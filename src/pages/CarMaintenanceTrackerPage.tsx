@@ -380,12 +380,19 @@ function WhoItsFor() {
         </div>
 
         <p className="text-center text-sm text-muted mt-10">
-          Managing a small business fleet?{" "}
+          Managing multiple vehicles?{" "}
           <Link
-            to="/business"
+            to="/fleet-management-app"
             className="text-accent font-semibold hover:text-white transition-colors"
           >
-            See CarCare Diary for Business
+            See the fleet management app
+          </Link>
+          {" · "}
+          <Link
+            to="/fleet-maintenance-app"
+            className="text-accent font-semibold hover:text-white transition-colors"
+          >
+            Fleet maintenance app
           </Link>
         </p>
       </div>

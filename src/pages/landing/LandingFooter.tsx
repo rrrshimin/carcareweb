@@ -5,6 +5,8 @@ const productLinks = [
   { to: "/car-maintenance-tracker", label: "Car Maintenance Tracker" },
   { to: "/car-service-history", label: "Car Service History" },
   { to: "/vehicle-maintenance-log", label: "Vehicle Maintenance Log" },
+  { to: "/fleet-management-app", label: "Fleet Management App" },
+  { to: "/fleet-maintenance-app", label: "Fleet Maintenance App" },
   { to: "/how-carcare-diary-works", label: "How It Works" },
   { to: "/business", label: "For Business" },
 ];

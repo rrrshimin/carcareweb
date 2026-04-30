@@ -112,3 +112,12 @@ The current task is successful if:
 - tabs and grouped history render correctly
 - implementation stays read-only and aligned with real schema
 
+## Blog / Guides structure
+When creating or editing any article under `/blog/*`, follow `docs/blog_guide_structure.md` first. It defines the shared hero, left-aligned layout, `GuideDownloadCTA` usage (inline + footer), dynamic CTA title pattern, intro tone rules, and required SEO / AI-search (AEO) JSON-LD (`Article` + `speakable`, `FAQPage`, `HowTo`, `BreadcrumbList`).
+
+Key rules at a glance:
+- hero is left-aligned, lede answers the query in 2-3 sentences, no fluffy intros
+- use `ArticleHero` from `ArticleLayout` and `GuideDownloadCTA` from `blog/GuideDownloadCTA` - do not re-implement these inline
+- two download CTAs per page: one right after the hero, one at the bottom
+- update `dateModified` in the `Article` JSON-LD on any content edit
+

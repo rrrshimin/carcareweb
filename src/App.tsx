@@ -26,6 +26,9 @@ const MileageAccuracyArticle = lazy(() => import("./pages/help/MileageAccuracyAr
 const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
 const FleetManagementAppPage = lazy(() => import("./pages/FleetManagementAppPage"));
 const FleetMaintenanceAppPage = lazy(() => import("./pages/FleetMaintenanceAppPage"));
+const CarRentalFleetMaintenanceAppPage = lazy(() => import("./pages/CarRentalFleetMaintenanceAppPage"));
+const SmallBusinessFleetManagementAppPage = lazy(() => import("./pages/SmallBusinessFleetManagementAppPage"));
+const VehicleMaintenanceAppForDealersPage = lazy(() => import("./pages/VehicleMaintenanceAppForDealersPage"));
 const BestCarMaintenanceAppsArticle = lazy(() => import("./pages/blog/BestCarMaintenanceAppsArticle"));
 const CarServiceHistoryAppPage = lazy(() => import("./pages/CarServiceHistoryAppPage"));
 const VehicleServiceReminderAppPage = lazy(() => import("./pages/VehicleServiceReminderAppPage"));
@@ -586,6 +589,30 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <FleetMaintenanceAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/car-rental-fleet-maintenance-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <CarRentalFleetMaintenanceAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/small-business-fleet-management-app"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <SmallBusinessFleetManagementAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/vehicle-maintenance-app-for-dealers"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <VehicleMaintenanceAppForDealersPage />
             </Suspense>
           }
         />

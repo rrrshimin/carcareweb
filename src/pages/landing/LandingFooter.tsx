@@ -10,6 +10,9 @@ const productLinks = [
   { to: "/vehicle-maintenance-log", label: "Vehicle Maintenance Log" },
   { to: "/fleet-management-app", label: "Fleet Management App" },
   { to: "/fleet-maintenance-app", label: "Fleet Maintenance App" },
+  { to: "/small-business-fleet-management-app", label: "Small Business Fleet App" },
+  { to: "/car-rental-fleet-maintenance-app", label: "Car Rental Fleet App" },
+  { to: "/vehicle-maintenance-app-for-dealers", label: "Dealers & Resellers" },
   { to: "/how-carcare-diary-works", label: "How It Works" },
 ];
 

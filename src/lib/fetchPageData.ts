@@ -1,7 +1,7 @@
 import { supabase } from "./supabase";
 import type { Tables } from "../../database.types";
 
-const LOG_TYPE_FIELDS = "id, log_type_name, category_link" as const;
+const LOG_TYPE_FIELDS = "id, log_type_name, category_link, isFinancial" as const;
 
 const CATEGORY_FIELDS = "id, category_name" as const;
 
@@ -17,7 +17,7 @@ export type RawLog = Pick<
 
 export type RawLogType = Pick<
   Tables<"log_types">,
-  "id" | "log_type_name" | "category_link"
+  "id" | "log_type_name" | "category_link" | "isFinancial"
 >;
 
 export type RawCategory = Pick<
@@ -77,8 +77,11 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
       .select(LOG_TYPE_FIELDS)
       .in("id", logTypeIds);
     if (ltErr) return { status: "error" };
-    logTypes = data ?? [];
+    logTypes = (data ?? []).filter((lt) => !lt.isFinancial);
   }
+
+  const publicTypeIds = new Set(logTypes.map((lt) => lt.id));
+  const publicLogs = safeLogs.filter((l) => l.log_type != null && publicTypeIds.has(l.log_type));
 
   const categoryIds = [...new Set(logTypes.map((lt) => lt.category_link).filter((id): id is number => id != null))];
 
@@ -94,6 +97,6 @@ export async function fetchPageData(slug: string): Promise<FetchResult> {
 
   return {
     status: "found",
-    data: { vehicle, logs: safeLogs, logTypes, categories, unit, ownerName },
+    data: { vehicle, logs: publicLogs, logTypes, categories, unit, ownerName },
   };
 }

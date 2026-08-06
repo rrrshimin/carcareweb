@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-car-battery";
 const ARTICLE_LEDE =
-  "Many car batteries last around 3–5 years, but real-world lifespan varies significantly depending on climate, driving habits, electrical load, and battery quality. Heat is particularly hard on batteries. Knowing the age of your current battery and watching for early warning signs gives you time to replace it on your terms rather than reacting to a failed start.";
+  "Most car batteries last 3–5 years, but heat, driving habits, and electrical load can shorten that significantly. Cold weather is when a weak battery is most likely to fail a start — but heat is what degrades it. Knowing your battery's age and watching for early warning signs lets you replace it on your own schedule rather than reacting to a failed start in a car park or on the roadside.";
 const CTA_TITLE = "Track battery replacement date, brand, and notes in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn when to replace a car battery, warning signs of a weak battery, and how to track battery replacement history in CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -239,7 +239,7 @@ function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
       <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-        Last updated: April 2026
+        Last updated: August 2026
       </span>
     </div>
   );

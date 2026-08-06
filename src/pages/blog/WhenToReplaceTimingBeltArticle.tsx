@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-timing-belt";
 const ARTICLE_LEDE =
-  "Timing belt replacement is one of the most important — and most time-sensitive — maintenance items on vehicles that have them. Many manufacturers specify replacement by both mileage and age because rubber degrades over time regardless of how little a car is driven. The exact interval for your vehicle must come from your owner's manual. Missing the replacement window on an interference engine can cause catastrophic engine damage.";
+  "Timing belt replacement is one of the most critical maintenance items on vehicles that have one. Manufacturers specify replacement by both mileage and age, because rubber degrades over time regardless of how little a car is driven. The exact interval must come from your owner's manual — not a general guideline. On interference engines, a snapped timing belt can cause irreparable engine damage and a repair bill that often exceeds the value of the car.";
 const CTA_TITLE = "Track timing belt replacement mileage and date in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn when to replace a timing belt, why timing belt service matters, and how to track replacement mileage and date.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -243,7 +243,7 @@ export default function WhenToReplaceTimingBeltArticle() {
 function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
-      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: April 2026</span>
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: August 2026</span>
     </div>
   );
 }

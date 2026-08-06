@@ -62,7 +62,7 @@ const JSON_LD = [
       "Learn what to include in a car service history, from mileage and service dates to parts, fluids, and notes. Keep your vehicle records organized with CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -119,9 +119,20 @@ export default function WhatToIncludeInCarServiceHistoryArticle() {
   );
 }
 
+function LastUpdated() {
+  return (
+    <div className="flex items-center gap-2 mb-6 text-xs text-muted">
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
+        Last updated: August 2026
+      </span>
+    </div>
+  );
+}
+
 function WhyItMatters() {
   return (
     <ProseSection>
+      <LastUpdated />
       <ArticleH2>Why A Complete Service History Matters</ArticleH2>
       <ArticleP>
         A complete service history is a precise record of what was done to the

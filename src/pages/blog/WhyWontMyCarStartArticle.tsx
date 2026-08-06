@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Troubleshooting";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-wont-my-car-start";
 const ARTICLE_LEDE =
-  "A car that won't start can have many different causes. The most useful clue is what happens when you try to start it — no sounds at all, a single click or rapid clicking, the engine cranking but not firing, or starting then immediately stalling each point to different areas. Starting with the symptom helps narrow down where to look first.";
+  "What happens when you turn the key is the most useful clue when a car won't start. No sound at all points to the battery, fuse, or ignition switch. A rapid clicking points to a weak or discharged battery. The engine cranking but not firing points to fuel, spark, or an immobiliser. Each symptom points to a different area — the sections below break it down.";
 const CTA_TITLE = "Track battery replacements, starting issues, repairs, mileage, and notes in CarCare Diary";
 
 const articleFaqs = [
@@ -103,7 +103,7 @@ const JSON_LD = [
       "Learn common reasons a car won't start, from battery and starter issues to fuel and ignition problems, plus how to track repairs.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -216,7 +216,7 @@ function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
       <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-        Last updated: April 2026
+        Last updated: August 2026
       </span>
     </div>
   );

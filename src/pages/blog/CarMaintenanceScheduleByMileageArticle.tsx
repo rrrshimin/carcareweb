@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Reference";
 const ARTICLE_READ_TIME = "6 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/car-maintenance-schedule-by-mileage";
 const ARTICLE_LEDE =
-  "This is a general reference for common car maintenance intervals organized by mileage. Exact intervals vary by vehicle, engine, driving conditions, fluid type, and the manufacturer's schedule. Use this as a starting point — your owner's manual is the authoritative source for your specific vehicle.";
+  "Staying on top of car maintenance is easier when you know which tasks fall into which mileage range. This reference covers the most common services — from every 5,000–7,500 km oil changes to 100,000+ km items like timing belts and spark plugs. Exact intervals vary by vehicle, engine, fluid type, and manufacturer. Use this as a starting point; your owner's manual is the definitive source for your car.";
 const CTA_TITLE = "CarCare Diary helps you log maintenance by date and mileage, see what is due next, and keep a clean service history for every vehicle";
 
 const mileageSchedule = [
@@ -104,7 +104,7 @@ const JSON_LD = [
       "A simple car maintenance schedule by mileage, including oil, tires, filters, fluids, brakes, spark plugs and timing belt tracking.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -281,7 +281,7 @@ export default function CarMaintenanceScheduleByMileageArticle() {
 function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
-      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: April 2026</span>
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: August 2026</span>
     </div>
   );
 }

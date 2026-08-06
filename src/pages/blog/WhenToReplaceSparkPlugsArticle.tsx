@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-spark-plugs";
 const ARTICLE_LEDE =
-  "Spark plug replacement intervals vary significantly by plug type. Older copper plugs may need changing sooner, while many modern iridium and platinum plugs are designed to last much longer. The correct interval for your vehicle depends on your engine and the plug type specified by the manufacturer — check your owner's manual rather than applying a generic figure.";
+  "Spark plug replacement intervals depend almost entirely on plug type. Copper plugs typically require changing around every 30,000–50,000 km; many modern iridium and platinum plugs are rated for 100,000 km or more. Running worn plugs causes misfires, rough idle, harder cold starts, and reduced fuel efficiency. Check your owner's manual for the correct interval and plug specification — not a generic figure.";
 const CTA_TITLE = "Track spark plug replacements, part type, and mileage in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn when to replace spark plugs, warning signs of worn spark plugs, and how to track spark plug service in CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -212,7 +212,7 @@ export default function WhenToReplaceSparkPlugsArticle() {
 function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
-      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: April 2026</span>
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">Last updated: August 2026</span>
     </div>
   );
 }

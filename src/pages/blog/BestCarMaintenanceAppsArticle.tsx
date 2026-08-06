@@ -377,7 +377,7 @@ const JSON_LD = [
       "Compare the best car maintenance apps for service history, mileage tracking, reminders, multi-vehicle support and shareable records.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -439,7 +439,7 @@ function ArticleIntroSection() {
     <ProseSection>
       <div className="flex items-center gap-2 mb-6 text-xs text-muted">
         <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-          Last checked: April 2026
+          Last updated: August 2026
         </span>
       </div>
 

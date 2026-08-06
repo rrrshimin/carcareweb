@@ -90,7 +90,7 @@ const JSON_LD = [
       "Learn how to track car maintenance with service logs, mileage, notes, and reminders. Keep your vehicle records organized with CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -160,9 +160,20 @@ export default function HowToTrackCarMaintenanceArticle() {
   );
 }
 
+function LastUpdated() {
+  return (
+    <div className="flex items-center gap-2 mb-6 text-xs text-muted">
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
+        Last updated: August 2026
+      </span>
+    </div>
+  );
+}
+
 function WhyTrackingMatters() {
   return (
     <ProseSection>
+      <LastUpdated />
       <ArticleH2>Why Tracking Car Maintenance Matters</ArticleH2>
       <ArticleP>
         A proper maintenance record tells you exactly what was done, when, and

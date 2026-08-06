@@ -62,7 +62,7 @@ const JSON_LD = [
       "A practical checklist covering oil, brakes, tires, filters, fluids, and inspections - with guidance on how often each item needs attention.",
     url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -264,6 +264,7 @@ function TheChecklist() {
   return (
     <section className="py-12 md:py-16 px-6 sm:px-10 lg:px-16 xl:px-20">
       <div className="max-w-[900px] mx-auto">
+        <LastUpdated />
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
           Car Maintenance Checklist By Category
         </h2>
@@ -487,6 +488,16 @@ function HowCarCareHelps() {
         </Link>
       </p>
     </ProseSection>
+  );
+}
+
+function LastUpdated() {
+  return (
+    <div className="flex items-center gap-2 mb-6 text-xs text-muted">
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
+        Last updated: August 2026
+      </span>
+    </div>
   );
 }
 

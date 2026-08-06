@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Troubleshooting";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-overheating";
 const ARTICLE_LEDE =
-  "An overheating engine is a serious warning that should not be ignored. It can be caused by a coolant leak, low coolant level, a failing water pump or thermostat, a blocked radiator, a faulty cooling fan, or simply driving hard in extreme heat. Acting quickly — pulling over safely and letting the engine cool — gives you the best chance of preventing major engine damage.";
+  "An overheating engine requires immediate action. If the temperature warning light comes on or the gauge enters the red zone, stop driving as soon as it is safe to do so — do not try to drive to a garage. Continuing to drive an overheating engine risks head gasket failure or worse. Common causes include a coolant leak, low coolant, a failing water pump or thermostat, a blocked radiator, or a faulty cooling fan.";
 const CTA_TITLE = "Track coolant changes, overheating incidents, repairs, and mileage in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn common reasons a car overheats, when to stop driving, what to check safely, and how to track cooling system maintenance.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: { "@type": "Organization", name: "CarCare Diary", url: "https://www.carcarediary.com" },
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["[data-speakable]"] },
   },
@@ -223,7 +223,7 @@ function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
       <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-        Last updated: April 2026
+        Last updated: August 2026
       </span>
     </div>
   );

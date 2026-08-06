@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-brake-pads";
 const ARTICLE_LEDE =
-  "Brake pad lifespan varies more than almost any other service interval — driving style, road conditions, vehicle weight, and pad material all affect how long pads last. Inspection is more reliable than mileage alone, but knowing the typical range and the warning signs helps you catch the need for replacement before it becomes a safety issue.";
+  "Brake pad lifespan varies more than almost any other service interval — from under 30,000 km on a heavily-loaded city vehicle to well over 70,000 km on a lightly-driven highway car. Driving style, pad material, vehicle weight, and road conditions all play a role. Visual inspection is more reliable than mileage alone, but knowing the warning signs helps you catch the need for replacement before it becomes a safety issue.";
 const CTA_TITLE = "Log brake pad replacements and service notes in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn when brake pads usually need replacement, warning signs like squealing or grinding, and how to track brake service history.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -333,7 +333,7 @@ function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
       <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-        Last updated: April 2026
+        Last updated: August 2026
       </span>
     </div>
   );

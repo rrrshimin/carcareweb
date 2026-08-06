@@ -90,7 +90,7 @@ const JSON_LD = [
       "Learn how to keep car service records organized with mileage, service dates, notes, parts, and maintenance history in one place with CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-16",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -160,9 +160,20 @@ export default function HowToKeepCarServiceRecordsOrganizedArticle() {
   );
 }
 
+function LastUpdated() {
+  return (
+    <div className="flex items-center gap-2 mb-6 text-xs text-muted">
+      <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
+        Last updated: August 2026
+      </span>
+    </div>
+  );
+}
+
 function WhyOrganizedRecordsMatter() {
   return (
     <ProseSection>
+      <LastUpdated />
       <ArticleH2>Why Organized Service Records Matter</ArticleH2>
       <ArticleP>
         Disorganized records cause problems at specific moments: when a

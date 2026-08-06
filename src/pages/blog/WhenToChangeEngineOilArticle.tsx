@@ -16,7 +16,7 @@ const ARTICLE_CATEGORY = "Maintenance";
 const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-engine-oil";
 const ARTICLE_LEDE =
-  "Most vehicles need an oil change based on mileage or time - whichever comes first. The exact interval depends on oil type, engine design, and driving conditions. Modern full synthetic oil commonly supports longer intervals than conventional oil, but your owner's manual is the only source of truth for your specific vehicle.";
+  "Oil change intervals have extended significantly on modern vehicles. Most current manufacturer recommendations for full synthetic oil range from 10,000–16,000 km (6,000–10,000 miles), while conventional oil typically requires more frequent changes. Both a mileage limit and a time limit apply — whichever comes first. Your owner's manual is the only definitive source for your specific vehicle.";
 const CTA_TITLE = "Track oil changes by date and mileage in CarCare Diary";
 
 const articleFaqs = [
@@ -61,7 +61,7 @@ const JSON_LD = [
       "Learn when to change engine oil, how mileage and oil type affect intervals, warning signs to watch for, and how to track oil changes in CarCare Diary.",
     url: ARTICLE_URL,
     datePublished: "2026-04-30",
-    dateModified: "2026-04-30",
+    dateModified: "2026-08-06",
     publisher: {
       "@type": "Organization",
       name: "CarCare Diary",
@@ -329,7 +329,7 @@ function LastUpdated() {
   return (
     <div className="flex items-center gap-2 mb-6 text-xs text-muted">
       <span className="inline-block px-2.5 py-1 rounded-full border border-panel bg-surface font-medium">
-        Last updated: April 2026
+        Last updated: August 2026
       </span>
     </div>
   );

@@ -72,6 +72,9 @@ const WhyIsMySteeringWheelShakingArticle = lazy(() => import("./pages/blog/WhyIs
 const WhyIsMyCarPullingToOneSideArticle = lazy(() => import("./pages/blog/WhyIsMyCarPullingToOneSideArticle"));
 const WhyDoesMyCarBatteryKeepDyingArticle = lazy(() => import("./pages/blog/WhyDoesMyCarBatteryKeepDyingArticle"));
 const WhyIsMyCarLeakingCoolantArticle = lazy(() => import("./pages/blog/WhyIsMyCarLeakingCoolantArticle"));
+const WhenToReplaceShocksAndStrutsArticle = lazy(() => import("./pages/blog/WhenToReplaceShocksAndStrutsArticle"));
+const UsedCarInspectionChecklistArticle = lazy(() => import("./pages/blog/UsedCarInspectionChecklistArticle"));
+const HowToPrepareCarForRoadTripArticle = lazy(() => import("./pages/blog/HowToPrepareCarForRoadTripArticle"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -517,6 +520,30 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <WhyIsMyCarLeakingCoolantArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/when-to-replace-shocks-and-struts"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <WhenToReplaceShocksAndStrutsArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/used-car-inspection-checklist"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <UsedCarInspectionChecklistArticle />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/how-to-prepare-car-for-road-trip"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <HowToPrepareCarForRoadTripArticle />
             </Suspense>
           }
         />

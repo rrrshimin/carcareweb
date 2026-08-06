@@ -359,4 +359,28 @@ export const guides: GuideArticle[] = [
     category: "Troubleshooting",
     readTime: "5 min read",
   },
+  {
+    path: "/blog/when-to-replace-shocks-and-struts",
+    title: "When To Replace Shocks and Struts",
+    description:
+      "How long shocks and struts last, warning signs they are worn, when to replace them, and how to track suspension service history.",
+    category: "Maintenance",
+    readTime: "5 min read",
+  },
+  {
+    path: "/blog/used-car-inspection-checklist",
+    title: "Used Car Inspection Checklist",
+    description:
+      "A practical used car inspection checklist covering exterior, interior, engine bay, and test drive — plus what service records to ask for.",
+    category: "Guides",
+    readTime: "7 min read",
+  },
+  {
+    path: "/blog/how-to-prepare-car-for-road-trip",
+    title: "How To Prepare Your Car for a Road Trip",
+    description:
+      "A complete pre-road trip car checklist covering fluids, tyres, brakes, battery, lights, and what to have in the car.",
+    category: "Guides",
+    readTime: "6 min read",
+  },
 ];

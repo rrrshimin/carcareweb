@@ -20,6 +20,7 @@ import { Logo } from "../landing/Logo";
 import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
 import { usePageSeo } from "../../lib/usePageSeo";
 import { trackStoreClick, type StorePlatform } from "../../lib/storeClick";
+import { FleetQrCode, PhoneHandoffButton, PhoneHandoffStrip } from "./FleetQr";
 import { loadFleetImages, type FleetImages } from "./fleetAssets";
 import {
   FLEET_ALTERNATES,
@@ -117,6 +118,7 @@ export default function FleetLandingPage({ locale }: FleetLandingPageProps) {
         <FleetHeader copy={copy} headerRef={headerRef} />
         <main id="main" style={{ paddingTop: headerHeight }}>
           <Hero copy={copy} images={images} />
+          <PhoneHandoffStrip copy={copy} />
           <Due copy={copy} />
           <Benefits copy={copy} />
           <History copy={copy} images={images} />
@@ -150,6 +152,7 @@ function FleetHeader({
       <div className={`mx-auto flex max-w-[1120px] items-center gap-2 py-2 sm:gap-3 sm:py-3 ${pagePad}`}>
         <Logo size="compact" />
         <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <PhoneHandoffButton copy={copy} />
           <StorePair copy={copy} header />
         </div>
       </div>
@@ -489,8 +492,14 @@ function FinalCta({ copy }: { copy: FleetCopy }) {
         {copy.finalTitle}
       </h2>
       <p className="mt-6 text-sm font-semibold text-white">{copy.cta}</p>
-      <div className="mt-3 flex flex-col items-start gap-3 sm:flex-row">
-        <StorePair copy={copy} />
+      <div className="mt-3 flex flex-col items-start gap-5 lg:flex-row lg:flex-wrap lg:items-center">
+        <div className="flex flex-col items-start gap-3 sm:flex-row">
+          <StorePair copy={copy} />
+        </div>
+        <div className="hidden items-center gap-3 lg:flex">
+          <FleetQrCode size={112} alt={copy.qrAlt} />
+          <p className="max-w-md text-sm leading-relaxed text-muted">{copy.qrCtaHint}</p>
+        </div>
       </div>
       <p className="mt-4 text-sm text-muted">{copy.microcopy}</p>
     </section>

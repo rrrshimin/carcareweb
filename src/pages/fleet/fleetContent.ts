@@ -37,6 +37,14 @@ export interface FleetCopy {
   vehicleAlt: string;
   cta: string;
   microcopy: string;
+  qrAction: string;
+  qrStripTitle: string;
+  qrStripBody: string;
+  qrModalTitle: string;
+  qrModalBody: string;
+  qrClose: string;
+  qrAlt: string;
+  qrCtaHint: string;
   appStoreKicker: string;
   appStoreName: string;
   appStoreAria: string;
@@ -182,6 +190,14 @@ const us: FleetCopy = {
   planTitle: "Start with one vehicle for free",
   planBody:
     "The free plan covers one vehicle, service logs and due reminders. A one-month trial is available for eligible paid features. Current eligibility and plan details are shown in the app stores.",
+  qrAction: "Open on phone",
+  qrStripTitle: "Want to open CarCare Fleet on your phone?",
+  qrStripBody: "Scan to open this page on your phone, then choose your app store.",
+  qrModalTitle: "Open on phone",
+  qrModalBody: "Scan this code with your phone camera. It opens this page, then you choose the App Store or Google Play.",
+  qrClose: "Close",
+  qrAlt: "QR code that opens this CarCare Fleet page on your phone",
+  qrCtaHint: "Scan to open this page on your phone.",
   finalTitle: "A clearer view of every vehicle starts here.",
   faqTitle: "Questions worth asking first",
   faqs: [
@@ -337,6 +353,14 @@ const uk: FleetCopy = {
   planTitle: "Get started free with one vehicle",
   planBody:
     "The free plan covers one vehicle, service logs and due reminders. A one-month trial is available for eligible paid features. Current plans are shown in the app stores.",
+  qrAction: "Open on phone",
+  qrStripTitle: "Want to open CarCare Fleet on your phone?",
+  qrStripBody: "Scan to open this page on your phone, then choose your app store.",
+  qrModalTitle: "Open on phone",
+  qrModalBody: "Scan this code with your phone camera. It opens this page, then you choose the App Store or Google Play.",
+  qrClose: "Close",
+  qrAlt: "QR code that opens this CarCare Fleet page on your phone",
+  qrCtaHint: "Scan to open this page on your phone.",
   finalTitle: "Stay ahead of the next service date.",
   faqTitle: "Questions worth asking first",
   faqs: [
@@ -497,6 +521,14 @@ const fr: FleetCopy = {
   planTitle: "Commencez gratuitement avec un véhicule",
   planBody:
     "L’offre gratuite couvre un véhicule, ses entretiens et ses rappels d’échéance. Un essai d’un mois est disponible pour les fonctions payantes éligibles. Les conditions en vigueur sont indiquées dans les boutiques d’applications.",
+  qrAction: "Ouvrir sur mobile",
+  qrStripTitle: "Ouvrir CarCare Fleet sur votre téléphone ?",
+  qrStripBody: "Scannez pour ouvrir cette page sur votre téléphone, puis choisissez votre boutique d’applications.",
+  qrModalTitle: "Ouvrir sur mobile",
+  qrModalBody: "Scannez ce code avec l’appareil photo. Il ouvre cette page, puis vous choisissez l’App Store ou Google Play.",
+  qrClose: "Fermer",
+  qrAlt: "QR code qui ouvre cette page CarCare Fleet sur votre téléphone",
+  qrCtaHint: "Scannez pour ouvrir cette page sur votre téléphone.",
   finalTitle: "Anticipez les prochaines échéances d’entretien.",
   faqTitle: "Questions utiles avant de télécharger",
   faqs: [

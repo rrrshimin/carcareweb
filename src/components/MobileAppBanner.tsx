@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import logoSrc from "../assets/logo.png";
 
@@ -37,7 +38,10 @@ function isIOSSafari(): boolean {
   return isIOS && isSafari;
 }
 
+const FLEET_LOCALE_PATHS = new Set(["/fleet-us", "/fleet-uk", "/fleet-fr"]);
+
 export function MobileAppBanner() {
+  const { pathname } = useLocation();
   const [platform, setPlatform] = useState<Platform>(null);
   const [show, setShow] = useState(false);
 
@@ -61,7 +65,7 @@ export function MobileAppBanner() {
     setShow(true);
   }, []);
 
-  if (!show || !platform) return null;
+  if (FLEET_LOCALE_PATHS.has(pathname) || !show || !platform) return null;
 
   const storeUrl = platform === "ios" ? APP_STORE_URL : PLAY_URL;
   const storeLabel = platform === "ios" ? "App Store" : "Google Play";

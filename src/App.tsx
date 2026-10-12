@@ -25,6 +25,7 @@ const PlansArticle = lazy(() => import("./pages/help/PlansArticle"));
 const MileageAccuracyArticle = lazy(() => import("./pages/help/MileageAccuracyArticle"));
 const DeleteAccountPage = lazy(() => import("./pages/DeleteAccountPage"));
 const FleetManagementAppPage = lazy(() => import("./pages/FleetManagementAppPage"));
+const FleetLandingPage = lazy(() => import("./pages/fleet/FleetLandingPage"));
 const FleetMaintenanceAppPage = lazy(() => import("./pages/FleetMaintenanceAppPage"));
 const CarRentalFleetMaintenanceAppPage = lazy(() => import("./pages/CarRentalFleetMaintenanceAppPage"));
 const SmallBusinessFleetManagementAppPage = lazy(() => import("./pages/SmallBusinessFleetManagementAppPage"));
@@ -608,6 +609,30 @@ function App() {
           element={
             <Suspense fallback={<ChunkLoading />}>
               <FleetManagementAppPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fleet-us"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <FleetLandingPage locale="us" />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fleet-uk"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <FleetLandingPage locale="uk" />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/fleet-fr"
+          element={
+            <Suspense fallback={<ChunkLoading />}>
+              <FleetLandingPage locale="fr" />
             </Suspense>
           }
         />

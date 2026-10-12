@@ -6,6 +6,11 @@ const DEFAULT_DESCRIPTION =
   "Log car maintenance, track mileage, get service reminders, and share your vehicle's complete history. Free car maintenance tracker app for iPhone & Android.";
 const DEFAULT_OG_IMAGE = "https://www.carcarediary.com/og-image.png";
 
+export interface HreflangAlternate {
+  hreflang: string;
+  path: string;
+}
+
 interface PageSeoOptions {
   title: string;
   description: string;
@@ -14,6 +19,9 @@ interface PageSeoOptions {
   ogImage?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  lang?: string;
+  ogLocale?: string;
+  alternates?: readonly HreflangAlternate[];
 }
 
 function setMetaTag(attr: string, key: string, content: string) {
@@ -70,6 +78,22 @@ function removeJsonLd() {
   document.querySelector('script[data-seo="page-jsonld"]')?.remove();
 }
 
+function clearHreflang() {
+  document.querySelectorAll('link[data-seo="hreflang"]').forEach((el) => el.remove());
+}
+
+function setHreflang(alternates: readonly HreflangAlternate[]) {
+  clearHreflang();
+  for (const alt of alternates) {
+    const el = document.createElement("link");
+    el.setAttribute("rel", "alternate");
+    el.setAttribute("hreflang", alt.hreflang);
+    el.setAttribute("href", `${SITE_URL}${alt.path}`);
+    el.setAttribute("data-seo", "hreflang");
+    document.head.appendChild(el);
+  }
+}
+
 export function usePageSeo({
   title,
   description,
@@ -78,11 +102,15 @@ export function usePageSeo({
   ogImage = DEFAULT_OG_IMAGE,
   noindex = false,
   jsonLd,
+  lang,
+  ogLocale,
+  alternates,
 }: PageSeoOptions) {
   useEffect(() => {
     const canonicalUrl = `${SITE_URL}${path}`;
 
     document.title = title;
+    if (lang) document.documentElement.lang = lang;
 
     setMetaTag("name", "description", description);
     setCanonical(canonicalUrl);
@@ -98,6 +126,8 @@ export function usePageSeo({
     setMetaTag("name", "twitter:title", title);
     setMetaTag("name", "twitter:description", description);
     setMetaTag("name", "twitter:image", ogImage);
+    if (ogLocale) setMetaTag("property", "og:locale", ogLocale);
+    if (alternates?.length) setHreflang(alternates);
 
     if (noindex) {
       setRobotsNoindex();
@@ -111,6 +141,7 @@ export function usePageSeo({
 
     return () => {
       document.title = DEFAULT_TITLE;
+      document.documentElement.lang = "en";
       setMetaTag("name", "description", DEFAULT_DESCRIPTION);
       setCanonical(`${SITE_URL}/`);
       setMetaTag("property", "og:title", DEFAULT_TITLE);
@@ -123,10 +154,12 @@ export function usePageSeo({
       setMetaTag("name", "twitter:description", DEFAULT_DESCRIPTION);
       setMetaTag("name", "twitter:image", DEFAULT_OG_IMAGE);
       removeRobotsNoindex();
+      removeMetaTag("property", "og:locale");
+      clearHreflang();
       removeMetaTag("property", "og:image:width");
       removeMetaTag("property", "og:image:height");
       removeMetaTag("property", "og:image:alt");
       removeJsonLd();
     };
-  }, [title, description, path, ogType, ogImage, noindex, jsonLd]);
+  }, [title, description, path, ogType, ogImage, noindex, jsonLd, lang, ogLocale, alternates]);
 }

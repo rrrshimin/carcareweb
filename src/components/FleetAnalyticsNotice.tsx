@@ -16,7 +16,6 @@ interface NoticeCopy {
   body: string;
   allow: string;
   decline: string;
-  allowed: string;
   declined: string;
   change: string;
   privacy: string;
@@ -27,7 +26,6 @@ const english: NoticeCopy = {
   body: "With your permission, we'll use basic analytics to understand how these pages are used. You can change your choice anytime.",
   allow: "Allow analytics",
   decline: "Decline",
-  allowed: "Analytics allowed",
   declined: "Analytics declined",
   change: "Change",
   privacy: "Privacy",
@@ -41,7 +39,6 @@ const COPY: Record<FleetLocaleId, NoticeCopy> = {
     body: "Avec votre accord, nous utiliserons des statistiques de visite pour améliorer ces pages. Vous pouvez changer d'avis à tout moment.",
     allow: "Autoriser",
     decline: "Refuser",
-    allowed: "Mesure autorisée",
     declined: "Mesure refusée",
     change: "Modifier",
     privacy: "Confidentialité",
@@ -77,11 +74,14 @@ function ChoiceButtons({
   onChoose: (value: FleetAnalyticsPreference) => void;
   balanced?: boolean;
 }) {
-  const balancedClass = `min-h-11 rounded-full border border-white/20 bg-white/[0.06] px-2.5 text-[0.8125rem] font-semibold text-white hover:bg-white/10 ${focusClass}`;
   const allow = (
     <button
       type="button"
-      className={balanced ? balancedClass : `rounded-full bg-brand px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
+      className={
+        balanced
+          ? `min-h-11 rounded-full bg-brand px-2.5 text-[0.8125rem] font-semibold text-white hover:bg-accent ${focusClass}`
+          : `rounded-full bg-brand px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`
+      }
       aria-pressed={preference === "allow"}
       onClick={() => onChoose("allow")}
     >
@@ -91,7 +91,11 @@ function ChoiceButtons({
   const decline = (
     <button
       type="button"
-      className={balanced ? balancedClass : `rounded-full border border-white/20 px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
+      className={
+        balanced
+          ? `min-h-11 rounded-full border border-white/20 px-2.5 text-[0.8125rem] font-semibold text-white hover:bg-white/10 ${focusClass}`
+          : `rounded-full border border-white/20 px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`
+      }
       aria-pressed={preference === "decline"}
       onClick={() => onChoose("decline")}
     >
@@ -116,7 +120,7 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
   const titleId = useId();
 
   useEffect(() => {
-    if (!returnFocus.current || preference === null || open) return;
+    if (!returnFocus.current || preference !== "decline" || open) return;
     returnFocus.current = false;
     changeRef.current?.focus();
   }, [open, preference]);
@@ -127,7 +131,9 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
     setOpen(false);
   }
 
-  if (preference !== null && !open) {
+  if (preference === "allow" && !open) return null;
+
+  if (preference === "decline" && !open) {
     return (
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-end px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <button
@@ -136,7 +142,7 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
           className={`pointer-events-auto rounded-full border border-white/15 bg-panel/95 px-3 py-1.5 text-xs text-muted shadow-none backdrop-blur ${focusClass}`}
           onClick={() => setOpen(true)}
         >
-          <span className="text-white">{preference === "allow" ? copy.allowed : copy.declined}</span>
+          <span className="text-white">{copy.declined}</span>
           {". "}
           {copy.change}
         </button>

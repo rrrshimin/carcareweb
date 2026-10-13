@@ -12,7 +12,7 @@ const focusClass =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 interface NoticeCopy {
-  region: string;
+  title: string;
   body: string;
   allow: string;
   decline: string;
@@ -22,30 +22,23 @@ interface NoticeCopy {
   privacy: string;
 }
 
+const english: NoticeCopy = {
+  title: "Help us improve CarCare Fleet.",
+  body: "With your permission, we'll use basic analytics to understand how these pages are used. You can change your choice anytime.",
+  allow: "Allow analytics",
+  decline: "Decline",
+  allowed: "Analytics allowed",
+  declined: "Analytics declined",
+  change: "Change",
+  privacy: "Privacy",
+};
+
 const COPY: Record<FleetLocaleId, NoticeCopy> = {
-  us: {
-    region: "Analytics choice",
-    body: "We count page views and store clicks on this page only if you allow it. This choice is saved in this browser.",
-    allow: "Allow",
-    decline: "Decline",
-    allowed: "Analytics allowed",
-    declined: "Analytics declined",
-    change: "Change",
-    privacy: "Privacy",
-  },
-  uk: {
-    region: "Analytics choice",
-    body: "We count page views and store clicks on this page only if you allow it. This choice is stored in this browser.",
-    allow: "Allow",
-    decline: "Decline",
-    allowed: "Analytics allowed",
-    declined: "Analytics declined",
-    change: "Change",
-    privacy: "Privacy",
-  },
+  us: english,
+  uk: english,
   fr: {
-    region: "Choix de mesure",
-    body: "Nous comptons les pages vues et les clics vers les boutiques sur cette page uniquement si vous l'autorisez. Ce choix est enregistré dans ce navigateur.",
+    title: "Aidez-nous à améliorer CarCare Fleet.",
+    body: "Avec votre accord, nous utiliserons des statistiques de visite pour améliorer ces pages. Vous pouvez changer d'avis à tout moment.",
     allow: "Autoriser",
     decline: "Refuser",
     allowed: "Mesure autorisée",
@@ -77,29 +70,39 @@ function ChoiceButtons({
   copy,
   preference,
   onChoose,
+  balanced = false,
 }: {
   copy: Pick<NoticeCopy, "allow" | "decline">;
   preference: FleetAnalyticsPreference | null;
   onChoose: (value: FleetAnalyticsPreference) => void;
+  balanced?: boolean;
 }) {
+  const balancedClass = `min-h-11 rounded-full border border-white/20 bg-white/[0.06] px-2.5 text-[0.8125rem] font-semibold text-white hover:bg-white/10 ${focusClass}`;
+  const allow = (
+    <button
+      type="button"
+      className={balanced ? balancedClass : `rounded-full bg-brand px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
+      aria-pressed={preference === "allow"}
+      onClick={() => onChoose("allow")}
+    >
+      {copy.allow}
+    </button>
+  );
+  const decline = (
+    <button
+      type="button"
+      className={balanced ? balancedClass : `rounded-full border border-white/20 px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
+      aria-pressed={preference === "decline"}
+      onClick={() => onChoose("decline")}
+    >
+      {copy.decline}
+    </button>
+  );
+
   return (
-    <div className="flex shrink-0 gap-2">
-      <button
-        type="button"
-        className={`rounded-full bg-brand px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
-        aria-pressed={preference === "allow"}
-        onClick={() => onChoose("allow")}
-      >
-        {copy.allow}
-      </button>
-      <button
-        type="button"
-        className={`rounded-full border border-white/20 px-3 py-1.5 text-sm font-semibold text-white ${focusClass}`}
-        aria-pressed={preference === "decline"}
-        onClick={() => onChoose("decline")}
-      >
-        {copy.decline}
-      </button>
+    <div className={balanced ? "grid w-full shrink-0 grid-cols-2 gap-2 md:w-[18.75rem]" : "flex shrink-0 gap-2"}>
+      {balanced ? decline : allow}
+      {balanced ? allow : decline}
     </div>
   );
 }
@@ -145,16 +148,22 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <section
         aria-labelledby={titleId}
-        className="pointer-events-auto flex w-full max-w-[680px] flex-col gap-3 rounded-2xl border border-white/10 bg-panel/95 p-3 backdrop-blur sm:flex-row sm:items-center sm:p-3.5"
+        className="pointer-events-auto w-full max-w-[40rem] rounded-2xl border border-white/10 bg-panel/95 p-3 backdrop-blur md:p-3.5"
       >
-        <p id={titleId} className="min-w-0 text-sm leading-snug text-muted">
-          <span className="sr-only">{copy.region}. </span>
-          {copy.body}{" "}
-          <Link to="/privacy#fleet-measurement" className={`text-white underline ${focusClass}`}>
-            {copy.privacy}
-          </Link>
-        </p>
-        <ChoiceButtons copy={copy} preference={preference} onChoose={choose} />
+        <div className="flex flex-col gap-3 md:flex-row md:items-center">
+          <div className="min-w-0">
+            <p id={titleId} className="text-sm font-semibold leading-snug tracking-[-0.01em] text-white">
+              {copy.title}
+            </p>
+            <p className="mt-1 text-[0.8125rem] leading-snug text-muted">
+              {copy.body}{" "}
+              <Link to="/privacy#fleet-measurement" className={`text-white underline decoration-white/40 underline-offset-2 ${focusClass}`}>
+                {copy.privacy}
+              </Link>
+            </p>
+          </div>
+          <ChoiceButtons balanced copy={copy} preference={preference} onChoose={choose} />
+        </div>
       </section>
     </div>
   );

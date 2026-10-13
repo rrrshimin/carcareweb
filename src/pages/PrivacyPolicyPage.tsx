@@ -14,7 +14,12 @@ export default function PrivacyPolicyPage() {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView();
   }, []);
 
   return (
@@ -91,6 +96,10 @@ export default function PrivacyPolicyPage() {
                 <p>
                   This Privacy Policy applies to information processed by us in connection with your
                   use of the Services, including when you:
+                </p>
+                <p>
+                  It also describes business-contact processing for CarCare Fleet outreach. That
+                  activity is separate from the app and is explained in Business outreach below.
                 </p>
                 <BulletList
                   items={[
@@ -500,7 +509,7 @@ export default function PrivacyPolicyPage() {
                   <p>
                     Email:{" "}
                     <a
-                      href="mailto:hello@carcarediary.com"
+                      href="mailto:hello@thesorami.com"
                       className="underline"
                       style={{ color: "#367DFF" }}
                     >
@@ -519,6 +528,107 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
               </Section>
+
+              <Section id="business-outreach" number="16" title="Business outreach">
+                <p>
+                  Sorami, LLC uses business contact information to introduce CarCare Fleet to
+                  companies that may have a relevant use for it. This section does not change how
+                  the CarCare Diary app or the Fleet marketing pages handle information.
+                </p>
+                <div
+                  className="rounded-md border p-6"
+                  style={{ backgroundColor: "#141A2B", borderColor: "#1F2740" }}
+                >
+                  <p className="font-semibold text-white mb-2">Sorami, LLC</p>
+                  <p>131 Continental Dr, Suite 305, Newark, DE 19713, USA</p>
+                  <p>Phone: +1 662-200-4428</p>
+                  <p>
+                    Privacy contact:{" "}
+                    <a href="mailto:hello@thesorami.com" className="underline" style={{ color: "#367DFF" }}>
+                      hello@thesorami.com
+                    </a>
+                  </p>
+                </div>
+                <SubSection title="Business contact information">
+                  <p>For this outreach we may process:</p>
+                  <BulletList
+                    items={[
+                      "name;",
+                      "work email address;",
+                      "job title;",
+                      "company name; and",
+                      "public business information that is relevant to the introduction, such as the company website and a short description of work the company publishes.",
+                    ]}
+                  />
+                </SubSection>
+                <SubSection title="Sources">
+                  <p>
+                    We collect this information from public company websites and from
+                    business-contact discovery providers. Hunter is the provider used to find
+                    companies and work email addresses.
+                  </p>
+                </SubSection>
+                <SubSection title="Purpose">
+                  <p>
+                    We use the information to decide whether a business is a relevant audience for
+                    CarCare Fleet and to send a limited introduction. The current outreach format is
+                    one introduction and, at most, one follow-up. Each message is intended to
+                    include an unsubscribe link.
+                  </p>
+                </SubSection>
+                <SubSection title="Lawful basis">
+                  <p>
+                    Where a privacy law requires a lawful basis, legitimate interests is used for
+                    this outreach only where that basis is available and a documented balancing
+                    assessment supports it. This policy does not claim that legitimate interests
+                    applies in every country or to every message.
+                  </p>
+                </SubSection>
+                <SubSection title="Providers">
+                  <p>
+                    Hunter looks up company and work-email information and is the service used to
+                    send the introductions. The sending mailbox is a Google Workspace mailbox
+                    on carcarefleet.com, connected to Hunter. Contact records, research notes, message
+                    drafts, and suppression records are stored in Supabase. OpenAI drafts an
+                    introduction from the contact&apos;s first name, the company name, and excerpts
+                    from the company&apos;s public pages. That drafting request does not include the
+                    work email address.
+                  </p>
+                  <p>
+                    These providers may process the information in the United States and in other
+                    countries.
+                  </p>
+                </SubSection>
+                <SubSection title="Retention">
+                  <p>
+                    We keep business-contact and message records while they are needed for this
+                    outreach, including so that we do not contact the same business repeatedly. The
+                    current system does not delete these records on an automatic timetable.
+                  </p>
+                  <p>
+                    If you unsubscribe or object, we keep a limited suppression record so the
+                    request can be honored. That record is the email address or company domain, the
+                    reason, and the source of the request. It is not the message text and it is not
+                    a full contact profile. It stays until it is no longer needed to prevent further
+                    contact, unless an end date is recorded.
+                  </p>
+                </SubSection>
+                <SubSection title="Your choices">
+                  <p>
+                    Depending on where you are, you may have the right to access this information,
+                    ask for a correction, ask for deletion where that right applies, and object to
+                    direct marketing. After a valid objection we do not send further introductions,
+                    apart from keeping the suppression record needed to honor the objection.
+                  </p>
+                  <p>
+                    You can object by using the unsubscribe link in a message, or by emailing{" "}
+                    <a href="mailto:hello@thesorami.com" className="underline" style={{ color: "#367DFF" }}>
+                      hello@thesorami.com
+                    </a>
+                    .
+                  </p>
+                </SubSection>
+              </Section>
             </div>
           </div>
         </main>
@@ -532,14 +642,16 @@ export default function PrivacyPolicyPage() {
 function Section({
   number,
   title,
+  id,
   children,
 }: {
   number: string;
   title: string;
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4">
+    <section id={id} className={`space-y-4${id ? " scroll-mt-24" : ""}`}>
       <h2
         className="text-[20px] md:text-[24px] text-white"
         style={{ fontWeight: 700 }}

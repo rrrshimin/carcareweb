@@ -78,10 +78,11 @@ const UsedCarInspectionChecklistArticle = lazy(() => import("./pages/blog/UsedCa
 const HowToPrepareCarForRoadTripArticle = lazy(() => import("./pages/blog/HowToPrepareCarForRoadTripArticle"));
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) return;
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 

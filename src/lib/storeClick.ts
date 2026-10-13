@@ -1,22 +1,16 @@
-const UTM_KEYS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_term",
-  "utm_content",
-] as const;
+import { campaignUtms } from "./fleetMeasurement";
+import { captureFleetStoreClick } from "./fleetAnalytics";
 
 export type StorePlatform = "app_store" | "google_play";
 
 /** Page locale plus store platform. Includes campaign UTMs already on the URL. */
 export function trackStoreClick(locale: string, platform: StorePlatform) {
   try {
-    const params = new URLSearchParams(window.location.search);
-    const detail: Record<string, string> = { locale, platform };
-    for (const key of UTM_KEYS) {
-      const value = params.get(key);
-      if (value) detail[key] = value;
-    }
+    const detail: Record<string, string> = {
+      locale,
+      platform,
+      ...campaignUtms(window.location.search),
+    };
 
     const dataLayer = (
       window as Window & { dataLayer?: Array<Record<string, string>> }
@@ -26,6 +20,7 @@ export function trackStoreClick(locale: string, platform: StorePlatform) {
     }
 
     window.dispatchEvent(new CustomEvent("store_click", { detail }));
+    captureFleetStoreClick(locale, platform);
   } catch {
     // Measurement must never block the store navigation.
   }

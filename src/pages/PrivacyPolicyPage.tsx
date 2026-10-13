@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Logo } from "./landing/Logo";
 import { Link } from "react-router-dom";
 import { LandingFooter } from "./landing/LandingFooter";
+import { FleetAnalyticsChoice } from "../components/FleetAnalyticsNotice";
 import { usePageSeo } from "../lib/usePageSeo";
 
 export default function PrivacyPolicyPage() {
@@ -70,7 +71,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="text-[14px] mb-12" style={{ color: "#A3ACBF" }}>
-              Effective Date: 10 Mar 2026 &middot; Last Updated: 10 Mar 2026
+              Effective Date: 10 Mar 2026 &middot; Last Updated: 13 Oct 2026
             </p>
 
             <div className="space-y-10 text-[15px] md:text-[16px] leading-relaxed" style={{ color: "#C8CEDB" }}>
@@ -308,6 +309,47 @@ export default function PrivacyPolicyPage() {
                   use the Services to serve third-party behavioral advertising, and the app does not
                   include third-party advertising at this time.
                 </p>
+
+                <SubSection title="7.1 CarCare Fleet marketing pages">
+                  <p>
+                    On the public pages at /fleet-us, /fleet-uk, and /fleet-fr, page views and
+                    clicks on the App Store and Google Play links can be counted with PostHog.
+                    PostHog is hosted in the European Union. This measurement is limited to those
+                    three pages and starts only after you choose Allow.
+                  </p>
+                  <p>
+                    PostHog runs in cookieless mode. It does not set an analytics cookie, does not
+                    store an analytics identifier in the browser, does not record sessions or
+                    heatmaps, and does not autocapture clicks. We do not create person profiles and
+                    we do not send an identify call. When an event is sent, PostHog receives the IP
+                    address and User-Agent from the connection. PostHog can use that information to
+                    calculate a daily hash so repeat activity during the same day can be counted.
+                    The hash is not your name or account, and it is produced from connection data
+                    that can relate to a person. Cookieless mode does not replace your choice.
+                  </p>
+                  <p>
+                    A page-view event can include the page locale (United States, United Kingdom, or
+                    France). A store-click event can include that locale and the store link used,
+                    App Store or Google Play. Either event can include campaign parameters already
+                    present on the page address: utm_source, utm_medium, utm_campaign, utm_term, and
+                    utm_content. Names, email addresses, and other query parameters are removed
+                    before the event is sent. The QR code on these pages opens the same page,
+                    including the current query string. It is not a separate tracking link.
+                  </p>
+                  <p>
+                    Allow and Decline are saved in this browser as one preference. That value
+                    records the privacy choice only. It is not sent as an analytics identifier.
+                    Until you allow measurement, the analytics code is not loaded and no analytics
+                    request is made. If you decline, or if you withdraw an earlier Allow, later page
+                    views and store clicks on these pages are not sent. You can change the choice in
+                    the box below or on the Fleet pages. You can also email{" "}
+                    <a href="mailto:hello@thesorami.com" className="underline" style={{ color: "#367DFF" }}>
+                      hello@thesorami.com
+                    </a>
+                    . PostHog&apos;s privacy information is at posthog.com/privacy.
+                  </p>
+                  <FleetAnalyticsChoice />
+                </SubSection>
               </Section>
 
               <Section number="8" title="Data Retention">

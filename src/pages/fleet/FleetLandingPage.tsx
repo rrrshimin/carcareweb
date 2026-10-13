@@ -19,6 +19,12 @@ import { LandingFooter } from "../landing/LandingFooter";
 import { Logo } from "../landing/Logo";
 import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
 import { usePageSeo } from "../../lib/usePageSeo";
+import { FleetAnalyticsNotice } from "../../components/FleetAnalyticsNotice";
+import { captureFleetPageview } from "../../lib/fleetAnalytics";
+import {
+  FLEET_ANALYTICS_PREFERENCE_EVENT,
+  readFleetAnalyticsPreference,
+} from "../../lib/fleetAnalyticsPreference";
 import { trackStoreClick, type StorePlatform } from "../../lib/storeClick";
 import { FleetQrCode, PhoneHandoffButton, PhoneHandoffStrip } from "./FleetQr";
 import { loadFleetImages, type FleetImages } from "./fleetAssets";
@@ -97,6 +103,26 @@ export default function FleetLandingPage({ locale }: FleetLandingPageProps) {
   }, []);
 
   useEffect(() => {
+    let sent = false;
+    const send = () => {
+      if (readFleetAnalyticsPreference() !== "allow") {
+        sent = false;
+        return;
+      }
+      if (sent) return;
+      sent = true;
+      captureFleetPageview(copy.path);
+    };
+    send();
+    window.addEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, send);
+    window.addEventListener("storage", send);
+    return () => {
+      window.removeEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, send);
+      window.removeEventListener("storage", send);
+    };
+  }, [copy.path]);
+
+  useEffect(() => {
     let active = true;
     setImages(null);
     loadFleetImages(locale).then(
@@ -132,6 +158,7 @@ export default function FleetLandingPage({ locale }: FleetLandingPageProps) {
         <div lang="en">
           <LandingFooter />
         </div>
+        <FleetAnalyticsNotice locale={locale} />
       </div>
     </div>
   );
@@ -160,7 +187,7 @@ function FleetHeader({
   );
 }
 
-function StorePair({ copy, header = false }: { copy: FleetCopy; header?: boolean }) {
+function StorePair({ copy, header = false, fill = false }: { copy: FleetCopy; header?: boolean; fill?: boolean }) {
   const onStore = (platform: StorePlatform) => () => {
     trackStoreClick(copy.htmlLang, platform);
   };
@@ -169,6 +196,7 @@ function StorePair({ copy, header = false }: { copy: FleetCopy; header?: boolean
     <>
       <AppStoreButton
         header={header}
+        fill={fill}
         kicker={copy.appStoreKicker}
         storeName={copy.appStoreName}
         ariaLabel={copy.appStoreAria}
@@ -176,6 +204,7 @@ function StorePair({ copy, header = false }: { copy: FleetCopy; header?: boolean
       />
       <GooglePlayButton
         header={header}
+        fill={fill}
         kicker={copy.playKicker}
         storeName={copy.playName}
         ariaLabel={copy.playAria}
@@ -197,15 +226,15 @@ function Hero({ copy, images }: { copy: FleetCopy; images: FleetImages | null })
         className="pointer-events-none absolute right-10 top-48 h-[220px] w-[220px] rounded-full bg-accent/25 blur-[80px]"
       />
       <div className="relative mx-auto max-w-[1120px] py-8 sm:py-12 lg:py-16">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-10 lg:gap-14">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10 lg:gap-14">
           <div className="min-w-0 shrink-0 md:w-[42%] lg:w-[38%]">
-            <h1 className="max-w-[16ch] text-[2.05rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-[3.35rem]">
+            <h1 className="text-[2.65rem] font-semibold leading-[1.02] tracking-[-0.04em] min-[390px]:text-[2.85rem] sm:text-5xl sm:leading-[1.05] lg:text-[3.35rem]">
               {copy.h1}
             </h1>
             <p className="mt-5 max-w-[42ch] text-base leading-relaxed text-muted md:text-lg">{copy.hero}</p>
             <p className="mt-6 text-sm font-semibold text-white lg:mt-8">{copy.cta}</p>
-            <div className="mt-3 flex flex-col items-start gap-3 sm:flex-row">
-              <StorePair copy={copy} />
+            <div className="mt-3 flex w-full gap-2.5 md:w-auto">
+              <StorePair copy={copy} fill />
             </div>
           </div>
 
@@ -232,13 +261,23 @@ function HeroStage({
   ];
 
   return (
-    <div className="flex gap-3 sm:gap-4">
-      {phones.map((phone, i) => (
-        <div key={i} className="w-[180px] shrink-0 sm:w-[200px] lg:w-[220px]">
-          <PhoneFrame src={phone.src} alt={phone.alt} priority={phone.priority} />
+    <>
+      <div className="relative mx-auto w-full md:hidden">
+        <div className="w-[72%]">
+          <PhoneFrame src={images?.fleet} alt={copy.heroAlt} priority />
         </div>
-      ))}
-    </div>
+        <div className="relative z-10 -mt-[118%] ml-auto w-[78%]">
+          <PhoneFrame src={images?.vehicle} alt={copy.vehicleAlt} />
+        </div>
+      </div>
+      <div className="hidden gap-3 sm:gap-4 md:flex">
+        {phones.map((phone, i) => (
+          <div key={i} className="w-[180px] shrink-0 sm:w-[200px] lg:w-[220px]">
+            <PhoneFrame src={phone.src} alt={phone.alt} priority={phone.priority} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -493,8 +532,8 @@ function FinalCta({ copy }: { copy: FleetCopy }) {
       </h2>
       <p className="mt-6 text-sm font-semibold text-white">{copy.cta}</p>
       <div className="mt-3 flex flex-col items-start gap-5 lg:flex-row lg:flex-wrap lg:items-center">
-        <div className="flex flex-col items-start gap-3 sm:flex-row">
-          <StorePair copy={copy} />
+        <div className="flex w-full gap-2.5 md:w-auto">
+          <StorePair copy={copy} fill />
         </div>
         <div className="hidden items-center gap-3 lg:flex">
           <FleetQrCode size={112} alt={copy.qrAlt} />

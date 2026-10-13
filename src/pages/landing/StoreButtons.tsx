@@ -10,6 +10,8 @@ interface StoreButtonProps {
   compact?: boolean;
   /** Single-row sticky header: icon and name, kicker only from 640px up. */
   header?: boolean;
+  /** Hero and closing row: side by side, together filling the content width on small screens. */
+  fill?: boolean;
   kicker?: string;
   storeName?: string;
   ariaLabel?: string;
@@ -23,6 +25,7 @@ export function AppStoreButton({
   className = "",
   compact = false,
   header = false,
+  fill = false,
   kicker = "Download on the",
   storeName = "App Store",
   ariaLabel = "Download CarCare Diary on the App Store",
@@ -38,6 +41,8 @@ export function AppStoreButton({
       className={`inline-flex items-center justify-center rounded-lg bg-white hover:bg-gray-100 transition-colors ${focusClass} ${
         header
           ? "min-h-11 gap-1 px-1.5 py-1 sm:gap-2 sm:px-2.5 sm:py-1.5"
+          : fill
+            ? "min-h-11 w-full min-w-0 flex-1 gap-2 px-2.5 py-2.5 md:w-auto md:flex-none md:gap-3 md:px-5 md:py-3"
           : compact
             ? "min-h-11 gap-2 px-2.5 py-1.5"
             : "gap-3 px-5 py-3"
@@ -83,6 +88,7 @@ export function GooglePlayButton({
   className = "",
   compact = false,
   header = false,
+  fill = false,
   kicker = "GET IT ON",
   storeName = "Google Play",
   ariaLabel = "Get CarCare Diary on Google Play",
@@ -98,6 +104,8 @@ export function GooglePlayButton({
       className={`inline-flex items-center justify-center rounded-lg bg-white hover:bg-gray-100 transition-colors ${focusClass} ${
         header
           ? "min-h-11 gap-1 px-1.5 py-1 sm:gap-2 sm:px-2.5 sm:py-1.5"
+          : fill
+            ? "min-h-11 w-full min-w-0 flex-1 gap-2 px-2.5 py-2.5 md:w-auto md:flex-none md:gap-3 md:px-5 md:py-3"
           : compact
             ? "min-h-11 gap-2 px-2.5 py-1.5"
             : "gap-3 px-5 py-3"

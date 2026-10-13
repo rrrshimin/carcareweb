@@ -55,7 +55,8 @@ const nested = prepareMeasurementEvent({
   properties: {
     $current_url: "https://www.carcarediary.com/fleet-us?utm_source=audit&email=person@example.com",
     $search: "?utm_source=audit&email=person@example.com",
-    $raw_user_agent: "Mozilla/5.0",
+    $host: "www.carcarediary.com",
+    $raw_user_agent: "CarCareFleetDiagnostic/1.0",
     $initial_referrer_info: {
       referrer: "https://mail.example/view?user=person@example.com&utm_medium=email",
     },
@@ -63,7 +64,10 @@ const nested = prepareMeasurementEvent({
   },
 });
 const nestedProps = nested?.properties ?? {};
-if ("$raw_user_agent" in nestedProps || "$search" in nestedProps || "$initial_referrer_info" in nestedProps) {
+if (nestedProps.$host !== "www.carcarediary.com" || nestedProps.$raw_user_agent !== "CarCareFleetDiagnostic/1.0") {
+  throw new Error(`cookieless hash properties were removed: ${JSON.stringify(nestedProps)}`);
+}
+if ("$search" in nestedProps || "$initial_referrer_info" in nestedProps) {
   throw new Error(`automatic property was kept: ${JSON.stringify(nestedProps)}`);
 }
 if (String(nestedProps.$current_url).includes("email")) throw new Error("current url leaked email");
@@ -75,6 +79,8 @@ const automatic = prepareMeasurementEvent({
     distinct_id: "$posthog_cookieless",
     $browser: "Chrome",
     $os: "Windows",
+    $host: "https://www.carcarediary.com/fleet-us",
+    $raw_user_agent: "person@example.com",
     $screen_width: 800,
     gclid: "click-id-123",
     fbclid: "social-id",
@@ -88,6 +94,9 @@ if (automaticProps.token !== "phc_test") throw new Error("project token was remo
 if (automaticProps.distinct_id !== "$posthog_cookieless") throw new Error("cookieless id was removed");
 if ("gclid" in automaticProps || "fbclid" in automaticProps || "$browser" in automaticProps || "$os" in automaticProps) {
   throw new Error(`device or click id leaked: ${JSON.stringify(automaticProps)}`);
+}
+if ("$host" in automaticProps || "$raw_user_agent" in automaticProps) {
+  throw new Error(`unsafe cookieless property was kept: ${JSON.stringify(automaticProps)}`);
 }
 if (String(automaticProps.$current_url).includes("gclid") || String(automaticProps.$current_url).includes("email")) {
   throw new Error(`current url kept a non-campaign parameter: ${automaticProps.$current_url}`);

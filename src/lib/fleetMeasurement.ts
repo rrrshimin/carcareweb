@@ -94,12 +94,29 @@ const KEPT_PROPERTIES = new Set([
   "$process_person_profile",
   "$cookieless_mode",
   "$is_identified",
+  // Required to hash a cookieless identity. Capture backfills $ip from the
+  // connection and deletes both $ip and $raw_user_agent before storage.
+  // $host is the site hostname; the capture request host cannot replace it.
+  "$host",
+  "$raw_user_agent",
 ]);
 
 const COOKIELESS_DISTINCT_ID = "$posthog_cookieless";
 
+function cookielessProperty(key: string, value: unknown): unknown {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  if (!trimmed || isPersonal(trimmed)) return undefined;
+  if (key === "$host") {
+    if (trimmed.length > 253 || !/^[a-z0-9.-]+(?::\d{1,5})?$/i.test(trimmed)) return undefined;
+    return trimmed;
+  }
+  return trimmed.length > 1000 ? `${trimmed.slice(0, 997)}...` : trimmed;
+}
+
 function sanitizeProperty(key: string, value: unknown): unknown {
   if (!KEPT_PROPERTIES.has(key)) return undefined;
+  if (key === "$host" || key === "$raw_user_agent") return cookielessProperty(key, value);
   if (key === "distinct_id" && value !== COOKIELESS_DISTINCT_ID) return undefined;
   if (typeof value === "string") {
     const keyLooksLikeAddress = /url|referrer|href|search/i.test(key);

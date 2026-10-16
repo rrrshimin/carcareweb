@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LandingFooter } from "./landing/LandingFooter";
 import { FleetAnalyticsChoice } from "../components/FleetAnalyticsNotice";
 import { usePageSeo } from "../lib/usePageSeo";
+import { companiesHouseDisclosure } from "../content/companiesHouseDisclosure";
 
 export default function PrivacyPolicyPage() {
   usePageSeo({
@@ -76,7 +77,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="text-[14px] mb-12" style={{ color: "#A3ACBF" }}>
-              Effective Date: 10 Mar 2026 &middot; Last Updated: 13 Oct 2026
+              Effective Date: 10 Mar 2026 &middot; Last Updated: 16 Oct 2026
             </p>
 
             <div className="space-y-10 text-[15px] md:text-[16px] leading-relaxed" style={{ color: "#C8CEDB" }}>
@@ -567,6 +568,7 @@ export default function PrivacyPolicyPage() {
                     business-contact discovery providers. Hunter is the provider used to find
                     companies and work email addresses.
                   </p>
+                  <p>{companiesHouseDisclosure}</p>
                 </SubSection>
                 <SubSection title="Purpose">
                   <p>

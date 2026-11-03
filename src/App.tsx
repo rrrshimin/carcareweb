@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import { MobileAppBanner } from "./components/MobileAppBanner";
@@ -694,6 +695,7 @@ function App() {
           }
         />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }

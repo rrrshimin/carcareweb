@@ -24,3 +24,16 @@
     display: none;
   }
 }
+
+/* MobileAppBanner is fixed at the top (mobile only): shift the fixed site header, its open menu and the page below it. */
+@media (max-width: 767px) {
+  html[data-app-banner] body {
+    padding-top: var(--app-banner-h);
+  }
+  html[data-app-banner] header.fixed.top-0 {
+    top: var(--app-banner-h);
+  }
+  html[data-app-banner] div.fixed.inset-0.z-40 {
+    padding-top: var(--app-banner-h);
+  }
+}

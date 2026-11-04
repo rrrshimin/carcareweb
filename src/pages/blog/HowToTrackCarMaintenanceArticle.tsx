@@ -18,7 +18,6 @@ const ARTICLE_URL =
   "https://www.carcarediary.com/blog/how-to-track-car-maintenance";
 const ARTICLE_LEDE =
   "To track car maintenance: log every service with type, date, and mileage the moment it's done, keep all entries in one place, and review what's coming due before each appointment. Done consistently, those three habits produce a reliable maintenance record over the life of the car.";
-const CTA_TITLE = "Track car maintenance with the CarCare Diary app";
 
 const trackingFaqs = [
   {
@@ -148,14 +147,14 @@ export default function HowToTrackCarMaintenanceArticle() {
         title={ARTICLE_TITLE}
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyTrackingMatters />
+      <GuideDownloadCTA standalone />
       <WhatToTrack />
       <ASimpleSystem />
       <CommonMistakes />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

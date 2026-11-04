@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-does-my-car-smell-like-gas";
 const ARTICLE_LEDE =
   "A fuel smell from a car should be taken seriously. While brief, faint fuel smells after filling up or starting a cold engine can sometimes be normal, a persistent or strong fuel smell — particularly inside the cabin — is a safety concern. Fuel is flammable and a significant leak can pose a fire risk. If in doubt, stop driving and seek inspection.";
-const CTA_TITLE = "After inspection or repair, log the issue, mileage, parts, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhyDoesMyCarSmellLikeGasArticle() {
         title="Why does my car smell like gas?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-6">
@@ -144,6 +142,8 @@ export default function WhyDoesMyCarSmellLikeGasArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What to check first</ArticleH2>
         <ul className="flex flex-col gap-2 mb-6">
@@ -202,7 +202,7 @@ export default function WhyDoesMyCarSmellLikeGasArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

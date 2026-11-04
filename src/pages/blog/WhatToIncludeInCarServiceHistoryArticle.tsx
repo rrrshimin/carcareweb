@@ -18,7 +18,6 @@ const ARTICLE_URL =
   "https://www.carcarediary.com/blog/what-to-include-in-a-car-service-history";
 const ARTICLE_LEDE =
   "Every car service record should include service type, date, mileage, parts replaced, fluids used, notes from the mechanic, who carried out the work, and any follow-up flagged. Below is each field in detail, with examples, plus the ones that most often get left out.";
-const CTA_TITLE = "Keep a complete car service history with CarCare Diary";
 
 const serviceHistoryFaqs = [
   {
@@ -107,14 +106,14 @@ export default function WhatToIncludeInCarServiceHistoryArticle() {
         title={ARTICLE_TITLE}
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyItMatters />
+      <GuideDownloadCTA standalone />
       <EssentialFields />
       <ExampleEntries />
       <WhatPeopleForget />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

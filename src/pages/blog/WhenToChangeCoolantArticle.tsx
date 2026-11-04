@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-coolant";
 const ARTICLE_LEDE =
   "Coolant (antifreeze) protects your engine from overheating, freezing, and internal corrosion. Intervals vary considerably by vehicle and coolant type — older schedules used shorter intervals, while many modern long-life coolants last much longer. Your owner's manual is the only reliable source for your vehicle's specific schedule.";
-const CTA_TITLE = "Log coolant changes and service notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -103,7 +102,6 @@ export default function WhenToChangeCoolantArticle() {
         title="When should you change coolant?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -115,6 +113,8 @@ export default function WhenToChangeCoolantArticle() {
           Check your owner's manual — coolant type and vehicle age both affect
           the correct interval.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What coolant does and why it needs replacing</ArticleH2>
         <ArticleP>
@@ -271,7 +271,7 @@ export default function WhenToChangeCoolantArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

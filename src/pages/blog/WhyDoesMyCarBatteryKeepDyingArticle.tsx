@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-does-my-car-battery-keep-dying";
 const ARTICLE_LEDE =
   "A battery that dies once might just be an old battery. A battery that keeps dying after being charged or jumped points to something else — a charging system fault, a parasitic drain, or a pattern of short trips that never gives the battery a chance to fully recharge. Working through the common causes systematically saves time and avoids repeatedly replacing a battery that is not actually the problem.";
-const CTA_TITLE = "Track battery replacements, jump starts, charging system repairs, mileage, and notes in CarCare Diary";
 
 const causes = [
   {
@@ -125,7 +124,6 @@ export default function WhyDoesMyCarBatteryKeepDyingArticle() {
         title="Why does my car battery keep dying?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -148,6 +146,8 @@ export default function WhyDoesMyCarBatteryKeepDyingArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What to check first</ArticleH2>
         <ul className="flex flex-col gap-2 mb-6">
@@ -207,7 +207,7 @@ export default function WhyDoesMyCarBatteryKeepDyingArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

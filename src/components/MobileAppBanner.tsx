@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import logoSrc from "../assets/logo.png";
@@ -44,6 +44,8 @@ export function MobileAppBanner() {
   const { pathname } = useLocation();
   const [platform, setPlatform] = useState<Platform>(null);
   const [show, setShow] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const visible = !FLEET_LOCALE_PATHS.has(pathname) && show && !!platform;
 
   useEffect(() => {
     const detected = detectPlatform();
@@ -65,7 +67,24 @@ export function MobileAppBanner() {
     setShow(true);
   }, []);
 
-  if (FLEET_LOCALE_PATHS.has(pathname) || !show || !platform) return null;
+  // The banner is fixed at the top, so push the fixed site header and page down by its height (see index.css).
+  useEffect(() => {
+    const el = bannerRef.current;
+    if (!visible || !el) return;
+    const root = document.documentElement;
+    const update = () => root.style.setProperty("--app-banner-h", `${el.offsetHeight}px`);
+    update();
+    root.setAttribute("data-app-banner", "");
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.removeAttribute("data-app-banner");
+      root.style.removeProperty("--app-banner-h");
+    };
+  }, [visible]);
+
+  if (!visible || !platform) return null;
 
   const storeUrl = platform === "ios" ? APP_STORE_URL : PLAY_URL;
   const storeLabel = platform === "ios" ? "App Store" : "Google Play";
@@ -81,6 +100,7 @@ export function MobileAppBanner() {
 
   return (
     <div
+      ref={bannerRef}
       className="fixed inset-x-0 top-0 z-[100] border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 md:hidden"
       role="complementary"
       aria-label="Get the CarCare Diary app"

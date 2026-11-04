@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-windshield-wipers";
 const ARTICLE_LEDE =
   "Wiper blades are one of the simpler maintenance items on a car, but they are directly tied to visibility and safety. Many drivers replace wiper blades every 6–12 months, but sun exposure, ice, dirt, and blade quality can cause them to wear out sooner. The clearest indicator is how well they perform — not just the calendar.";
-const CTA_TITLE = "Log wiper blade replacements and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceWindshieldWipersArticle() {
         title="When should you replace windshield wipers?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -103,6 +101,8 @@ export default function WhenToReplaceWindshieldWipersArticle() {
           indicator is performance — if blades are streaking, skipping, or
           leaving missed areas, replace them regardless of age.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Typical wiper blade replacement interval</ArticleH2>
         <ArticleP>
@@ -222,7 +222,7 @@ export default function WhenToReplaceWindshieldWipersArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

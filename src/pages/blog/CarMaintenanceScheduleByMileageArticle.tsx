@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "6 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/car-maintenance-schedule-by-mileage";
 const ARTICLE_LEDE =
   "Staying on top of car maintenance is easier when you know which tasks fall into which mileage range. This reference covers the most common services — from every 5,000–7,500 km oil changes to 100,000+ km items like timing belts and spark plugs. Exact intervals vary by vehicle, engine, fluid type, and manufacturer. Use this as a starting point; your owner's manual is the definitive source for your car.";
-const CTA_TITLE = "CarCare Diary helps you log maintenance by date and mileage, see what is due next, and keep a clean service history for every vehicle";
 
 const mileageSchedule = [
   {
@@ -131,7 +130,6 @@ export default function CarMaintenanceScheduleByMileageArticle() {
   return (
     <ArticleLayout title={ARTICLE_TITLE}>
       <ArticleHero category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} title="Car maintenance schedule by mileage" lede={ARTICLE_LEDE} />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -146,6 +144,8 @@ export default function CarMaintenanceScheduleByMileageArticle() {
           depending on the vehicle. Your owner's manual specifies the correct
           intervals for your engine.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>How to use this mileage schedule</ArticleH2>
         <ArticleP>
@@ -273,7 +273,7 @@ export default function CarMaintenanceScheduleByMileageArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

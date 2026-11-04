@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-rotate-tires";
 const ARTICLE_LEDE =
   "Tyre rotation moves tyres between positions to even out wear. Front tyres on front-wheel-drive vehicles carry the steering and braking load and typically wear significantly faster than the rears — rotation is what keeps all four wearing at a similar rate. Most manufacturers recommend every 8,000–12,000 km (5,000–7,500 miles), but the correct interval and rotation pattern depend on your drivetrain and manufacturer recommendation.";
-const CTA_TITLE = "Track tire rotations with mileage reminders in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -103,7 +102,6 @@ export default function WhenToRotateTiresArticle() {
         title="When should you rotate your tires?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -113,6 +111,8 @@ export default function WhenToRotateTiresArticle() {
           manual for the correct interval and rotation pattern for your
           specific vehicle and tire type.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Why tire rotation matters</ArticleH2>
         <ArticleP>
@@ -321,7 +321,7 @@ export default function WhenToRotateTiresArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <TireFAQ />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "7 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/used-car-inspection-checklist";
 const ARTICLE_LEDE =
   "Buying a used car involves a lot of trust. The car may look clean and drive well on a short test drive while hiding deferred maintenance, past damage, or mechanical problems that only become apparent later. A systematic inspection — covering the exterior, interior, under the bonnet, underneath the car, and a proper test drive — significantly reduces the chance of an expensive surprise.";
-const CTA_TITLE = "Ask the seller for their CarCare Diary service history — or start tracking yours today";
 
 const exteriorChecks = [
   { label: "Panel gaps and alignment", note: "Uneven or inconsistent gaps between panels (door, bonnet, bumper) suggest accident damage and repair. Run your hand along panel edges to feel for filler." },
@@ -133,7 +132,6 @@ export default function UsedCarInspectionChecklistArticle() {
         title="Used car inspection checklist"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -144,6 +142,8 @@ export default function UsedCarInspectionChecklistArticle() {
           history</strong>. A pre-purchase inspection by an independent
           mechanic is strongly recommended for any significant purchase.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <div className="rounded-xl border border-accent/20 bg-accent/5 px-5 py-4 mb-8">
           <p className="text-sm font-semibold text-accent mb-1.5">Ask for the service history first</p>
@@ -211,7 +211,7 @@ export default function UsedCarInspectionChecklistArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

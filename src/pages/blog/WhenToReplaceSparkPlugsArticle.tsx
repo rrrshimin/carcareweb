@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-spark-plugs";
 const ARTICLE_LEDE =
   "Spark plug replacement intervals depend almost entirely on plug type. Copper plugs typically require changing around every 30,000–50,000 km; many modern iridium and platinum plugs are rated for 100,000 km or more. Running worn plugs causes misfires, rough idle, harder cold starts, and reduced fuel efficiency. Check your owner's manual for the correct interval and plug specification — not a generic figure.";
-const CTA_TITLE = "Track spark plug replacements, part type, and mileage in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -88,7 +87,6 @@ export default function WhenToReplaceSparkPlugsArticle() {
   return (
     <ArticleLayout title={ARTICLE_TITLE}>
       <ArticleHero category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} title="When should you replace spark plugs?" lede={ARTICLE_LEDE} />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -100,6 +98,8 @@ export default function WhenToReplaceSparkPlugsArticle() {
           your owner's manual for the plug type and interval specified for your
           engine.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Typical spark plug intervals by plug type</ArticleH2>
         <ArticleP>
@@ -204,7 +204,7 @@ export default function WhenToReplaceSparkPlugsArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

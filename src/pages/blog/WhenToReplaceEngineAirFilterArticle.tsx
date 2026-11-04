@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-engine-air-filter";
 const ARTICLE_LEDE =
   "The engine air filter prevents dust, dirt, and debris from entering the engine's intake system. Most manufacturer schedules point to replacement around every 12,000–15,000 miles under normal driving conditions, but driving on dusty roads, in heavy traffic, or in areas with high pollution can require replacement sooner. A visual inspection is the most reliable indicator.";
-const CTA_TITLE = "Track air filter replacements by mileage and date in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -103,7 +102,6 @@ export default function WhenToReplaceEngineAirFilterArticle() {
         title="When should you replace your engine air filter?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -113,6 +111,8 @@ export default function WhenToReplaceEngineAirFilterArticle() {
           Inspect the filter at each oil change — visual condition is more
           reliable than mileage alone.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What the engine air filter does</ArticleH2>
         <ArticleP>
@@ -272,7 +272,7 @@ export default function WhenToReplaceEngineAirFilterArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

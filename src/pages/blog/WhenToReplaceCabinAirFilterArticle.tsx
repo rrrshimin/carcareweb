@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-cabin-air-filter";
 const ARTICLE_LEDE =
   "The cabin air filter cleans the air that enters your vehicle through the heating, ventilation, and air conditioning system. Most vehicles benefit from replacement about once a year or every 12,000–15,000 miles, but high pollen areas, dusty roads, urban pollution, or driving near wildfires can require earlier replacement.";
-const CTA_TITLE = "Track cabin air filter changes by date and mileage in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -103,7 +102,6 @@ export default function WhenToReplaceCabinAirFilterArticle() {
         title="When should you replace your cabin air filter?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -113,6 +111,8 @@ export default function WhenToReplaceCabinAirFilterArticle() {
           urban pollution require earlier replacement. Check your owner's
           manual for your vehicle's specific interval.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What the cabin air filter does</ArticleH2>
         <ArticleP>
@@ -260,7 +260,7 @@ export default function WhenToReplaceCabinAirFilterArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-tires";
 const ARTICLE_LEDE =
   "Tires should be replaced when tread depth is too low, damage is visible, age has become a concern, or traction and handling have noticeably deteriorated. There is no single mileage figure — tire life varies significantly by tire type, driving style, alignment, inflation, road conditions, and climate. Tires are a direct safety item: worn or damaged tires affect braking, handling, and aquaplaning resistance.";
-const CTA_TITLE = "Track tire replacements, rotations, pressure checks, and alignment notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceTiresArticle() {
         title="When should you replace tires?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -102,6 +100,8 @@ export default function WhenToReplaceTiresArticle() {
           <strong className="text-white">10 years old</strong> regardless of tread depth. Many safety experts recommend replacing at{" "}
           <strong className="text-white">3mm</strong> for better wet-weather safety margins.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to replace tires</ArticleH2>
         <ArticleP>
@@ -196,7 +196,7 @@ export default function WhenToReplaceTiresArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

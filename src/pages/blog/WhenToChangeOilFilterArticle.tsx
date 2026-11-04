@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-oil-filter";
 const ARTICLE_LEDE =
   "For most vehicles, the oil filter is changed at every engine oil change. The filter's purpose is to trap contaminants from the engine oil as it circulates — a saturated or bypassing filter circulates dirty oil rather than cleaning it. The correct change interval for your vehicle depends on the oil type, filter specification, and manufacturer's schedule.";
-const CTA_TITLE = "Track oil and filter changes by date, mileage, oil type, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToChangeOilFilterArticle() {
         title="When should you change your oil filter?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -103,6 +101,8 @@ export default function WhenToChangeOilFilterArticle() {
           The correct interval depends on the oil type, filter specification,
           and your manufacturer's schedule. Check your owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Oil filter and oil change interval</ArticleH2>
         <ArticleP>
@@ -216,7 +216,7 @@ export default function WhenToChangeOilFilterArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

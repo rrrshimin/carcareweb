@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-leaking-coolant";
 const ARTICLE_LEDE =
   "A coolant leak — whether a puddle under the car, a dropping coolant level, or a sweet smell — needs attention before it leads to overheating. Coolant leaks can come from a number of places in the cooling system, and some are simpler to fix than others. The most important thing is to not ignore a low coolant level or a temperature warning.";
-const CTA_TITLE = "Track coolant changes, leak symptoms, overheating notes, repairs, mileage, and fluid type in CarCare Diary";
 
 const leakSources = [
   {
@@ -129,7 +128,6 @@ export default function WhyIsMyCarLeakingCoolantArticle() {
         title="Why is my car leaking coolant?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-6">
@@ -168,6 +166,8 @@ export default function WhyIsMyCarLeakingCoolantArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Warning signs not to ignore</ArticleH2>
         <ul className="flex flex-col gap-2 mb-6">
@@ -245,7 +245,7 @@ export default function WhyIsMyCarLeakingCoolantArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

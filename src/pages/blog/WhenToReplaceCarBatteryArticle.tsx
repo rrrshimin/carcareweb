@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-car-battery";
 const ARTICLE_LEDE =
   "Most car batteries last 3–5 years, but heat, driving habits, and electrical load can shorten that significantly. Cold weather is when a weak battery is most likely to fail a start — but heat is what degrades it. Knowing your battery's age and watching for early warning signs lets you replace it on your own schedule rather than reacting to a failed start in a car park or on the roadside.";
-const CTA_TITLE = "Track battery replacement date, brand, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceCarBatteryArticle() {
         title="When should you replace a car battery?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -104,6 +102,8 @@ export default function WhenToReplaceCarBatteryArticle() {
           life. If your battery is over 3 years old and showing symptoms,
           having it tested is a good first step.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>How long does a car battery typically last</ArticleH2>
         <ArticleP>
@@ -230,7 +230,7 @@ export default function WhenToReplaceCarBatteryArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/what-does-check-engine-light-mean";
 const ARTICLE_LEDE =
   "The check engine light — the malfunction indicator lamp (MIL) — means the vehicle's onboard diagnostic system has logged a fault code. A solid light means investigate soon; a flashing light means stop driving when safe — it indicates an active misfire that can damage the catalytic converter. The light covers hundreds of possible faults, from a loose fuel cap to a failing oxygen sensor. Reading the fault code with an OBD scanner is the only way to know what triggered it.";
-const CTA_TITLE = "After inspection or repair, log the code, repair, mileage, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -104,7 +103,6 @@ export default function WhatDoesCheckEngineLightMeanArticle() {
         title="What does the check engine light mean?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -129,6 +127,8 @@ export default function WhatDoesCheckEngineLightMeanArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What to do first</ArticleH2>
         <ul className="flex flex-col gap-2 mb-6">
@@ -217,7 +217,7 @@ export default function WhatDoesCheckEngineLightMeanArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

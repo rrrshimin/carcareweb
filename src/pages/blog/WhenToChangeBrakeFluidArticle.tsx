@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-brake-fluid";
 const ARTICLE_LEDE =
   "Brake fluid is changed by time rather than mileage in most manufacturer schedules because it absorbs moisture from the air over time regardless of how much you drive. As moisture content rises, the fluid's boiling point drops — reducing braking performance under hard use. Most schedules point to every two years, but your owner's manual has the correct interval for your vehicle.";
-const CTA_TITLE = "Track brake fluid changes by date in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -103,7 +102,6 @@ export default function WhenToChangeBrakeFluidArticle() {
         title="When should you change brake fluid?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -113,6 +111,8 @@ export default function WhenToChangeBrakeFluidArticle() {
           manufacturers specify different intervals. Check your owner's manual
           for your vehicle's exact schedule.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Why brake fluid is changed by time, not mileage</ArticleH2>
         <ArticleP>
@@ -261,7 +261,7 @@ export default function WhenToChangeBrakeFluidArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

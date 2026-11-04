@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-power-steering-fluid";
 const ARTICLE_LEDE =
   "Power steering fluid service intervals vary widely between vehicles. Some manufacturers include a specific change interval; others only recommend inspection or service when symptoms or fluid condition suggest it. Before checking generic guidance, first confirm whether your vehicle uses hydraulic power steering — many newer vehicles use electric power steering and have no power steering fluid at all.";
-const CTA_TITLE = "Track power steering fluid checks and changes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToChangePowerSteeringFluidArticle() {
         title="When should you change power steering fluid?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -105,6 +103,8 @@ export default function WhenToChangePowerSteeringFluidArticle() {
           service when fluid appears degraded or symptoms suggest it. Check
           your owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Hydraulic vs electric power steering</ArticleH2>
         <ArticleP>
@@ -250,7 +250,7 @@ export default function WhenToChangePowerSteeringFluidArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -18,7 +18,6 @@ const ARTICLE_URL =
   "https://www.carcarediary.com/blog/car-maintenance-checklist";
 const ARTICLE_LEDE =
   "A car maintenance checklist covers engine oil, tires, brakes, fluids, battery, filters, lights, and wipers - each on its own interval. The full checklist is below, grouped by category with how often to check each item and what to log after every service.";
-const CTA_TITLE = "Stay on top of car maintenance with CarCare Diary";
 
 const checklistFaqs = [
   {
@@ -156,13 +155,13 @@ export default function CarMaintenanceChecklistArticle() {
         title={ARTICLE_TITLE}
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <TheChecklist />
+      <GuideDownloadCTA standalone />
       <HowOftenToReview />
       <WhatToLog />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

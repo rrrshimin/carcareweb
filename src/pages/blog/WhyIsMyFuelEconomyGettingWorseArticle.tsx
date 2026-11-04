@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-fuel-economy-getting-worse";
 const ARTICLE_LEDE =
   "Fuel economy that gets noticeably worse over time usually has a fixable cause. In many cases it comes down to deferred maintenance — low tyre pressure, a dirty air filter, worn spark plugs, or dragging brakes can each reduce efficiency. Weather, driving habits, and load also play a role. If the drop is sudden or severe, a fault in the engine or emissions system is worth investigating.";
-const CTA_TITLE = "Track maintenance by mileage and date so you can see what changed before fuel economy dropped";
 
 const maintenanceFactors = [
   {
@@ -136,7 +135,6 @@ export default function WhyIsMyFuelEconomyGettingWorseArticle() {
         title="Why is my fuel economy getting worse?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -166,6 +164,8 @@ export default function WhyIsMyFuelEconomyGettingWorseArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Other factors that affect fuel economy</ArticleH2>
         <div className="flex flex-col gap-3 mb-6">
@@ -239,7 +239,7 @@ export default function WhyIsMyFuelEconomyGettingWorseArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

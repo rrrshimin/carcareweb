@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-shaking";
 const ARTICLE_LEDE =
   "Car vibration or shaking can come from many different systems depending on when and how the shake occurs. The timing matters: vibration at high speed points to different causes than shaking when braking, at idle, or when accelerating. Identifying when the shake happens is the most useful first step before investigating further.";
-const CTA_TITLE = "Track symptoms, tire service, brake work, and repairs in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -129,7 +128,6 @@ export default function WhyIsMyCarShakingArticle() {
         title="Why is my car shaking?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -165,6 +163,8 @@ export default function WhyIsMyCarShakingArticle() {
             </div>
           </div>
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Common causes by situation</ArticleH2>
         {situations.map((s) => (
@@ -226,7 +226,7 @@ export default function WhyIsMyCarShakingArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

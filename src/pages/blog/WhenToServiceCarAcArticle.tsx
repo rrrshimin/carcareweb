@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-service-car-ac";
 const ARTICLE_LEDE =
   "Car AC service is typically needed when cooling performance has noticeably dropped, smells appear, airflow is weak, or noises start from the system. Some owners also have the system inspected before the hot season as a precaution. Before assuming the AC system needs a regas or major work, checking the cabin air filter first is worth doing — a blocked filter significantly reduces airflow at a much lower cost.";
-const CTA_TITLE = "Track AC checks, cabin filter changes, and service notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToServiceCarAcArticle() {
         title="When should you service your car AC?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -105,6 +103,8 @@ export default function WhenToServiceCarAcArticle() {
           <strong className="text-white">cabin air filter</strong> — a blocked
           filter is a very common and cheap cause of poor airflow.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Check the cabin air filter first</ArticleH2>
         <ArticleP>
@@ -207,7 +207,7 @@ export default function WhenToServiceCarAcArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

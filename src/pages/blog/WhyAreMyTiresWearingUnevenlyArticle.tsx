@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-are-my-tires-wearing-unevenly";
 const ARTICLE_LEDE =
   "Uneven tire wear is one of those problems that tends to get worse the longer it goes unaddressed. A tire wearing faster on one edge, developing a scalloped surface, or showing significantly more wear on one side than another is telling you something about alignment, pressure, suspension, or rotation history. Catching it early saves tires — and sometimes identifies a safety concern.";
-const CTA_TITLE = "Track tire rotations, pressure checks, alignments, tire replacements, and notes in CarCare Diary";
 
 const wearPatterns = [
   {
@@ -132,7 +131,6 @@ export default function WhyAreMyTiresWearingUnevenlyArticle() {
         title="Why are my tires wearing unevenly?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -164,6 +162,8 @@ export default function WhyAreMyTiresWearingUnevenlyArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to stop driving</ArticleH2>
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-6">
@@ -244,7 +244,7 @@ export default function WhyAreMyTiresWearingUnevenlyArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

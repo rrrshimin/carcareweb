@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "6 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/how-to-prepare-car-for-road-trip";
 const ARTICLE_LEDE =
   "A pre-trip check takes less than 30 minutes and can prevent the kind of breakdown that turns a good trip into an expensive, stressful one. Most road trip vehicle problems — flat tyres, overheating, dead battery, failing wipers in heavy rain — come from components that were already marginal before the journey started. This guide covers what to check, when to do it, and what to have with you.";
-const CTA_TITLE = "Log your pre-trip service check in CarCare Diary before you leave";
 
 type CheckItem = { label: string; note: string; link?: { to: string; label: string } };
 
@@ -134,7 +133,6 @@ export default function HowToPrepareCarForRoadTripArticle() {
         title="How to prepare your car for a road trip"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -145,6 +143,8 @@ export default function HowToPrepareCarForRoadTripArticle() {
           anything due or marginal before departure rather than after
           your return. The whole check takes under 30 minutes.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>How far in advance to check</ArticleH2>
         <ArticleP>
@@ -192,7 +192,7 @@ export default function HowToPrepareCarForRoadTripArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

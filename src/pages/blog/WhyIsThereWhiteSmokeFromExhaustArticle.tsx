@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-there-white-smoke-from-exhaust";
 const ARTICLE_LEDE =
   "A thin white vapour from the exhaust on a cold morning is usually normal condensation burning off as the engine warms up. Thick white smoke — particularly if it persists after the engine is warm, has a sweet smell, or comes alongside overheating or coolant loss — points to a more serious problem that warrants prompt inspection.";
-const CTA_TITLE = "Track coolant changes, overheating symptoms, smoke notes, repairs, and mileage in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhyIsThereWhiteSmokeFromExhaustArticle() {
         title="Why is there white smoke from my exhaust?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -144,6 +142,8 @@ export default function WhyIsThereWhiteSmokeFromExhaustArticle() {
             </ul>
           </div>
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Common causes of persistent white smoke</ArticleH2>
         <div className="flex flex-col gap-4 mb-6">
@@ -249,7 +249,7 @@ export default function WhyIsThereWhiteSmokeFromExhaustArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-does-my-car-smell-like-burning";
 const ARTICLE_LEDE =
   "A burning smell from a car can range from harmless (a piece of plastic caught on the exhaust) to urgent (electrical fault, oil on hot components, or overheated brakes). The nature of the smell — oil, rubber, plastic, or something metallic or acrid — and when it appears helps narrow down the likely area. Strong burning smells, visible smoke, or warning lights should not be ignored.";
-const CTA_TITLE = "Log smells, symptoms, inspections, repairs, mileage, and notes in CarCare Diary";
 
 const smellTypes = [
   {
@@ -140,7 +139,6 @@ export default function WhyDoesMyCarSmellLikeBurningArticle() {
         title="Why does my car smell like burning?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -177,6 +175,8 @@ export default function WhyDoesMyCarSmellLikeBurningArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to stop driving</ArticleH2>
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-6">
@@ -259,7 +259,7 @@ export default function WhyDoesMyCarSmellLikeBurningArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

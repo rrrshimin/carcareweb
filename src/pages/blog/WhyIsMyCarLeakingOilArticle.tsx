@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-leaking-oil";
 const ARTICLE_LEDE =
   "An oil leak should be investigated rather than ignored. Running an engine with low oil can cause severe and expensive damage quickly. Common sources include the drain plug gasket, oil filter, valve cover gasket, oil pan gasket, or engine seals. The first step is to check the oil level and determine whether driving is safe before looking for the source.";
-const CTA_TITLE = "Track oil changes, leak notes, mileage, and repair history in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhyIsMyCarLeakingOilArticle() {
         title="Why is my car leaking oil?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -129,6 +127,8 @@ export default function WhyIsMyCarLeakingOilArticle() {
             </div>
           </div>
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Not all spots under the car are engine oil</ArticleH2>
         <div className="overflow-x-auto rounded-xl border border-panel mb-6">
@@ -219,7 +219,7 @@ export default function WhyIsMyCarLeakingOilArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

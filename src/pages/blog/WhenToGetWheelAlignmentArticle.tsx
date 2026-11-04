@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-get-wheel-alignment";
 const ARTICLE_LEDE =
   "Wheel alignment is typically checked when symptoms suggest it is off, after suspension or steering work, after hitting a significant pothole or kerb, or when new tires are fitted. Some drivers also check alignment annually as a precaution. Misalignment gradually damages tires and affects handling — catching it early reduces tire replacement costs and keeps the car driving as intended.";
-const CTA_TITLE = "Track alignments, tire rotations, tire pressure checks, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToGetWheelAlignmentArticle() {
         title="When should you get a wheel alignment?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -104,6 +102,8 @@ export default function WhenToGetWheelAlignmentArticle() {
           new tires. Some drivers also check{" "}
           <strong className="text-white">annually</strong> as a precaution.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to get a wheel alignment check</ArticleH2>
         <ArticleP>
@@ -198,7 +198,7 @@ export default function WhenToGetWheelAlignmentArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

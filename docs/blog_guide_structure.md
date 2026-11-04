@@ -7,10 +7,10 @@ This is the standard for every article under `/blog/*`. Future guides must follo
 1. Fixed landing header (already fixed, do not re-implement).
 2. Breadcrumb nav (from `ArticleLayout`).
 3. `ArticleHero` — left-aligned: category pill + read time, `h1`, 2-3 sentence **direct-answer** lede. No store buttons in the hero.
-4. `GuideDownloadCTA` (inline variant) — immediately after the hero.
-5. Body sections: `ProseSection` + `ArticleH2` / `ArticleP` / custom lists.
+4. Body sections: `ProseSection` + `ArticleH2` / `ArticleP` / custom lists. The short-answer box (or first meaningful section) comes first.
+5. `<GuideDownloadCTA />` (primary blue banner) — **after** the short answer, or after the first section for symptom/diagnostic guides. Never before the answer. In guides built from section components, use `<GuideDownloadCTA standalone />` between the first and second section.
 6. FAQ accordion (links to `FAQPage` JSON-LD).
-7. `GuideDownloadCTA` (footer variant) with "Back to Guides" link below.
+7. `<GuideDownloadCTA variant="footer" />` (compact secondary banner) with "Back to Guides" link below.
 
 ## Alignment rule
 
@@ -30,33 +30,20 @@ Comparison / wide-table sections (e.g. `ComparisonTable` in roundup articles) us
   - `ArticleMeta` — left-aligned category pill + read time (used by `ArticleHero`).
   - `ProseSection`, `ArticleH2`, `ArticleP` — body primitives.
 - `src/pages/blog/GuideDownloadCTA.tsx`
-  - `GuideDownloadCTA` — compact panel with left-side title + subtitle and right-side App Store + Google Play buttons.
-  - Variants: `"inline"` (default, used after the hero) and `"footer"` (used at the bottom; slightly larger, adds "Back to Guides" link).
-  - `DEFAULT_GUIDE_CTA_SUBTITLE` — shared subtitle string used by every guide unless overridden.
+  - `GuideDownloadCTA` — no title prop. It reads the guide slug from the route and takes its copy from `src/content/guideCta.ts`.
+  - Primary (default, `variant="inline"`): bright blue gradient, "Download for free" pill, contextual headline, benefit subtitle, real in-app screenshot from `sm` up, direct App Store and Google Play buttons. `standalone` wraps it in its own page-width section.
+  - Secondary (`variant="footer"`): compact deep-blue banner with the same direct store buttons, plus "Back to Guides".
+  - Click tracking: `src/lib/guideCtaTracking.ts` (`guide_cta_click` with exactly two properties, `slug` and `target` such as `primary_ios` or `secondary_android`, because Vercel Pro allows 2 properties per custom event; plus the shared `store_click`).
 
-## Dynamic CTA title per guide
+## Contextual CTA copy per guide
 
-The CTA `title` must be tailored to the guide topic so it matches search intent. The subtitle stays shared.
+Copy lives in one place: `GUIDE_CTA` in `src/content/guideCta.ts`, keyed by the guide slug (the part after `/blog/`). Each entry has a `kind` (interval, replacement, symptom, records, checklist; picks the shared subtitle), a primary `headline`, an `endHeadline` and an `image`. Unknown slugs use `GUIDE_CTA_FALLBACK`.
 
-Current guides:
-
-| Guide | CTA title |
-| --- | --- |
-| Car Maintenance Checklist | "Stay on top of car maintenance with CarCare Diary" |
-| How To Track Car Maintenance | "Track car maintenance with the CarCare Diary app" |
-| What To Include In A Car Service History | "Keep a complete car service history with CarCare Diary" |
-| How To Keep Car Service Records Organized | "Organize your car service records with CarCare Diary" |
-
-Pattern: `"<Action verb> <the primary keyword/topic> with CarCare Diary"` or `"<Topic outcome> with CarCare Diary"`. Keep under ~60 characters.
-
-### Shared subtitle
-
-```
-CarCare Diary is a free app for iPhone and Android. Log every service in
-seconds, track mileage, and keep a complete, shareable history of your car.
-```
-
-Only override when the shared copy truly doesn't fit - document why in the PR.
+Rules:
+- Say "free to download" only. Do not explain Free/Base/Pro tiers in article banners and do not imply paid-only features are free (for example spending analytics).
+- Headlines are about logging or tracking the topic ("Log your next oil change"). For symptom guides, tie the CTA to logging repairs, never to diagnosing or preventing a problem.
+- No absolute promises ("never overdue", "never miss").
+- Keep headlines under ~55 characters.
 
 ## Intro / content tone rules
 
@@ -95,7 +82,8 @@ The landing header is `fixed top-0 z-50` and `ArticleLayout` reserves `pt-28`. D
 ## When adding a new guide
 
 1. Add it to `src/pages/blog/articles.ts`.
-2. Create the page in `src/pages/blog/` using `ArticleLayout`, `ArticleHero`, and two `GuideDownloadCTA` blocks (inline + footer).
-3. Define `ARTICLE_TITLE`, `ARTICLE_CATEGORY`, `ARTICLE_READ_TIME`, `ARTICLE_URL`, `ARTICLE_LEDE`, `CTA_TITLE` as top-of-file constants so they're easy to review.
-4. Wire up `Article` + `FAQPage` + (if applicable) `HowTo` JSON-LD with `speakable` on the `Article`.
-5. Add a route in `src/App.tsx` with `lazy()`.
+2. Create the page in `src/pages/blog/` using `ArticleLayout`, `ArticleHero`, and two `GuideDownloadCTA` blocks (primary after the short answer, footer at the end).
+3. Define `ARTICLE_TITLE`, `ARTICLE_CATEGORY`, `ARTICLE_READ_TIME`, `ARTICLE_URL`, `ARTICLE_LEDE` as top-of-file constants so they're easy to review.
+4. Add the slug to `GUIDE_CTA` in `src/content/guideCta.ts`.
+5. Wire up `Article` + `FAQPage` + (if applicable) `HowTo` JSON-LD with `speakable` on the `Article`.
+6. Add a route in `src/App.tsx` with `lazy()`.

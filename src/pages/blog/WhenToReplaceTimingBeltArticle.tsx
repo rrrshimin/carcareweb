@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-timing-belt";
 const ARTICLE_LEDE =
   "Timing belt replacement is one of the most critical maintenance items on vehicles that have one. Manufacturers specify replacement by both mileage and age, because rubber degrades over time regardless of how little a car is driven. The exact interval must come from your owner's manual — not a general guideline. On interference engines, a snapped timing belt can cause irreparable engine damage and a repair bill that often exceeds the value of the car.";
-const CTA_TITLE = "Track timing belt replacement mileage and date in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -88,7 +87,6 @@ export default function WhenToReplaceTimingBeltArticle() {
   return (
     <ArticleLayout title={ARTICLE_TITLE}>
       <ArticleHero category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} title="When should you replace a timing belt?" lede={ARTICLE_LEDE} />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -99,6 +97,8 @@ export default function WhenToReplaceTimingBeltArticle() {
           owner's manual — this is one item where following the exact schedule
           matters.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Timing belt vs timing chain</ArticleH2>
         <ArticleP>
@@ -235,7 +235,7 @@ export default function WhenToReplaceTimingBeltArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-are-my-brakes-squeaking";
 const ARTICLE_LEDE =
   "Brake noise ranges from harmless to urgent. An occasional light squeak after wet weather or the first few stops in the morning is often normal. Persistent squealing, grinding, vibration through the pedal, or any change in braking performance is not normal and should be inspected. Brakes are safety-critical — when in doubt, have them checked.";
-const CTA_TITLE = "Track brake pad, rotor, and brake fluid service in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhyAreMyBrakesSqueakingArticle() {
         title="Why are my brakes squeaking?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -131,6 +129,8 @@ export default function WhyAreMyBrakesSqueakingArticle() {
             </div>
           </div>
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Common causes of brake squeaking</ArticleH2>
         <div className="flex flex-col gap-4 mb-6">
@@ -192,7 +192,7 @@ export default function WhyAreMyBrakesSqueakingArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-wont-my-car-start";
 const ARTICLE_LEDE =
   "What happens when you turn the key is the most useful clue when a car won't start. No sound at all points to the battery, fuse, or ignition switch. A rapid clicking points to a weak or discharged battery. The engine cranking but not firing points to fuel, spark, or an immobiliser. Each symptom points to a different area — the sections below break it down.";
-const CTA_TITLE = "Track battery replacements, starting issues, repairs, mileage, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -136,7 +135,6 @@ export default function WhyWontMyCarStartArticle() {
         title="Why won't my car start?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -163,6 +161,8 @@ export default function WhyWontMyCarStartArticle() {
             </div>
           </div>
         ))}
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What maintenance history can help</ArticleH2>
         <ul className="flex flex-col gap-2 mb-6">
@@ -207,7 +207,7 @@ export default function WhyWontMyCarStartArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

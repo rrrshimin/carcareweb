@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-steering-wheel-shaking";
 const ARTICLE_LEDE =
   "Steering wheel vibration is one of those symptoms that tends to get worse over time and often signals something that needs attention. When the shaking occurs — at highway speed, only during braking, after hitting a pothole, or constantly — helps point toward the likely cause. Some causes are minor, others are safety-relevant.";
-const CTA_TITLE = "Track tire rotations, alignments, brake work, inspections, mileage, and notes in CarCare Diary";
 
 const causesByScenario = [
   {
@@ -127,7 +126,6 @@ export default function WhyIsMySteeringWheelShakingArticle() {
         title="Why is my steering wheel shaking?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -152,6 +150,8 @@ export default function WhyIsMySteeringWheelShakingArticle() {
             </div>
           </div>
         ))}
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to stop driving</ArticleH2>
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-6">
@@ -233,7 +233,7 @@ export default function WhyIsMySteeringWheelShakingArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-transmission-fluid";
 const ARTICLE_LEDE =
   "Transmission fluid service intervals vary considerably depending on whether you have an automatic, manual, CVT, or dual-clutch transmission — and whether you drive under normal or severe conditions. Some manufacturers specify long intervals; others recommend more frequent service. Your owner's manual is the correct starting point, and any transmission symptoms should be checked by a qualified mechanic.";
-const CTA_TITLE = "Log transmission fluid changes by date, mileage, and fluid type in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -88,7 +87,6 @@ export default function WhenToChangeTransmissionFluidArticle() {
   return (
     <ArticleLayout title={ARTICLE_TITLE}>
       <ArticleHero category={ARTICLE_CATEGORY} readTime={ARTICLE_READ_TIME} title="When should you change transmission fluid?" lede={ARTICLE_LEDE} />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -100,6 +98,8 @@ export default function WhenToChangeTransmissionFluidArticle() {
           transmissions have their own requirements. Always follow your
           owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Intervals by transmission type</ArticleH2>
         <ArticleP>
@@ -214,7 +214,7 @@ export default function WhenToChangeTransmissionFluidArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

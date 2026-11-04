@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-shocks-and-struts";
 const ARTICLE_LEDE =
   "Shock absorbers and struts rarely fail suddenly — they wear gradually over tens of thousands of kilometres, and the symptoms often go unnoticed until handling, ride quality, and tyre wear have all noticeably declined. Unlike an oil change with a firm mileage interval, shock and strut replacement is mostly condition-based. Knowing the signs and tracking the mileage helps you decide when it is time.";
-const CTA_TITLE = "Track shock absorber and strut service, suspension work, mileage, and notes in CarCare Diary";
 
 const warningSigns = [
   {
@@ -130,7 +129,6 @@ export default function WhenToReplaceShocksAndStrutsArticle() {
         title="When should you replace shocks and struts?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -142,6 +140,8 @@ export default function WhenToReplaceShocksAndStrutsArticle() {
           or a visible oil leak on the shock body. Always replace in pairs
           on the same axle.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What shocks and struts do</ArticleH2>
         <ArticleP>
@@ -263,7 +263,7 @@ export default function WhenToReplaceShocksAndStrutsArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

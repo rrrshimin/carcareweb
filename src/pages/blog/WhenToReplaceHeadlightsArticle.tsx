@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-headlights";
 const ARTICLE_LEDE =
   "Headlights are a direct safety item — they need to work reliably and provide adequate brightness for safe night driving. Unlike most maintenance items, headlights don't follow a mileage schedule. Replace them when they burn out, become noticeably dim, flicker, change colour, or no longer give confidence at night. Waiting until a bulb fails completely means one night of driving blind on one side.";
-const CTA_TITLE = "Log headlight bulb replacements and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceHeadlightsArticle() {
         title="When should you replace headlights?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -104,6 +102,8 @@ export default function WhenToReplaceHeadlightsArticle() {
           replace on condition. For halogen and HID bulbs, replacing both sides
           at the same time is commonly recommended.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Headlight bulb types</ArticleH2>
         <ArticleP>
@@ -194,7 +194,7 @@ export default function WhenToReplaceHeadlightsArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

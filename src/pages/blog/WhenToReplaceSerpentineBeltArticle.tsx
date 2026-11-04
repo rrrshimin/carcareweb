@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-serpentine-belt";
 const ARTICLE_LEDE =
   "The serpentine belt drives most or all of the engine's accessory systems — often including the alternator, air conditioning compressor, power steering pump, and sometimes the water pump. On vehicles where it drives the water pump, a belt failure can lead to rapid engine overheating. Visual inspection of the belt's condition is often more reliable than mileage alone when deciding if replacement is due.";
-const CTA_TITLE = "Track serpentine belt replacement date, mileage, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceSerpentineBeltArticle() {
         title="When should you replace a serpentine belt?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -104,6 +102,8 @@ export default function WhenToReplaceSerpentineBeltArticle() {
           or missing ribs</strong>, or when a manufacturer mileage interval
           is specified. Check your owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>What the serpentine belt drives</ArticleH2>
         <ArticleP>
@@ -204,7 +204,7 @@ export default function WhenToReplaceSerpentineBeltArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

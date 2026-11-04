@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-overheating";
 const ARTICLE_LEDE =
   "An overheating engine requires immediate action. If the temperature warning light comes on or the gauge enters the red zone, stop driving as soon as it is safe to do so — do not try to drive to a garage. Continuing to drive an overheating engine risks head gasket failure or worse. Common causes include a coolant leak, low coolant, a failing water pump or thermostat, a blocked radiator, or a faulty cooling fan.";
-const CTA_TITLE = "Track coolant changes, overheating incidents, repairs, and mileage in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhyIsMyCarOverheatingArticle() {
         title="Why is my car overheating?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -129,6 +127,8 @@ export default function WhyIsMyCarOverheatingArticle() {
             </div>
           </div>
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Common causes of engine overheating</ArticleH2>
         <div className="flex flex-col gap-4 mb-6">
@@ -214,7 +214,7 @@ export default function WhyIsMyCarOverheatingArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

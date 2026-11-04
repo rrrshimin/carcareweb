@@ -18,7 +18,6 @@ const ARTICLE_URL =
   "https://www.carcarediary.com/blog/best-car-maintenance-apps";
 const ARTICLE_LEDE =
   "The best car maintenance app depends on what you actually need: clean service history and mileage-based reminders, fuel economy tracking, expense management, or a lightweight fleet tool. This page compares ten widely-used apps on the maintenance features that matter most - service logs, reminders, multi-vehicle support, and shareable history.";
-const CTA_TITLE = "Try the maintenance-first approach with CarCare Diary";
 
 type TableValue = "Yes" | "Limited" | "No" | "Unclear";
 
@@ -422,14 +421,14 @@ export default function BestCarMaintenanceAppsArticle() {
         title="Best Car Maintenance Apps for Service History, Mileage and Reminders"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ArticleIntroSection />
       <ComparisonTable />
+      <GuideDownloadCTA standalone />
       <HowWeCompared />
       <AppCardsSection />
       <CarCareDiarySection />
       <ComparisonFAQ />
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

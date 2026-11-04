@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-change-fuel-filter";
 const ARTICLE_LEDE =
   "Fuel filter service varies considerably between vehicles. Some have an externally accessible, serviceable filter with a scheduled replacement interval. Others use an in-tank filter integrated with the fuel pump assembly that is not typically replaced on a schedule. The symptoms of a clogged fuel filter overlap significantly with other fuel delivery and ignition problems, so diagnosis matters as much as the service interval.";
-const CTA_TITLE = "Track fuel filter changes by date, mileage, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToChangeFuelFilterArticle() {
         title="When should you change a fuel filter?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -105,6 +103,8 @@ export default function WhenToChangeFuelFilterArticle() {
           intervals vary. Many modern vehicles have no scheduled replacement
           interval. Check your owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Fuel filter types and service requirements</ArticleH2>
         <ArticleP>
@@ -201,7 +201,7 @@ export default function WhenToChangeFuelFilterArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

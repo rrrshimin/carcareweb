@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/what-car-fluids-should-i-check";
 const ARTICLE_LEDE =
   "Keeping an eye on your vehicle's fluids is one of the simplest and most effective forms of preventive maintenance. Each fluid in your car serves a specific purpose, and running low — or running on degraded fluid — can cause damage that is far more expensive than a fluid top-up or change. This guide covers the essential fluids to check, what each one does, and how often to look.";
-const CTA_TITLE = "Use CarCare Diary to log fluid changes, dates, mileage, fluid type, and notes";
 
 const fluidRows = [
   {
@@ -146,7 +145,6 @@ export default function WhatCarFluidsShouldICheckArticle() {
         title="What car fluids should you check?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection wide>
         <LastUpdated />
         <ShortAnswerBox>
@@ -157,6 +155,8 @@ export default function WhatCarFluidsShouldICheckArticle() {
           also worth knowing. Fluid specifications and check procedures vary
           by vehicle — always consult your owner's manual.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Essential car fluids checklist</ArticleH2>
         <p className="text-sm text-muted mb-4">
@@ -272,7 +272,7 @@ export default function WhatCarFluidsShouldICheckArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

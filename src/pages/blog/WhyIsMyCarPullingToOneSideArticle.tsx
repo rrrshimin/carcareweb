@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/why-is-my-car-pulling-to-one-side";
 const ARTICLE_LEDE =
   "A car that drifts or pulls to one side while driving requires constant steering correction and is worth investigating. Whether it happens while cruising, only when braking, or after a recent event like a pothole or tyre change all help narrow the likely cause. Pulling during braking is more safety-critical and should be addressed promptly.";
-const CTA_TITLE = "Track alignments, tire pressure checks, tire service, brake work, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -99,7 +98,6 @@ export default function WhyIsMyCarPullingToOneSideArticle() {
         title="Why is my car pulling to one side?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <DisclaimerBox />
@@ -127,6 +125,8 @@ export default function WhyIsMyCarPullingToOneSideArticle() {
             </div>
           ))}
         </div>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>Pulling when braking</ArticleH2>
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-4">
@@ -212,7 +212,7 @@ export default function WhyIsMyCarPullingToOneSideArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

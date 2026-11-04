@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "4 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-check-tire-pressure";
 const ARTICLE_LEDE =
   "Tire pressure is one of the most frequently overlooked yet most impactful regular checks on a car. It affects safety, fuel economy, handling, and tire wear. A good habit is to check tire pressure at least once a month and before any long trip — using the recommended PSI listed on the sticker inside your driver's door or in your owner's manual, not the number on the tire sidewall.";
-const CTA_TITLE = "Track tire pressure checks, rotations, and tire service in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -99,7 +98,6 @@ export default function WhenToCheckTirePressureArticle() {
         title="When should you check tire pressure?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -110,6 +108,8 @@ export default function WhenToCheckTirePressureArticle() {
           — found on the sticker inside the driver's door or in the owner's
           manual — not the number printed on the tire sidewall.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <ArticleH2>When to check tire pressure</ArticleH2>
         <ArticleP>
@@ -238,7 +238,7 @@ export default function WhenToCheckTirePressureArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

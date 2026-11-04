@@ -17,7 +17,6 @@ const ARTICLE_READ_TIME = "5 min read";
 const ARTICLE_URL = "https://www.carcarediary.com/blog/when-to-replace-brake-rotors";
 const ARTICLE_LEDE =
   "Brake rotors are replaced based on wear, measured thickness, condition, and symptoms — not a fixed mileage interval. They are typically inspected during brake pad service. Brakes are a safety-critical system: any unusual braking symptoms — vibration, grinding, pulling, or noticeably longer stopping — should be inspected by a qualified mechanic without delay.";
-const CTA_TITLE = "Track brake rotor replacement date, mileage, parts, and notes in CarCare Diary";
 
 const articleFaqs = [
   {
@@ -94,7 +93,6 @@ export default function WhenToReplaceBrakeRotorsArticle() {
         title="When should you replace brake rotors?"
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <ProseSection>
         <LastUpdated />
         <ShortAnswerBox>
@@ -106,6 +104,8 @@ export default function WhenToReplaceBrakeRotorsArticle() {
           are present. Rotors should be measured and assessed by a mechanic
           during brake service.
         </ShortAnswerBox>
+
+        <GuideDownloadCTA />
 
         <div className="rounded-xl border border-red-400/20 bg-red-400/5 px-5 py-4 mb-8">
           <div className="flex items-start gap-3">
@@ -212,7 +212,7 @@ export default function WhenToReplaceBrakeRotorsArticle() {
         <ArticleH2>Frequently asked questions</ArticleH2>
         <ArticleFAQ faqs={articleFaqs} />
       </ProseSection>
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

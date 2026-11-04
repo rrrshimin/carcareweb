@@ -18,7 +18,6 @@ const ARTICLE_URL =
   "https://www.carcarediary.com/blog/how-to-keep-car-service-records-organized";
 const ARTICLE_LEDE =
   "Keep car service records organized by using one place for all entries, logging mileage with every service, recording details while they're fresh, separating follow-up notes from completed work, and reviewing the log before each appointment. Here is each habit explained, plus the mistakes that quietly break a record system over time.";
-const CTA_TITLE = "Organize your car service records with CarCare Diary";
 
 const recordsFaqs = [
   {
@@ -148,14 +147,14 @@ export default function HowToKeepCarServiceRecordsOrganizedArticle() {
         title={ARTICLE_TITLE}
         lede={ARTICLE_LEDE}
       />
-      <GuideDownloadCTA title={CTA_TITLE} />
       <WhyOrganizedRecordsMatter />
+      <GuideDownloadCTA standalone />
       <WhatRecordsToKeep />
       <ASimpleSystem />
       <CommonMistakes />
       <HowCarCareHelps />
       <ArticleFAQ />
-      <GuideDownloadCTA title={CTA_TITLE} variant="footer" />
+      <GuideDownloadCTA variant="footer" />
     </ArticleLayout>
   );
 }

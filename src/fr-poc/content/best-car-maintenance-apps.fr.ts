@@ -1,0 +1,337 @@
+import type { LocalizedGuideContent } from "../../content/guides/types";
+import { buildGuideJsonLd } from "../../content/guides/types";
+import { SITE_URL } from "../../lib/pageSeoHead";
+
+const PATH = "/fr/blog/meilleures-applications-suivi-entretien-voiture";
+
+const faqs = [
+  {
+    question: "Quelle est la meilleure application d'entretien automobile ?",
+    answer: "Tout dépend de votre besoin. Pour conserver un historique clair, recevoir des rappels facultatifs liés aux échéances et partager des interventions enregistrées, CarCare Diary est une option pertinente. Fuelly convient surtout au suivi du carburant, AUTOsist aux petites entreprises, et Drivvo ou Simply Auto associent dépenses et entretien. Les fonctionnalités exactes dépendent des versions et des offres disponibles.",
+  },
+  {
+    question: "Quelle est la meilleure application gratuite pour l'entretien de sa voiture ?",
+    answer: "CarCare Diary propose une formule gratuite pour un véhicule, avec journal d'entretien courant, kilométrage et lien de partage. CARFAX Car Care est également présenté comme un service gratuit avec plusieurs véhicules, tandis que Fuelly vise davantage le suivi de la consommation. Vérifiez les conditions des offres actuelles. Les modules de dépenses et certaines fonctions de CarCare Diary nécessitent Base ou Pro.",
+  },
+  {
+    question: "Quelles applications proposent des rappels basés sur le kilométrage ?",
+    answer: "Dans les données recueillies pour ce comparatif, CarCare Diary, AUTOsist, Drivvo, Simply Auto, Car Maintenance Reminders et CARFAX Car Care proposent des rappels kilométriques. Pour My Car et CarDiary, ce point n'était pas confirmé ; vérifiez les versions actuelles avant de choisir. Dans CarCare Diary, les échéances dépendent des données enregistrées et les notifications facultatives doivent être activées.",
+  },
+  {
+    question: "Peut-on partager l'historique d'entretien avant de vendre une voiture ?",
+    answer: "Oui. CarCare Diary génère un lien public vers les informations d'entretien du véhicule que vous avez choisi de partager ; le destinataire n'a pas besoin de compte. D'autres applications, dont AUTOsist, proposent des exports de rapports ; les options exactes de partage varient et doivent être vérifiées auprès de chaque éditeur.",
+  },
+  {
+    question: "Quelle application choisir pour suivre plusieurs véhicules ?",
+    answer: "Plusieurs produits cités, notamment CarCare Diary, AUTOsist, Simply Auto, CARFAX Car Care et Fuelly, permettent de suivre plusieurs véhicules selon des modalités tarifaires différentes à vérifier. Chez CarCare Diary, la formule gratuite couvre un véhicule, Base jusqu'à trois et Pro davantage. Fuelly est davantage orienté vers le suivi du carburant.",
+  },
+  {
+    question: "Toutes ces applications sont-elles gratuites ?",
+    answer: "Plusieurs produits proposent une formule gratuite avec des restrictions, selon leur offre actuelle. CarCare Diary permet de suivre gratuitement un véhicule et de consigner les entretiens courants. Les modules financiers et le suivi d'un plus grand nombre de voitures nécessitent une formule payante. Les tarifs et restrictions des autres applications varient selon l'éditeur et peuvent avoir changé depuis avril 2026 ; consultez les stores avant de vous engager.",
+  },
+] as const;
+
+const base: Omit<LocalizedGuideContent, "seo"> & {
+  seo: Omit<LocalizedGuideContent["seo"], "jsonLd">;
+} = {
+  breadcrumbTitle: "Meilleures apps entretien",
+  hero: {
+    category: "Comparatif",
+    readTime: "8 min de lecture",
+    title: "Les meilleures applications de suivi d'entretien automobile en 2026",
+    lede: "La meilleure application d'entretien dépend de ce que vous cherchez : un historique clair et des rappels liés au kilométrage, le suivi de la consommation de carburant, la gestion des dépenses ou encore une solution légère pour plusieurs véhicules. Ce comparatif examine dix applications à partir des fonctionnalités les plus utiles pour l'entretien : journaux d'interventions, rappels, gestion de plusieurs voitures et partage de l'historique.",
+  },
+  lastUpdatedLabel: "Dernière mise à jour : août 2026",
+  blocks: [
+    { type: "paragraph", text: "*Comparatif fondé sur des informations relevées en avril 2026. Les offres, fonctionnalités et disponibilités peuvent avoir changé ; vérifiez auprès de chaque éditeur.*" },
+    { type: "heading", text: "Quelle application correspond à vos besoins ?" },
+    { type: "paragraph", text: "Les applications automobiles ne remplissent pas toutes la même fonction. Avant de comparer les options, identifiez la catégorie qui répond à votre besoin principal." },
+    { type: "subheading", text: "Applications centrées sur l'entretien" },
+    { type: "paragraph", text: "Elles privilégient le journal des interventions, les rappels liés au kilométrage et la chronologie des entretiens. Elles conviennent lorsque votre priorité est de conserver des informations fiables et de savoir ce qui approche. CarCare Diary, AUTOsist et Simply Auto appartiennent à cette catégorie." },
+    { type: "subheading", text: "Suivi du carburant et des dépenses" },
+    { type: "paragraph", text: "Ces outils servent d'abord à enregistrer le coût des pleins, la consommation et les frais du véhicule. Fuelly, Drivvo et Road Trip MPG se concentrent notamment sur cet usage." },
+    { type: "subheading", text: "Applications de rappels uniquement" },
+    { type: "paragraph", text: "Elles vous alertent lorsqu'une échéance d'entretien arrive. Car Maintenance Reminders en est un exemple : ce type d'outil est utile comme système d'alerte, mais ne remplace pas nécessairement un historique détaillé." },
+    { type: "subheading", text: "Intégration de l'historique du véhicule" },
+    { type: "paragraph", text: "Certaines applications, comme CARFAX Car Care, récupèrent des informations provenant de services tiers. Cela peut être intéressant lors de l'achat ou de la revente d'une voiture disposant déjà de données d'entretien." },
+    { type: "paragraph", text: "Le tableau ci-dessous porte sur les fonctions liées à l'entretien : interventions, kilométrage, rappels et historique. Les diagnostics OBD, la géolocalisation GPS, les cartes carburant et les fonctions de répartition des missions relèvent d'autres catégories de produits." },
+    {
+      type: "links",
+      intro: "Liens utiles :",
+      links: [
+        { label: "Application de suivi d'entretien", href: "/car-maintenance-tracker" },
+        { label: "Historique d'entretien", href: "/car-service-history" },
+        { label: "Gestion de flotte", href: "/fleet-management-app" },
+      ],
+    },
+    { type: "heading", text: "Tableau comparatif" },
+    { type: "paragraph", text: "Le tableau présente les évaluations recueillies en avril 2026. Elles ne constituent **pas une vérification actualisée des offres ou fonctionnalités en France**. Les mentions « Non confirmé » indiquent que le point n'a pas pu être établi." },
+    {
+      type: "table",
+      headers: ["Application", "Gratuit", "iOS + Android", "Journal", "Historique", "Kilométrage", "Rappels date", "Rappels km", "Échéances", "Multi-véhicules", "Partageable", "Usage principal"],
+      statusCols: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      highlightRow: 0,
+      caption: "**★** = application éditée par ce site · Données d'avril 2026 · « Non confirmé » ≠ « Non » · Disponibilité et offres à vérifier auprès de chaque éditeur · Certaines fonctions CarCare Diary (multi-véhicules, analyses de dépenses) nécessitent une formule payante.",
+      rows: [
+        ["★ CarCare Diary", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Historique des entretiens et partage lors d'une revente"],
+        ["CARFAX Car Care", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Non", "Historique CARFAX associé aux interventions enregistrées"],
+        ["AUTOsist", "Limité", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Limité", "Gestion des entretiens pour petites entreprises et flottes"],
+        ["Drivvo", "Limité", "Oui", "Oui", "Limité", "Oui", "Oui", "Oui", "Limité", "Oui", "Non", "Carburant et dépenses, avec suivi de l'entretien"],
+        ["Simply Auto", "Limité", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Oui", "Non", "Gestion globale des véhicules, des dépenses et des trajets"],
+        ["My Car", "Non confirmé", "Non confirmé", "Oui", "Limité", "Oui", "Oui", "Non confirmé", "Limité", "Oui", "Non", "Carnet pour plusieurs véhicules et rappels simples"],
+        ["CarDiary", "Oui", "Limité", "Oui", "Limité", "Oui", "Oui", "Non confirmé", "Limité", "Oui", "Non", "Journal automobile simple et suivi des dépenses"],
+        ["Fuelly", "Oui", "Oui", "Limité", "Non", "Oui", "Non", "Non", "Non", "Oui", "Non", "Consommation et comparaison des pleins"],
+        ["Road Trip MPG", "Limité", "Limité", "Non", "Non", "Oui", "Non", "Non", "Non", "Oui", "Non", "Consommation sur les trajets et préparation de voyages"],
+        ["Car Maintenance Reminders", "Oui", "Limité", "Limité", "Non", "Limité", "Oui", "Oui", "Oui", "Oui", "Non", "Alertes d'entretien élémentaires"],
+      ],
+    },
+    { type: "primaryCta" },
+    { type: "heading", text: "Comment avons-nous comparé ces applications ?" },
+    { type: "paragraph", text: "Ce comparatif se concentre sur les fonctionnalités d'entretien suivantes :" },
+    {
+      type: "list", variant: "check",
+      items: [
+        "**Version gratuite :** existence d'une formule gratuite réellement utilisable, et pas seulement d'un essai.",
+        "**iOS et Android :** disponibilité d'applications suivies sur les deux grandes plateformes.",
+        "**Journal d'entretien :** possibilité de noter chaque intervention avec une date, un kilométrage et des observations, plutôt que de se limiter aux rappels.",
+        "**Chronologie des entretiens :** historique organisé et consultable pour chaque voiture.",
+        "**Suivi du kilométrage :** enregistrement du compteur par véhicule, et pas uniquement estimation à partir des pleins.",
+        "**Rappels calendaires :** alertes basées sur des échéances de temps.",
+        "**Rappels kilométriques :** prise en compte de la distance parcourue pour les entretiens concernés.",
+        "**Vue des échéances :** affichage des opérations à jour, proches de l'échéance ou en retard.",
+        "**Plusieurs véhicules :** suivi de plusieurs voitures dans un même compte.",
+        "**Historique partageable :** lien public donnant accès aux informations d'entretien enregistrées par le propriétaire. Un export de fichier sans lien public est classé « limité ».",
+      ],
+    },
+    { type: "paragraph", text: "Ce comparatif n'évalue pas les lecteurs OBD, les recherches par numéro VIN, le GPS, les cartes carburant, l'analyse du comportement de conduite, les outils de conformité, les places de marché de réparateurs, les estimations de réparation, l'assurance ni la gestion opérationnelle d'une flotte d'entreprise." },
+    { type: "heading", text: "Présentation des applications" },
+    {
+      type: "appCard",
+      profile: {
+        name: "CarCare Diary",
+        bestFor: "Conserver un historique d'entretien clair, suivre les échéances kilométriques et présenter les interventions enregistrées lors d'une revente.",
+        pricing: "Une voiture avec la formule gratuite ; Base jusqu'à trois véhicules ; Pro pour davantage de véhicules.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Journal par intervention : type, date, kilométrage, spécifications et notes.",
+          "Échéances suivies selon le temps et/ou le kilométrage ; notifications locales facultatives.",
+          "Vue des interventions à venir et en retard.",
+          "Lien public en lecture seule vers les informations d'entretien partagées.",
+          "Plusieurs véhicules selon la formule ; chronologie organisée par catégorie.",
+        ],
+        limitation: "La formule gratuite est limitée à un véhicule. Le suivi de consommation de carburant n'est pas proposé ; les journaux de dépenses et leurs analyses nécessitent Base ou Pro.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "CARFAX Car Care",
+        externalUrl: "https://www.carfax.com/carcare",
+        bestFor: "Consulter les données d'historique recueillies par CARFAX en complément des entretiens saisis par l'utilisateur.",
+        pricing: "Service Car Care gratuit ; les rapports d'historique CARFAX relèvent d'un produit distinct, payant.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Accès à des interventions déjà connues des sources CARFAX.",
+          "Rappels calendaires et kilométriques pour des entretiens courants.",
+          "Vue des échéances par véhicule.",
+          "Gestion de plusieurs véhicules.",
+        ],
+        limitation: "Le partage d'un rapport CARFAX diffère d'un lien public vers un carnet d'entretien personnel. Les possibilités exactes de partage doivent être vérifiées auprès de l'éditeur.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "AUTOsist",
+        externalUrl: "https://autosist.com",
+        bestFor: "Les petites entreprises et flottes qui ont besoin de journaux structurés et d'un suivi des dépenses.",
+        pricing: "Formule gratuite limitée, puis offres payantes pour davantage de véhicules ou de fonctions.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Journaux d'entretien détaillés avec champs personnalisables.",
+          "Rappels selon le temps et le kilométrage.",
+          "Suivi des dépenses et du carburant.",
+          "Gestion de plusieurs véhicules et fonctions de flotte.",
+        ],
+        limitation: "Restrictions de la formule gratuite. Le partage passe principalement par l'export de rapports ; les autres options de partage sont à vérifier.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "Drivvo",
+        externalUrl: "https://www.drivvo.com",
+        bestFor: "Les conducteurs qui veulent avant tout suivre carburant, coûts et dépenses, tout en notant l'entretien.",
+        pricing: "Version gratuite avec fonctions essentielles ; options payantes supplémentaires selon l'offre en vigueur.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Suivi des pleins et des dépenses.",
+          "Interventions et rappels par date ou kilométrage.",
+          "Graphiques de dépenses et de consommation.",
+        ],
+        limitation: "L'historique des entretiens est moins central que le suivi du carburant et des dépenses ; à vérifier selon les besoins.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "Simply Auto",
+        externalUrl: "https://simplyauto.app",
+        bestFor: "Une gestion automobile globale, incluant les trajets professionnels, les dépenses et l'entretien.",
+        pricing: "Formule gratuite limitée ; Premium pour davantage de fonctions et de véhicules.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Journal d'entretien et rappels calendaires/kilométriques.",
+          "Kilométrage professionnel et suivi des dépenses.",
+          "Historique des interventions.",
+          "Gestion de plusieurs véhicules.",
+        ],
+        limitation: "Partage public de l'historique non confirmé lors de nos recherches de référence ; vérifiez auprès de l'éditeur.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "My Car",
+        bestFor: "Les foyers possédant plusieurs véhicules et cherchant un carnet simple avec rappels.",
+        pricing: "Disponibilité d'une version gratuite variable selon l'édition ; à vérifier dans les stores.",
+        platforms: "Disponibilité sur iOS et Android à confirmer auprès de l'éditeur.",
+        strengths: [
+          "Profils pour plusieurs véhicules.",
+          "Enregistrement des interventions et rappels par date.",
+          "Suivi élémentaire du kilométrage.",
+        ],
+        limitation: "Le nom « My Car » recouvre plusieurs applications selon les stores ; confirmez l'éditeur, la plateforme et les fonctions avant installation.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "CarDiary",
+        bestFor: "Tenir un journal automobile simple et enregistrer les dépenses.",
+        pricing: "Version gratuite de base ; vérifier les offres payantes actuelles auprès de l'éditeur.",
+        platforms: "Principalement iOS ; disponibilité Android à confirmer.",
+        strengths: [
+          "Journal élémentaire d'entretien et de dépenses.",
+          "Rappels calendaires.",
+          "Plusieurs véhicules.",
+        ],
+        limitation: "Historique et rappels kilométriques plus limités que dans les applications spécialisées.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "Fuelly",
+        externalUrl: "https://www.fuelly.com",
+        bestFor: "Les conducteurs qui souhaitent analyser la consommation de carburant et comparer leurs résultats.",
+        pricing: "Fonctions principales gratuites, avec options Premium selon l'offre en vigueur.",
+        platforms: "iOS et Android.",
+        strengths: [
+          "Suivi des pleins et calcul de la consommation en L/100 km ou MPG.",
+          "Comparaisons communautaires de consommation.",
+          "Plusieurs véhicules.",
+        ],
+        limitation: "Outil d'abord centré sur le carburant plutôt que sur un journal d'entretien complet ou un tableau des prochaines échéances.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "Road Trip MPG",
+        bestFor: "Mesurer la consommation pendant les trajets et préparer de longs déplacements.",
+        pricing: "Version gratuite limitée ; tarifs actuels à vérifier dans l'App Store.",
+        platforms: "Principalement iOS.",
+        strengths: [
+          "Suivi de la consommation trajet par trajet.",
+          "Enregistrement de plusieurs véhicules.",
+          "Usage pratique sur de longs trajets.",
+        ],
+        limitation: "Outil consacré avant tout à la consommation, sans journal d'entretien ni rappels comparables aux applications spécialisées.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    {
+      type: "appCard",
+      profile: {
+        name: "Car Maintenance Reminders",
+        bestFor: "Les conducteurs recherchant surtout des alertes, avec un suivi des interventions assuré ailleurs.",
+        pricing: "Version gratuite de base ; à vérifier dans les stores selon la plateforme.",
+        platforms: "Principalement iOS ; Android possiblement limité.",
+        strengths: [
+          "Alertes basées sur les dates et le kilométrage.",
+          "Vue des entretiens à venir ou en retard.",
+          "Plusieurs véhicules.",
+        ],
+        limitation: "Historique des interventions succinct ; outil plus proche d'un système de rappels que d'un carnet détaillé.",
+        labels: { bestFor: "Idéal pour", pricing: "Tarifs", platforms: "Plateformes", strengths: "Points forts", limitation: "Limite" },
+      },
+    },
+    { type: "heading", text: "Pourquoi CarCare Diary convient au suivi des interventions" },
+    { type: "paragraph", text: "Beaucoup d'applications automobiles ont d'abord été conçues pour le suivi du carburant ou pour les rappels. CarCare Diary part d'un autre besoin : construire progressivement un historique clair des travaux d'entretien réellement consignés pour chaque voiture." },
+    { type: "subheading", text: "Un journal d'entretien pour des interventions concrètes" },
+    { type: "paragraph", text: "Chaque entrée peut contenir la nature de l'entretien, la date, le kilométrage lorsqu'il est pertinent, les spécifications des pièces ou fluides et des notes libres. Les informations s'organisent par catégorie : huile, freins, filtres, pneus, etc." },
+    { type: "subheading", text: "Rappels selon la date et le kilométrage" },
+    { type: "paragraph", text: "Certaines opérations dépendent de la distance parcourue, d'autres du temps écoulé. CarCare Diary utilise les entretiens enregistrés, le kilométrage et les intervalles configurés pour évaluer les prochaines échéances. Des notifications locales facultatives peuvent être activées, sous réserve des autorisations de l'appareil. Les rappels ne remplacent pas le calendrier du constructeur." },
+    { type: "subheading", text: "Vue des entretiens à venir et en retard" },
+    { type: "paragraph", text: "L'application affiche le statut des différentes opérations, notamment celles qui approchent de leur échéance ou sont en retard. Vous pouvez ainsi préparer un rendez-vous sans consulter chaque entrée séparément." },
+    { type: "subheading", text: "Lien partageable vers l'historique d'entretien" },
+    { type: "paragraph", text: "CarCare Diary permet de générer un lien public en lecture seule vers les informations d'entretien partagées du véhicule. Une personne disposant du lien peut les consulter sans créer de compte, par exemple avant une visite au garage ou lors d'une vente. Les coûts, journaux financiers et pièces jointes ne sont pas inclus dans cette vue publique." },
+    { type: "subheading", text: "Plusieurs véhicules" },
+    { type: "paragraph", text: "La formule gratuite permet de suivre un véhicule. Base prend en charge jusqu'à trois véhicules et Pro permet d'en gérer davantage, avec un historique et un kilométrage distincts pour chacun." },
+    { type: "paragraph", text: "**Ce que CarCare Diary ne propose pas dans l'usage décrit ici :** suivi détaillé de la consommation de carburant, diagnostic OBD, GPS, catégorisation avancée des dépenses ou gestion opérationnelle d'une flotte d'entreprise. Si ces fonctions sont prioritaires, une autre solution peut être plus adaptée." },
+    {
+      type: "links",
+      intro: "Pour en savoir plus :",
+      links: [
+        { label: "Suivi d'entretien automobile", href: "/car-maintenance-tracker" },
+        { label: "Historique d'entretien", href: "/car-service-history" },
+        { label: "Carnet d'entretien du véhicule", href: "/vehicle-maintenance-log" },
+        { label: "Application de gestion de flotte", href: "/fleet-management-app" },
+      ],
+    },
+  ],
+  faqHeading: "Questions fréquentes",
+  faqs: [...faqs],
+  ctaSlug: "meilleures-applications-suivi-entretien-voiture",
+  cta: {
+    kind: "records",
+    headline: "Essayez une application pensée pour l'entretien",
+    endHeadline: "Essayez CarCare Diary sur votre téléphone",
+    image: "log",
+    subtitle: "Enregistrez les interventions, actualisez votre kilométrage et partagez les informations d'entretien consignées grâce à un lien.",
+    endSubtitle: "Consignez vos entretiens, suivez votre kilométrage et gardez les informations de votre voiture à portée de main.",
+    imageAlt: "Écran CarCare Diary pour ajouter une intervention d'entretien",
+  },
+  seo: {
+    title: "Meilleures applications de suivi d'entretien automobile en 2026",
+    description: "Comparez les applications de suivi d'entretien automobile : carnet numérique, kilométrage, rappels, véhicules et partage d'historique.",
+    path: PATH,
+    ogType: "article",
+    lang: "fr",
+    ogLocale: "fr_FR",
+    alternates: [
+      { hreflang: "en", path: "/blog/best-car-maintenance-apps" },
+      { hreflang: "fr", path: PATH },
+      { hreflang: "x-default", path: "/blog/best-car-maintenance-apps" },
+    ],
+    datePublished: "2026-04-16",
+    dateModified: "2026-11-04",
+  },
+};
+
+export const bestCarMaintenanceAppsFr: LocalizedGuideContent = {
+  ...base,
+  seo: {
+    ...base.seo,
+    jsonLd: buildGuideJsonLd({ ...base, seo: base.seo }, `${SITE_URL}${PATH}`),
+  },
+};

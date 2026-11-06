@@ -19,6 +19,12 @@ export interface GuideCtaEntry {
   /** Secondary end-of-article banner headline. */
   endHeadline: string;
   image?: GuideCtaImage;
+  /** Localized primary banner body; defaults to GUIDE_CTA_SUBTITLES[kind]. */
+  subtitle?: string;
+  /** Localized footer banner body; defaults to GUIDE_CTA_END_SUBTITLE. */
+  endSubtitle?: string;
+  /** Localized screenshot alt for the primary banner image. */
+  imageAlt?: string;
 }
 
 export const GUIDE_CTA_SUBTITLES: Record<GuideCtaKind, string> = {
@@ -338,7 +344,7 @@ export const GUIDE_CTA: Record<string, GuideCtaEntry> = {
 
 /** "/blog/when-to-change-engine-oil" -> "when-to-change-engine-oil" */
 export function guideSlugFromPath(pathname: string): string {
-  return pathname.replace(/^\/blog\//, "").replace(/\/+$/, "");
+  return pathname.replace(/^\/(?:[a-z]{2}\/)?blog\//, "").replace(/\/+$/, "");
 }
 
 export function getGuideCta(slug: string): GuideCtaEntry {

@@ -1,28 +1,19 @@
 import { useEffect } from "react";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_URL,
+  type PageSeoHeadOptions,
+  type HreflangAlternate,
+} from "./pageSeoHead";
+import { blogHubAlternates, enBlogAlternatesWhenFrPublished } from "../fr-poc/frPublishing";
 
-const SITE_URL = "https://www.carcarediary.com";
+export type { HreflangAlternate } from "./pageSeoHead";
+
 const DEFAULT_TITLE = "CarCare Diary - Car Maintenance Tracker & Service Log App";
 const DEFAULT_DESCRIPTION =
   "Log car maintenance, track mileage, get service reminders, and share your vehicle's complete history. Free car maintenance tracker app for iPhone & Android.";
-const DEFAULT_OG_IMAGE = "https://www.carcarediary.com/og-image.png";
 
-export interface HreflangAlternate {
-  hreflang: string;
-  path: string;
-}
-
-interface PageSeoOptions {
-  title: string;
-  description: string;
-  path: string;
-  ogType?: string;
-  ogImage?: string;
-  noindex?: boolean;
-  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
-  lang?: string;
-  ogLocale?: string;
-  alternates?: readonly HreflangAlternate[];
-}
+type PageSeoOptions = PageSeoHeadOptions;
 
 function setMetaTag(attr: string, key: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
@@ -109,6 +100,14 @@ export function usePageSeo({
   useEffect(() => {
     const canonicalUrl = `${SITE_URL}${path}`;
 
+    const autoAlternates: readonly HreflangAlternate[] | undefined =
+      path === "/blog"
+        ? blogHubAlternates()
+        : path.startsWith("/blog/")
+          ? enBlogAlternatesWhenFrPublished(path)
+          : undefined;
+    const effectiveAlternates = autoAlternates ?? alternates;
+
     document.title = title;
     if (lang) document.documentElement.lang = lang;
 
@@ -127,7 +126,8 @@ export function usePageSeo({
     setMetaTag("name", "twitter:description", description);
     setMetaTag("name", "twitter:image", ogImage);
     if (ogLocale) setMetaTag("property", "og:locale", ogLocale);
-    if (alternates?.length) setHreflang(alternates);
+    if (effectiveAlternates?.length) setHreflang(effectiveAlternates);
+    else clearHreflang();
 
     if (noindex) {
       setRobotsNoindex();

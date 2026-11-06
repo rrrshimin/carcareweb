@@ -6,10 +6,12 @@ import {
   GUIDE_CTA_SUBTITLES,
   getGuideCta,
   guideSlugFromPath,
+  type GuideCtaEntry,
   type GuideCtaImage,
 } from "../../content/guideCta";
 import { trackGuideCtaClick, type GuideCtaPlacement } from "../../lib/guideCtaTracking";
 import addLogScreenshot from "../../assets/phone_screenshot_adding_log.png";
+import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
 
 const IMAGES: Record<GuideCtaImage, { src: string; alt: string }> = {
   log: { src: addLogScreenshot, alt: "CarCare Diary screen for adding a service log entry" },
@@ -23,34 +25,73 @@ interface GuideDownloadCTAProps {
   variant?: "inline" | "footer";
   /** Primary only. Wraps the banner in its own page-width section; use between top-level sections. */
   standalone?: boolean;
+  /** Localized guides: explicit CTA copy (avoids global registration). */
+  cta?: GuideCtaEntry;
+  /** Slug sent to analytics; defaults to slug derived from the current path. */
+  trackingSlug?: string;
+}
+
+const EN_DOWNLOAD_BADGE = "Download for free";
+const FR_DOWNLOAD_BADGE = "Téléchargement gratuit";
+
+function isFrBlogGuidePath(pathname: string): boolean {
+  return isFrBlogSitePath(pathname) && pathname !== FR_BLOG_HUB_PATH;
 }
 
 /** Direct store links with per-guide click tracking. White on the blue banners. */
-function StoreButtons({ slug, placement }: { slug: string; placement: GuideCtaPlacement }) {
+function StoreButtons({
+  slug,
+  placement,
+  fr,
+}: {
+  slug: string;
+  placement: GuideCtaPlacement;
+  fr: boolean;
+}) {
   // White focus ring on blue. Stacked and full width on phones, side by side from 640px.
   const btn = "w-full sm:w-auto min-h-12 focus-visible:outline-white!";
+  const iosAria = fr
+    ? "Télécharger gratuitement CarCare Diary sur l'App Store"
+    : "Download CarCare Diary for free on the App Store";
+  const playAria = fr
+    ? "Télécharger gratuitement CarCare Diary sur Google Play"
+    : "Download CarCare Diary for free on Google Play";
+  // FR official badge kicker text (Apple fr-FR: "Disponible sur l'" / Google fr-FR: "Disponible sur")
+  const iosKicker = fr ? "Disponible sur l'" : undefined;
+  const playKicker = fr ? "Disponible sur" : undefined;
   return (
     <div className="flex flex-col sm:flex-row gap-3">
       <AppStoreButton
         className={btn}
-        ariaLabel="Download CarCare Diary for free on the App Store"
+        ariaLabel={iosAria}
+        kicker={iosKicker}
         onClick={() => trackGuideCtaClick(slug, placement, "app_store")}
       />
       <GooglePlayButton
         className={btn}
-        ariaLabel="Download CarCare Diary for free on Google Play"
+        ariaLabel={playAria}
+        kicker={playKicker}
         onClick={() => trackGuideCtaClick(slug, placement, "google_play")}
       />
     </div>
   );
 }
 
-export function GuideDownloadCTA({ variant = "inline", standalone = false }: GuideDownloadCTAProps) {
+export function GuideDownloadCTA({
+  variant = "inline",
+  standalone = false,
+  cta: ctaOverride,
+  trackingSlug,
+}: GuideDownloadCTAProps) {
   const { pathname } = useLocation();
-  const slug = guideSlugFromPath(pathname);
-  const entry = getGuideCta(slug);
+  const pathSlug = guideSlugFromPath(pathname);
+  const slug = trackingSlug ?? pathSlug;
+  const entry = ctaOverride ?? getGuideCta(pathSlug);
   const isFooter = variant === "footer";
   const headingId = `guide-cta-${isFooter ? "end" : "main"}`;
+  const frGuide = isFrBlogSitePath(pathname);
+  const frArticle = isFrBlogGuidePath(pathname);
+  const downloadBadge = frGuide ? FR_DOWNLOAD_BADGE : EN_DOWNLOAD_BADGE;
 
   if (isFooter) {
     return (
@@ -66,24 +107,26 @@ export function GuideDownloadCTA({ variant = "inline", standalone = false }: Gui
             <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
               <div className="min-w-0 md:flex-1">
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#9DC0FF]">
-                  Download for free
+                  {downloadBadge}
                 </p>
                 <p id={headingId} className="mt-1 text-lg md:text-xl font-semibold leading-snug">
                   {entry.endHeadline}
                 </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/85">{GUIDE_CTA_END_SUBTITLE}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/85">
+                  {entry.endSubtitle ?? GUIDE_CTA_END_SUBTITLE}
+                </p>
               </div>
               <div className="md:shrink-0 md:w-[22rem]">
-                <StoreButtons slug={slug} placement="secondary" />
+                <StoreButtons slug={slug} placement="secondary" fr={frGuide} />
               </div>
             </div>
           </aside>
           <div className="mt-6 text-center">
             <Link
-              to="/blog"
+              to={frArticle ? FR_BLOG_HUB_PATH : "/blog"}
               className="text-sm text-accent font-semibold hover:text-white transition-colors"
             >
-              Back to Guides
+              {frArticle ? FR_SITE.backToGuides : "Back to Guides"}
             </Link>
           </div>
         </div>
@@ -92,6 +135,7 @@ export function GuideDownloadCTA({ variant = "inline", standalone = false }: Gui
   }
 
   const image = entry.image ? IMAGES[entry.image] : undefined;
+  const imageAlt = entry.imageAlt ?? (image?.alt ?? "");
   const banner = (
     <aside
       aria-labelledby={headingId}
@@ -104,7 +148,7 @@ export function GuideDownloadCTA({ variant = "inline", standalone = false }: Gui
         <div className="min-w-0 flex-1 px-5 py-6 sm:px-8 sm:py-8">
           <p className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-sm font-semibold">
             <Download className="h-3.5 w-3.5" aria-hidden="true" />
-            Download for free
+            {downloadBadge}
           </p>
           <p
             id={headingId}
@@ -113,10 +157,10 @@ export function GuideDownloadCTA({ variant = "inline", standalone = false }: Gui
             {entry.headline}
           </p>
           <p className="mt-2 mb-5 max-w-[34rem] text-sm md:text-[1rem] leading-relaxed text-white">
-            {GUIDE_CTA_SUBTITLES[entry.kind]}
+            {entry.subtitle ?? GUIDE_CTA_SUBTITLES[entry.kind]}
           </p>
           <div className="sm:max-w-[22rem]">
-            <StoreButtons slug={slug} placement="primary" />
+            <StoreButtons slug={slug} placement="primary" fr={frGuide} />
           </div>
         </div>
         {image && (
@@ -124,7 +168,7 @@ export function GuideDownloadCTA({ variant = "inline", standalone = false }: Gui
             <div className="h-44 md:h-52 overflow-hidden">
               <img
                 src={image.src}
-                alt={image.alt}
+                alt={imageAlt}
                 loading="lazy"
                 decoding="async"
                 width={1127}

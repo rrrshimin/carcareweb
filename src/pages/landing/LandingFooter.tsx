@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Logo } from "./Logo";
+import { FR_FOOTER_GUIDE_LINKS, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
 
 const productLinks = [
   { to: "/car-maintenance-tracker", label: "Car Maintenance Tracker" },
@@ -16,7 +17,7 @@ const productLinks = [
   { to: "/how-carcare-diary-works", label: "How It Works" },
 ];
 
-const guideLinks = [
+const guideLinksEn = [
   { to: "/blog", label: "All Guides" },
   { to: "/blog/car-maintenance-checklist", label: "Maintenance Checklist" },
   { to: "/blog/how-to-track-car-maintenance", label: "How To Track Maintenance" },
@@ -24,7 +25,7 @@ const guideLinks = [
   { to: "/blog/how-to-keep-car-service-records-organized", label: "Organize Service Records" },
 ];
 
-const helpLinks = [
+const helpLinksEn = [
   { to: "/help", label: "Help Center" },
   { to: "/help/getting-started-with-carcare-diary", label: "Getting Started" },
   { to: "/help/how-to-log-your-first-service", label: "Log Your First Service" },
@@ -32,12 +33,30 @@ const helpLinks = [
   { to: "/support", label: "Contact Support" },
 ];
 
-const legalLinks = [
+const legalLinksEn = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/terms", label: "Terms & Conditions" },
 ];
 
+const helpLinksFr = [
+  { to: "/help", label: "Centre d'aide" },
+  { to: "/help/getting-started-with-carcare-diary", label: "Premiers pas" },
+  { to: "/help/how-to-log-your-first-service", label: "Enregistrer une intervention" },
+  { to: "/help/how-to-share-your-vehicle-history", label: "Partager l'historique" },
+  { to: "/support", label: "Contacter le support" },
+] as const;
+
+const frLegalLinks = [
+  { to: "/privacy", label: "Politique de confidentialité" },
+  { to: "/terms", label: "Conditions générales" },
+] as const;
+
 export function LandingFooter() {
+  const { pathname } = useLocation();
+  const fr = isFrBlogSitePath(pathname);
+  const activeGuideLinks = fr ? [...FR_FOOTER_GUIDE_LINKS] : guideLinksEn;
+  const activeLegalLinks = fr ? [...frLegalLinks] : legalLinksEn;
+  const activeHelpLinks = fr ? [...helpLinksFr] : helpLinksEn;
   return (
     <footer className="border-t border-panel px-6 sm:px-10 lg:px-16 xl:px-20">
       <div className="max-w-[1280px] mx-auto py-12 md:py-16">
@@ -45,15 +64,14 @@ export function LandingFooter() {
           <div className="flex flex-col gap-4">
             <Logo />
             <p className="text-sm text-muted max-w-[280px]">
-              Car maintenance tracker for service logs, mileage, reminders, and
-              shareable vehicle records.
+              {fr ? FR_SITE.footer.tagline : "Car maintenance tracker for service logs, mileage, reminders, and shareable vehicle records."}
             </p>
           </div>
 
           <div className="flex gap-12 sm:gap-16 flex-wrap">
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                Product
+                {fr ? FR_SITE.footer.product : "Product"}
               </h4>
               <nav className="flex flex-col gap-3">
                 {productLinks.map((link) => (
@@ -70,10 +88,10 @@ export function LandingFooter() {
 
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                Guides
+                {FR_SITE.footer.guides}
               </h4>
               <nav className="flex flex-col gap-3">
-                {guideLinks.map((link) => (
+                {activeGuideLinks.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
@@ -86,9 +104,11 @@ export function LandingFooter() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-white mb-4">Help</h4>
+              <h4 className="text-sm font-semibold text-white mb-4">
+                {fr ? FR_SITE.footer.help : "Help"}
+              </h4>
               <nav className="flex flex-col gap-3">
-                {helpLinks.map((link) => (
+                {activeHelpLinks.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
@@ -101,9 +121,11 @@ export function LandingFooter() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold text-white mb-4">Legal</h4>
+              <h4 className="text-sm font-semibold text-white mb-4">
+                {fr ? FR_SITE.footer.legal : "Legal"}
+              </h4>
               <nav className="flex flex-col gap-3">
-                {legalLinks.map((link) => (
+                {activeLegalLinks.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
@@ -119,8 +141,8 @@ export function LandingFooter() {
 
         <div className="pt-8 border-t border-panel flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted">
-            &copy; {new Date().getFullYear()} CarCare Diary. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} CarCare Diary.{" "}
+            {fr ? FR_SITE.footer.allRights : "All rights reserved."}
           </p>
           <a
             href="mailto:hello@carcarediary.com"

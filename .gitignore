@@ -1,5 +1,8 @@
 node_modules
 dist
+dist-fr-preview
+dist-ssr-fr-poc
+dist-ssr-fr-prod
 .env
 .env.local
 *.tsbuildinfo

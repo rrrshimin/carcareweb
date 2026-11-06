@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import { MobileAppBanner } from "./components/MobileAppBanner";
+import { frPocRouteElement } from "@fr-poc-routes";
 
 const CarMaintenanceTrackerPage = lazy(() => import("./pages/CarMaintenanceTrackerPage"));
 const CarServiceHistoryPage = lazy(() => import("./pages/CarServiceHistoryPage"));
@@ -90,6 +91,15 @@ function ScrollToTop() {
 function App() {
   return (
     <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+/** App shell + routes (used by BrowserRouter and FR SSG StaticRouter). */
+export function AppContent() {
+  return (
+    <>
       <ScrollToTop />
       <MobileAppBanner />
       <Routes>
@@ -550,6 +560,7 @@ function App() {
             </Suspense>
           }
         />
+        {frPocRouteElement}
         <Route
           path="/help"
           element={
@@ -696,7 +707,7 @@ function App() {
         />
       </Routes>
       <Analytics />
-    </BrowserRouter>
+    </>
   );
 }
 

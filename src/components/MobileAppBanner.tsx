@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import logoSrc from "../assets/logo.png";
+import { FR_SITE, isFrBlogSitePath } from "../fr-poc/frSiteChrome";
 
 const DISMISS_KEY = "ccd_mobile_banner_dismissed_at";
 const DISMISS_COOLDOWN_MS = 1000 * 60 * 60 * 24 * 7;
@@ -42,6 +43,7 @@ const FLEET_LOCALE_PATHS = new Set(["/fleet-us", "/fleet-uk", "/fleet-fr"]);
 
 export function MobileAppBanner() {
   const { pathname } = useLocation();
+  const fr = isFrBlogSitePath(pathname);
   const [platform, setPlatform] = useState<Platform>(null);
   const [show, setShow] = useState(false);
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -103,13 +105,13 @@ export function MobileAppBanner() {
       ref={bannerRef}
       className="fixed inset-x-0 top-0 z-[100] border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 md:hidden"
       role="complementary"
-      aria-label="Get the CarCare Diary app"
+      aria-label={fr ? FR_SITE.mobileBanner.ariaLabel : "Get the CarCare Diary app"}
     >
       <div className="flex items-center gap-3 px-3 py-2">
         <button
           type="button"
           onClick={dismiss}
-          aria-label="Dismiss"
+          aria-label={fr ? FR_SITE.mobileBanner.dismiss : "Dismiss"}
           className="-ml-1 flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 active:bg-gray-200"
         >
           <X className="h-4 w-4" />
@@ -126,7 +128,7 @@ export function MobileAppBanner() {
             CarCare Diary
           </p>
           <p className="truncate text-[11px] leading-tight text-gray-500">
-            Free — on {storeLabel}
+            {fr ? FR_SITE.mobileBanner.freeOn(storeLabel) : `Free — on ${storeLabel}`}
           </p>
         </div>
 
@@ -136,7 +138,7 @@ export function MobileAppBanner() {
           rel="noopener noreferrer"
           className="shrink-0 rounded-full bg-blue-600 px-4 py-1.5 text-[13px] font-semibold text-white hover:bg-blue-700 active:bg-blue-800"
         >
-          Get
+          {fr ? FR_SITE.mobileBanner.get : "Get"}
         </a>
       </div>
     </div>

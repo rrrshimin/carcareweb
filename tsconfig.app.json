@@ -16,7 +16,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@fr-poc-routes": ["./src/fr-poc/extraRoutes.prod.pick.ts"],
+      "@fr-poc-hub-registry": ["./src/fr-poc/frBlogRegistry.prod.ts"]
+    }
   },
   "include": ["src", "database.types.ts"]
 }

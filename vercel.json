@@ -3,7 +3,10 @@
     { "source": "/business", "destination": "/fleet-management-app", "statusCode": 301 }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/((?!fr/blog).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {

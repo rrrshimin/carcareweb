@@ -2,18 +2,30 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
 
-const navLinks = [
+const enNavLinks = [
   { to: "#features", label: "Features", hash: true },
   { to: "#how-it-works", label: "How It Works", hash: true },
   { to: "#faq", label: "FAQ", hash: true },
   { to: "/fleet-management-app", label: "For Business", hash: false },
-];
+] as const;
+
+const frNavLinks = [
+  { to: FR_BLOG_HUB_PATH, label: FR_SITE.header.guides, hash: false },
+  { to: "#features", label: FR_SITE.header.features, hash: true },
+  { to: "#how-it-works", label: FR_SITE.header.howItWorks, hash: true },
+  { to: "#faq", label: FR_SITE.header.faq, hash: true },
+  { to: "/fleet-management-app", label: FR_SITE.header.forBusiness, hash: false },
+] as const;
 
 export function LandingHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const fr = isFrBlogSitePath(pathname);
+  const navLinks = fr ? frNavLinks : enNavLinks;
+  const downloadLabel = fr ? FR_SITE.header.downloadApp : "Download App";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -81,14 +93,14 @@ export function LandingHeader() {
               onClick={() => scrollToSection("#download")}
               className="bg-brand hover:bg-brand/90 text-white text-sm font-normal px-5 py-2.5 rounded-lg transition-colors cursor-pointer"
             >
-              Download App
+              {downloadLabel}
             </button>
           </div>
 
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden flex items-center justify-center w-10 h-10 rounded text-white transition-colors cursor-pointer"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? (fr ? FR_SITE.header.closeMenu : "Close menu") : fr ? FR_SITE.header.openMenu : "Open menu"}
           >
             {menuOpen ? (
               <X className="w-6 h-6" />
@@ -134,7 +146,7 @@ export function LandingHeader() {
                 onClick={() => scrollToSection("#download")}
                 className="w-full bg-brand text-white text-base font-normal py-3 rounded-lg cursor-pointer"
               >
-                Download App
+                {downloadLabel}
               </button>
             </div>
           </div>

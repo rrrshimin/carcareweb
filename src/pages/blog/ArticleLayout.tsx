@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { LandingHeader } from "../landing/LandingHeader";
 import { LandingFooter } from "../landing/LandingFooter";
-
-const SITE_URL = "https://www.carcarediary.com";
+import { buildBreadcrumbJsonLd } from "../../lib/pageSeoHead";
+import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
 
 interface ArticleLayoutProps {
   children: React.ReactNode;
@@ -12,17 +12,13 @@ interface ArticleLayoutProps {
 }
 
 export function ArticleLayout({ children, title }: ArticleLayoutProps) {
+  const { pathname } = useLocation();
+  const fr = isFrBlogSitePath(pathname);
+
   useEffect(() => {
-    const url = `${SITE_URL}${window.location.pathname}`;
-    const breadcrumb = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Guides", item: `${SITE_URL}/blog` },
-        { "@type": "ListItem", position: 3, name: title, item: url },
-      ],
-    };
+    const breadcrumb = buildBreadcrumbJsonLd(title, window.location.pathname, {
+      locale: fr ? "fr" : "en",
+    });
     let el = document.querySelector('script[data-seo="breadcrumb-jsonld"]') as HTMLScriptElement | null;
     if (!el) {
       el = document.createElement("script");
@@ -34,8 +30,11 @@ export function ArticleLayout({ children, title }: ArticleLayoutProps) {
     return () => {
       document.querySelector('script[data-seo="breadcrumb-jsonld"]')?.remove();
     };
-  }, [title]);
+  }, [title, fr]);
 
+  const guidesPath = fr ? FR_BLOG_HUB_PATH : "/blog";
+  const homeLabel = fr ? FR_SITE.breadcrumbHome : "Home";
+  const guidesLabel = FR_SITE.breadcrumbGuides;
   return (
     <div className="min-h-screen relative overflow-hidden bg-base text-white font-sans">
       <div
@@ -51,11 +50,11 @@ export function ArticleLayout({ children, title }: ArticleLayoutProps) {
           <div className="max-w-[1280px] mx-auto">
             <nav className="flex items-center gap-1.5 text-sm text-muted">
               <Link to="/" className="hover:text-white transition-colors">
-                Home
+                {homeLabel}
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-muted/50" />
-              <Link to="/blog" className="hover:text-white transition-colors">
-                Guides
+              <Link to={guidesPath} className="hover:text-white transition-colors">
+                {guidesLabel}
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-muted/50" />
               <span className="text-white">{title}</span>
@@ -95,7 +94,7 @@ export function ArticleHero({
   category: string;
   readTime: string;
   title: string;
-  lede: string;
+  lede: React.ReactNode;
 }) {
   return (
     <section className="pt-8 pb-6 md:pt-10 md:pb-8 px-6 sm:px-10 lg:px-16 xl:px-20">
@@ -140,5 +139,21 @@ export function ArticleH2({ children }: { children: React.ReactNode }) {
 export function ArticleP({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-base leading-relaxed text-muted mb-4">{children}</p>
+  );
+}
+
+export function ArticleH4({ children }: { children: React.ReactNode }) {
+  return (
+    <h4 className="text-sm font-semibold text-white mb-1 mt-1">
+      {children}
+    </h4>
+  );
+}
+
+export function ArticleH3({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-base font-semibold text-white mb-1.5 mt-4 first:mt-0">
+      {children}
+    </h3>
   );
 }

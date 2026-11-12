@@ -322,41 +322,38 @@ export default function PrivacyPolicyPage() {
 
                 <SubSection title="7.1 CarCare Fleet marketing pages">
                   <p>
-                    On the public pages at /fleet-us, /fleet-uk, and /fleet-fr, page views and
-                    clicks on the App Store and Google Play links can be counted with PostHog.
-                    PostHog is hosted in the European Union. This measurement is limited to those
-                    three pages and starts only after you choose Allow.
+                    On /fleet-us, /fleet-uk, and /fleet-fr, page views and primary conversion clicks
+                    (App Store and Google Play) can be measured with Umami Analytics (Umami Cloud).
+                    Measurement is limited to those three pages.
                   </p>
                   <p>
-                    PostHog runs in cookieless mode. It does not set an analytics cookie, does not
-                    store an analytics identifier in the browser, does not record sessions or
-                    heatmaps, and does not autocapture clicks. We do not create person profiles and
-                    we do not send an identify call. When an event is sent, PostHog receives the IP
-                    address and User-Agent from the connection. PostHog can use that information to
-                    calculate a daily hash so repeat activity during the same day can be counted.
-                    The hash is not your name or account, and it is produced from connection data
-                    that can relate to a person. Cookieless mode does not replace your choice.
+                    On /fleet-uk and /fleet-fr, Umami loads only after you choose Allow. On
+                    /fleet-us, aggregate measurement runs by default unless you opt out; a short
+                    notice on the page explains this and offers an opt-out control.
                   </p>
                   <p>
-                    A page-view event can include the page locale (United States, United Kingdom, or
-                    France). A store-click event can include that locale and the store link used,
-                    App Store or Google Play. Either event can include campaign parameters already
-                    present on the page address: utm_source, utm_medium, utm_campaign, utm_term, and
-                    utm_content. Names, email addresses, and other query parameters are removed
-                    before the event is sent. The QR code on these pages opens the same page,
-                    including the current query string. It is not a separate tracking link.
+                    Umami&apos;s script is loaded from Umami Cloud when measurement is allowed for
+                    that page. It records page views automatically, including within the
+                    single-page application, and can include standard campaign parameters on the page
+                    address (such as utm_source, utm_medium, utm_campaign, utm_term, and
+                    utm_content). Store button clicks are recorded as Umami events. The script may
+                    use a short-lived identifier in the browser so repeat visits can be counted. We
+                    do not send your name or account details with these events.
                   </p>
                   <p>
-                    Allow and Decline are saved in this browser as one preference. That value
-                    records the privacy choice only. It is not sent as an analytics identifier.
-                    Until you allow measurement, the analytics code is not loaded and no analytics
-                    request is made. If you decline, or if you withdraw an earlier Allow, later page
-                    views and store clicks on these pages are not sent. You can change the choice in
-                    the box below or on the Fleet pages. You can also email{" "}
+                    The QR code on these pages opens the same page, including the current query
+                    string. It is not a separate tracking link.
+                  </p>
+                  <p>
+                    Your Allow, Decline, or opt-out choice is saved in this browser as one
+                    preference. That value records the privacy choice only. It is not sent as an
+                    analytics identifier. If you decline or opt out, or withdraw an earlier Allow,
+                    later page views and conversion events on these pages are not sent to Umami. You
+                    can change the choice in the box below or on the Fleet pages. You can also email{" "}
                     <a href="mailto:hello@thesorami.com" className="underline" style={{ color: "#367DFF" }}>
                       hello@thesorami.com
                     </a>
-                    . PostHog&apos;s privacy information is at posthog.com/privacy.
+                    . Umami&apos;s privacy information is at umami.is/privacy-policy.
                   </p>
                   <FleetAnalyticsChoice />
                 </SubSection>

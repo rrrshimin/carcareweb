@@ -1,5 +1,4 @@
 import { campaignUtms } from "./fleetMeasurement";
-import { captureFleetStoreClick } from "./fleetAnalytics";
 
 export type StorePlatform = "app_store" | "google_play";
 
@@ -20,7 +19,6 @@ export function trackStoreClick(locale: string, platform: StorePlatform) {
     }
 
     window.dispatchEvent(new CustomEvent("store_click", { detail }));
-    captureFleetStoreClick(locale, platform);
   } catch {
     // Measurement must never block the store navigation.
   }

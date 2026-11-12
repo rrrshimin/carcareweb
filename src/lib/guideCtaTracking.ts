@@ -4,8 +4,7 @@ import { trackStoreClick, type StorePlatform } from "./storeClick";
 export type GuideCtaPlacement = "primary" | "secondary";
 
 /**
- * Guide banner click. Reuses the shared store_click hook (dataLayer and window event; PostHog stays
- * limited to consented /fleet-* pages) and adds one Vercel Analytics custom event, the analytics
+ * Guide banner click. Reuses the shared store_click hook (dataLayer and window event) and adds one Vercel Analytics custom event, the analytics
  * integration already running site-wide. Vercel Pro allows only 2 properties per custom event, so it
  * sends exactly two: `slug` and `target` (`<placement>_<ios|android>`, e.g. `primary_ios`).
  */

@@ -1,88 +1,51 @@
 import { fleetAnalyticsAllowed } from "./fleetAnalyticsPreference";
-import {
-  campaignUtms,
-  FLEET_PAGE_LOCALES,
-  isFleetPath,
-  prepareMeasurementEvent,
-} from "./fleetMeasurement";
-import type { StorePlatform } from "./storeClick";
+import { isFleetPath } from "./fleetMeasurement";
 
-const EU_HOST = "https://eu.i.posthog.com";
+const UMAMI_SRC = "https://cloud.umami.is/script.js";
+const UMAMI_WEBSITE_ID = "2f605dc0-195a-49b3-b6dd-15ee2b30614b";
+const SCRIPT_ID = "carcare-fleet-umami";
 
-type PostHogClient = {
-  init: (key: string, config: Record<string, unknown>) => void;
-  capture: (event: string, properties?: Record<string, string>) => void;
-  __loaded?: boolean;
+type UmamiTracker = {
+  track: (event: string, data?: Record<string, string | number | boolean>) => void;
 };
 
-let starting: Promise<PostHogClient | null> | null = null;
+type WindowWithUmami = Window & { umami?: UmamiTracker };
 
-function projectKey(): string {
-  return (import.meta.env.VITE_POSTHOG_KEY ?? "").trim();
-}
+/** Load Umami once on allowed fleet pages; remove when opted out or the page unmounts. */
+export function syncFleetUmami(pathname: string) {
+  if (typeof document === "undefined") return;
 
-function measurementEvent(event: Parameters<typeof prepareMeasurementEvent>[0]) {
-  if (!fleetAnalyticsAllowed()) return null;
-  return prepareMeasurementEvent(event);
-}
+  const remove = () => {
+    document.getElementById(SCRIPT_ID)?.remove();
+  };
 
-function client(): Promise<PostHogClient | null> {
-  const key = projectKey();
-  if (!key || typeof window === "undefined") return Promise.resolve(null);
-  if (!fleetAnalyticsAllowed()) return Promise.resolve(null);
-  if (!isFleetPath(window.location.pathname)) return Promise.resolve(null);
-  if (!starting) {
-    starting = import("posthog-js/dist/module.slim")
-      .then((mod) => {
-        if (!fleetAnalyticsAllowed()) {
-          starting = null;
-          return null;
-        }
-        const posthog = mod.default as PostHogClient;
-        if (!posthog.__loaded) {
-          posthog.init(key, {
-            api_host: (import.meta.env.VITE_POSTHOG_HOST ?? "").trim() || EU_HOST,
-            cookieless_mode: "always",
-            person_profiles: "never",
-            autocapture: false,
-            capture_pageview: false,
-            capture_pageleave: false,
-            capture_dead_clicks: false,
-            capture_heatmaps: false,
-            disable_session_recording: true,
-            advanced_disable_flags: true,
-            // Send during capture so a later Decline cannot flush a queued event.
-            request_batching: false,
-            before_send: measurementEvent,
-          });
-        }
-        return fleetAnalyticsAllowed() ? posthog : null;
-      })
-      .catch(() => {
-        starting = null;
-        return null;
-      });
+  if (!isFleetPath(pathname) || !fleetAnalyticsAllowed(pathname)) {
+    remove();
+    return;
   }
-  return starting.then((posthog) => (fleetAnalyticsAllowed() ? posthog : null));
+
+  if (document.getElementById(SCRIPT_ID)) return;
+
+  const script = document.createElement("script");
+  script.id = SCRIPT_ID;
+  script.defer = true;
+  script.src = UMAMI_SRC;
+  script.setAttribute("data-website-id", UMAMI_WEBSITE_ID);
+  document.head.appendChild(script);
 }
 
-export function captureFleetPageview(path: string) {
-  if (!isFleetPath(path)) return;
-  const locale = FLEET_PAGE_LOCALES[path];
-  void client().then((posthog) => {
-    posthog?.capture("$pageview", {
-      locale,
-      ...campaignUtms(window.location.search),
-    });
-  });
+export function removeFleetUmami() {
+  if (typeof document === "undefined") return;
+  document.getElementById(SCRIPT_ID)?.remove();
 }
 
-export function captureFleetStoreClick(locale: string, platform: StorePlatform) {
-  void client().then((posthog) => {
-    posthog?.capture("store_click", {
-      locale,
-      platform,
-      ...campaignUtms(window.location.search),
-    });
-  });
+/** Fleet conversion click for Umami (uses existing onClick path; data-umami-event blocks other listeners). */
+export function trackFleetUmamiClick(event: string, data: Record<string, string>) {
+  if (typeof window === "undefined") return;
+  if (!fleetAnalyticsAllowed(window.location.pathname)) return;
+  try {
+    (window as WindowWithUmami).umami?.track(event, data);
+  } catch {
+    // Measurement must never block navigation.
+  }
 }

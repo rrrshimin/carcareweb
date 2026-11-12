@@ -21,6 +21,15 @@ interface NoticeCopy {
   privacy: string;
 }
 
+interface UsNoticeCopy {
+  body: string;
+  dismiss: string;
+  optOut: string;
+  privacy: string;
+  declined: string;
+  change: string;
+}
+
 const english: NoticeCopy = {
   title: "Help us improve CarCare Fleet.",
   body: "With your permission, we'll use basic analytics to understand how these pages are used. You can change your choice anytime.",
@@ -31,8 +40,7 @@ const english: NoticeCopy = {
   privacy: "Privacy",
 };
 
-const COPY: Record<FleetLocaleId, NoticeCopy> = {
-  us: english,
+const COPY: Record<Exclude<FleetLocaleId, "us">, NoticeCopy> = {
   uk: english,
   fr: {
     title: "Aidez-nous à améliorer CarCare Fleet.",
@@ -43,6 +51,15 @@ const COPY: Record<FleetLocaleId, NoticeCopy> = {
     change: "Modifier",
     privacy: "Confidentialité",
   },
+};
+
+const US_COPY: UsNoticeCopy = {
+  body: "We use aggregate analytics on this page to understand how it is used.",
+  dismiss: "OK",
+  optOut: "Opt out",
+  privacy: "Privacy",
+  declined: "Analytics off",
+  change: "Change",
 };
 
 function useFleetAnalyticsPreference() {
@@ -111,7 +128,7 @@ function ChoiceButtons({
   );
 }
 
-export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
+function FleetAnalyticsNoticeOptIn({ locale }: { locale: Exclude<FleetLocaleId, "us"> }) {
   const copy = COPY[locale];
   const preference = useFleetAnalyticsPreference();
   const [open, setOpen] = useState(preference === null);
@@ -163,7 +180,10 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
             </p>
             <p className="mt-1 text-[0.8125rem] leading-snug text-muted">
               {copy.body}{" "}
-              <Link to="/privacy#fleet-measurement" className={`text-white underline decoration-white/40 underline-offset-2 ${focusClass}`}>
+              <Link
+                to="/privacy#fleet-measurement"
+                className={`text-white underline decoration-white/40 underline-offset-2 ${focusClass}`}
+              >
                 {copy.privacy}
               </Link>
             </p>
@@ -175,6 +195,92 @@ export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
   );
 }
 
+function FleetAnalyticsNoticeUs() {
+  const copy = US_COPY;
+  const preference = useFleetAnalyticsPreference();
+  const [open, setOpen] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const changeRef = useRef<HTMLButtonElement>(null);
+
+  if (preference === "decline" && !open) {
+    return (
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-end px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <button
+          ref={changeRef}
+          type="button"
+          className={`pointer-events-auto rounded-full border border-white/15 bg-panel/95 px-3 py-1.5 text-xs text-muted shadow-none backdrop-blur ${focusClass}`}
+          onClick={() => setOpen(true)}
+        >
+          <span className="text-white">{copy.declined}</span>
+          {". "}
+          {copy.change}
+        </button>
+      </div>
+    );
+  }
+
+  if (preference === "decline" && open) {
+    return (
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <section className="pointer-events-auto w-full max-w-[40rem] rounded-2xl border border-white/10 bg-panel/95 p-3 backdrop-blur md:p-3.5">
+          <p className="text-sm text-muted">
+            Analytics is off on this page. You can allow it again for Fleet pages.
+          </p>
+          <div className="mt-3">
+            <ChoiceButtons
+              copy={{ allow: "Allow analytics", decline: "Keep off" }}
+              preference={preference}
+              onChoose={(value) => {
+                writeFleetAnalyticsPreference(value);
+                setOpen(false);
+              }}
+            />
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (dismissed) return null;
+
+  return (
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <section className="pointer-events-auto flex w-full max-w-[40rem] flex-col gap-2 rounded-2xl border border-white/10 bg-panel/95 p-3 text-[0.8125rem] leading-snug text-muted backdrop-blur sm:flex-row sm:items-center sm:justify-between md:p-3.5">
+        <p className="min-w-0">
+          {copy.body}{" "}
+          <Link
+            to="/privacy#fleet-measurement"
+            className={`text-white underline decoration-white/40 underline-offset-2 ${focusClass}`}
+          >
+            {copy.privacy}
+          </Link>
+        </p>
+        <div className="flex shrink-0 gap-2">
+          <button
+            type="button"
+            className={`rounded-full border border-white/20 px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/10 ${focusClass}`}
+            onClick={() => writeFleetAnalyticsPreference("decline")}
+          >
+            {copy.optOut}
+          </button>
+          <button
+            type="button"
+            className={`rounded-full bg-brand px-3 py-1.5 text-sm font-semibold text-white hover:bg-accent ${focusClass}`}
+            onClick={() => setDismissed(true)}
+          >
+            {copy.dismiss}
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export function FleetAnalyticsNotice({ locale }: { locale: FleetLocaleId }) {
+  if (locale === "us") return <FleetAnalyticsNoticeUs />;
+  return <FleetAnalyticsNoticeOptIn locale={locale} />;
+}
+
 export function FleetAnalyticsChoice() {
   const preference = useFleetAnalyticsPreference();
   const status =
@@ -182,7 +288,7 @@ export function FleetAnalyticsChoice() {
       ? "Current choice: allowed."
       : preference === "decline"
         ? "Current choice: declined."
-        : "Current choice: not chosen.";
+        : "Current choice: not chosen (US Fleet uses analytics unless you opt out).";
 
   return (
     <div id="fleet-measurement" className="scroll-mt-8 rounded-xl border border-white/10 p-4">
@@ -190,15 +296,16 @@ export function FleetAnalyticsChoice() {
         Your choice for the Fleet pages
       </p>
       <p className="mt-2">
-        Choose whether /fleet-us, /fleet-uk, and /fleet-fr may count page views and store clicks.
-        The choice is saved in this browser and is not an analytics identifier.
+        On /fleet-uk and /fleet-fr, page views are measured only after you allow analytics. On
+        /fleet-us, aggregate analytics run unless you opt out. The choice is saved in this browser
+        and is not an analytics identifier.
       </p>
       <p className="mt-3" aria-live="polite">
         {status}
       </p>
       <div className="mt-3">
         <ChoiceButtons
-          copy={{ allow: "Allow", decline: "Decline" }}
+          copy={{ allow: "Allow", decline: "Decline / opt out" }}
           preference={preference}
           onChoose={writeFleetAnalyticsPreference}
         />

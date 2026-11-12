@@ -20,11 +20,8 @@ import { Logo } from "../landing/Logo";
 import { AppStoreButton, GooglePlayButton } from "../landing/StoreButtons";
 import { usePageSeo } from "../../lib/usePageSeo";
 import { FleetAnalyticsNotice } from "../../components/FleetAnalyticsNotice";
-import { captureFleetPageview } from "../../lib/fleetAnalytics";
-import {
-  FLEET_ANALYTICS_PREFERENCE_EVENT,
-  readFleetAnalyticsPreference,
-} from "../../lib/fleetAnalyticsPreference";
+import { removeFleetUmami, syncFleetUmami, trackFleetUmamiClick } from "../../lib/fleetAnalytics";
+import { FLEET_ANALYTICS_PREFERENCE_EVENT } from "../../lib/fleetAnalyticsPreference";
 import { trackStoreClick, type StorePlatform } from "../../lib/storeClick";
 import { FleetQrCode, PhoneHandoffButton, PhoneHandoffStrip } from "./FleetQr";
 import { loadFleetImages, type FleetImages } from "./fleetAssets";
@@ -103,22 +100,14 @@ export default function FleetLandingPage({ locale }: FleetLandingPageProps) {
   }, []);
 
   useEffect(() => {
-    let sent = false;
-    const send = () => {
-      if (readFleetAnalyticsPreference() !== "allow") {
-        sent = false;
-        return;
-      }
-      if (sent) return;
-      sent = true;
-      captureFleetPageview(copy.path);
-    };
-    send();
-    window.addEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, send);
-    window.addEventListener("storage", send);
+    const sync = () => syncFleetUmami(copy.path);
+    sync();
+    window.addEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, sync);
+    window.addEventListener("storage", sync);
     return () => {
-      window.removeEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, send);
-      window.removeEventListener("storage", send);
+      window.removeEventListener(FLEET_ANALYTICS_PREFERENCE_EVENT, sync);
+      window.removeEventListener("storage", sync);
+      removeFleetUmami();
     };
   }, [copy.path]);
 
@@ -190,6 +179,7 @@ function FleetHeader({
 function StorePair({ copy, header = false, fill = false }: { copy: FleetCopy; header?: boolean; fill?: boolean }) {
   const onStore = (platform: StorePlatform) => () => {
     trackStoreClick(copy.htmlLang, platform);
+    trackFleetUmamiClick("store_click", { platform, locale: copy.htmlLang });
   };
 
   return (

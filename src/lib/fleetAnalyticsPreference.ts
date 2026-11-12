@@ -3,6 +3,8 @@ export const FLEET_ANALYTICS_PREFERENCE_EVENT = "carcare-fleet-analytics-prefere
 
 export type FleetAnalyticsPreference = "allow" | "decline";
 
+const OPT_IN_FLEET_PATHS = new Set(["/fleet-uk", "/fleet-fr"]);
+
 let memory: FleetAnalyticsPreference | null = null;
 
 function isPreference(value: string | null): value is FleetAnalyticsPreference {
@@ -34,6 +36,15 @@ export function writeFleetAnalyticsPreference(value: FleetAnalyticsPreference) {
   window.dispatchEvent(new Event(FLEET_ANALYTICS_PREFERENCE_EVENT));
 }
 
-export function fleetAnalyticsAllowed(): boolean {
-  return readFleetAnalyticsPreference() === "allow";
+/** UK/FR fleet pages require explicit Allow; US fleet uses measurement unless opted out. */
+export function fleetPathRequiresAnalyticsOptIn(pathname: string): boolean {
+  return OPT_IN_FLEET_PATHS.has(pathname);
+}
+
+export function fleetAnalyticsAllowed(pathname: string): boolean {
+  const preference = readFleetAnalyticsPreference();
+  if (preference === "decline") return false;
+  if (fleetPathRequiresAnalyticsOptIn(pathname)) return preference === "allow";
+  if (pathname === "/fleet-us") return true;
+  return false;
 }

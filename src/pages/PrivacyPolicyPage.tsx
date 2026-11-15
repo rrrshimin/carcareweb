@@ -583,21 +583,6 @@ export default function PrivacyPolicyPage() {
                     applies in every country or to every message.
                   </p>
                 </SubSection>
-                <SubSection title="Providers">
-                  <p>
-                    Hunter looks up company and work-email information and is the service used to
-                    send the introductions. The sending mailbox is a Google Workspace mailbox
-                    on carcarefleet.com, connected to Hunter. Contact records, research notes, message
-                    drafts, and suppression records are stored in Supabase. OpenAI drafts an
-                    introduction from the contact&apos;s first name, the company name, and excerpts
-                    from the company&apos;s public pages. That drafting request does not include the
-                    work email address.
-                  </p>
-                  <p>
-                    These providers may process the information in the United States and in other
-                    countries.
-                  </p>
-                </SubSection>
                 <SubSection title="Retention">
                   <p>
                     We keep business-contact and message records while they are needed for this

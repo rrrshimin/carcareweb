@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import { MobileAppBanner } from "./components/MobileAppBanner";
 import { frPocRouteElement } from "@fr-poc-routes";
+import { dePocRouteElement } from "@de-poc-routes";
+
+const dePocBuild = Boolean(import.meta.env.VITE_DE_POC);
 
 const CarMaintenanceTrackerPage = lazy(() => import("./pages/CarMaintenanceTrackerPage"));
 const CarServiceHistoryPage = lazy(() => import("./pages/CarServiceHistoryPage"));
@@ -560,7 +563,14 @@ export function AppContent() {
             </Suspense>
           }
         />
-        {frPocRouteElement}
+        {dePocBuild ? (
+          dePocRouteElement
+        ) : (
+          <>
+            {frPocRouteElement}
+            {dePocRouteElement}
+          </>
+        )}
         <Route
           path="/help"
           element={

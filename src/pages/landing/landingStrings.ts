@@ -15,7 +15,7 @@ import {
   Gauge,
 } from "lucide-react";
 
-export type LandingLocale = "en" | "fr";
+export type LandingLocale = "en" | "fr" | "de";
 
 export type LandingFaqItem = { question: string; answer: string };
 
@@ -581,6 +581,238 @@ export const landingStrings: Record<LandingLocale, LandingStrings> = {
       link1: { label: "Suivi d'entretien", to: "/fr/suivi-entretien-voiture" },
       link2: { label: "Historique d'entretien", to: "/fr/historique-entretien-voiture" },
       link3: { label: "Carnet d'entretien numérique", to: "/fr/carnet-entretien-voiture" },
+    },
+  },
+  de: {
+    seoJsonLd: {
+      softwareAppDescription:
+        "App für Autowartung und Servicehistorie. Wartungen erfassen, Kilometerstand verfolgen, Erinnerungen erhalten und die Fahrzeughistorie teilen.",
+    },
+    hero: {
+      eyebrow: "App für Autowartung",
+      titleLine: "Autowartung und Servicehistorie",
+      titleAccent: "in einer App verwalten",
+      body:
+        "CarCare Diary ist eine kostenlose Autowartung-App für iPhone und Android. Erfasse jede Wartung, behalte den Kilometerstand im Blick, lass dich an fällige Arbeiten erinnern und teile die Servicehistorie deines Fahrzeugs.",
+      subline: "Kostenlos für iPhone und Android",
+      heroImageAlt:
+        "CarCare Diary Autowartung-App mit Serviceprotokoll und Kilometerstand",
+    },
+    trustBar: {
+      signals: [
+        { icon: trustIcons[0], text: "Für iPhone und Android" },
+        { icon: trustIcons[1], text: "Vollständiges Serviceprotokoll" },
+        { icon: trustIcons[2], text: "Intelligente Erinnerungen" },
+        { icon: trustIcons[3], text: "Teilbare Fahrzeughistorie" },
+        { icon: trustIcons[4], text: "Mehrere Fahrzeuge verwalten" },
+      ],
+    },
+    features: {
+      eyebrow: "Funktionen",
+      headingLine: "Alles, was du für die",
+      headingAccent: "Autowartung brauchst",
+      intro:
+        "Wartungseinträge, Erinnerungen, Kilometerstand und eine teilbare Fahrzeughistorie - übersichtlich an einem Ort. Für alle, die ihr Auto einfach im Blick behalten möchten.",
+      items: [
+        {
+          icon: Wrench,
+          title: "Serviceprotokoll",
+          description:
+            "Halte Ölwechsel, Bremsenarbeiten, Filterwechsel und alle weiteren Wartungen fest. Jeder Eintrag enthält Datum, Kilometerstand und Notizen.",
+        },
+        {
+          icon: Bell,
+          title: "Wartungserinnerungen",
+          description:
+            "Sieh, welche Arbeiten bald anstehen. CarCare Diary berechnet die Fälligkeit anhand deiner Einträge, des aktuellen Kilometerstands und der Wartungsintervalle.",
+        },
+        {
+          icon: Gauge,
+          title: "Kilometerstand",
+          description:
+            "Aktualisiere den Tachostand, damit Wartungspläne und Erinnerungen auch bei veränderter Fahrleistung stimmen.",
+        },
+        {
+          icon: Car,
+          title: "Fahrzeugprofil",
+          description:
+            "Speichere Marke, Modell, Baujahr, Kraftstoffart und Foto deines Autos an einem Ort.",
+        },
+        {
+          icon: History,
+          title: "Wartungshistorie",
+          description:
+            "Erstelle eine chronologische Übersicht aller Wartungen. Filtere nach Kategorien und sieh jederzeit nach, was erledigt wurde.",
+        },
+        {
+          icon: Share2,
+          title: "Teilbare Einträge",
+          description:
+            "Erstelle einen öffentlichen Link zur erfassten Servicehistorie deines Autos. Praktisch beim Verkauf oder beim Werkstatttermin.",
+        },
+      ],
+      footerPrefix: "Mehr erfahren?",
+      linkTracker: "So funktioniert die Autowartung-App",
+      linkGuides: "Wartungsratgeber lesen",
+    },
+    appShowcase: {
+      eyebrow: "Einblick in die App",
+      headingLine: "Das Wartungstagebuch für dein Auto",
+      headingAccent: "immer auf dem neuesten Stand",
+      intro:
+        "Alle Einträge, Erinnerungen und Fahrzeugdaten übersichtlich an einem Ort - damit Autowartung unkompliziert bleibt.",
+      rows: [
+        {
+          title: "Auf einen Blick sehen, was ansteht",
+          description:
+            "Sieh den Wartungsstatus deines Autos auf einen Blick: bevorstehende Arbeiten, Kilometerstand, Ausgabenübersicht und alle Wartungskategorien.",
+          alt: "Fahrzeugübersicht in CarCare Diary mit Wartungsstatus, Kilometerstand und Servicekategorien",
+        },
+        {
+          title: "Keine Wartung mehr übersehen",
+          description:
+            "Farbliche Statusanzeigen zeigen, welche Arbeiten bald fällig oder bereits überfällig sind. So behältst du Ölwechsel, Filterwechsel und Inspektionen im Blick.",
+          alt: "Wartungserinnerungen in CarCare Diary mit fälligen und überfälligen Arbeiten",
+        },
+        {
+          title: "Wartungskosten besser verstehen",
+          description:
+            "Vergleiche deine Wartungsausgaben von Monat zu Monat. Erkenne, welche Kategorien besonders teuer sind und wie sich die Kosten entwickeln.",
+          alt: "Ausgabenanalyse in CarCare Diary mit Monatsdiagramm und Kategorien",
+        },
+        {
+          title: "Die gesamte Servicehistorie teilen",
+          description:
+            "Wenn du dein Auto verkaufen möchtest, kannst du einen öffentlichen Link zur erfassten Wartungshistorie erstellen. Interessenten sehen die dokumentierten Arbeiten und können sich leichter ein Bild machen.",
+          alt: "Geteilte Fahrzeughistorie von CarCare Diary im mobilen Browser",
+        },
+      ],
+    },
+    howItWorks: {
+      eyebrow: "So funktioniert's",
+      headingLine: "In wenigen Minuten",
+      headingAccent: "mit der Wartungsdokumentation starten",
+      intro: "Drei einfache Schritte und dein digitales Wartungstagebuch ist eingerichtet.",
+      stepLabel: (n) => `SCHRITT ${n}`,
+      steps: [
+        {
+          number: "01",
+          title: "Fahrzeug hinzufügen",
+          description:
+            "Erstelle ein Fahrzeugprofil mit Foto und den wichtigsten Angaben. Das dauert weniger als eine Minute.",
+        },
+        {
+          number: "02",
+          title: "Wartungen eintragen",
+          description:
+            "Erfasse durchgeführte Arbeiten mit Datum, Kilometerstand und Notizen. Mit jedem Eintrag wächst deine Servicehistorie.",
+        },
+        {
+          number: "03",
+          title: "Alles im Blick behalten",
+          description:
+            "Lass dich an fällige Wartungen erinnern und teile deine Fahrzeughistorie bei Bedarf über einen Link.",
+        },
+      ],
+    },
+    valueSection: {
+      eyebrow: "Warum es sich lohnt",
+      headingLine: "Was eine gut geführte",
+      headingAccent: "Wartungshistorie bringt",
+      intro:
+        "Mit vollständigen Wartungseinträgen kannst du Serviceintervalle besser einhalten, Informationen schnell wiederfinden und den Zustand deines Autos nachvollziehbar dokumentieren.",
+      values: [
+        {
+          icon: TrendingUp,
+          title: "Vertrauen beim Wiederverkauf schaffen",
+          description:
+            "Eine nachvollziehbare Servicehistorie zeigt Interessenten, welche Wartungen dokumentiert wurden. Das kann beim Verkauf Vertrauen schaffen und Fragen reduzieren.",
+        },
+        {
+          icon: ShieldCheck,
+          title: "Keine Wartung vergessen",
+          description:
+            "Versäumte Inspektionen können später teuer werden. Erinnerungen und Fälligkeitsanzeigen helfen dir, rechtzeitig an Ölwechsel, Filter und Prüfungen zu denken.",
+        },
+        {
+          icon: FolderOpen,
+          title: "Alle Einträge an einem Ort",
+          description:
+            "Keine verstreuten Notizen oder verlorenen Zettel mehr: Deine erfassten Wartungen sind nach Kategorien sortiert und auf dem Smartphone verfügbar.",
+        },
+      ],
+    },
+    businessSection: {
+      eyebrow: "Mehrere Fahrzeuge?",
+      heading: "Auch für Familien und kleine Fuhrparks geeignet",
+      body:
+        "Ob zwei Autos vor der Haustür oder mehrere Firmenfahrzeuge: Mit CarCare Diary verwaltest du mehrere Fahrzeuge in einem Konto.",
+      points: [
+        { icon: Car, text: "Wartung für alle Fahrzeuge in einem Konto dokumentieren" },
+        {
+          icon: BarChart3,
+          text: "Wartungsausgaben über den Fuhrpark hinweg im Blick behalten",
+        },
+        { icon: Building2, text: "Für jedes Fahrzeug eine übersichtliche Wartungshistorie führen" },
+      ],
+      ctaLabel: "Mehr über CarCare Diary für Unternehmen erfahren",
+      ctaTo: "/de/fuhrparkmanagement-app",
+    },
+    landingFaq: {
+      eyebrow: "FAQ",
+      heading: "Häufige Fragen zu CarCare Diary",
+      intro: "Antworten auf häufige Fragen zur Autowartung mit CarCare Diary.",
+      items: [
+        {
+          question: "Was ist CarCare Diary?",
+          answer:
+            "CarCare Diary ist eine Autowartung-App für iPhone und Android. Du kannst Wartungen erfassen, den Kilometerstand im Blick behalten, Erinnerungen erhalten und eine Servicehistorie führen, die du mit anderen teilen kannst.",
+        },
+        {
+          question: "Ist CarCare Diary kostenlos?",
+          answer:
+            "Ja. Mit dem kostenlosen Tarif kannst du ein Fahrzeug verwalten und Wartungen, Kilometerstände und Erinnerungen erfassen sowie die Servicehistorie teilen. Für mehrere Fahrzeuge und zusätzliche Funktionen gibt es kostenpflichtige Tarife.",
+        },
+        {
+          question: "Welche Wartungsarbeiten kann ich erfassen?",
+          answer:
+            "Zum Beispiel Ölwechsel, Bremsbeläge, Filter, Zündkerzen, Reifenwechsel und -rotation, Flüssigkeitswechsel, Inspektionen oder Batteriewechsel. Zu jedem Eintrag kannst du Datum, Kilometerstand, technische Angaben und Notizen speichern.",
+        },
+        {
+          question: "Wie funktionieren die Wartungserinnerungen?",
+          answer:
+            "CarCare Diary berechnet anstehende Wartungen anhand deiner bisherigen Serviceeinträge, des aktuellen Kilometerstands und der eingestellten Intervalle. Für jede Wartung siehst du den Fälligkeitsstatus und erhältst Erinnerungen, wenn du handeln solltest.",
+        },
+        {
+          question: "Kann ich die Wartungshistorie meines Autos teilen?",
+          answer:
+            "Ja. Du kannst einen öffentlichen Link zu den freigegebenen Serviceeinträgen deines Fahrzeugs erstellen. Das ist beispielsweise beim Verkauf hilfreich, wenn Interessenten die dokumentierten Wartungen prüfen möchten.",
+        },
+        {
+          question: "Kann ich mehrere Fahrzeuge verwalten?",
+          answer:
+            "Im kostenlosen Tarif ist ein Fahrzeug enthalten. Base unterstützt bis zu drei Fahrzeuge, Pro weitere Fahrzeuge gemäß den geltenden Tarifgrenzen. Jedes Fahrzeug hat eigene Wartungseinträge und Erinnerungen.",
+        },
+        {
+          question: "Gibt es CarCare Diary für iPhone und Android?",
+          answer: "Ja. Du kannst CarCare Diary kostenlos im App Store und bei Google Play herunterladen.",
+        },
+        {
+          question: "Warum ist ein Wartungsprotokoll beim Autoverkauf nützlich?",
+          answer:
+            "Eine vollständige Dokumentation zeigt, welche Arbeiten am Fahrzeug erfasst wurden. Mit CarCare Diary kannst du die Historie per Link teilen und den Verkaufsprozess transparenter gestalten.",
+        },
+      ],
+    },
+    downloadCta: {
+      eyebrow: "App herunterladen",
+      headingLine: "Wartungen deines Autos",
+      headingAccent: "ab heute im Blick behalten",
+      body:
+        "CarCare Diary ist eine kostenlose App für iPhone und Android. Erfasse Wartungen, aktualisiere den Kilometerstand, erhalte Erinnerungen und teile die Servicehistorie deines Fahrzeugs.",
+      link1: { label: "Autowartung-App", to: "/de/autowartung-app" },
+      link2: { label: "Wartungshistorie", to: "/de/wartungshistorie-auto" },
+      link3: { label: "Wartungsprotokoll", to: "/de/wartungsprotokoll-auto" },
     },
   },
 };

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
 import type { LandingLocale } from "./landingStrings";
 import { landingStrings } from "./landingStrings";
+import { DE_SITE } from "../../de-poc/deSiteChrome";
 
 export function DownloadCTA({ locale = "en" }: { locale?: LandingLocale }) {
   const download = landingStrings[locale].downloadCta;
@@ -25,14 +26,50 @@ export function DownloadCTA({ locale = "en" }: { locale?: LandingLocale }) {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
               <AppStoreButton
-                kicker={locale === "fr" ? "Télécharger sur" : undefined}
-                storeName={locale === "fr" ? "l'App Store" : undefined}
-                ariaLabel={locale === "fr" ? "Télécharger CarCare Diary sur l'App Store" : undefined}
+                kicker={
+                  locale === "de"
+                    ? DE_SITE.store.appStoreKicker
+                    : locale === "fr"
+                      ? "Télécharger sur"
+                      : undefined
+                }
+                storeName={
+                  locale === "de"
+                    ? DE_SITE.store.appStoreName
+                    : locale === "fr"
+                      ? "l'App Store"
+                      : undefined
+                }
+                ariaLabel={
+                  locale === "de"
+                    ? DE_SITE.store.appStoreAria
+                    : locale === "fr"
+                      ? "Télécharger CarCare Diary sur l'App Store"
+                      : undefined
+                }
               />
               <GooglePlayButton
-                kicker={locale === "fr" ? "Disponible sur" : undefined}
-                storeName={locale === "fr" ? "Google Play" : undefined}
-                ariaLabel={locale === "fr" ? "Télécharger CarCare Diary sur Google Play" : undefined}
+                kicker={
+                  locale === "de"
+                    ? DE_SITE.store.playKicker
+                    : locale === "fr"
+                      ? "Disponible sur"
+                      : undefined
+                }
+                storeName={
+                  locale === "de"
+                    ? DE_SITE.store.playName
+                    : locale === "fr"
+                      ? "Google Play"
+                      : undefined
+                }
+                ariaLabel={
+                  locale === "de"
+                    ? DE_SITE.store.playAria
+                    : locale === "fr"
+                      ? "Télécharger CarCare Diary sur Google Play"
+                      : undefined
+                }
               />
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted">

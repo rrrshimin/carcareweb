@@ -9,6 +9,7 @@ import {
   isFrBlogSitePath,
   isFrLocalizedMarketingPath,
 } from "../../fr-poc/frSiteChrome";
+import { DE_HOME_PATH, DE_SITE, isDeLocalizedMarketingPath } from "../../de-poc/deSiteChrome";
 
 const enNavLinks = [
   { to: "#features", label: "Features", hash: true },
@@ -24,6 +25,13 @@ const frMarketingNavLinks = [
   { to: "/fr/gestion-entretien-flotte", label: FR_SITE.header.forBusiness, hash: false },
 ] as const;
 
+const deMarketingNavLinks = [
+  { to: "#features", label: DE_SITE.header.features, hash: true },
+  { to: "#how-it-works", label: DE_SITE.header.howItWorks, hash: true },
+  { to: "#faq", label: DE_SITE.header.faq, hash: true },
+  { to: "/de/fuhrparkmanagement-app", label: DE_SITE.header.forBusiness, hash: false },
+] as const;
+
 const frBlogNavLinks = [
   { to: FR_BLOG_HUB_PATH, label: FR_SITE.header.guides, hash: false },
   ...frMarketingNavLinks,
@@ -35,9 +43,20 @@ export function LandingHeader() {
   const { pathname } = useLocation();
   const frBlog = isFrBlogSitePath(pathname);
   const frMarketing = isFrLocalizedMarketingPath(pathname);
+  const deMarketing = isDeLocalizedMarketingPath(pathname);
   const fr = frMarketing;
-  const navLinks = fr ? (frBlog ? frBlogNavLinks : frMarketingNavLinks) : enNavLinks;
-  const downloadLabel = fr ? FR_SITE.header.downloadApp : "Download App";
+  const navLinks = deMarketing
+    ? deMarketingNavLinks
+    : fr
+      ? frBlog
+        ? frBlogNavLinks
+        : frMarketingNavLinks
+      : enNavLinks;
+  const downloadLabel = deMarketing
+    ? DE_SITE.header.downloadApp
+    : fr
+      ? FR_SITE.header.downloadApp
+      : "Download App";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -57,9 +76,11 @@ export function LandingHeader() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
       setMenuOpen(false);
+    } else if (deMarketing && pathname !== DE_HOME_PATH) {
+      window.location.href = `${DE_HOME_PATH}${hash}`;
     } else if (frMarketing && pathname !== FR_HOME_PATH) {
       window.location.href = `${FR_HOME_PATH}${hash}`;
-    } else if (!frMarketing && pathname !== "/") {
+    } else if (!frMarketing && !deMarketing && pathname !== "/") {
       window.location.href = "/" + hash;
     }
   };
@@ -115,7 +136,17 @@ export function LandingHeader() {
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden flex items-center justify-center w-10 h-10 rounded text-white transition-colors cursor-pointer"
             aria-label={
-              menuOpen ? (fr ? FR_SITE.header.closeMenu : "Close menu") : fr ? FR_SITE.header.openMenu : "Open menu"
+              menuOpen
+                ? deMarketing
+                  ? DE_SITE.header.closeMenu
+                  : fr
+                    ? FR_SITE.header.closeMenu
+                    : "Close menu"
+                : deMarketing
+                  ? DE_SITE.header.openMenu
+                  : fr
+                    ? FR_SITE.header.openMenu
+                    : "Open menu"
             }
           >
             {menuOpen ? (

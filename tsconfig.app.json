@@ -19,6 +19,7 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
       "@fr-poc-routes": ["./src/fr-poc/extraRoutes.prod.pick.ts"],
+      "@de-poc-routes": ["./src/de-poc/extraRoutes.prod.pick.ts"],
       "@fr-poc-hub-registry": ["./src/fr-poc/frBlogRegistry.prod.ts"]
     }
   },

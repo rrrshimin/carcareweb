@@ -9,4 +9,5 @@ interface ImportMetaEnv {
   readonly VITE_SUPABASE_URL: string | undefined;
   readonly VITE_SUPABASE_ANON_KEY: string | undefined;
   readonly VITE_FR_POC: boolean;
+  readonly VITE_DE_POC: boolean;
 }

@@ -6,6 +6,14 @@ import {
   FR_SITE,
   isFrLocalizedMarketingPath,
 } from "../../fr-poc/frSiteChrome";
+import {
+  DE_FOOTER_GUIDE_LINKS,
+  DE_FOOTER_PRODUCT_LINKS,
+  DE_HELP_LINKS,
+  DE_LEGAL_LINKS,
+  DE_SITE,
+  isDeLocalizedMarketingPath,
+} from "../../de-poc/deSiteChrome";
 
 const productLinks = [
   { to: "/car-maintenance-tracker", label: "Car Maintenance Tracker" },
@@ -59,10 +67,12 @@ const frLegalLinks = [
 export function LandingFooter() {
   const { pathname } = useLocation();
   const fr = isFrLocalizedMarketingPath(pathname);
-  const activeGuideLinks = fr ? [...FR_FOOTER_GUIDE_LINKS] : guideLinksEn;
-  const activeProductLinks = fr ? [...FR_FOOTER_PRODUCT_LINKS] : productLinks;
-  const activeLegalLinks = fr ? [...frLegalLinks] : legalLinksEn;
-  const activeHelpLinks = fr ? [...helpLinksFr] : helpLinksEn;
+  const de = isDeLocalizedMarketingPath(pathname);
+  const activeGuideLinks = de ? [...DE_FOOTER_GUIDE_LINKS] : fr ? [...FR_FOOTER_GUIDE_LINKS] : guideLinksEn;
+  const activeProductLinks = de ? [...DE_FOOTER_PRODUCT_LINKS] : fr ? [...FR_FOOTER_PRODUCT_LINKS] : productLinks;
+  const activeLegalLinks = de ? [...DE_LEGAL_LINKS] : fr ? [...frLegalLinks] : legalLinksEn;
+  const activeHelpLinks = de ? [...DE_HELP_LINKS] : fr ? [...helpLinksFr] : helpLinksEn;
+  const site = de ? DE_SITE.footer : fr ? FR_SITE.footer : null;
   return (
     <footer className="border-t border-panel px-6 sm:px-10 lg:px-16 xl:px-20">
       <div className="max-w-[1280px] mx-auto py-12 md:py-16">
@@ -70,14 +80,15 @@ export function LandingFooter() {
           <div className="flex flex-col gap-4">
             <Logo />
             <p className="text-sm text-muted max-w-[280px]">
-              {fr ? FR_SITE.footer.tagline : "Car maintenance tracker for service logs, mileage, reminders, and shareable vehicle records."}
+              {site?.tagline ??
+                "Car maintenance tracker for service logs, mileage, reminders, and shareable vehicle records."}
             </p>
           </div>
 
           <div className="flex gap-12 sm:gap-16 flex-wrap">
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                {fr ? FR_SITE.footer.product : "Product"}
+                {site?.product ?? "Product"}
               </h4>
               <nav className="flex flex-col gap-3">
                 {activeProductLinks.map((link) => (
@@ -94,7 +105,7 @@ export function LandingFooter() {
 
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                {FR_SITE.footer.guides}
+                {site?.guides ?? (fr ? FR_SITE.footer.guides : "Guides")}
               </h4>
               <nav className="flex flex-col gap-3">
                 {activeGuideLinks.map((link) => (
@@ -111,7 +122,7 @@ export function LandingFooter() {
 
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                {fr ? FR_SITE.footer.help : "Help"}
+                {site?.help ?? "Help"}
               </h4>
               <nav className="flex flex-col gap-3">
                 {activeHelpLinks.map((link) => (
@@ -128,7 +139,7 @@ export function LandingFooter() {
 
             <div>
               <h4 className="text-sm font-semibold text-white mb-4">
-                {fr ? FR_SITE.footer.legal : "Legal"}
+                {site?.legal ?? "Legal"}
               </h4>
               <nav className="flex flex-col gap-3">
                 {activeLegalLinks.map((link) => (
@@ -148,7 +159,7 @@ export function LandingFooter() {
         <div className="pt-8 border-t border-panel flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted">
             &copy; {new Date().getFullYear()} CarCare Diary.{" "}
-            {fr ? FR_SITE.footer.allRights : "All rights reserved."}
+            {site?.allRights ?? "All rights reserved."}
           </p>
           <a
             href="mailto:hello@carcarediary.com"

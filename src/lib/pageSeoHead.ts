@@ -85,7 +85,7 @@ export function buildPageHeadHtml(options: PageSeoHeadOptions): string {
 export function buildBreadcrumbJsonLd(
   breadcrumbTitle: string,
   path: string,
-  options?: { locale?: "en" | "fr" },
+  options?: { locale?: "en" | "fr" | "de" },
 ) {
   const url = `${SITE_URL}${path}`;
   const fr = options?.locale === "fr" || path.startsWith("/fr/blog/");
@@ -111,7 +111,7 @@ export function buildBreadcrumbJsonLd(
 export function buildBreadcrumbHeadScript(
   breadcrumbTitle: string,
   path: string,
-  options?: { locale?: "en" | "fr" },
+  options?: { locale?: "en" | "fr" | "de" },
 ): string {
   const data = buildBreadcrumbJsonLd(breadcrumbTitle, path, options);
   return `<script type="application/ld+json" data-seo="breadcrumb-jsonld">${JSON.stringify(data)}</script>`;

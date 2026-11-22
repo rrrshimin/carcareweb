@@ -8,6 +8,7 @@ import { companiesHouseDisclosure } from "./src/content/companiesHouseDisclosure
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const frPocBuild = process.env.FR_POC === "1";
+const dePocBuild = process.env.DE_POC === "1";
 
 function generateFrProdRegistryPlugin(): Plugin {
   return {
@@ -49,12 +50,21 @@ export default defineConfig({
   plugins: [generateFrProdRegistryPlugin(), react(), tailwindcss(), outreachNoticeHtml()],
   define: {
     "import.meta.env.VITE_FR_POC": JSON.stringify(frPocBuild),
+    "import.meta.env.VITE_DE_POC": JSON.stringify(dePocBuild),
   },
   resolve: {
     alias: {
       "@fr-poc-routes": path.resolve(
         projectRoot,
-        frPocBuild ? "src/fr-poc/extraRoutes.tsx" : "src/fr-poc/extraRoutes.prod.pick.ts",
+        dePocBuild
+          ? "src/fr-poc/extraRoutes.de-build.stub.tsx"
+          : frPocBuild
+            ? "src/fr-poc/extraRoutes.tsx"
+            : "src/fr-poc/extraRoutes.prod.pick.ts",
+      ),
+      "@de-poc-routes": path.resolve(
+        projectRoot,
+        dePocBuild ? "src/de-poc/extraRoutes.tsx" : "src/de-poc/extraRoutes.prod.pick.ts",
       ),
       "@fr-poc-hub-registry": path.resolve(
         projectRoot,

@@ -45,7 +45,13 @@ export function Features({ locale = "en" }: { locale?: LandingLocale }) {
         <p className="text-center text-sm text-muted mt-12">
           {features.footerPrefix}{" "}
           <Link
-            to={locale === "fr" ? "/fr/suivi-entretien-voiture" : "/car-maintenance-tracker"}
+            to={
+              locale === "de"
+                ? "/de/autowartung-app"
+                : locale === "fr"
+                  ? "/fr/suivi-entretien-voiture"
+                  : "/car-maintenance-tracker"
+            }
             className="text-accent font-semibold hover:text-white transition-colors"
           >
             {features.linkTracker}

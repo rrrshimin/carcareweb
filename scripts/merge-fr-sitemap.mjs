@@ -1,6 +1,7 @@
 /**
  * After `vite build`, merges published FR URLs into dist/sitemap.xml and adds
- * reciprocal xhtml:link hreflang (en, fr, x-default) on EN+FR URL entries for
+ * reciprocal xhtml:link hreflang (en, fr, de, x-default) on EN+FR+DE product URLs;
+ * blog pairs remain en, fr, x-default. Inserts published FR/DE marketing URLs.
  * published pairs. Reuses EN_TO_FR map + registry publish state (incl. FR_PROD_ROUTE_FIXTURE).
  *
  * x-default → EN URL (matches usePageSeo / mergeFrAlternatesForSsg).
@@ -10,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { EN_TO_FR_BLOG_PATH } from "./data/fr-en-blog-paths.mjs";
 import { EN_TO_FR_PRODUCT_PATH } from "./data/fr-en-product-paths.mjs";
+import { EN_TO_DE_PRODUCT_PATH } from "./data/en-de-product-paths.mjs";
 
 const SITE = "https://www.carcarediary.com";
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -62,6 +64,18 @@ function alternatesForPair(enPath, frPath) {
   ].join("\n");
 }
 
+function alternatesForProductTriple(enPath, frPath, dePath) {
+  const enUrl = `${SITE}${enPath}`;
+  const frUrl = `${SITE}${frPath}`;
+  const deUrl = `${SITE}${dePath}`;
+  return [
+    `    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="fr" href="${frUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="de" href="${deUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}" />`,
+  ].join("\n");
+}
+
 function alternatesForHub() {
   const enUrl = `${SITE}/blog`;
   const frUrl = `${SITE}/fr/blog`;
@@ -90,15 +104,24 @@ function injectAlternatesAfterLoc(xml, fullLoc, alternateBlock) {
   const urlEnd = xml.indexOf("</url>", idx);
   if (urlEnd === -1) return { xml, changed: false };
   const block = xml.slice(idx, urlEnd);
+  const deHref = alternateBlock.match(/hreflang="de"\s+href="([^"]+)"/);
+  if (deHref && block.includes(deHref[1])) return { xml, changed: false };
   const frHref = alternateBlock.match(/hreflang="fr"\s+href="([^"]+)"/);
-  if (frHref && block.includes(frHref[1])) return { xml, changed: false };
+  if (frHref && block.includes(frHref[1]) && !deHref) return { xml, changed: false };
+  if (deHref && /hreflang="fr"/.test(block) && !block.includes(deHref[1])) {
+    const withoutAlt = block.replace(/\n\s*<xhtml:link[^>]*\/?>\s*/g, "\n");
+    const rebuilt = `${locTag}${withoutAlt.slice(locTag.length)}`;
+    const nextBlock = `${locTag}\n${alternateBlock}${withoutAlt.slice(locTag.length)}`;
+    const next = `${xml.slice(0, idx)}${nextBlock}${xml.slice(urlEnd)}`;
+    return { xml: next, changed: true };
+  }
   const insertAt = idx + locTag.length;
   const next = `${xml.slice(0, insertAt)}\n${alternateBlock}\n${xml.slice(insertAt)}`;
   return { xml: next, changed: true };
 }
 
-function frUrlEntry(frPath, lastmod, alternateBlock) {
-  const loc = `${SITE}${frPath}`;
+function localizedUrlEntry(marketingPath, lastmod, alternateBlock) {
+  const loc = `${SITE}${marketingPath}`;
   return `  <url>
     <loc>${loc}</loc>
 ${alternateBlock}
@@ -108,15 +131,21 @@ ${alternateBlock}
   </url>`;
 }
 
+const frUrlEntry = localizedUrlEntry;
+
 let xml = fs.readFileSync(publicSitemap, "utf8");
 const pairs = getPublishedEnFrPairs();
-const productPairs = Object.entries(EN_TO_FR_PRODUCT_PATH)
-  .filter(([en]) => en !== "/")
-  .map(([enPath, frPath]) => ({ enPath, frPath }))
+const productTriplets = Object.entries(EN_TO_FR_PRODUCT_PATH)
+  .map(([enPath, frPath]) => ({
+    enPath,
+    frPath,
+    dePath: EN_TO_DE_PRODUCT_PATH[enPath],
+  }))
+  .filter((t) => t.dePath)
   .sort((a, b) => a.frPath.localeCompare(b.frPath));
 const lastmod = new Date().toISOString().slice(0, 10);
 
-if (pairs.length === 0 && productPairs.length === 0) {
+if (pairs.length === 0 && productTriplets.length === 0) {
   fs.mkdirSync(path.dirname(distSitemap), { recursive: true });
   fs.writeFileSync(distSitemap, xml, "utf8");
   console.log("merge-fr-sitemap: no published FR guides — dist/sitemap.xml = public copy");
@@ -139,8 +168,8 @@ for (const { enPath, frPath } of pairs) {
   xml = r.xml;
 }
 
-for (const { enPath, frPath } of productPairs) {
-  const pairAlt = alternatesForPair(enPath, frPath);
+for (const { enPath, frPath, dePath } of productTriplets) {
+  const pairAlt = alternatesForProductTriple(enPath, frPath, dePath);
   r = injectAlternatesAfterLoc(xml, `${SITE}${enPath}`, pairAlt);
   xml = r.xml;
 }
@@ -166,26 +195,40 @@ if (pairs.length > 0) {
   xml = r.xml;
 }
 
-for (const { enPath, frPath } of productPairs) {
+for (const { enPath, frPath, dePath } of productTriplets) {
+  const pairAlt = alternatesForProductTriple(enPath, frPath, dePath);
   const frFull = `${SITE}${frPath}`;
   if (!locs.has(frFull)) {
-    const pairAlt = alternatesForPair(enPath, frPath);
     xml = xml.replace("</urlset>", `${frUrlEntry(frPath, lastmod, pairAlt)}\n</urlset>`);
+    locs = allLocs(xml);
+  }
+  const deFull = `${SITE}${dePath}`;
+  if (!locs.has(deFull)) {
+    xml = xml.replace("</urlset>", `${localizedUrlEntry(dePath, lastmod, pairAlt)}\n</urlset>`);
     locs = allLocs(xml);
   }
 }
 
 const frHomeFull = `${SITE}/fr`;
+const deHomeFull = `${SITE}/de`;
+const homeAlt = alternatesForProductTriple("/", "/fr", "/de");
 if (!locs.has(frHomeFull)) {
-  const homeAlt = alternatesForPair("/", "/fr");
   xml = xml.replace("</urlset>", `${frUrlEntry("/fr", lastmod, homeAlt)}\n</urlset>`);
   locs = allLocs(xml);
 }
-r = injectAlternatesAfterLoc(xml, frHomeFull, alternatesForPair("/", "/fr"));
+if (!locs.has(deHomeFull)) {
+  xml = xml.replace("</urlset>", `${localizedUrlEntry("/de", lastmod, homeAlt)}\n</urlset>`);
+  locs = allLocs(xml);
+}
+r = injectAlternatesAfterLoc(xml, frHomeFull, homeAlt);
+xml = r.xml;
+r = injectAlternatesAfterLoc(xml, deHomeFull, homeAlt);
+xml = r.xml;
+r = injectAlternatesAfterLoc(xml, `${SITE}/`, homeAlt);
 xml = r.xml;
 
 fs.mkdirSync(path.dirname(distSitemap), { recursive: true });
 fs.writeFileSync(distSitemap, xml, "utf8");
 console.log(
-  `merge-fr-sitemap: ${pairs.length} blog + ${productPairs.length} product pair(s) — wrote dist/sitemap.xml with xhtml:link alternates`,
+  `merge-fr-sitemap: ${pairs.length} blog + ${productTriplets.length} product triplet(s) (en/fr/de) — wrote dist/sitemap.xml`,
 );

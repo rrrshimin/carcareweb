@@ -69,6 +69,22 @@ export const EN_TO_FR_PRODUCT_PATH: Readonly<Record<string, string>> = {
   "/vehicle-maintenance-app-for-dealers": "/fr/carnet-entretien-voitures-professionnels"
 };
 
+export const EN_TO_DE_PRODUCT_PATH: Readonly<Record<string, string>> = {
+  "/": "/de",
+  "/car-maintenance-tracker": "/de/autowartung-app",
+  "/car-service-history": "/de/wartungshistorie-auto",
+  "/car-service-history-app": "/de/digitales-serviceheft-app",
+  "/vehicle-maintenance-log": "/de/wartungsprotokoll-auto",
+  "/vehicle-service-reminder-app": "/de/wartungserinnerung-auto",
+  "/share-car-maintenance-history": "/de/wartungshistorie-teilen",
+  "/how-carcare-diary-works": "/de/so-funktioniert-carcare-diary",
+  "/fleet-management-app": "/de/fuhrparkmanagement-app",
+  "/fleet-maintenance-app": "/de/fuhrpark-wartung-app",
+  "/small-business-fleet-management-app": "/de/fuhrparkverwaltung-kleine-unternehmen",
+  "/car-rental-fleet-maintenance-app": "/de/mietwagen-wartung",
+  "/vehicle-maintenance-app-for-dealers": "/de/wartungsdokumentation-autohandel"
+};
+
 export const FR_PUBLISHED_FR_PATHS = new Set<string>(["/fr/blog/comment-suivre-entretien-voiture", "/fr/blog/que-contient-historique-entretien-voiture", "/fr/blog/tableau-entretien-voiture-kilometrage", "/fr/blog/quand-faire-vidange-voiture", "/fr/blog/quand-changer-liquide-refroidissement", "/fr/blog/quand-changer-plaquettes-frein", "/fr/blog/quand-verifier-pression-pneus", "/fr/blog/voiture-ne-demarre-pas-causes", "/fr/blog/organiser-historique-entretien-voiture", "/fr/blog/preparer-voiture-long-trajet", "/fr/blog/checklist-entretien-voiture", "/fr/blog/checklist-achat-voiture-occasion", "/fr/blog/quels-liquides-verifier-voiture", "/fr/blog/voyant-moteur-allume-signification", "/fr/blog/quand-changer-liquide-de-frein", "/fr/blog/quand-changer-filtre-carburant", "/fr/blog/quand-changer-filtre-huile", "/fr/blog/quand-changer-liquide-direction-assistee", "/fr/blog/quand-changer-huile-boite-vitesses", "/fr/blog/quand-faire-geometrie-roues", "/fr/blog/quand-changer-disques-frein", "/fr/blog/quand-changer-filtre-habitacle", "/fr/blog/quand-changer-batterie-voiture", "/fr/blog/quand-changer-filtre-air-moteur", "/fr/blog/quand-changer-ampoules-phares", "/fr/blog/quand-changer-courroie-accessoires", "/fr/blog/quand-changer-amortisseurs-voiture", "/fr/blog/quand-changer-bougies-allumage", "/fr/blog/quand-changer-courroie-distribution", "/fr/blog/quand-changer-pneus-voiture", "/fr/blog/quand-changer-essuie-glaces-voiture", "/fr/blog/quand-permuter-pneus-voiture", "/fr/blog/quand-entretenir-climatisation-voiture", "/fr/blog/pourquoi-freins-voiture-grincent", "/fr/blog/usure-irreguliere-pneus-causes", "/fr/blog/batterie-voiture-se-decharge-souvent", "/fr/blog/odeur-brule-voiture-causes", "/fr/blog/odeur-essence-voiture-causes", "/fr/blog/fuite-liquide-refroidissement-voiture", "/fr/blog/fuite-huile-moteur-voiture", "/fr/blog/moteur-voiture-surchauffe-causes", "/fr/blog/voiture-tire-droite-gauche-causes", "/fr/blog/voiture-vibre-tremble-causes", "/fr/blog/pourquoi-voiture-consomme-plus-carburant", "/fr/blog/volant-voiture-tremble-causes", "/fr/blog/fumee-blanche-echappement-voiture"]);
 
 export const FR_PUBLISHED_EN_PATHS = new Set<string>(["/blog/how-to-track-car-maintenance", "/blog/what-to-include-in-a-car-service-history", "/blog/car-maintenance-schedule-by-mileage", "/blog/when-to-change-engine-oil", "/blog/when-to-change-coolant", "/blog/when-to-replace-brake-pads", "/blog/when-to-check-tire-pressure", "/blog/why-wont-my-car-start", "/blog/how-to-keep-car-service-records-organized", "/blog/how-to-prepare-car-for-road-trip", "/blog/car-maintenance-checklist", "/blog/used-car-inspection-checklist", "/blog/what-car-fluids-should-i-check", "/blog/what-does-check-engine-light-mean", "/blog/when-to-change-brake-fluid", "/blog/when-to-change-fuel-filter", "/blog/when-to-change-oil-filter", "/blog/when-to-change-power-steering-fluid", "/blog/when-to-change-transmission-fluid", "/blog/when-to-get-wheel-alignment", "/blog/when-to-replace-brake-rotors", "/blog/when-to-replace-cabin-air-filter", "/blog/when-to-replace-car-battery", "/blog/when-to-replace-engine-air-filter", "/blog/when-to-replace-headlights", "/blog/when-to-replace-serpentine-belt", "/blog/when-to-replace-shocks-and-struts", "/blog/when-to-replace-spark-plugs", "/blog/when-to-replace-timing-belt", "/blog/when-to-replace-tires", "/blog/when-to-replace-windshield-wipers", "/blog/when-to-rotate-tires", "/blog/when-to-service-car-ac", "/blog/why-are-my-brakes-squeaking", "/blog/why-are-my-tires-wearing-unevenly", "/blog/why-does-my-car-battery-keep-dying", "/blog/why-does-my-car-smell-like-burning", "/blog/why-does-my-car-smell-like-gas", "/blog/why-is-my-car-leaking-coolant", "/blog/why-is-my-car-leaking-oil", "/blog/why-is-my-car-overheating", "/blog/why-is-my-car-pulling-to-one-side", "/blog/why-is-my-car-shaking", "/blog/why-is-my-fuel-economy-getting-worse", "/blog/why-is-my-steering-wheel-shaking", "/blog/why-is-there-white-smoke-from-exhaust"]);
@@ -81,14 +97,33 @@ const FR_TO_EN_PRODUCT: Map<string, string> = new Map(
   Object.entries(EN_TO_FR_PRODUCT_PATH).map(([en, fr]) => [fr, en]),
 );
 
+const DE_TO_EN_PRODUCT: Map<string, string> = new Map(
+  Object.entries(EN_TO_DE_PRODUCT_PATH).map(([en, de]) => [de, en]),
+);
+
+function trilingualProductAlternatesFromEn(enPath: string): readonly HreflangAlternate[] | undefined {
+  const fr = EN_TO_FR_PRODUCT_PATH[enPath];
+  const de = EN_TO_DE_PRODUCT_PATH[enPath];
+  if (!fr) return undefined;
+  const alts: HreflangAlternate[] = [
+    { hreflang: "en", path: enPath },
+    { hreflang: "fr", path: fr },
+  ];
+  if (de) alts.push({ hreflang: "de", path: de });
+  alts.push({ hreflang: "x-default", path: enPath });
+  return alts;
+}
+
 function productAlternates(frPath: string): readonly HreflangAlternate[] | undefined {
   const en = FR_TO_EN_PRODUCT.get(frPath);
   if (!en) return undefined;
-  return [
-    { hreflang: "en", path: en },
-    { hreflang: "fr", path: frPath },
-    { hreflang: "x-default", path: en },
-  ];
+  return trilingualProductAlternatesFromEn(en);
+}
+
+export function productAlternatesForDe(dePath: string): readonly HreflangAlternate[] | undefined {
+  const en = DE_TO_EN_PRODUCT.get(dePath);
+  if (!en) return undefined;
+  return trilingualProductAlternatesFromEn(en);
 }
 
 /** Production / prerender: reciprocal hreflang for FR pages (guides + product). */
@@ -144,15 +179,9 @@ export function blogHubAlternates(): readonly HreflangAlternate[] | undefined {
   ];
 }
 
-/** EN product paths — reciprocal hreflang (FR product pages are always published). */
+/** EN product paths — reciprocal hreflang (FR + DE product pages published). */
 export function enProductAlternatesWhenFrPublished(enPath: string): readonly HreflangAlternate[] | undefined {
-  const fr = EN_TO_FR_PRODUCT_PATH[enPath];
-  if (!fr) return undefined;
-  return [
-    { hreflang: "en", path: enPath },
-    { hreflang: "fr", path: fr },
-    { hreflang: "x-default", path: enPath },
-  ];
+  return trilingualProductAlternatesFromEn(enPath);
 }
 
 /** Production client: resolve markdown and structured internal guide links on FR pages. */

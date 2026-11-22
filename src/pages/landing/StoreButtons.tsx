@@ -1,4 +1,7 @@
+import { useLocation } from "react-router-dom";
 import appleLogoSrc from "../../assets/AppleLogo.svg";
+import { DE_SITE } from "../../de-poc/deSiteChrome";
+import { getMarketingLocale } from "./marketingLocale";
 
 export const APP_STORE_URL =
   "https://apps.apple.com/us/app/carcare-diary-log/id6762228595";
@@ -21,6 +24,30 @@ interface StoreButtonProps {
 const focusClass =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
+function localizedAppStoreDefaults():
+  | Pick<StoreButtonProps, "kicker" | "storeName" | "ariaLabel">
+  | undefined {
+  const { pathname } = useLocation();
+  if (getMarketingLocale(pathname) !== "de") return undefined;
+  return {
+    kicker: DE_SITE.store.appStoreKicker,
+    storeName: DE_SITE.store.appStoreName,
+    ariaLabel: DE_SITE.store.appStoreAria,
+  };
+}
+
+function localizedPlayStoreDefaults():
+  | Pick<StoreButtonProps, "kicker" | "storeName" | "ariaLabel">
+  | undefined {
+  const { pathname } = useLocation();
+  if (getMarketingLocale(pathname) !== "de") return undefined;
+  return {
+    kicker: DE_SITE.store.playKicker,
+    storeName: DE_SITE.store.playName,
+    ariaLabel: DE_SITE.store.playAria,
+  };
+}
+
 export function AppStoreButton({
   className = "",
   compact = false,
@@ -31,12 +58,19 @@ export function AppStoreButton({
   ariaLabel = "Download CarCare Diary on the App Store",
   onClick,
 }: StoreButtonProps) {
+  const localized = localizedAppStoreDefaults();
+  const resolvedKicker = kicker === "Download on the" && localized ? localized.kicker! : kicker;
+  const resolvedStoreName = storeName === "App Store" && localized ? localized.storeName! : storeName;
+  const resolvedAria =
+    ariaLabel === "Download CarCare Diary on the App Store" && localized
+      ? localized.ariaLabel!
+      : ariaLabel;
   return (
     <a
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={ariaLabel}
+      aria-label={resolvedAria}
       onClick={onClick}
       className={`inline-flex items-center justify-center rounded-lg bg-white hover:bg-gray-100 transition-colors ${focusClass} ${
         header
@@ -70,14 +104,14 @@ export function AppStoreButton({
                 : "text-[10px] md:text-[11px]"
           }`}
         >
-          {kicker}
+          {resolvedKicker}
         </span>
         <span
           className={`leading-tight text-gray-900 font-semibold whitespace-nowrap ${
             header ? "text-[11px] sm:text-[13px]" : compact ? "text-[12px]" : "text-[13px] md:text-[15px]"
           }`}
         >
-          {storeName}
+          {resolvedStoreName}
         </span>
       </div>
     </a>
@@ -94,12 +128,19 @@ export function GooglePlayButton({
   ariaLabel = "Get CarCare Diary on Google Play",
   onClick,
 }: StoreButtonProps) {
+  const localized = localizedPlayStoreDefaults();
+  const resolvedKicker = kicker === "GET IT ON" && localized ? localized.kicker! : kicker;
+  const resolvedStoreName = storeName === "Google Play" && localized ? localized.storeName! : storeName;
+  const resolvedAria =
+    ariaLabel === "Get CarCare Diary on Google Play" && localized
+      ? localized.ariaLabel!
+      : ariaLabel;
   return (
     <a
       href={PLAY_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={ariaLabel}
+      aria-label={resolvedAria}
       onClick={onClick}
       className={`inline-flex items-center justify-center rounded-lg bg-white hover:bg-gray-100 transition-colors ${focusClass} ${
         header
@@ -150,14 +191,14 @@ export function GooglePlayButton({
                 : "text-[10px] md:text-[11px]"
           }`}
         >
-          {kicker}
+          {resolvedKicker}
         </span>
         <span
           className={`leading-tight text-gray-900 font-semibold whitespace-nowrap ${
             header ? "text-[11px] sm:text-[13px]" : compact ? "text-[12px]" : "text-[13px] md:text-[15px]"
           }`}
         >
-          {storeName}
+          {resolvedStoreName}
         </span>
       </div>
     </a>

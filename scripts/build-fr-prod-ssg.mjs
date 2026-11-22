@@ -56,7 +56,10 @@ const {
   buildLocalizedGuideHeadHtml,
   renderFrBlogHubAppHtml,
   buildFrBlogHubHeadHtml,
+  renderFrProductAppHtml,
+  buildFrProductHeadHtml,
   getPublishedSsgPaths,
+  getFrProductSsgPaths,
   pathToStaticRelativeDir,
 } = await import(pathToFileURL(path.join(ssrOutDir, "entry-server-prod-ssg.js")).href);
 
@@ -66,18 +69,30 @@ if (!fs.existsSync(shellPath)) {
   process.exit(1);
 }
 
-const frRoot = path.join(distDir, "fr");
-if (fs.existsSync(frRoot)) {
-  fs.rmSync(frRoot, { recursive: true });
+const frBlogRoot = path.join(distDir, "fr", "blog");
+if (fs.existsSync(frBlogRoot)) {
+  fs.rmSync(frBlogRoot, { recursive: true });
 }
 
 const shellHtml = fs.readFileSync(shellPath, "utf8");
 const articlePaths = getPublishedSsgPaths();
+const productPaths = getFrProductSsgPaths();
 const written = [];
 
-if (articlePaths.length === 0) {
-  console.log("fr-prod-ssg: 0 published FR guides — removed any prior dist/fr/");
+if (articlePaths.length === 0 && productPaths.length === 0) {
+  console.log("fr-prod-ssg: nothing to prerender");
   process.exit(0);
+}
+
+for (const productPath of productPaths) {
+  const appHtml = renderFrProductAppHtml(productPath);
+  const headSeo = buildFrProductHeadHtml(productPath);
+  const html = buildProdFrPageHtml(shellHtml, { appHtml, headSeo, lang: "fr" });
+  const outDir = path.join(distDir, ...pathToStaticRelativeDir(productPath).split("/"));
+  fs.mkdirSync(outDir, { recursive: true });
+  const outFile = path.join(outDir, "index.html");
+  fs.writeFileSync(outFile, html, "utf8");
+  written.push(outFile);
 }
 
 for (const articlePath of articlePaths) {
@@ -92,19 +107,21 @@ for (const articlePath of articlePaths) {
   written.push(outFile);
 }
 
-const hubPath = "/fr/blog";
-const hubAppHtml = renderFrBlogHubAppHtml();
-const hubHeadSeo = buildFrBlogHubHeadHtml();
-const hubHtml = buildProdFrPageHtml(shellHtml, {
-  appHtml: hubAppHtml,
-  headSeo: hubHeadSeo,
-  lang: "fr",
-});
-const hubOutDir = path.join(distDir, ...pathToStaticRelativeDir(hubPath).split("/"));
-fs.mkdirSync(hubOutDir, { recursive: true });
-const hubOutFile = path.join(hubOutDir, "index.html");
-fs.writeFileSync(hubOutFile, hubHtml, "utf8");
-written.push(hubOutFile);
+if (articlePaths.length > 0) {
+  const hubPath = "/fr/blog";
+  const hubAppHtml = renderFrBlogHubAppHtml();
+  const hubHeadSeo = buildFrBlogHubHeadHtml();
+  const hubHtml = buildProdFrPageHtml(shellHtml, {
+    appHtml: hubAppHtml,
+    headSeo: hubHeadSeo,
+    lang: "fr",
+  });
+  const hubOutDir = path.join(distDir, ...pathToStaticRelativeDir(hubPath).split("/"));
+  fs.mkdirSync(hubOutDir, { recursive: true });
+  const hubOutFile = path.join(hubOutDir, "index.html");
+  fs.writeFileSync(hubOutFile, hubHtml, "utf8");
+  written.push(hubOutFile);
+}
 
 console.log(`fr-prod-ssg: wrote ${written.length} static page(s) under ${distDir}:`);
 for (const file of written) {

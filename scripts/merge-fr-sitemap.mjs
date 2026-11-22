@@ -9,6 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { EN_TO_FR_BLOG_PATH } from "./data/fr-en-blog-paths.mjs";
+import { EN_TO_FR_PRODUCT_PATH } from "./data/fr-en-product-paths.mjs";
 
 const SITE = "https://www.carcarediary.com";
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -109,9 +110,13 @@ ${alternateBlock}
 
 let xml = fs.readFileSync(publicSitemap, "utf8");
 const pairs = getPublishedEnFrPairs();
+const productPairs = Object.entries(EN_TO_FR_PRODUCT_PATH)
+  .filter(([en]) => en !== "/")
+  .map(([enPath, frPath]) => ({ enPath, frPath }))
+  .sort((a, b) => a.frPath.localeCompare(b.frPath));
 const lastmod = new Date().toISOString().slice(0, 10);
 
-if (pairs.length === 0) {
+if (pairs.length === 0 && productPairs.length === 0) {
   fs.mkdirSync(path.dirname(distSitemap), { recursive: true });
   fs.writeFileSync(distSitemap, xml, "utf8");
   console.log("merge-fr-sitemap: no published FR guides — dist/sitemap.xml = public copy");
@@ -134,6 +139,12 @@ for (const { enPath, frPath } of pairs) {
   xml = r.xml;
 }
 
+for (const { enPath, frPath } of productPairs) {
+  const pairAlt = alternatesForPair(enPath, frPath);
+  r = injectAlternatesAfterLoc(xml, `${SITE}${enPath}`, pairAlt);
+  xml = r.xml;
+}
+
 let locs = allLocs(xml);
 
 for (const { enPath, frPath } of pairs) {
@@ -150,9 +161,31 @@ if (!locs.has(frHubFull)) {
   xml = xml.replace("</urlset>", `${frUrlEntry("/fr/blog", lastmod, hubAlt)}\n</urlset>`);
   locs = allLocs(xml);
 }
-r = injectAlternatesAfterLoc(xml, frHubFull, hubAlt);
+if (pairs.length > 0) {
+  r = injectAlternatesAfterLoc(xml, frHubFull, hubAlt);
+  xml = r.xml;
+}
+
+for (const { enPath, frPath } of productPairs) {
+  const frFull = `${SITE}${frPath}`;
+  if (!locs.has(frFull)) {
+    const pairAlt = alternatesForPair(enPath, frPath);
+    xml = xml.replace("</urlset>", `${frUrlEntry(frPath, lastmod, pairAlt)}\n</urlset>`);
+    locs = allLocs(xml);
+  }
+}
+
+const frHomeFull = `${SITE}/fr`;
+if (!locs.has(frHomeFull)) {
+  const homeAlt = alternatesForPair("/", "/fr");
+  xml = xml.replace("</urlset>", `${frUrlEntry("/fr", lastmod, homeAlt)}\n</urlset>`);
+  locs = allLocs(xml);
+}
+r = injectAlternatesAfterLoc(xml, frHomeFull, alternatesForPair("/", "/fr"));
 xml = r.xml;
 
 fs.mkdirSync(path.dirname(distSitemap), { recursive: true });
 fs.writeFileSync(distSitemap, xml, "utf8");
-console.log(`merge-fr-sitemap: ${pairs.length} published pair(s) — wrote dist/sitemap.xml with xhtml:link alternates`);
+console.log(
+  `merge-fr-sitemap: ${pairs.length} blog + ${productPairs.length} product pair(s) — wrote dist/sitemap.xml with xhtml:link alternates`,
+);

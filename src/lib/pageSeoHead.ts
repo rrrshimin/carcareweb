@@ -89,14 +89,20 @@ export function buildBreadcrumbJsonLd(
 ) {
   const url = `${SITE_URL}${path}`;
   const fr = options?.locale === "fr" || path.startsWith("/fr/blog/");
+  const frMarketing = (path === "/fr" || path.startsWith("/fr/")) && !path.startsWith("/fr/blog/");
   const homeName = fr ? "Accueil" : "Home";
-  const guidesItem = fr ? `${SITE_URL}/fr/blog` : `${SITE_URL}/blog`;
+  const guidesItem = fr
+    ? frMarketing
+      ? `${SITE_URL}/fr`
+      : `${SITE_URL}/fr/blog`
+    : `${SITE_URL}/blog`;
+  const guidesName = frMarketing ? "Accueil produit" : fr ? "Guides" : "Guides";
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: homeName, item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Guides", item: guidesItem },
+      { "@type": "ListItem", position: 2, name: guidesName, item: guidesItem },
       { "@type": "ListItem", position: 3, name: breadcrumbTitle, item: url },
     ],
   };

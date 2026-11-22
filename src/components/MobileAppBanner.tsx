@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import logoSrc from "../assets/logo.png";
-import { FR_SITE, isFrBlogSitePath } from "../fr-poc/frSiteChrome";
+import { FR_SITE, isFrLocalizedMarketingPath } from "../fr-poc/frSiteChrome";
 
 const DISMISS_KEY = "ccd_mobile_banner_dismissed_at";
 const DISMISS_COOLDOWN_MS = 1000 * 60 * 60 * 24 * 7;
@@ -43,7 +43,7 @@ const FLEET_LOCALE_PATHS = new Set(["/fleet-us", "/fleet-uk", "/fleet-fr"]);
 
 export function MobileAppBanner() {
   const { pathname } = useLocation();
-  const fr = isFrBlogSitePath(pathname);
+  const fr = isFrLocalizedMarketingPath(pathname);
   const [platform, setPlatform] = useState<Platform>(null);
   const [show, setShow] = useState(false);
   const bannerRef = useRef<HTMLDivElement>(null);

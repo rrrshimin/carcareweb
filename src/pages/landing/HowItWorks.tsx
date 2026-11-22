@@ -1,30 +1,15 @@
 import { CarFront, Wrench, Share2 } from "lucide-react";
+import type { LandingLocale } from "./landingStrings";
+import { landingStrings } from "./landingStrings";
 
-const steps = [
-  {
-    number: "01",
-    icon: CarFront,
-    title: "Add Your Car",
-    description:
-      "Set up your vehicle with a photo and basic details. Takes under a minute.",
-  },
-  {
-    number: "02",
-    icon: Wrench,
-    title: "Log Each Service",
-    description:
-      "Record maintenance with date, mileage, and notes. Your car's service history builds over time.",
-  },
-  {
-    number: "03",
-    icon: Share2,
-    title: "Stay On Track",
-    description:
-      "Get reminders when services are due. Share your vehicle's record anytime with a single link.",
-  },
-];
+const stepIcons = [CarFront, Wrench, Share2] as const;
 
-export function HowItWorks() {
+export function HowItWorks({ locale = "en" }: { locale?: LandingLocale }) {
+  const { howItWorks } = landingStrings[locale];
+  const steps = howItWorks.steps.map((s, i) => ({
+    ...s,
+    icon: stepIcons[i],
+  }));
   return (
     <section
       id="how-it-works"
@@ -33,15 +18,14 @@ export function HowItWorks() {
       <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-16 md:mb-20">
           <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-3">
-            How It Works
+            {howItWorks.eyebrow}
           </p>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Start Tracking Maintenance{" "}
-            <span className="text-accent">In Minutes</span>
+            {howItWorks.headingLine}{" "}
+            <span className="text-accent">{howItWorks.headingAccent}</span>
           </h2>
           <p className="text-base text-muted max-w-[480px] mx-auto">
-            Getting started is quick. Three steps and your car's maintenance
-            diary is up and running.
+            {howItWorks.intro}
           </p>
         </div>
 
@@ -54,7 +38,7 @@ export function HowItWorks() {
 
               <div className="relative">
                 <span className="text-xs font-semibold text-accent tracking-wider mb-4 block">
-                  STEP {step.number}
+                  {howItWorks.stepLabel(step.number)}
                 </span>
                 <div className="w-16 h-16 rounded-2xl bg-brand/12 flex items-center justify-center mx-auto mb-6">
                   <step.icon className="w-7 h-7 text-accent" />

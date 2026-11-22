@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
-import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
+import {
+  FR_BLOG_HUB_PATH,
+  FR_HOME_PATH,
+  FR_SITE,
+  isFrBlogSitePath,
+  isFrLocalizedMarketingPath,
+} from "../../fr-poc/frSiteChrome";
 
 const enNavLinks = [
   { to: "#features", label: "Features", hash: true },
@@ -11,20 +17,26 @@ const enNavLinks = [
   { to: "/fleet-management-app", label: "For Business", hash: false },
 ] as const;
 
-const frNavLinks = [
-  { to: FR_BLOG_HUB_PATH, label: FR_SITE.header.guides, hash: false },
+const frMarketingNavLinks = [
   { to: "#features", label: FR_SITE.header.features, hash: true },
   { to: "#how-it-works", label: FR_SITE.header.howItWorks, hash: true },
   { to: "#faq", label: FR_SITE.header.faq, hash: true },
-  { to: "/fleet-management-app", label: FR_SITE.header.forBusiness, hash: false },
+  { to: "/fr/gestion-entretien-flotte", label: FR_SITE.header.forBusiness, hash: false },
+] as const;
+
+const frBlogNavLinks = [
+  { to: FR_BLOG_HUB_PATH, label: FR_SITE.header.guides, hash: false },
+  ...frMarketingNavLinks,
 ] as const;
 
 export function LandingHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
-  const fr = isFrBlogSitePath(pathname);
-  const navLinks = fr ? frNavLinks : enNavLinks;
+  const frBlog = isFrBlogSitePath(pathname);
+  const frMarketing = isFrLocalizedMarketingPath(pathname);
+  const fr = frMarketing;
+  const navLinks = fr ? (frBlog ? frBlogNavLinks : frMarketingNavLinks) : enNavLinks;
   const downloadLabel = fr ? FR_SITE.header.downloadApp : "Download App";
 
   useEffect(() => {
@@ -45,7 +57,9 @@ export function LandingHeader() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
       setMenuOpen(false);
-    } else if (pathname !== "/") {
+    } else if (frMarketing && pathname !== FR_HOME_PATH) {
+      window.location.href = `${FR_HOME_PATH}${hash}`;
+    } else if (!frMarketing && pathname !== "/") {
       window.location.href = "/" + hash;
     }
   };
@@ -100,7 +114,9 @@ export function LandingHeader() {
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden flex items-center justify-center w-10 h-10 rounded text-white transition-colors cursor-pointer"
-            aria-label={menuOpen ? (fr ? FR_SITE.header.closeMenu : "Close menu") : fr ? FR_SITE.header.openMenu : "Open menu"}
+            aria-label={
+              menuOpen ? (fr ? FR_SITE.header.closeMenu : "Close menu") : fr ? FR_SITE.header.openMenu : "Open menu"
+            }
           >
             {menuOpen ? (
               <X className="w-6 h-6" />

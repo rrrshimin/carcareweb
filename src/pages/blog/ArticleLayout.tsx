@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { LandingHeader } from "../landing/LandingHeader";
 import { LandingFooter } from "../landing/LandingFooter";
 import { buildBreadcrumbJsonLd } from "../../lib/pageSeoHead";
-import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
+import { FR_BLOG_HUB_PATH, FR_SITE, isFrBlogSitePath, isFrLocalizedMarketingPath } from "../../fr-poc/frSiteChrome";
 
 interface ArticleLayoutProps {
   children: React.ReactNode;
@@ -13,7 +13,9 @@ interface ArticleLayoutProps {
 
 export function ArticleLayout({ children, title }: ArticleLayoutProps) {
   const { pathname } = useLocation();
-  const fr = isFrBlogSitePath(pathname);
+  const frBlog = isFrBlogSitePath(pathname);
+  const frMarketing = isFrLocalizedMarketingPath(pathname);
+  const fr = frBlog || frMarketing;
 
   useEffect(() => {
     const breadcrumb = buildBreadcrumbJsonLd(title, window.location.pathname, {
@@ -32,9 +34,9 @@ export function ArticleLayout({ children, title }: ArticleLayoutProps) {
     };
   }, [title, fr]);
 
-  const guidesPath = fr ? FR_BLOG_HUB_PATH : "/blog";
+  const guidesPath = fr ? (frBlog ? FR_BLOG_HUB_PATH : "/fr") : "/blog";
   const homeLabel = fr ? FR_SITE.breadcrumbHome : "Home";
-  const guidesLabel = FR_SITE.breadcrumbGuides;
+  const guidesLabel = frBlog ? FR_SITE.breadcrumbGuides : frMarketing ? "Accueil produit" : "Guides";
   return (
     <div className="min-h-screen relative overflow-hidden bg-base text-white font-sans">
       <div

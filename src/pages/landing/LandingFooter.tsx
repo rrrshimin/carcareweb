@@ -1,6 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { Logo } from "./Logo";
-import { FR_FOOTER_GUIDE_LINKS, FR_SITE, isFrBlogSitePath } from "../../fr-poc/frSiteChrome";
+import {
+  FR_FOOTER_GUIDE_LINKS,
+  FR_FOOTER_PRODUCT_LINKS,
+  FR_SITE,
+  isFrLocalizedMarketingPath,
+} from "../../fr-poc/frSiteChrome";
 
 const productLinks = [
   { to: "/car-maintenance-tracker", label: "Car Maintenance Tracker" },
@@ -48,13 +53,14 @@ const helpLinksFr = [
 
 const frLegalLinks = [
   { to: "/privacy", label: "Politique de confidentialité" },
-  { to: "/terms", label: "Conditions générales" },
+  { to: "/terms", label: "Conditions d'utilisation" },
 ] as const;
 
 export function LandingFooter() {
   const { pathname } = useLocation();
-  const fr = isFrBlogSitePath(pathname);
+  const fr = isFrLocalizedMarketingPath(pathname);
   const activeGuideLinks = fr ? [...FR_FOOTER_GUIDE_LINKS] : guideLinksEn;
+  const activeProductLinks = fr ? [...FR_FOOTER_PRODUCT_LINKS] : productLinks;
   const activeLegalLinks = fr ? [...frLegalLinks] : legalLinksEn;
   const activeHelpLinks = fr ? [...helpLinksFr] : helpLinksEn;
   return (
@@ -74,7 +80,7 @@ export function LandingFooter() {
                 {fr ? FR_SITE.footer.product : "Product"}
               </h4>
               <nav className="flex flex-col gap-3">
-                {productLinks.map((link) => (
+                {activeProductLinks.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}

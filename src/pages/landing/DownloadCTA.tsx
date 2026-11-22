@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { AppStoreButton, GooglePlayButton } from "./StoreButtons";
+import type { LandingLocale } from "./landingStrings";
+import { landingStrings } from "./landingStrings";
 
-export function DownloadCTA() {
+export function DownloadCTA({ locale = "en" }: { locale?: LandingLocale }) {
+  const download = landingStrings[locale].downloadCta;
   return (
     <section
       id="download"
@@ -11,41 +14,47 @@ export function DownloadCTA() {
         <div className="relative rounded-2xl border border-panel overflow-hidden px-8 py-16 md:px-16 md:py-24 text-center bg-surface">
           <div className="relative z-10">
             <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
-              Get The App
+              {download.eyebrow}
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-              Start Tracking Your Car's Maintenance{" "}
-              <span className="text-accent">Today</span>
+              {download.headingLine}{" "}
+              <span className="text-accent">{download.headingAccent}</span>
             </h2>
             <p className="text-base text-muted max-w-[520px] mx-auto mb-10">
-              CarCare Diary is a free car maintenance tracker for iPhone and
-              Android. Log services, track mileage, get reminders, and share
-              your vehicle's complete service history.
+              {download.body}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-              <AppStoreButton />
-              <GooglePlayButton />
+              <AppStoreButton
+                kicker={locale === "fr" ? "Télécharger sur" : undefined}
+                storeName={locale === "fr" ? "l'App Store" : undefined}
+                ariaLabel={locale === "fr" ? "Télécharger CarCare Diary sur l'App Store" : undefined}
+              />
+              <GooglePlayButton
+                kicker={locale === "fr" ? "Disponible sur" : undefined}
+                storeName={locale === "fr" ? "Google Play" : undefined}
+                ariaLabel={locale === "fr" ? "Télécharger CarCare Diary sur Google Play" : undefined}
+              />
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted">
               <Link
-                to="/car-maintenance-tracker"
+                to={download.link1.to}
                 className="text-accent font-semibold hover:text-white transition-colors"
               >
-                Car maintenance tracker
+                {download.link1.label}
               </Link>
               <span className="hidden sm:inline text-panel">·</span>
               <Link
-                to="/car-service-history"
+                to={download.link2.to}
                 className="text-accent font-semibold hover:text-white transition-colors"
               >
-                Car service history
+                {download.link2.label}
               </Link>
               <span className="hidden sm:inline text-panel">·</span>
               <Link
-                to="/vehicle-maintenance-log"
+                to={download.link3.to}
                 className="text-accent font-semibold hover:text-white transition-colors"
               >
-                Vehicle maintenance log
+                {download.link3.label}
               </Link>
             </div>
           </div>

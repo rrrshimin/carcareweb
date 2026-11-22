@@ -11,6 +11,7 @@ import { LandingFAQ, landingFaqs } from "./landing/LandingFAQ";
 import { DownloadCTA } from "./landing/DownloadCTA";
 import { LandingFooter } from "./landing/LandingFooter";
 import { usePageSeo } from "../lib/usePageSeo";
+import { landingStrings } from "./landing/landingStrings";
 
 const LANDING_JSON_LD = [
   {
@@ -21,8 +22,7 @@ const LANDING_JSON_LD = [
     image: "https://www.carcarediary.com/og-image.png",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "iOS, Android",
-    description:
-      "Car maintenance tracker app. Log services, track mileage, get reminders, and share your vehicle's maintenance history.",
+    description: landingStrings.en.seoJsonLd.softwareAppDescription,
     installUrl: "https://play.google.com/store/apps/details?id=com.carcarediary.app",
     offers: {
       "@type": "Offer",

@@ -1,5 +1,5 @@
 /**
- * SSR entry for production FR static HTML only (published guides + hub when applicable).
+ * SSR entry for production FR static HTML only (published guides + hub + product pages).
  * Does not import registry.ts (full 47); uses registry.prod + generated published list.
  */
 import { StrictMode } from "react";
@@ -10,6 +10,12 @@ import { buildBreadcrumbHeadScript, buildPageHeadHtml } from "../lib/pageSeoHead
 import { mergeFrAlternatesForSsg } from "./frPublishing";
 import { getPublishedRegistryEntries, getRegistryEntryByPath } from "./registry.prod";
 import { FR_BLOG_HUB_PATH, FR_BLOG_HUB_SEO, buildFrBlogHubJsonLd } from "./frSiteChrome";
+import {
+  FR_PRODUCT_BREADCRUMB_TITLE,
+  FR_PRODUCT_PREVIEW_ROUTED_PATHS,
+  getFrProductPreviewSeo,
+} from "./frProductPreviewMeta";
+import { getFrProductPreviewJsonLd } from "./frProductPreviewJsonLd";
 
 export function pathToStaticRelativeDir(entryPath: string): string {
   return entryPath.replace(/^\//, "");
@@ -62,6 +68,36 @@ export function buildFrBlogHubHeadHtml(): string {
   );
 }
 
+export function renderFrProductAppHtml(path: string): string {
+  if (!(FR_PRODUCT_PREVIEW_ROUTED_PATHS as readonly string[]).includes(path)) {
+    throw new Error(`No FR product route for path: ${path}`);
+  }
+  return renderToString(
+    <StrictMode>
+      <StaticRouter location={path}>
+        <AppContent />
+      </StaticRouter>
+    </StrictMode>,
+  );
+}
+
+export function buildFrProductHeadHtml(path: string): string {
+  const base = getFrProductPreviewSeo(path);
+  if (!base) {
+    throw new Error(`No FR product SEO for path: ${path}`);
+  }
+  const jsonLd = getFrProductPreviewJsonLd(path);
+  const page = buildPageHeadHtml(mergeFrAlternatesForSsg({ ...base, jsonLd }));
+  const breadcrumbTitle =
+    FR_PRODUCT_BREADCRUMB_TITLE[path as keyof typeof FR_PRODUCT_BREADCRUMB_TITLE] ?? base.title;
+  const breadcrumb = buildBreadcrumbHeadScript(breadcrumbTitle, path, { locale: "fr" });
+  return `${page}\n    ${breadcrumb}`;
+}
+
 export function getPublishedSsgPaths(): string[] {
   return getPublishedRegistryEntries().map((entry) => entry.path);
+}
+
+export function getFrProductSsgPaths(): readonly string[] {
+  return FR_PRODUCT_PREVIEW_ROUTED_PATHS;
 }

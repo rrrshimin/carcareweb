@@ -6,6 +6,22 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+/** Keep in sync with FR_PRODUCT_PREVIEW_PATHS in frProductPreviewMeta.ts */
+const FR_PRODUCT_SSG_PATHS = [
+  "/fr",
+  "/fr/suivi-entretien-voiture",
+  "/fr/historique-entretien-voiture",
+  "/fr/application-carnet-entretien-voiture",
+  "/fr/carnet-entretien-voiture",
+  "/fr/rappel-entretien-voiture",
+  "/fr/partager-historique-entretien-voiture",
+  "/fr/comment-fonctionne-carcare-diary",
+  "/fr/gestion-entretien-flotte",
+  "/fr/application-entretien-flotte",
+  "/fr/suivi-entretien-vehicules-entreprise",
+  "/fr/entretien-flotte-location-voitures",
+  "/fr/carnet-entretien-voitures-professionnels",
+];
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(root, "dist");
@@ -26,8 +42,8 @@ function loadFixtureMap() {
   }
 }
 
-function walkIndexHtmlFilesUnderFrBlog() {
-  const base = path.join(distDir, "fr", "blog");
+function walkIndexHtmlFilesUnderDir(subdir) {
+  const base = path.join(distDir, "fr", subdir);
   if (!fs.existsSync(base)) return [];
   const out = [];
   function walk(current) {
@@ -38,6 +54,21 @@ function walkIndexHtmlFilesUnderFrBlog() {
     }
   }
   walk(base);
+  return out;
+}
+
+function walkFrStaticIndexFiles() {
+  const frRoot = path.join(distDir, "fr");
+  if (!fs.existsSync(frRoot)) return [];
+  const out = [];
+  function walk(current) {
+    for (const name of fs.readdirSync(current, { withFileTypes: true })) {
+      const p = path.join(current, name.name);
+      if (name.isDirectory()) walk(p);
+      else if (name.name === "index.html") out.push(p);
+    }
+  }
+  walk(frRoot);
   return out;
 }
 
@@ -70,7 +101,8 @@ while ((m = ENTRY_RE.exec(source)) !== null) {
 const expectedPaths = new Set(rows.filter((r) => r.published).map((r) => r.path));
 const hasHub = expectedPaths.size > 0;
 
-const files = walkIndexHtmlFilesUnderFrBlog();
+const productPathsExpected = FR_PRODUCT_SSG_PATHS;
+const files = walkFrStaticIndexFiles();
 
 if (expectedPaths.size === 0) {
   if (files.length > 0) {
@@ -91,6 +123,11 @@ else pass("hub index.html present");
 for (const p of expectedPaths) {
   if (!pathsOnDisk.has(p)) fail(`missing ${p}/index.html`);
   else pass(`article static ${p}`);
+}
+
+for (const p of productPathsExpected) {
+  if (!pathsOnDisk.has(p)) fail(`missing product ${p}/index.html`);
+  else pass(`product static ${p}`);
 }
 
 for (const row of rows) {

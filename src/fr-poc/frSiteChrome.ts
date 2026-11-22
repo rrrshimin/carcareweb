@@ -1,10 +1,77 @@
 import type { LocalizedGuideRegistryEntry } from "../content/guides/types";
+import type { HreflangAlternate } from "../lib/pageSeoHead";
 import { SITE_URL } from "../lib/pageSeoHead";
+import { FR_PRODUCT_PREVIEW_PATHS } from "./frProductPreviewMeta";
 
 export const FR_BLOG_HUB_PATH = "/fr/blog";
+/** Localized marketing home. */
+export const FR_HOME_PATH = "/fr";
+
+export const FR_PRODUCT_PATHS = FR_PRODUCT_PREVIEW_PATHS;
+
+/** Vercel/static hosts often serve directory URLs with a trailing slash; match marketing paths either way. */
+function stripTrailingSlash(pathname: string): string {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
+}
+
+/** EN path → localized FR marketing path. */
+export const EN_TO_FR_PRODUCT_PATH: Record<string, (typeof FR_PRODUCT_PATHS)[number]> = {
+  "/": FR_HOME_PATH,
+  "/car-maintenance-tracker": "/fr/suivi-entretien-voiture",
+  "/car-service-history": "/fr/historique-entretien-voiture",
+  "/car-service-history-app": "/fr/application-carnet-entretien-voiture",
+  "/vehicle-maintenance-log": "/fr/carnet-entretien-voiture",
+  "/vehicle-service-reminder-app": "/fr/rappel-entretien-voiture",
+  "/share-car-maintenance-history": "/fr/partager-historique-entretien-voiture",
+  "/how-carcare-diary-works": "/fr/comment-fonctionne-carcare-diary",
+  "/fleet-management-app": "/fr/gestion-entretien-flotte",
+  "/fleet-maintenance-app": "/fr/application-entretien-flotte",
+  "/small-business-fleet-management-app": "/fr/suivi-entretien-vehicules-entreprise",
+  "/car-rental-fleet-maintenance-app": "/fr/entretien-flotte-location-voitures",
+  "/vehicle-maintenance-app-for-dealers": "/fr/carnet-entretien-voitures-professionnels",
+};
+
+const FR_TO_EN_PRODUCT_PATH: Record<string, string> = Object.fromEntries(
+  Object.entries(EN_TO_FR_PRODUCT_PATH).map(([en, fr]) => [fr, en]),
+);
+
+/** Reciprocal EN ↔ FR hreflang for product pages (POC client + SSG via mergeFrAlternatesForSsg). */
+export function frPocProductHreflangAlternates(path: string): readonly HreflangAlternate[] | undefined {
+  const normalized = stripTrailingSlash(path);
+  const fr = EN_TO_FR_PRODUCT_PATH[normalized];
+  if (fr) {
+    return [
+      { hreflang: "en", path },
+      { hreflang: "fr", path: fr },
+      { hreflang: "x-default", path },
+    ];
+  }
+  const en = FR_TO_EN_PRODUCT_PATH[normalized];
+  if (en) {
+    return [
+      { hreflang: "en", path: en },
+      { hreflang: "fr", path },
+      { hreflang: "x-default", path: en },
+    ];
+  }
+  return undefined;
+}
+
+export function isFrProductSitePath(pathname: string): boolean {
+  return (FR_PRODUCT_PATHS as readonly string[]).includes(stripTrailingSlash(pathname));
+}
 
 export function isFrBlogSitePath(pathname: string): boolean {
-  return pathname === FR_BLOG_HUB_PATH || pathname.startsWith(`${FR_BLOG_HUB_PATH}/`);
+  const p = stripTrailingSlash(pathname);
+  return p === FR_BLOG_HUB_PATH || p.startsWith(`${FR_BLOG_HUB_PATH}/`);
+}
+
+/** FR blog or FR product marketing shell (localized nav/footer). */
+export function isFrLocalizedMarketingPath(pathname: string): boolean {
+  return isFrBlogSitePath(pathname) || isFrProductSitePath(pathname);
 }
 
 export const FR_SITE = {
@@ -16,19 +83,19 @@ export const FR_SITE = {
     features: "Fonctionnalités",
     howItWorks: "Comment ça marche",
     faq: "FAQ",
-    forBusiness: "Entreprises",
+    forBusiness: "Pour les professionnels",
     guides: "Guides",
-    downloadApp: "Télécharger l'app",
+    downloadApp: "Télécharger l'application",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
   },
   footer: {
     tagline:
-      "Carnet d'entretien pour consigner les interventions, le kilométrage, les rappels et l'historique partageable du véhicule.",
+      "Application de suivi d'entretien automobile : carnet, kilométrage, rappels et historique partageable.",
     product: "Produit",
     guides: "Guides",
-    help: "Aide",
-    legal: "Mentions légales",
+    help: "Assistance",
+    legal: "Informations légales",
     allRights: "Tous droits réservés.",
   },
   blogHub: {
@@ -44,10 +111,26 @@ export const FR_SITE = {
   mobileBanner: {
     ariaLabel: "Télécharger l'application CarCare Diary",
     dismiss: "Fermer",
-    freeOn: (store: string) => `Gratuit — sur ${store}`,
-    get: "Obtenir",
+    freeOn: (store: string) => `Gratuit sur ${store}`,
+    get: "Télécharger",
   },
 } as const;
+
+/** Product column for FR marketing shell (same order as FR_SHARED_UI). */
+export const FR_FOOTER_PRODUCT_LINKS = [
+  { to: "/fr/suivi-entretien-voiture", label: "Suivi d'entretien voiture" },
+  { to: "/fr/historique-entretien-voiture", label: "Historique d'entretien" },
+  { to: "/fr/application-carnet-entretien-voiture", label: "Application carnet d'entretien" },
+  { to: "/fr/rappel-entretien-voiture", label: "Rappels d'entretien" },
+  { to: "/fr/partager-historique-entretien-voiture", label: "Partager l'historique" },
+  { to: "/fr/carnet-entretien-voiture", label: "Carnet d'entretien numérique" },
+  { to: "/fr/gestion-entretien-flotte", label: "Gestion d'entretien de flotte" },
+  { to: "/fr/application-entretien-flotte", label: "Application d'entretien de flotte" },
+  { to: "/fr/suivi-entretien-vehicules-entreprise", label: "Véhicules d'entreprise" },
+  { to: "/fr/entretien-flotte-location-voitures", label: "Flottes de location" },
+  { to: "/fr/carnet-entretien-voitures-professionnels", label: "Pour vendeurs automobiles" },
+  { to: "/fr/comment-fonctionne-carcare-diary", label: "Comment ça marche" },
+] as const;
 
 export function buildFrBlogHubJsonLd(
   entries: readonly LocalizedGuideRegistryEntry[],

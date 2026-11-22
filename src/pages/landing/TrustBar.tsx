@@ -1,14 +1,8 @@
-import { Smartphone, ClipboardCheck, Bell, Share2, Car } from "lucide-react";
+import type { LandingLocale } from "./landingStrings";
+import { landingStrings } from "./landingStrings";
 
-const signals = [
-  { icon: Smartphone, text: "Built for iPhone & Android" },
-  { icon: ClipboardCheck, text: "Complete Service Log" },
-  { icon: Bell, text: "Smart Reminders" },
-  { icon: Share2, text: "Shareable Records" },
-  { icon: Car, text: "Multi-Vehicle Support" },
-];
-
-export function TrustBar() {
+export function TrustBar({ locale = "en" }: { locale?: LandingLocale }) {
+  const signals = landingStrings[locale].trustBar.signals;
   return (
     <section className="py-10 md:py-12 px-6 sm:px-10 lg:px-16 xl:px-20 border-y border-panel">
       <div className="max-w-[1280px] mx-auto">

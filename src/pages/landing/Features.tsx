@@ -1,46 +1,9 @@
-import { Wrench, Bell, Gauge, Car, History, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { LandingLocale } from "./landingStrings";
+import { landingStrings } from "./landingStrings";
 
-const features = [
-  {
-    icon: Wrench,
-    title: "Service Log",
-    description:
-      "Log oil changes, brake work, filter replacements, and every other service your car needs. Each entry captures date, mileage, and notes.",
-  },
-  {
-    icon: Bell,
-    title: "Service Reminders",
-    description:
-      "Get notified when maintenance is coming due. Reminders are calculated from your service log, current mileage, and recommended intervals.",
-  },
-  {
-    icon: Gauge,
-    title: "Mileage Tracker",
-    description:
-      "Keep your odometer up to date so service schedules and reminders stay accurate as you drive.",
-  },
-  {
-    icon: Car,
-    title: "Vehicle Profile",
-    description:
-      "Store your car's make, model, year, fuel type, and photo in one place. Your vehicle's identity at a glance.",
-  },
-  {
-    icon: History,
-    title: "Maintenance History",
-    description:
-      "Build a complete, organized record of every service your car has received. Filter by category and review anytime.",
-  },
-  {
-    icon: Share2,
-    title: "Shareable Records",
-    description:
-      "Generate a public link to your vehicle's full service history. Useful when selling your car or visiting a mechanic.",
-  },
-];
-
-export function Features() {
+export function Features({ locale = "en" }: { locale?: LandingLocale }) {
+  const features = landingStrings[locale].features;
   return (
     <section
       id="features"
@@ -49,20 +12,19 @@ export function Features() {
       <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-16 md:mb-20">
           <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-3">
-            Features
+            {features.eyebrow}
           </p>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Everything You Need To{" "}
-            <span className="text-accent">Track Car Maintenance</span>
+            {features.headingLine}{" "}
+            <span className="text-accent">{features.headingAccent}</span>
           </h2>
           <p className="text-base text-muted max-w-[560px] mx-auto">
-            A complete vehicle maintenance log with service reminders, mileage
-            tracking, and a shareable history - built for everyday car owners.
+            {features.intro}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
+          {features.items.map((feature) => (
             <div
               key={feature.title}
               className="rounded-xl border border-panel bg-surface p-8 transition-colors duration-300 hover:border-accent/30"
@@ -81,19 +43,19 @@ export function Features() {
         </div>
 
         <p className="text-center text-sm text-muted mt-12">
-          Want to learn more?{" "}
+          {features.footerPrefix}{" "}
           <Link
-            to="/car-maintenance-tracker"
+            to={locale === "fr" ? "/fr/suivi-entretien-voiture" : "/car-maintenance-tracker"}
             className="text-accent font-semibold hover:text-white transition-colors"
           >
-            See how CarCare Diary works as a car maintenance tracker
+            {features.linkTracker}
           </Link>
           {" · "}
           <Link
-            to="/blog"
+            to={locale === "fr" ? "/fr/blog" : "/blog"}
             className="text-accent font-semibold hover:text-white transition-colors"
           >
-            Browse the maintenance guides
+            {features.linkGuides}
           </Link>
         </p>
       </div>

@@ -5,7 +5,14 @@ import {
   type PageSeoHeadOptions,
   type HreflangAlternate,
 } from "./pageSeoHead";
-import { blogHubAlternates, enBlogAlternatesWhenFrPublished } from "../fr-poc/frPublishing";
+import {
+  blogHubAlternates,
+  enBlogAlternatesWhenFrPublished,
+  enProductAlternatesWhenFrPublished,
+} from "../fr-poc/frPublishing";
+import { frPocProductHreflangAlternates } from "../fr-poc/frSiteChrome";
+
+const frPoc = Boolean(import.meta.env.VITE_FR_POC);
 
 export type { HreflangAlternate } from "./pageSeoHead";
 
@@ -105,8 +112,9 @@ export function usePageSeo({
         ? blogHubAlternates()
         : path.startsWith("/blog/")
           ? enBlogAlternatesWhenFrPublished(path)
-          : undefined;
-    const effectiveAlternates = autoAlternates ?? alternates;
+          : enProductAlternatesWhenFrPublished(path);
+    const productAlternates = frPoc ? frPocProductHreflangAlternates(path) : undefined;
+    const effectiveAlternates = autoAlternates ?? alternates ?? productAlternates;
 
     document.title = title;
     if (lang) document.documentElement.lang = lang;

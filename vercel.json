@@ -4,7 +4,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!fr/blog|sitemap\\.xml|robots\\.txt).*)",
+      "source": "/((?!fr/|sitemap\\.xml|robots\\.txt).*)",
       "destination": "/index.html"
     }
   ],
